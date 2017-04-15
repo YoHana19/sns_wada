@@ -1,6 +1,25 @@
 /*font Awesome http://fontawesome.io*/
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 /*Comment List styles*/
+
+.outer {
+  background-color: #a25768;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.page-header {
+  background-color: #a25768;
+  border-radius: 7px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.page-header h2 {
+  color: #fff;
+}
+
 .comment-list .row {
   margin-bottom: 0px;
 }
@@ -27,6 +46,7 @@
 }
 
 .panel {
+  background-color: #e4d2d8;
   border-radius: 15px;
   width: 300px;
   height: 250px;
@@ -51,6 +71,32 @@
 
 .user-right {
   margin-left: auto;
+}
+
+/* 俳句の縦書き */
+.haiku-text {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.haiku-text p {
+    position: absolute;
+    top: 25px;
+    font-size: 20px;
+}
+
+.haiku-text-1 {
+    left: 15px;
+}
+
+.haiku-text-2 {
+    left: 117px;
+}
+
+.haiku-text-3 {
+    right: 15px;
 }
 
 /* Portrait tablets and medium desktops */
@@ -80,7 +126,7 @@
     left: 1px;
     top: 31px;
     /*Change for different outline color*/
-    border-right-color: #FFFFFF;
+    border-right-color: #e4d2d8;
     border-width: 15px;
   }
   /*****Right Arrow*****/
@@ -97,7 +143,7 @@
     right: -14px;
     top: 31px;
     /*Change for different outline color*/
-    border-left-color: #FFFFFF;
+    border-left-color: #e4d2d8;
     border-width: 15px;
   }
 }
