@@ -6,20 +6,31 @@
   <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/chat.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
 <body>
   <div class="container">
     <div class="row">
       <!-- チャット一覧 -->
-      <div class="col-md-3">
-      
+      <div class="col-md-3 chat-list">
+        <!-- 検索フォーム -->
+        <form action="" method="" accept-charset="utf-8" class="form-horizontal">
+          <div class="form-group search-input">
+            <div class="col-md-9" style="text-align: center; padding: 10px;">
+              <input type="text" name="" class="form-control">
+            </div>
+            <div class="col-md-3" style="text-align: center; padding: 10px;">
+              <input type="submit" class="btn btn-info" value="検索" style="background-color: #2ca9e1;">
+            </div>
+          </div>
+        </form>
       </div>
 
       <!-- 個人チャット画面 -->
-      <div class="col-md-9">
+      <div class="col-md-9 chat-private">
         <div class="outer">
           <div class="page-header">
-            <h2>友達名</h2>
+            <h2>【友達名】</h2>
           </div>
         </div>
 
@@ -120,6 +131,18 @@
               </div>
             </div>
           </article>
+
+          <!-- 俳句入力フォーム -->
+          <form action="" method="" accept-charset="utf-8" class="form-horizontal">
+            <div class="form-group chat-input">
+              <div class="col-md-11" style="text-align: center; padding: 10px;">
+                <input type="text" name="" class="form-control">
+              </div>
+              <div class="col-md-1" style="text-align: center; padding: 10px;">
+                <input type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381;">
+              </div>
+            </div>
+          </form>
 
         </section>
       </div>

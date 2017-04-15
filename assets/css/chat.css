@@ -1,11 +1,22 @@
 /*font Awesome http://fontawesome.io*/
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
-/*Comment List styles*/
 
+.chat-list {
+  margin-top: 30px;
+  padding-right: 20px;
+}
+
+.chat-private {
+  margin-top: 30px;
+  padding-left: 40px;
+  border-left: 2px solid #ccc;
+}
+
+/*Comment List styles*/
 .outer {
-  background-color: #a25768;
-  border-radius: 7px;
-  text-align: center;
+  display: table;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .page-header {
@@ -14,10 +25,12 @@
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  padding-bottom: 0;
 }
 
 .page-header h2 {
   color: #fff;
+  margin: 7px 0px;
 }
 
 .comment-list .row {
@@ -97,6 +110,17 @@
 
 .haiku-text-3 {
     right: 15px;
+}
+
+/* 俳句入力欄 */
+.chat-input {
+  background-color: #80aba9;
+  margin-top: 30px;
+}
+
+/* 検索入力欄 */
+.search-input {
+  background-color: #007bbb;
 }
 
 /* Portrait tablets and medium desktops */
