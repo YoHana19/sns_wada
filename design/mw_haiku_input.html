@@ -13,54 +13,48 @@
   <link rel="stylesheet" type="text/css" href="../assets/css/modal_window.css">
 </head>
 <body>
-  <p><a id="modal-open" class="button-link">クリックするとモーダルウィンドウを開きます。</a></p>
-  <div id="modal-content_1" class="content">
-    <p>「閉じる」か「背景」をクリックするとモーダルウィンドウ２に遷移します。</p>
-    <p><a id="modal-check" class="button-link">確認</a></p>
-  </div>
-  <div id="modal-content_2" class="content">
-    <p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
-    <p><a id="modal-close" class="button-link">閉じる</a></p>
-  </div>
+  <input type="submit" id="modal-open" class="btn btn-info" value="詠む" style="background-color: #00a381;">
 
   <!-- LOGIN FORM -->
-  <div class="text-center" style="padding:50px 0">
-    <div class="logo">一句詠む</div>
-    <!-- Main Form -->
-    <div class="login-form-1">
-      <form id="login-form" class="text-left" method="POST" action="">
-        <div class="login-form-main-message"></div>
-        <div class="main-login-form">
-          <div class="login-group">
-            <div class="form-group">
-              <label for="lg_username" class="sr-only">Username</label>
-              <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="壱行目（四〜六文字）">
-            </div>
-            <div class="form-group">
-              <label for="lg_username" class="sr-only">Username</label>
-              <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="弐行目（六〜八文字）">
-            </div>
-            <div class="form-group">
-              <label for="lg_username" class="sr-only">Username</label>
-              <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="参行目（四〜六文字）">
-            </div>
+  <div id="modal-content_1" class="content">
+    <div class="text-center"">
+      <div class="logo">一句詠む</div>
+      <!-- Main Form -->
+      <div class="login-form-1">
+        <form id="login-form" class="text-left" method="POST" action="">
+          <div class="login-form-main-message"></div>
+          <div class="main-login-form">
+            <div class="login-group">
+              <div class="form-group">
+                <label for="lg_username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="壱行目（四〜六文字）">
+              </div>
+              <div class="form-group">
+                <label for="lg_username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="弐行目（六〜八文字）">
+              </div>
+              <div class="form-group">
+                <label for="lg_username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="参行目（四〜六文字）">
+              </div>
 
-            <div class="form-group" style="margin-top: 15px;">
-              <label for="lg_username" class="sr-only">Username</label>
-              <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="一言説明（二十文字以下）">
+              <div class="form-group" style="margin-top: 15px;">
+                <label for="lg_username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="一言説明（二十文字以下）">
+              </div>
+              <div class="form-group" style="margin-top: 15px; position: relative;">
+                <label for="file_photo" class="photo-button">
+                  <a>写真</a>
+                  <input type="file" id="file_photo" name="picture_path" class="form-control" style="display: none">
+                </label>
+              </div>
             </div>
-            <div class="form-group" style="margin-top: 15px;">
-              <label for="file_photo" class="photo-botton">
-                <input type="button" class="btn" value="写真">
-                <input type="file" id="file_photo" name="picture_path" class="form-control" style="display: none">
-              </label>
-            </div>
+            <button type="button" id="modal-close" class="login-button" style="font-size: 16px;">詠</button>
           </div>
-          <button type="submit" class="login-button" style="font-size: 16px;">詠</button>
-        </div>
-      </form>
+        </form>
+      </div>
+      <!-- end:Main Form -->
     </div>
-    <!-- end:Main Form -->
   </div>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

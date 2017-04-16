@@ -18,6 +18,21 @@ Last change : 2015/03/27
 8. Custom Checkbox & Radio
 9. Misc
 -------------------------------------------------------------------*/
+
+/* 写真送信ボタン */
+.photo-button {
+  background-color: #f8f4e6;
+  width: 40px;
+  height: 25px;
+  border-radius: 7px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  padding-top: 3px;
+  position: relative;
+  left: 215px;
+}
+
 /*=== 1. General Structure ===*/
 html,
 body {

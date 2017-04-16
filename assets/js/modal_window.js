@@ -5,11 +5,8 @@
 // 1番最初のモーダルウィンドウ呼び出し
 modalWindowOnFirst('modal-open');
 
-// 2番目のモーダルウィンドウ呼び出し
-modalWindowOn('modal-check', 'modal-content_1', 'modal-content_2');
-
 // モーダルウィンドウの終了
-modalWindowOff('modal-close', 'modal-content_2');
+modalWindowOff('modal-close', 'modal-content_1');
 
 //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
 $(window).resize(centeringModalSyncer);
