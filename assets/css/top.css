@@ -1,0 +1,116 @@
+p, h1, h2, h3, h4 {
+  font-family: serif;
+}
+
+p {
+  font-size: 15px;
+}
+
+.video-wrap {
+  position: relative;
+}
+
+video {
+  z-index: -100;
+  position: fixed; 
+  right: 0; 
+  bottom: 0;
+}
+
+#top h1 {
+  font-size: 40px;
+  color: white;
+  font-family: serif;
+}
+
+#top-btn {
+  font-family: serif;          
+  color: #fff;
+  font-size: 400%;
+  position: absolute;
+  /*left: 30%;*/
+  top: 80px;
+  z-index: 1;
+}
+
+#second-top h1{
+  font-family: serif;
+}
+
+#second-top{
+  background-image: url(../../assets/images/mt-fuji.jpg);
+  background-size: cover;
+  z-index: 1;
+}
+
+#third-top {
+  background-image: url(../../assets/images/kitadake.jpg);
+  background-size: cover;
+  z-index: 1;
+}
+
+
+/*.second-top{
+  background-color: #fef4f4;
+}*/
+
+#transparent-background{
+  height: 50px;
+}
+
+
+/*#third-top {
+  background-image: url(../assets/images/japanese-umbrellas.jpg);
+  background-size: cover;
+  height: auto;
+}*/
+
+#fourth-top {
+  background-image: url(../../assets/images/wada-vince.jpg);
+  background-size: cover;
+  height: auto;
+}
+
+#fifth-top {
+  background-image: url(../../assets/images/thumb_DSCF1581_1024.jpg);
+  background-size: cover;
+  height: auto;
+}
+
+#sixth-top {
+  background-image: url(../../assets/images/thumb_DSCF1578_1024.jpg);
+  background-size: cover;
+  height: auto;
+}
+
+.chat-image {
+  background-color: rgba(255,255,255,0.5);
+  padding-top: 30px;
+
+  margin-bottom: 50px;
+  border-radius: 50px;
+}
+
+/*/*全体の枠組み*/
+/*body {
+    padding: 200px 50px 1500px; 
+    width:1000px;
+}*/
+
+
+/*プロフィール名前の位置*/
+h1{
+  padding-top:50px;
+}
+
+/*Friendsの文字の大きさ&フォント*/
+.title {
+    font-size: 1.7em;
+    font-weight: bold; 
+}
+
+/*各Friendの名前の大きさ&濃さ*/
+.name {
+    font-size: 1.1em; 
+    font-weight: 700;
+}
