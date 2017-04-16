@@ -13,6 +13,7 @@ body
     z-index: 0;
     width: 100%;  
     margin-bottom: 10px;
+     position: static;
 }
 
 .fb-image-profile
@@ -38,6 +39,14 @@ body
 }
 }
 
+.button
+{
+    color: #ffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin: 23px 0 7px;
+    width: 100%; 
+}
 /* 俳句一覧 */
 .haiku {
     margin-top: 30px;
