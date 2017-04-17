@@ -1,7 +1,7 @@
 .well_2 {
   min-height: 20px;
   padding: 2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
@@ -40,19 +40,19 @@
 }
 
 .picuture-position {
-  width: 270px;
+  width: 335px;
   height: 250px;
 }
 
 .picuture-position2 {
-  width: 270px;
+  width: 335px;
   height: 250px;
 }
 
 .button-position {
-  padding: 5px;
-  padding-left: 83px;
-  padding-right: 83px;
+  padding-left: 124px;
+  padding-right: 123px;
+  margin-bottom: 5px;
 }
 
 #search {
@@ -66,7 +66,7 @@
     width: 230px;
     height: 30px;
     position: relative;
-    left: 10px;
+    left: 31px;
     float: left;
     line-height: 22px;
 }
@@ -102,7 +102,12 @@
 
 .people-name {
   background-color: #adadad;
-  padding-left: 120px;
+  padding-left: 140px;
 }
 
+.title-ranking{
+  background-color: #e198b4;
+  margin-bottom: 30px;
+  margin-left: 72px;
+}
 
