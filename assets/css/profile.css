@@ -46,6 +46,7 @@ body
     font-weight: 300;
     margin: 23px 0 7px;
     width: 100%; 
+    position: relative;
 }
 /* 俳句一覧 */
 .haiku {
