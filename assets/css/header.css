@@ -80,12 +80,18 @@ a:after {
     height: 1px;
     border: 0;
     border-top: 1px solid #ccc;
-    margin: 1em 0;
+    margin:	 1em 0;
     padding: 0;
 }
 
 
 .navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+
 	font-weight: 800;
 	font-size: 14px;
 	padding-top: 15px;
@@ -99,7 +105,8 @@ a:after {
 
 .navbar-brand {
 	font-size: 60px;
-	padding-top: 0px;
+	padding-top: 10px;
+	padding-right: 20px;
 	padding-bottom: 0px;
 }
 
@@ -221,6 +228,9 @@ a:after {
 
 
 /*header*/
+
+
+
 
 nav.navbar-webmaster { 
 	background: #1b242c;
