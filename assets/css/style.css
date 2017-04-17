@@ -1,45 +1,75 @@
-.well_2 {
+.well-2 {
   min-height: 20px;
-  padding: 2px;
-  margin-bottom: 30px;
+  padding: 19px;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }
-
-.yosi {
-  padding-left: 110px;
-}
-
-.asi {
-  padding-left: 110px;
-}
-
-.title-ranking {
-  padding-left: 150px;
-}
-
-.well_2 blockquote {
+.well-2 blockquote {
   border-color: #ddd;
-  border-color: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, .15);
 }
 
-.picuture-position {
-  width: 270px;
-  height: 250px;
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #6534ff;
+    /*float: right;*/
+    margin-right: 175px;
+    margin-top: 10px;
+
+  }
+
+#menu li {
+    float: left;
 }
 
-.picuture-position2 {
-  width: 270px;
-  height: 250px;
+#menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 15px;
+    text-decoration: none;
+     margin-left: 15px;
 }
 
-.button-position {
-  padding: 5px;
-  padding-left: 83px;
-  padding-right: 83px;
+
+#menu li a:hover {
+    background-color: #62bcfa;
+    text-decoration: none;
 }
 
+.ranking-column {
+    background-color: #62bcfa;
+    margin: 0 auto;
+}
 
+.yosi-ranking h4 {
+    background-color: #e198b4;
+    text-align: center;
+}
+
+.yosi-picture {
+    padding-left: 50px;
+}
+
+.asi-ranking h4 {
+    background-color: #a59aca;
+    text-align: center;
+}
+
+.asi-picture {
+    padding-left: 50px;
+}
+
+.runking-title h4 {
+    background-color: #62bcfa;
+}
+
+.menu-size {
+   width: 1000px;
+}
