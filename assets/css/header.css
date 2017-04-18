@@ -11,6 +11,15 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
 
+
+/* 詠むボタン */
+.haiku-input {
+  background-color: #474a4d;
+  border-color: #474a4d;
+  margin-left: 10px;
+}
+
+
 /* OVERALL ASPECT */
 
 body {
@@ -103,11 +112,24 @@ a:after {
 	background-color: #74cfae;
 }
 
+.navbar-header {
+  padding: 10px 0;
+}
+
 .navbar-brand {
 	font-size: 60px;
 	padding-top: 10px;
-	padding-right: 20px;
+	padding-left: 20px;
 	padding-bottom: 0px;
+  margin-left: 30px;
+}
+
+.navbar-nav {
+  margin-top: 10px;
+}
+
+.navbar-form {
+  margin-top: 18px;
 }
 
 .btn-theme {
@@ -116,121 +138,12 @@ a:after {
 	border-color: transparent;
 }
 
-.btn {
-	padding: 10px 30px;
-	margin-bottom: 0;
-	font-size: 18px;
-	border: 5px solid transparent;
-	border-radius: 0px;
-}
-
 .lead {
 	letter-spacing: 1px;
 }
 
-/* WRAP SECTIONS */
-
-/* hello */
-#hello {
-	width: 100%;
-	padding-top: 250px;
-	padding-bottom: 250px;
-}
-
-#hello h1 {
-	font-size: 90px;
-	font-weight: 700;
-	letter-spacing: 3px;
-	color: #74cfae;
-}
-
-#hello h2 {
-	color: #c0c0c0;
-	font-weight: 400;
-}
-
-/* Green */
-#green {
-	background-color: #74cfae;
-	padding-top: 50px;
-	margin-bottom: 0px;
-}
-
-#green h3 {
-	color: white;
-	font-weight: 400;
-	margin-bottom: 35px;
-}
-
-#green p {
-	color: white;
-	font-weight: 400;
-	font-size: 20px;
-}
-
-/* Skills */
-#skills {
-	background-color: #4e4e4e;
-	padding-top: 50px;
-	padding-bottom: 50px;
-	margin-top: 50px;
-}
-
-#skills h3 {
-	color: white;
-}
-
-#skills p {
-	color: white;
-	font-weight: 400;
-}
-
-/* Social Links */
-#social {
-	width: 100%;
-	padding-top: 200px;
-	padding-bottom: 200px;
-}
-
-#social i {
-	font-size: 50px;
-	color: #74cfae;
-}
-
-#social .col-md-3:hover {
-	background-color: #f5f5f5;
-}
-
-#social .col-md-3 {
-	padding:30px;
-}
-
-/* Footer */
-#f {
-	padding-top: 20px;
-	background-color: #74cfae;
-}
-
-#f p {
-	color: white;
-	text-align: right;
-	font-weight: 400;
-}
-
-/* Image Opacity */
-.grid img {
-    opacity: .7;
-}
-.grid img:hover {
-    opacity: 1;
-}
-
-
 
 /*header*/
-
-
-
 
 nav.navbar-webmaster { 
 	background: #1b242c;
