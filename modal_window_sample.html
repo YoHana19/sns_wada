@@ -16,7 +16,7 @@
     <p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
     <p><a id="modal-close" class="button-link">閉じる</a></p>
   </div>
- 
+
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="assets/js/jquery-3.1.1.js"></script>
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
@@ -24,5 +24,18 @@
   <!-- jQuery (necessary for Modal Window) -->
   <script src="assets/js/modal_window.js"></script>
 
+  <script>
+    // 1番最初のモーダルウィンドウ呼び出し
+    modalWindowOnFirst('modal-open');
+
+    // 2番目のモーダルウィンドウ呼び出し
+    modalWindowOn('modal-check', 'modal-content_1', 'modal-content_2');
+
+    // モーダルウィンドウの終了
+    modalWindowOff('modal-close', 'modal-content_2');
+
+    //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
+    $(window).resize(centeringModalSyncer);
+  </script>
 </body>
 </html>

@@ -1,24 +1,5 @@
 // 
-// 実行部
-// 
-
-// 1番最初のモーダルウィンドウ呼び出し
-modalWindowOnFirst('modal-open');
-
-// 2番目のモーダルウィンドウ呼び出し
-modalWindowOn('modal-check', 'modal-content_1', 'modal-content_2');
-
-// モーダルウィンドウの終了
-modalWindowOff('modal-close', 'modal-content_2');
-
-//リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
-$(window).resize(centeringModalSyncer);
-
-
-
-
-// 
-// 以下、関数定義
+// 関数定義
 // 
 
 // 1番最初のモーダルウィンドウ呼び出し関数（引数：モーダルウィンドウ呼び出しボタンのid）
