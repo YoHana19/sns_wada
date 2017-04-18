@@ -14,6 +14,11 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $posts[] = $record;
   // 配列名の後に[]をつけると最後の段を指定する]
 }
+
+function tateGaki($haiku) {
+  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+  return $matches;
+}
 ?>
 
 
@@ -41,6 +46,11 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <?php echo $haiku_2 ?><br>
     <?php echo $haiku_3 ?><br>
     <?php echo $created ?><br>
+
+    <?php $v_haiku_2 = tateGaki($haiku_2); ?>
+    <?php foreach ($v_haiku_2 as $letter) { ?>
+      <?php echo $letter ?><br>
+    <?php } ?>
 
   <?php } ?>
 
