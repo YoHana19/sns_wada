@@ -36,7 +36,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <?php $created = $post['created'] ?>
 
     <?php echo $nick_name ?><br>
-    <?php echo $user_picture_path ?><br>
+    <img src="assets/images/<?php echo $user_picture_path ?>" width="48" height="48"><br>
     <?php echo $haiku_1 ?><br>
     <?php echo $haiku_2 ?><br>
     <?php echo $haiku_3 ?><br>
