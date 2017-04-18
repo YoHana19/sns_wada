@@ -2,7 +2,7 @@
 session_start();
 require('dbconnect.php');
 
-$sql = 'SELECT * FROM `haikus` WHERE 1';
+$sql = 'SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY h.created';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
@@ -24,8 +24,24 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <title></title>
 </head>
 <body>
+  <!-- 繰り返し処理 -->
   <?php foreach ($posts as $post) { ?>
-    <?php echo $post['haiku_1'] ?>
+
+    <!-- パラメーター設定 -->
+    <?php $nick_name = $post['nick_name'] ?>
+    <?php $user_picture_path = $post['user_picture_path'] ?>
+    <?php $haiku_1 = $post['haiku_1'] ?>
+    <?php $haiku_2 = $post['haiku_2'] ?>
+    <?php $haiku_3 = $post['haiku_3'] ?>
+    <?php $created = $post['created'] ?>
+
+    <?php echo $nick_name ?><br>
+    <?php echo $user_picture_path ?><br>
+    <?php echo $haiku_1 ?><br>
+    <?php echo $haiku_2 ?><br>
+    <?php echo $haiku_3 ?><br>
+    <?php echo $created ?><br>
+
   <?php } ?>
 
 </body>
