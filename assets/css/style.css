@@ -38,18 +38,14 @@
     padding-left: 350px;
 }
 
-.runking-picture img {
-  width: 25px;
-}
-
 .yosi-ranking h4 {
     background-color: #e198b4;
     text-align: center;
 }
 
 .yosi-ranking h3 {
-  width: 120px;
-  height: 120px;
+  width: 255px;
+  height: 255px;
   background-image: url("http://placekitten.com/150/150");
   background-size: 255px;
   border: solid 2px;
