@@ -17,7 +17,11 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 function tateGaki($haiku) {
   $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
-  return $matches;
+  $v_haiku = '';
+  foreach ($matches as $letter) {
+    $v_haiku .= $letter . "<br>";
+  }
+  return rtrim($v_haiku, "<br>");
 }
 ?>
 
@@ -47,11 +51,15 @@ function tateGaki($haiku) {
     <?php echo $haiku_3 ?><br>
     <?php echo $created ?><br>
 
-    <?php $v_haiku_2 = tateGaki($haiku_2); ?>
-    <?php foreach ($v_haiku_2 as $letter) { ?>
-      <?php echo $letter ?><br>
-    <?php } ?>
+    <?php $v_haiku_1 = tateGaki($haiku_1); ?>
+    <?php echo $v_haiku_1 ?>
 
+    <!-- いいね！データが存在する（削除ボタン表示） -->
+    <input type="submit" value="いいね！取り消し" id="<?php echo $tweet_id; ?>" class="like btn btn-danger btn-xs">
+              
+    <!-- いいね！データが存在しない（いいねボタン表示） -->
+    <input type="submit" value="いいね！" id="<?php echo $tweet_id; ?>" class="like btn btn-primary btn-xs">
+    
   <?php } ?>
 
 </body>
