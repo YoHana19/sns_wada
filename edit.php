@@ -29,7 +29,6 @@ $login_user = $stmt->fetch(PDO::FETCH_ASSOC);
   
   <h1><?php echo $login_user['nick_name']; ?></h1>
   <p><?php echo $login_user['self_intro']; ?></p>
-  <input type="button" style="position: absolute; right: 100px; top: 350px" onclick="location.href='edit.php'" value="プロフィール編集">
 
 </body>
 </html>
