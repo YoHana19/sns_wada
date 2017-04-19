@@ -10,6 +10,21 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_member_id = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$nick_name = '';
+$email = '';
+$user_picture_path = '';
+$back_picture_path = '';
+
+$errors = array();
+
+if (!empty($_POST)) {
+$nick_name = $_POST['nick_name'];
+$email = $_POST['email'];
+$user_picture_path = $_POST['user_picture_path'];
+$back_picture_path = $_POST['back_picture_path'];
+$self_intro = $_POST['self_intro'];
+}
+
 
 
  ?>
