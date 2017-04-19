@@ -1,38 +1,13 @@
 <?php
+session_start();
 require('dbconnect.php');
 $_SESSION['id'] = 1;
 
-// プロフ画像
-$sql = 'SELECT `user_picture_path` FROM `members` WHERE `member_id`=1';
+$sql = 'SELECT * FROM `members` WHERE `member_id`=?';
+$data = array($_SESSION['id']);
 $stmt = $dbh->prepare($sql);
-$stmt->execute();
-$login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// ユーザー名
-$sql = 'SELECT `nick_name` FROM `members` WHERE `member_id`=?';
-$data1 = array($_SESSION['id']);
-$stmt1 = $dbh->prepare($sql);
-$stmt1->execute($data1);
-$login_user_name = $stmt1->fetch(PDO::FETCH_ASSOC);
-
-// 背景画像
-$sql = 'SELECT `back_picture_path` FROM `members` WHERE `member_id`=1';
-$stmt2 = $dbh->prepare($sql);
-$stmt2->execute();
-$login_user_back_picture = $stmt2->fetch(PDO::FETCH_ASSOC);
-
-// haiku1表示
-// $sql = 'SELECT `haiku_1` FROM `haikus` WHERE `member_id`=1';
-// $data2 = array($_SESSION['id']);
-// $stmt2 = $dbh->prepare($sql);
-// $stmt2->execute();
-// $haiku1 = $stmt2->fetch(PDO::FETCH_ASSOC);
-
-// $sql = 'SELECT `haiku_2` FROM `haikus` WHERE `member_id`=1';
-
-
-// $sql = 'SELECT `haiku_3` FROM `haikus` WHERE `member_id`=1';
-
+$stmt->execute($data);
+$login_user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -50,13 +25,13 @@ $login_user_back_picture = $stmt2->fetch(PDO::FETCH_ASSOC);
 <!--プロフィール写真/ 一言-->
   <div class="container">
     <div class="fb-profile">
-      <img align="left" class="fb-image-lg" src="images/<?php echo $login_user_back_picture['back_picture_path']; ?>" alt="Profile back image example"/>
-      <img align="left" class="fb-image-profile thumbnail" src="images/<?php echo $login_user_picture['user_picture_path']; ?>" alt="Profile image example"/>
+      <img align="left" class="fb-image-lg" src="assets/images/<?php echo $login_user['back_picture_path']; ?>" alt="Profile back image example"/>
+      <img align="left" class="fb-image-profile thumbnail" src="assets/images/<?php echo $login_user['user_picture_path']; ?>" alt="Profile image example"/>
       <div class="fb-profile-text">
-        <h1><?php echo $login_user_name['nick_name']; ?></h1>
-        <p>Girls just wanna go fun.</p>
+        <h1><?php echo $login_user['nick_name']; ?></h1>
+        <p><?php echo $login_user['self_intro']; ?></p>
         <div class="navbar-fixed">
-          <input type="button" style="position: absolute; right: 100px; top: 350px"/ value="プロフィール編集">
+          <input type="button" style="position: absolute; right: 100px; top: 350px"/ onclick="location.href='edit.php'" value="プロフィール編集">
         </div>
       </div>
     </div>
@@ -129,7 +104,7 @@ $login_user_back_picture = $stmt2->fetch(PDO::FETCH_ASSOC);
                 <form action="" method="" accept-charset="utf-8" class="form-horizontal">
                   <div class="form-group">
                     <div class="col-sm-1">
-                      <img src="http://lorempixel.com/180/180/people/9/" width="30" height="30">
+                      <img src="assets/images/<?php echo $login_user['user_picture_path']; ?>" width="30" height="30">
                     </div>
                     <div class="col-sm-11">
                       <input type="text" name="nick_name" class="form-control" placeholder="例： Seed kun">
