@@ -1,13 +1,17 @@
 <?php
+session_start();
 require('dbconnect.php');
 
-//$_POSTで受け取り、変数定義
-    // $nick_name = $_POST['nick_name'];
-    // $email = $_POST['email'];
-    // $password = $_POST['password'];
-    // $user_picture_path = $_POST['user_picture_path'];
+$_SESSION['login_member_id'] = 1;
 
-// sql文を書く(取ってくるのはログインユーザーの)
+$sql = 'SELECT * FROM `members`';
+$data = array($_SESSION['login_member_id']);
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
+$login_member_id = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+
  ?>
 
 
@@ -17,39 +21,42 @@ require('dbconnect.php');
   <title></title>
   <meta charset="utf-8">
 </head>
-  <form method="POST" action="">
+<form method="POST" action="">
   <div>
     <label>ニックネーム</label>
-    <input type="nick_name" name="nick_name" value=""> <!-- valueの後にphpでecho $nick_nameを入れるよ  -->
+    <input type="nick_name" name="nick_name" value="<?php echo $login_member_id['nick_name']; ?>">
   </div>
 
   <div>
     <label>メールアドレス</label>
-    <input type="email" name="email" value=""> <!-- valueの後にphpでecho $emailを入れる -->
+    <input type="email" name="email" value="<?php echo $login_member_id['email']; ?>">
   </div>
 
   <div>
     <label>メールアドレス確認用</label>
-    <input type="email_check" name="email_check" value=""> <!-- valueの後にphpで上記のメールアドレスと同じかどうかのif文を作成 -->
-  </div>
-
-  <div>
-    <label>パスワード</label>
-    <input type="password" name="password" value=""> <!-- valueの後にphpでecho $passwordを入れる -->
-  </div>
-
-  <div>
-    <label>パスワード(確認用)</label>
-    <input type="password_check" name="password_check" value=""> <!-- valueの後にphpで上記のパスワードと一致するか確認 -->
+    <input type="email_check" name="email_check" value">
   </div>
 
   <div>
     <label>アイコン画像</label>
-    <input type="" name="" value=""> <!-- valueの後にphp echo  -->
+    <input type="file" name="picture_path" value="<?php echo $login_member_id['user_picture_path']; ?>">
   </div>
 
-    </div>
-  </form>
+  <div>
+    <label>背景画像</label>
+    <input type="file" name="picture_path" value="<?php echo $login_member_id['back_picture_path']; ?>">
+  </div>
+
+<div>
+<label>自己紹介句</label>
+  <input type="" name="" value="<?php echo $login_member_id['self_intro']; ?>">
+</div>
+
+<div>
+<button type="submit" value="送信">保存</button>
+</div>
+
+</form>
 <body>
 </body>
 </html>
