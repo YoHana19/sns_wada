@@ -12,7 +12,7 @@ $login_member_id = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $nick_name = '';
 $email = '';
-// $email_check='';
+$email_check='';
 $user_picture_path = '';
 $back_picture_path = '';
 // $self_intro = '';
@@ -25,7 +25,7 @@ $nick_name = $_POST['nick_name'];
 $email = $_POST['email'];
 $user_picture_path = $_POST['user_picture_path'];
 $back_picture_path = $_POST['back_picture_path'];
-$self_intro = $_POST['self_intro'];
+// $self_intro = $_POST['self_intro'];
 
 
 // 空だった時
@@ -38,7 +38,7 @@ $self_intro = $_POST['self_intro'];
   }
 
 // メモ「上記のメールアドレスと一致するかをif文で出すこと!!!」
-    if ($_POST['email_check'] !== $_POST['email']) {
+    if ($_POST['email_check'] != $_POST['email']) {
     $errors['email'] = 'not_match';
   }
 
@@ -119,8 +119,8 @@ if(empty($errors)){
 
   <div>
     <label>メールアドレス確認用</label>
-    <input type="email" name="email" value="">
-    <?php if(isset($errors['email']) && $errors['email'] == 'blank' && $errors['email'] != $errors['email']): ?>
+    <input type="email" name="email_check" value="">
+    <?php if(isset($errors['email']) && $errors['email'] == 'blank' && $errors['email_check'] != $errors['email']): ?>
       <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを正しく入力してください</p>
     <?php endif; ?>
   </div>
@@ -128,7 +128,8 @@ if(empty($errors)){
 
   <div>
     <label>アイコン画像</label>
-    <input type="file" name="user_picture_path" value="<?php echo $login_member_id['user_picture_path']; ?>">
+    <img src="assets/images/<?php echo $login_member_id['user_picture_path']; ?>">
+    <input type="file" name="user_picture_path">
     <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'blank'): ?>
       <p style="color:red; font-size:10px; margin-top:2px; ">アイコン画像を選択してください</p>
     <?php endif; ?>
