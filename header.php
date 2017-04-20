@@ -65,7 +65,7 @@ $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す�
 <!-- 検索ワード入力フォーム(検索窓) : 検索したワードが入っているくを検索結果として表示する -->
 <!-- 検索結果表示 -->
 
-<img src="member_picture<?php echo $hugahuga['user_picture_path'] . '<br>'; ?>" width="100" height="100">
+<img src="member_picture<?php echo $hugahuga['user_picture_path']; ?>" width="100" height="100"><br>
 <?php while($hugahuga = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
 <?php echo $hugahuga['nick_name'] . '<br>';
       echo $hugahuga['haiku_1'] . '<br>';
