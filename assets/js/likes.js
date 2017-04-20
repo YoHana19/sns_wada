@@ -5,9 +5,9 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
    */
   $('input.like').click(function() // inputタグがクリックされたら実行
   {
-    var tweet_id = $(this).attr('id'); // クリックされたタグのtweet_idの値を取得
+    var haiku_id = $(this).attr('id'); // クリックされたタグのtweet_idの値を取得
     //POSTメソッドで送るデータを定義します var data = {パラメータ名 : 値};
-    var data = {tweet_id : tweet_id}; // JSで連想配列を定義
+    var data = {haiku_id : haiku_id}; // JSで連想配列を定義
     // $data = array('hoge' => 'ほげ'); PHPの連想配列
     // ここで定義したkeyが受け取り側の$_POSTのkeyになる
     /**
