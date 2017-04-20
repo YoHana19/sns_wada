@@ -1,4 +1,4 @@
-<?php  
+<?php
 $dsn = 'mysql:dbname=sns_wada;host=localhost';
 $user = 'root';
 $password = '';
