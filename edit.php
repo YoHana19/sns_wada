@@ -12,8 +12,11 @@ $login_member_id = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $nick_name = '';
 $email = '';
+// $email_check='';
 $user_picture_path = '';
 $back_picture_path = '';
+// $self_intro = '';
+
 
 $errors = array();
 
@@ -23,7 +26,7 @@ $email = $_POST['email'];
 $user_picture_path = $_POST['user_picture_path'];
 $back_picture_path = $_POST['back_picture_path'];
 $self_intro = $_POST['self_intro'];
-}
+
 
 // 空だった時
   if ($_POST['nick_name'] == "") {
@@ -35,18 +38,18 @@ $self_intro = $_POST['self_intro'];
   }
 
 // メモ「上記のメールアドレスと一致するかをif文で出すこと!!!」
-    if ($_POST['email_check'] != $_POST['email']) {
+    if ($_POST['email_check'] !== $_POST['email']) {
     $errors['email'] = 'not_match';
   }
 
 if(empty($errors)){
 // 画像のバリエーション
-  $file_name = $_FILES['user_picture_path']['name'];
+  $file_name = $_POST['user_picture_path']['name'];
 }
 
 if(empty($errors)){
 // 画像のバリエーション
-  $file_name = $_FILES['back_picture_path']['name'];
+  $file_name = $_POST['back_picture_path']['name'];
 }
 
     // メールアドレスの重複チェック
@@ -68,6 +71,20 @@ if(empty($errors)){
           echo 'SQL文実行時エラー:' . $e->message();
       }
     }
+
+
+// エラーがなかった場合の処理
+  if (empty($errors)) {
+    // 画像アップデート処理
+    $picture_name = date('YmdHis') . $file_name;
+    move_uploaded_file($_FILES['user_picture_path']['tmp_name'] , './assets/images/' . $user_picture_name);
+    $_SESSION['join'] = $_POST;
+    $_SESSION['join']['user_picture_path'] =$user_picture_name;
+    header('Location: top.php');
+    exit();
+  }
+
+}
 
 
  ?>
@@ -94,7 +111,7 @@ if(empty($errors)){
   <div>
     <label>メールアドレス</label>
     <input type="email" name="email" value="<?php echo $login_member_id['email']; ?>">
-        <?php if(isset($errors['email']) && $errors['email'] == 'blank'): ?> <!-- コロン構文 -->
+    <?php if(isset($errors['email']) && $errors['email'] == 'blank'): ?> <!-- コロン構文 -->
       <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを入力してください</p>
     <?php endif; ?>
   </div>
@@ -146,6 +163,9 @@ if(empty($errors)){
 <div>
 <label>自己紹介句</label>
   <input type="" name="" value="<?php echo $login_member_id['self_intro']; ?>">
+    <?php if(isset($errors['self_intro']) && $errors['self_intro'] == 'blank'): ?> <!-- コロン構文 -->
+      <p style="color:red; font-size:10px; margin-top:2px; ">自己紹介句を入力してください</p>
+    <?php endif; ?>
 </div>
 
 <div>
