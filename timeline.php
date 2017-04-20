@@ -69,6 +69,16 @@ function tateGaki($haiku) {
   <title></title>
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+
+  <!-- 自動スクロール -->
+  <link rel="stylesheet" href="assets/css/screen.css" type="text/css" media="screen">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+  <script src="assets/js/jquery.pageme.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $(".content").pageme();
+      });
+  </script>
 </head>
 <body>
 
@@ -98,6 +108,13 @@ function tateGaki($haiku) {
 
     <?php $v_haiku_1 = tateGaki($haiku_1); ?>
     <?php echo $v_haiku_1 ?><br>
+
+    <?php if($_SESSION['login_member_id'] == $member_id): ?>
+      <!-- 編集ボタン -->
+      [<a href="edit.php?tweet_id=<?php echo $tweet_id ?>" style="color: #00994C;">編集</a>]
+      <!-- 削除ボタン -->
+      [<a href="delete.php?tweet_id=<?php echo $tweet_id ?>&page=<?php echo $page; ?>" style="color: #F33;">削除</a>]
+    <?php endif; ?>
 
     <?php
       // コメントの取得
@@ -173,18 +190,22 @@ function tateGaki($haiku) {
 
   <?php } ?>
 
-  <?php if($page > 1): ?>
-    <li><a href="timeline.php?page=<?php echo $page - 1; ?>" class="btn btn-default">前</a></li>
-  <?php else: ?>
-    <li>前</li>
-  <?php endif; ?>
+  <?php // if($page > 1): ?>
+    <!-- <li><a href="timeline.php?page=<?php echo $page - 1; ?>" class="btn btn-default">前</a></li> -->
+  <?php // else: ?>
+    <!-- <li>前</li> -->
+  <?php //endif; ?>
 
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  <?php if($page < $max_page): ?>
-    <li><a href="timeline.php?page=<?php echo $page + 1; ?>" class="btn btn-default">次</a></li>
-  <?php else: ?>
-    <li>次</li>
-  <?php endif; ?>  
+  <!-- &nbsp;&nbsp;|&nbsp;&nbsp; -->
+  <?php //if($page < $max_page): ?>
+    <!-- <li><a href="timeline.php?page=<?php echo $page + 1; ?>" class="btn btn-default">次</a></li> -->
+  <?php //else: ?>
+    <!-- <li>次</li> -->
+  <?php //endif; ?>
+
+  <div class="navigate">
+    <a class="next" href="timeline.php?page=2">Next</a>
+  </div>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="assets/js/jquery-3.1.1.js"></script>
