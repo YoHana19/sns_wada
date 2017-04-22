@@ -170,10 +170,10 @@ if(!empty($file_name)){
 
   <div>
     <label>アイコン画像</label>
-    <input type="file" name="user_picture_path" value="<?php echo $login_member_id['user_picture_path']; ?>">
+    <input type="file" name="user_picture_path" value="<?php echo $user_picture_path; ?>">
     <img src="assets/images/<?php echo $login_member_id['user_picture_path']; ?>" width="100px" height="100px">
 
-    <?php if(isset($login_member_id['user_picture_path']) == 'type'): ?>
+    <?php if(isset($user_picture_path) == 'type'): ?>
       <p style="color:red; font-size:10px; margin-top:2px; ">背景画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
     <?php endif; ?>
   </div>
