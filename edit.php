@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 require('dbconnect.php');
 
@@ -220,7 +220,7 @@ if(!empty($file_name)){
     <?php if(strlen($_POST['self_intro_down']) <5):?>
     <?php else:(strlen($_POST['self_intro_down']) >7) ?>
       <p style="color:red; font-size:10px; margin-top:2px;">文字数は4文字以上6文字以下で設定してください</p>
-    <?php endif; ?>
+    <?php endif; ?> 
 
   <div>
     <button type="submit" value="送信">保存</button>
