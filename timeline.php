@@ -147,7 +147,7 @@ function tateGaki($haiku) {
         <div id="<?php echo $haiku_id . '_cont' ?>">
           <?php if(!empty($comments)): ?>
             <?php foreach ($comments as $comment) { ?>
-              <p><?php echo $comment['nick_name'] ?></p>
+              <p><a href="user.php?user_id=<?php echo $comment['member_id'] ?>"><?php echo $comment['nick_name'] ?></a></p>
               <img src="assets/images/<?php echo $comment['user_picture_path'] ?>" width="48" height="48">
               <p><?php echo $comment['comment'] ?></p>
               <p><?php echo $comment['created'] ?></p>
@@ -254,7 +254,7 @@ function tateGaki($haiku) {
                 var login_flag = post['login_flag'];
                 console.log('login_flag' + login_flag);
                 if (login_flag == 1) {
-                  $('#posts').append('[<a href="delete.php?tweet_id=' + haiku_id + '" style="color: #F33;">削除</a>]');
+                  $('#posts').append('[<a href="delete.php?haiku_id=' + haiku_id + '" style="color: #F33;">削除</a>]');
                 }
 
                 console.log('hoge2');
@@ -324,7 +324,11 @@ function tateGaki($haiku) {
                 if (comments.length > 0) {
                   // 繰り返し文
                   comments.forEach(function(comment) {
-                    $('#' + haiku_id + '_cont').append('<p>' + comment['nick_name'] + '</p><img src="assets/images/' + comment['user_picture_path'] + '" width="48" height="48"><p>' + comment['comment'] + '</p><p>' + comment['created'] + '</p>');
+                    $('#' + haiku_id + '_cont')
+                    .append('<p><a>' + comment['nick_name'] + '</a></p><img src="assets/images/' + comment['user_picture_path'] + '" width="48" height="48"><p>' + comment['comment'] + '</p><p>' + comment['created'] + '</p>')
+                    .on('click', 'a', function() {
+                      location.href = 'user.php?user_id=' + comment['member_id'];
+                    });
                   });
                 };
 
@@ -338,7 +342,7 @@ function tateGaki($haiku) {
                   $('#posts')
                   .append('<div><input type="submit" value="いいね！取り消し" id="' + haiku_id + '" class="like btn btn-danger btn-xs"></div>')
                   .on('click', '#' + haiku_id, function() { // よし機能
-                    var haiku_id = $(this).attr('id'); // クリックされたタグのtweet_idの値を取得
+                    var haiku_id = $(this).attr('id'); // クリックされたタグのhaiku_idの値を取得
                     var data = {haiku_id : haiku_id}; 
                     
                     $.ajax({
