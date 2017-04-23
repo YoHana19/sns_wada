@@ -2,7 +2,7 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
 {
 
   // クリックしたらコメント欄表示
-  $('.comment_button').on('click', function () {
+  $('#posts').on('click', '.comment_button', function() {
     console.log('hoge1')
     var haiku_id = $(this).attr('id'); // クリックされたコメントボタンidの取得
     var com_id = haiku_id + '_content'
