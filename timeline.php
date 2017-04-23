@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('dbconnect.php');
+$_SESSION['page'] = 1;
 
 // ページング機能
 $page = '';
@@ -69,25 +70,15 @@ function tateGaki($haiku) {
   <title></title>
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-
-  <!-- 自動スクロール -->
-  <link rel="stylesheet" href="assets/css/screen.css" type="text/css" media="screen">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-  <script src="assets/js/jquery.pageme.js" type="text/javascript"></script>
-  <script type="text/javascript">
-      $(document).ready(function() {
-          $(".content").pageme();
-      });
-  </script>
 </head>
 <body>
-
-
+<div id="posts">
 
   <!-- 繰り返し処理 -->
   <?php foreach ($posts as $post) { ?>
 
     <!-- パラメーター設定 -->
+    <?php $member_id = $post['member_id'] ?>
     <?php $haiku_id = $post['haiku_id'] ?>
     <?php $nick_name = $post['nick_name'] ?>
     <?php $user_picture_path = $post['user_picture_path'] ?>
@@ -99,7 +90,7 @@ function tateGaki($haiku) {
     <?php $comment_id = "com_id_" . $haiku_id ?>
 
     <!-- 句一覧の表示 -->
-    <?php echo $nick_name ?><br>
+    <a href="profile.php"><?php echo $nick_name ?></a><br>
     <img src="assets/images/<?php echo $user_picture_path ?>" width="48" height="48"><br>
     <?php echo $haiku_1 ?><br>
     <?php echo $haiku_2 ?><br>
@@ -110,10 +101,8 @@ function tateGaki($haiku) {
     <?php echo $v_haiku_1 ?><br>
 
     <?php if($_SESSION['login_member_id'] == $member_id): ?>
-      <!-- 編集ボタン -->
-      [<a href="edit.php?tweet_id=<?php echo $tweet_id ?>" style="color: #00994C;">編集</a>]
       <!-- 削除ボタン -->
-      [<a href="delete.php?tweet_id=<?php echo $tweet_id ?>&page=<?php echo $page; ?>" style="color: #F33;">削除</a>]
+      [<a href="delete.php?haiku_id=<?php echo $haiku_id ?>" style="color: #F33;">削除</a>]
     <?php endif; ?>
 
     <?php
@@ -142,7 +131,14 @@ function tateGaki($haiku) {
       <div id="<?php echo $comment_id . '_content' ?>" style="text-align: center; color: white; background-color: rgb(0, 153, 255); display: none;">
 
         <!-- ログインユーザーの写真 -->
-        <img src="assets/images/<?php echo $user_picture_path ?>" width="48" height="48"><br>
+        <?php
+          $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
+          $data = array($_SESSION['login_member_id']);
+          $stmt = $dbh->prepare($sql);
+          $stmt->execute($data);
+          $login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
+        <img src="assets/images/<?php echo $login_user_picture['user_picture_path'] ?>" width="48" height="48"><br>
 
         <!-- コメント入力フォーム -->
         <input type="text" class="comment_content" id="<?php echo $comment_id . '_input' ?>" name="hoge" class="form-control" placeholder="例： comment" style="color: black;">
@@ -180,32 +176,22 @@ function tateGaki($haiku) {
     <!-- いいね数表示 -->
     <p id="<?php echo $num_like ?>">いいね！数： <?php echo $count['total']; ?></p>
 
-    <?php if($is_like = $is_like_stmt->fetch(PDO::FETCH_ASSOC)): ?>
-      <!-- いいね！データが存在する（削除ボタン表示） -->
-      <input type="submit" value="いいね！取り消し" id="<?php echo $haiku_id; ?>" class="like btn btn-danger btn-xs">
-    <?php else: ?>
-      <!-- いいね！データが存在しない（いいねボタン表示） -->
-      <input type="submit" value="いいね！" id="<?php echo $haiku_id; ?>" class="like btn btn-primary btn-xs">
-    <?php endif; ?>
+    <div>
+      <?php if($is_like = $is_like_stmt->fetch(PDO::FETCH_ASSOC)): ?>
+        <!-- いいね！データが存在する（削除ボタン表示） -->
+        <input type="submit" value="いいね！取り消し" id="<?php echo $haiku_id; ?>" class="like btn btn-danger btn-xs">
+      <?php else: ?>
+        <!-- いいね！データが存在しない（いいねボタン表示） -->
+        <input type="submit" value="いいね！" id="<?php echo $haiku_id; ?>" class="like btn btn-primary btn-xs">
+      <?php endif; ?>
+    </div>
 
-  <?php } ?>
+  <?php } ?> <!-- foreachの終了 -->
 
-  <?php // if($page > 1): ?>
-    <!-- <li><a href="timeline.php?page=<?php echo $page - 1; ?>" class="btn btn-default">前</a></li> -->
-  <?php // else: ?>
-    <!-- <li>前</li> -->
-  <?php //endif; ?>
-
-  <!-- &nbsp;&nbsp;|&nbsp;&nbsp; -->
-  <?php //if($page < $max_page): ?>
-    <!-- <li><a href="timeline.php?page=<?php echo $page + 1; ?>" class="btn btn-default">次</a></li> -->
-  <?php //else: ?>
-    <!-- <li>次</li> -->
-  <?php //endif; ?>
-
-  <div class="navigate">
-    <a class="next" href="timeline.php?page=2">Next</a>
-  </div>
+  <p id="loading">
+    <img src="assets/images/loading.gif" alt="Loading…" style="display: none;">
+  </p>
+</div>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="assets/js/jquery-3.1.1.js"></script>
@@ -214,6 +200,247 @@ function tateGaki($haiku) {
 
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/comment.js"></script>
+
+  <!-- 自動スクロール -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var win = $(window);
+
+      // Each time the user scrolls
+      win.scroll(function() {
+        // End of the document reached?
+        if ($(document).height() - win.height() == win.scrollTop()) {
+          $('#loading').show();
+
+          var data = {max_page : <?php echo $max_page; ?>};
+
+          $.ajax({
+            type: "POST",
+            url: 'get_post.php',
+            data: data,
+
+          }).done(function(data) {
+            var task_data = JSON.parse(data);
+            var posts = task_data['posts'];
+            var page = task_data['last_page'];
+            
+            if (page == 0) { // 最後の投稿ではない
+
+              // 繰り返し文
+              posts.forEach(function(post) {
+
+                // パラメータ設定
+                var member_id = post['member_id'];
+                var haiku_id = post['haiku_id'];
+                var nick_name = post['nick_name'];
+                var user_picture_path = post['user_picture_path'];
+                var haiku_1 = post['haiku_1'];
+                var haiku_2 = post['haiku_2'];
+                var haiku_3 = post['haiku_3'];
+                var created = post['created'];
+                var num_like = 'num_like_' + haiku_id;
+                var comment_id = 'com_id_' + haiku_id;
+                var v_haiku_1 = tateGaki(haiku_1);
+
+                console.log(comment_id);
+                console.log(post);
+
+                // htmlへの追加
+                $('#posts').append('<a href="profile.php">' + nick_name + '</a><br><img src="assets/images/' + user_picture_path + '" width="48" height="48"><br>'+ haiku_1 + '<br>' + haiku_2 + '<br>' +haiku_3 + '<br>' + created + '<br>' + v_haiku_1 + '<br>');
+
+                console.log('hoge1');
+
+                // 削除ボタンの設置
+                var login_flag = post['login_flag'];
+                console.log('login_flag' + login_flag);
+                if (login_flag == 1) {
+                  $('#posts').append('[<a href="delete.php?tweet_id=' + haiku_id + '" style="color: #F33;">削除</a>]');
+                }
+
+                console.log('hoge2');
+
+                // コメント欄
+                var comments = post['comments'];
+                var login_user_picture = task_data['login_user_picture'];
+                 
+                $('#posts')
+                .append('<div class="preview"><button id="' + comment_id + '" class="comment_button">コメント</button><div id="' + comment_id + '_content" style="text-align: center; color: white; background-color: rgb(0, 153,255); display: none;"><img src="assets/images/' + login_user_picture + '" width="48" height="48"><br><input type="text" class="comment_content" id="' + comment_id + '_input" name="hoge" class="form-control" placeholder="例： comment" style="color: black;"><div id="' + haiku_id + '_cont"></div></div></div>')
+                
+                // .on('click', '#' + comment_id, function() { // コメント欄の表示
+                //   console.log('hoge11')
+                //   var haiku_id = $(this).attr('id'); // クリックされたコメントボタンidの取得
+                //   var com_id = haiku_id + '_content'
+                //   console.log(com_id)
+                //   $("#" + com_id).slideToggle();
+                //   console.log('hoge12')
+                // })
+
+                .on('keypress' , '#' + comment_id + '_input', function (e) {  // コメントの送信
+                  if (e.which == 13) {
+                    // ここに処理を記述
+                    var haiku_id = $(this).attr('id');
+                    console.log(haiku_id)
+                    var array = haiku_id.match(/[0-9]+\.?[0-9]*/g);
+                    var h_id = array[0];
+                    console.log(h_id)
+                    var comment = $(this).attr('value');
+                    console.log(comment);
+                    var data = {comment : comment,
+                                haiku_id: h_id};
+
+                    $.ajax({
+                      type: "POST",
+                      url: "send_comment.php",
+                      data: data,
+                    /**
+                     * Ajax通信が成功した場合に呼び出されるメソッド
+                     */
+                    }).done(function(data) {
+                      // Ajax通信が成功した場合に呼び出される
+                      // PHPから返ってきたデータの表示
+                      // var task_data = JSON.parse(data);
+                      // alert(data);
+                      // jsonデータをJSの配列にパース（変換）する
+                      var task_data = JSON.parse(data);
+                      haiku_id = task_data['id'] + '_cont'
+                      console.log(haiku_id)
+
+                      // 新規コメントの追加
+                      $('#' + haiku_id).prepend('<p>' + task_data['nick_name'] + '</p><img src="assets/images/' + task_data['user_picture_path'] + '" width="48" height="48"><p>' + task_data['comment'] + '</p><p>' + task_data['created'] + '</p>');
+
+                    /**
+                     * Ajax通信が失敗した場合に呼び出されるメソッド
+                     */
+                    }).fail(function(data) {
+                        alert('error!!!' + data);
+                    });
+                  }
+                });
+
+                console.log('hoge3');
+                console.log(comments);
+
+                // コメントがあるかチェック
+                if (comments.length > 0) {
+                  // 繰り返し文
+                  comments.forEach(function(comment) {
+                    $('#' + haiku_id + '_cont').append('<p>' + comment['nick_name'] + '</p><img src="assets/images/' + comment['user_picture_path'] + '" width="48" height="48"><p>' + comment['comment'] + '</p><p>' + comment['created'] + '</p>');
+                  });
+                };
+
+                console.log('hoge4');
+
+                // よし・あし処理
+                var state = post['state'];
+                var like_total = post['like_total'];
+                $('#posts').append('<p id="' + num_like + '">いいね！数： ' + like_total + '</p>');
+                if (state == 'unlike') {
+                  $('#posts')
+                  .append('<div><input type="submit" value="いいね！取り消し" id="' + haiku_id + '" class="like btn btn-danger btn-xs"></div>')
+                  .on('click', '#' + haiku_id, function() { // よし機能
+                    var haiku_id = $(this).attr('id'); // クリックされたタグのtweet_idの値を取得
+                    var data = {haiku_id : haiku_id}; 
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "send_like.php",
+                        data: data,
+                    
+                    }).done(function(data) {
+                      
+                      var task_data = JSON.parse(data);
+                      var input_tag = document.getElementById(task_data['id']);
+                      console.log(task_data['state']);
+                      if (task_data['state'] == 'unlike') {
+                        // いいねボタンの表示
+                        console.log('ok');
+                        input_tag.className = "btn btn-primary btn-xs";
+                        input_tag.value = "いいね！"
+                      } else {
+                        // いいね取り消しボタンの表示
+                        console.log('unok');
+                        input_tag.className = "btn btn-danger btn-xs";
+                        input_tag.value = "いいね！取り消し";
+                      }
+                      
+                      // いいね数の表示
+                      var num_like = 'num_like_' + task_data['id'];
+                      console.log(num_like)
+                      document.getElementById(num_like).textContent = 'いいね数：' + task_data['like_cnt'];
+                    
+                    }).fail(function(data) {
+                      alert('error!!!' + data);
+                    });
+                  });
+                } else {
+                  $('#posts')
+                  .append('<div><input type="submit" value="いいね！" id="' + haiku_id + '" class="like btn btn-primary btn-xs"></div>')
+                  .on('click', '#' + haiku_id, function() { // よし機能
+                  var haiku_id = $(this).attr('id'); // クリックされたタグのtweet_idの値を取得
+                  var data = {haiku_id : haiku_id}; 
+                  
+                  $.ajax({
+                      type: "POST",
+                      url: "send_like.php",
+                      data: data,
+                  
+                  }).done(function(data) {
+                    
+                    var task_data = JSON.parse(data);
+                    var input_tag = document.getElementById(task_data['id']);
+                    console.log(task_data['state']);
+                    if (task_data['state'] == 'unlike') {
+                      // いいねボタンの表示
+                      console.log('ok');
+                      input_tag.className = "btn btn-primary btn-xs";
+                      input_tag.value = "いいね！"
+                    } else {
+                      // いいね取り消しボタンの表示
+                      console.log('unok');
+                      input_tag.className = "btn btn-danger btn-xs";
+                      input_tag.value = "いいね！取り消し";
+                    }
+                    
+                    // いいね数の表示
+                    var num_like = 'num_like_' + task_data['id'];
+                    console.log(num_like)
+                    document.getElementById(num_like).textContent = 'いいね数：' + task_data['like_cnt'];
+                  
+                  }).fail(function(data) {
+                    alert('error!!!' + data);
+                  });
+                });              
+                }
+
+
+
+                console.log('hoge5');
+                
+              }); // foreachの終了
+
+            } else { // 最後の投稿が済んだら
+              $('#posts').append('');
+            }
+
+            $('#loading').hide();
+            
+          }).fail(function(data) {
+            alert('error!!!' + data);
+          });
+        }
+      });
+    });
+
+  // 縦書きにする関数
+  function tateGaki(haiku) {
+    var letters = haiku.split('');
+    var v_haiku = '';
+    letters.forEach(function(letter) {
+      v_haiku += letter + "<br>";
+    });
+    return v_haiku.substr(0, v_haiku.length-4);
+  };
+  </script>
 
 </body>
 </html>
