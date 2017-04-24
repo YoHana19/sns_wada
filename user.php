@@ -9,6 +9,8 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+echo $_REQUEST['member_id'];
+
 ?>
 
 <!DOCTYPE html>
