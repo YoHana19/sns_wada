@@ -2,8 +2,8 @@
 session_start();
 require('dbconnect.php');
 // ↑全ページ共通の2行
-$search_word = $_POST['search_word'];
 
+$search_word = $_POST['search_word']; // header.phpで使用した変数をtimeline.phpでも使用可能にする
 
 // 検索ワードで、DBのユーザーネーム/句 の全データからあいまい検索
 // 検索ワード入力フォーム(検索窓) : 検索したワードが入っているくを検索結果として表示する
@@ -27,7 +27,6 @@ $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h 
 $stmt = $dbh->prepare($sql); //phpmyadmyn で言うところの[sql]をセット(記入)する処理
 $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す処理
 // $word_display = $stmt->fetch(PDO::FETCH_ASSOC); //取ってきたものを配列化
-
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +37,7 @@ $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す�
 <body>
   <!-- 検索ワード入力フォーム(検索窓) : 検索したワードが入っている句を検索結果として表示する -->
 <!-- 検索結果表示 -->
-<?php echo $search_word . '<br>'; ?>
+<?php echo '検索したワード: ' . $search_word . '<br>'; ?>
 <?php while($word_display = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
 <img src="assets/images/<?php echo $word_display['user_picture_path']; ?>" width="100" height="100"><br>
 <?php
