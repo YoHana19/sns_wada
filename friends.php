@@ -16,7 +16,7 @@ $stmt1 = $dbh->prepare($sql);
 $stmt1->execute($data);
 $login_member = $stmt1->fetch(PDO::FETCH_ASSOC);
 
-echo $login_member['cnt'];
+// echo $login_member['cnt'];
 
 // ログインユーザーの友達のid取得
 $sql = 'SELECT * FROM `friends` WHERE `login_member_id`=?';
@@ -25,41 +25,47 @@ $stmt2 = $dbh->prepare($sql);
 $stmt2->execute($data);
 
 
-// $friend_member_id = $stmt2->fetch(PDO::FETCH_ASSOC);
-// var_dump($friend_member_id);
 $friends = array();
 while ($friend_member_ids = $stmt2->fetch(PDO::FETCH_ASSOC)){
 	$friends[] = $friend_member_ids;
-	echo '<pre>';
-	echo $friend_member_ids['friend_member_id'];
-	echo '</pre>';
+	// echo '<pre>';
+	// echo $friend_member_ids['friend_member_id'];
+	// echo '</pre>';
 }
-
-// var_dump($friends);
-// $hoge = array(4,2,3,6);
 
 $all_friend = array();
 foreach ($friends as $friend_member_id) {
-	// echo '<pre>';
-	// var_dump($friend_member_id['friend_member_id']);
-	// echo '</pre>';
 	$sql = 'SELECT * FROM `members` WHERE `member_id`=?';
 	$data = array($friend_member_id['friend_member_id']);
 	$stmt = $dbh->prepare($sql);
 	$stmt->execute($data);
 	$friend_member = $stmt->fetch(PDO::FETCH_ASSOC);
   $all_friend[] = $friend_member;
-	// echo $friend_member['nick_name'] . '<br>';
-	// echo $friend_member['user_picture_path'];
 }
+sort($all_friend);
 
-// foreach ($all_friend as $all_friends) {
-//   echo '<pre>';
-//   var_dump($all_friends['member_id']);
-//   echo '</pre>';
-//   echo $all_friends['nick_name'] . '<br>';
-//   echo $all_friends['user_picture_path'];
-// }
+// 友達検索結果表示
+$search_word = '';
+if (isset($_GET['search_word']) && !empty($_GET['search_word'])) {
+    // 検索の場合の処理
+    $sql = 'SELECT m.*, f.friend_member_id FROM `members` AS m LEFT JOIN `friends` AS f ON m.member_id=f.friend_member_id WHERE m.nick_name LIKE ? ORDER BY m.nick_name';
+    $w = '%' . $_GET['search_word'] . '%';
+    $data = array($w);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+    $search_friend = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    echo '<pre>';
+    var_dump($search_friend);
+    echo '</pre>';
+
+} else {
+    // 通常の処理
+    echo '検索結果なし';
+    // $sql = sprintf('SELECT m.* FROM `members` AS m, `friends` AS f WHERE m.member_id=f.friend_member_id ORDER BY m.nick_name DESC');
+    // $stmt = $dbh->prepare($sql);
+    // $stmt->execute($data);
+}
 
 
 
@@ -84,10 +90,10 @@ foreach ($friends as $friend_member_id) {
   <div class="row">
     <div class="col-md-3">
 
-        <div class="search">
-          <input type="text" class="form-control input-sm" maxlength="64" placeholder="検索" />
-          <button type="submit" class="btn btn-primary btn-sm">検索</button>
-        </div><br><br>
+        <form method="GET" action="" role="form">
+          <input type="text" name="search_word">
+          <input type="submit" value="検索" class="btn btn-success btn-xs">
+        </form>
 
       <h4><b>自分情報</b></h4>
       <div class="well_2">
@@ -103,7 +109,7 @@ foreach ($friends as $friend_member_id) {
         </div>
       </div>
 
-      <h4>友達一覧</h4>
+      <h4>友達一覧 (<?php echo $login_member['cnt']; ?>人)</h4>
       <?php foreach ($all_friend as $all_friends): ?>
         <div class="well_3">
           <div class="media">
