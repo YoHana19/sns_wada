@@ -15,7 +15,7 @@ require('dbconnect.php');
 
   <?php
     // 友達申請者リストの取得
-    $sql = 'SELECT f.*, m.nick_name, m.user_picture_path FROM `friends` AS f LEFT JOIN `members` AS m ON f.friend_member_id=m.member_id WHERE `login_member_id`=? AND `state`=0 ORDER BY c.created DESC';
+    $sql = 'SELECT f.*, m.nick_name, m.user_picture_path FROM `friends` AS f LEFT JOIN `members` AS m ON f.friend_member_id=m.member_id WHERE `login_member_id`=? AND `state`=0 ORDER BY f.created DESC';
     $data = array($_SESSION['login_member_id']);
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
@@ -31,43 +31,35 @@ require('dbconnect.php');
   ?>
     
 
-  <!-- コメント表示 -->
+  <!-- 友達リクエスト表示 -->
   <div class="preview">
-    <!-- コメントボタン -->
-    <button id="<?php echo $comment_id ?>" class="comment_button">友達リクエスト</button>
+    <!-- リクエスト表示ボタン -->
+    <button class="request_button">友達リクエスト</button>
 
-    <!-- コメント欄 -->
-    <div id="<?php echo $comment_id . '_content' ?>" style="text-align: center; color: white; background-color: rgb(0, 153, 255); display: none;">
-
-      <!-- ログインユーザーの写真 -->
-      <?php
-        $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-        $data = array($_SESSION['login_member_id']);
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute($data);
-        $login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
-      ?>
-      <img src="assets/images/<?php echo $login_user_picture['user_picture_path'] ?>" width="48" height="48"><br>
-
-      <!-- コメント入力フォーム -->
-      <input type="text" class="comment_content" id="<?php echo $comment_id . '_input' ?>" name="hoge" class="form-control" placeholder="例： comment" style="color: black;">
+    <!-- 友達リクエスト表示欄 -->
+    <div id="requests" style="text-align: center; color: white; background-color: rgb(0, 153, 255); display: none;">
       
-      <!-- コメントの内容 -->
-      <div id="<?php echo $haiku_id . '_cont' ?>">
-        <?php if(!empty($comments)): ?>
-          <?php foreach ($comments as $comment) { ?>
-            <p><a href="user.php?user_id=<?php echo $comment['member_id'] ?>"><?php echo $comment['nick_name'] ?></a></p>
-            <img src="assets/images/<?php echo $comment['user_picture_path'] ?>" width="48" height="48">
-            <p><?php echo $comment['comment'] ?></p>
-            <p><?php echo $comment['created'] ?></p>
+      <!-- 友達リクエストの内容 -->
+      <div id="request_cont">
+        <?php if(!empty($friends)): ?>
+          <?php foreach ($friends as $friend) { ?>
+            <div id="<?php echo $friend['friend_id']; ?>_cont">
+              <p><?php echo $friend['nick_name'] ?></p>
+              <img src="assets/images/<?php echo $friend['user_picture_path'] ?>" width="48" height="48">
+              <button type="button" id="<?php echo $friend['friend_id']; ?>_a" class="button_request">許可</button>
+              <button type="button" id="<?php echo $friend['friend_id']; ?>_r" class="button_request">削除</button>
+            </div>
           <?php } ?>
         <?php endif; ?>
       </div>
+
+    </div>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="assets/js/jquery-3.1.1.js"></script>
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/friend_requests.js"></script>
 
 </body>
 </html>
