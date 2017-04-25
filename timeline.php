@@ -2,7 +2,7 @@
 session_start();
 require('dbconnect.php');
 
-
+$_SESSION['login_member_id'] = 1;
 ?>
 
 <!DOCTYPE html>
@@ -22,33 +22,34 @@ require('dbconnect.php');
 
   <!-- 句入力フォーム -->
   <div id="modal-content_1" class="content">
-    <!-- <form action="timeline.php" method="POST" accept-charset="utf-8"> -->
+    <form action="send_haiku.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
       <!-- 句入力 -->
-      <input type="text" class="form-control haiku" id="up_haiku" name="lg_username" placeholder="１行目（四〜六文字）"><br>
+      <input type="text" class="form-control haiku" id="up_haiku" name="up_haiku" placeholder="１行目（四〜六文字）"><br>
       <p id="up_haiku_valid" style="display: none">四から六文字で入力してください</p>
       
-      <input type="text" class="form-control haiku" id="md_haiku" name="lg_username" placeholder="２行目（四〜六文字）"><br>
+      <input type="text" class="form-control haiku" id="md_haiku" name="md_haiku" placeholder="２行目（四〜六文字）"><br>
       <p id="md_haiku_valid" style="display: none">六から八文字で入力してください</p>
       
-      <input type="text" class="form-control haiku" id="lw_haiku" name="lg_username" placeholder="３行目（四〜六文字）"><br>
+      <input type="text" class="form-control haiku" id="lw_haiku" name="lw_haiku" placeholder="３行目（四〜六文字）"><br>
       <p id="lw_haiku_valid" style="display: none">四から六文字で入力してください</p>
 
       <!-- 一言説明 -->
-      <input type="text" class="form-control" id="short_comment" name="lg_username" placeholder="一言説明（二十文字以下）"><br>
+      <input type="text" class="form-control" id="short_comment" name="short_comment" placeholder="一言説明（二十文字以下）"><br>
       <p id="short_comment_valid" style="display: none">二十文字以内で入力してください</p>
 
       <!-- 写真挿入 -->
       <div>
-        <input type="file" id="photo_file" style="display:none;" onchange="changePhotoFile();">
-        <input type="image" id="photo_img" src="assets/images/photo_submit.png" title="参照" width="30px" height="30px">
+        <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
+        <img id="photo_img" src="assets/images/photo_submit.png" alt="参照" width="30px" height="30px">
         <input id="photo_display" type="text" name="photo_display" value="" size="50">
       </div>
 
       <!-- 詠むボタン -->
-      <form id="yomu" action="timeline.php" method="POST" accept-charset="utf-8">
+      <div id="yomu">
         <button type="button" id="yomu_pre" class="btn btn-info" style="background-color: #c8c2c6; border-color: #c8c2c6;">詠む</button>
         <input id="yomu_ready" type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381; display: none;">
-      </form>
+      </div>
+    </form>
   </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="assets/js/jquery-3.1.1.js"></script>
