@@ -4,37 +4,38 @@ require ('dbconnect.php');
 
 $_SESSION['login_member_id']=1;
 
+// ログインユーザー情報の取得
 $sql = 'SELECT * FROM  `members`';
 $data =array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
-$login_member_id = $stmt->fetch(PDO::FETCH_ASSOC);
+$login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
+// roomsテーブルから新着チャットを10件取得
+$sql = 'SELECT * FROM `rooms` WHERE `member_id_1`=? OR `member_id_2`=? ORDER BY modified DESC LIMIT 0, 10';
+$data = array($_SESSION['login_member_id'], $_SESSION['login_member_id']);
+$room_stmt = $dbh->prepare($sql);
+$room_stmt->execute($data);
 
-
-
-
-//roomsテーブルから新着順に10件
-
-$sql = 'SELECT * FROM `rooms` WHERE sender_id = ? ORDER BY modified DESC LIMIT 1, 10';
-$data1 = array($_SESSION['login_member_id']);
-$stmt1 = $dbh->prepare($sql);
-$stmt1->execute($data1);
-
-$friends = array();
-while ($chat = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-  $sql = 'SELECT * FROM `members` WHERE member_id = ?';
-  $data2 = array($chat['reciever_id']);
-  $stmt2 = $dbh->prepare($sql);
-  $stmt2->execute($data2);
-  $m = $stmt2->fetch(PDO::FETCH_ASSOC);
-
-  $friends[]= array('member_id'=>$m['member_id'], 'nick_name'=>$m['nick_name'], 'user_picture_path'=>$m['user_picture_path'], 'self_intro'=>$m['self_intro']);
-                
-              }
-
-
+// 各チャットの友達情報を取得
+$rooms = array();
+while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
+  if ($record['member_id_1'] == $_SESSION['login_member_id']) {
+    $sql = 'SELECT * FROM `members` WHERE member_id = ?';
+    $data = array($record['member_id_2']);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+    $room = $stmt->fetch(PDO::FETCH_ASSOC);
+  } else {
+    $sql = 'SELECT * FROM `members` WHERE member_id = ?';
+    $data = array($record['member_id_1']);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+    $room = $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+  $rooms[] = $room;
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,33 +45,27 @@ while ($chat = $stmt1->fetch(PDO::FETCH_ASSOC)) {
   <title></title>
 </head>
 <body>
+  <div class="msg">
+    <!-- ログインユーザー情報 -->
+    <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>" width="50" height="50">
+    <br>
+    <a href="profile.php"><?php echo $login_member['nick_name'];?></a>
+    <p><?php echo $login_member['self_intro'];?></p>
+    <p><?php echo $login_member['bozu_points'];?>point</p>
 
-
-<div class="msg">
-  <!-- ログインユーザー情報 -->
-  <img src="assets/images/<?php echo $login_member_id['user_picture_path']; ?>" width="50" height="50">
-  <br>
-  <a href="profile.php"><?php echo $login_member_id['nick_name'];?></a>
-  <p><?php echo $login_member_id['self_intro'];?></p>
-  <p><?php echo $login_member_id['bozu_points'];?>point</p>
-
-  <!-- 友達情報 -->
-  <p>
-    <?php foreach ($friends as $friend) { ?>
-      <img src="assets/images/<?php echo $friend['user_picture_path']; ?>" width="50" height="50">
-      <br>
-      <a href="user.php?member_id=<?php echo $friend['member_id']; ?>"><?php echo $friend['nick_name'];?></a>
-      <br>
-      <?php echo $friend['self_intro'];?>
-      <br>
-    <?php } ?>
-  </p>
-
-</div>
-
-
+    <!-- 友達情報 -->
+    <p>
+      <?php foreach ($rooms as $room) { ?>
+        <img src="assets/images/<?php echo $room['user_picture_path']; ?>" width="50" height="50">
+        <br>
+        <a href="user.php?member_id=<?php echo $room['member_id']; ?>"><?php echo $room['nick_name'];?></a>
+        <br>
+        <?php echo $room['self_intro'];?>
+        <br>
+      <?php } ?>
+    </p>
+  </div>
 </body>
-
 </html>
 
 
