@@ -49,6 +49,11 @@ $_SESSION['login_member_id'] = 1;
         <button type="button" id="yomu_pre" class="btn btn-info" style="background-color: #c8c2c6; border-color: #c8c2c6;">詠む</button>
         <input id="yomu_ready" type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381; display: none;">
       </div>
+
+      <!-- 戻るボタン -->
+      <div>
+        <button type="button" id="modal-close" class="btn btn-info" style="background-color: #c8c2c6; border-color: #c8c2c6;">戻る</button>
+      </div>
     </form>
   </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
