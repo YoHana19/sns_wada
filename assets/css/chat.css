@@ -1,15 +1,91 @@
 /*font Awesome http://fontawesome.io*/
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
+/*==チャット一覧（左側）==*/
 .chat-list {
   margin-top: 30px;
-  padding-right: 20px;
 }
 
-.chat-private {
+/* 検索フォーム */
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+ 
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:#D9230F;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+
+/* チャット一覧表示 */
+.chat-room {
   margin-top: 30px;
-  padding-left: 40px;
-  border-left: 2px solid #ccc;
+}
+
+.chat-photo {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+}
+
+.chat-body {
+  border-bottom: solid 1px #dcdddd;
+  position: relative;
+  left: 80px;
+  padding-top: 7px
+}
+
+.chat-nickname {
+  font-size: 14px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+
+.chat-intro {
+  font-size: 7px;
+  color: black;
+}
+
+/*==個人チャット画面（右側）==*/
+
+.chat-private {
+  margin-top: 40px;
+  margin-left: 70px;
+}
+
+.chat-name {
+  font-size: 15px;
+  color: #b3ada0;
+  margin: 10px 0 6px;
 }
 
 /*Comment List styles*/
@@ -20,8 +96,8 @@
 }
 
 .page-header {
-  background-color: #a25768;
-  border-radius: 7px;
+  background-color: #d0576b;
+  border-radius: 3px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
@@ -59,7 +135,8 @@
 }
 
 .panel {
-  background-color: #e4d2d8;
+  background-color: #fffffc;
+  border-color: #fffffc;
   border-radius: 15px;
   width: 300px;
   height: 250px;
@@ -75,6 +152,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  color: #b3ada0;
 }
 
 /* 右側と左側で吹き出しの位置を調整する */
@@ -98,6 +176,7 @@
     position: absolute;
     top: 25px;
     font-size: 20px;
+    color: #b3ada0;
 }
 
 .haiku-text-1 {
@@ -113,14 +192,17 @@
 }
 
 /* 俳句入力欄 */
-.chat-input {
-  background-color: #80aba9;
-  margin-top: 30px;
+.btn-glyphicon { 
+  padding:8px; background:#ffffff; margin-right:4px;
 }
 
-/* 検索入力欄 */
-.search-input {
-  background-color: #007bbb;
+.icon-btn { 
+  width: 120px;
+  height: 40px;
+  padding: 1px 15px 3px 2px; border-radius:50px;
+  position: fixed;
+  right: 40px;
+  bottom: 30px;
 }
 
 /* Portrait tablets and medium desktops */
@@ -140,7 +222,7 @@
   /*Outline effect style*/
   .comment-list .panel.arrow.left:before {
     left: 0px;
-    top: 30px;
+    top: 50px;
     /*Use boarder color of panel*/
     border-right-color: inherit;
     border-width: 16px;
@@ -148,16 +230,16 @@
   /*Background color effect*/
   .comment-list .panel.arrow.left:after {
     left: 1px;
-    top: 31px;
+    top: 50px;
     /*Change for different outline color*/
-    border-right-color: #e4d2d8;
+    border-right-color: #fffffc;
     border-width: 15px;
   }
   /*****Right Arrow*****/
   /*Outline effect style*/
   .comment-list .panel.arrow.right:before {
     right: -16px;
-    top: 30px;
+    top: 50px;
     /*Use boarder color of panel*/
     border-left-color: inherit;
     border-width: 16px;
@@ -165,9 +247,9 @@
   /*Background color effect*/
   .comment-list .panel.arrow.right:after {
     right: -14px;
-    top: 31px;
+    top: 50px;
     /*Change for different outline color*/
-    border-left-color: #e4d2d8;
+    border-left-color: #fffffc;
     border-width: 15px;
   }
 }

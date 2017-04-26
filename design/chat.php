@@ -11,15 +11,16 @@
 <body>
   <div class="container">
     <div class="row">
+      <!-- チャット一覧 -->
       <div class="col-md-3 chat-list">
-      <?php require('chat_left.php'); ?>
+        <?php require('chat_left.php'); ?>
       </div>
 
       <!-- 個人チャット画面 -->
-      <div class="col-md-9 chat-private">
+      <div class="col-md-8 chat-private">
         <div class="outer">
           <div class="page-header">
-            <h2>【友達名】</h2>
+            <h2>たかさん</h2>
           </div>
         </div>
 
@@ -28,12 +29,12 @@
           <!-- First Comment -->
           <article class="row">
             <div class="col-md-2 col-sm-2 hidden-xs">
-              <figure class="thumbnail">
-                <img class="img-responsive" src="../assets/images/pic-t1.jpg">
-                 <figcaption class="text-center">username</figcaption>
+              <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
+                <img class="img-responsive" src="../assets/images/pic-t1.jpg" style="border-radius: 50%;">
                </figure>
             </div>
             <div class="col-md-10 col-sm-10">
+              <p class="chat-name">たかさん</p>
               <div class="panel panel-default arrow left user-left">
                 <div class="panel-body">
                   <header class="text-left">
@@ -52,6 +53,7 @@
           <!-- Second Comment -->
           <article class="row">
             <div class="col-md-10 col-sm-10">
+              <p class="chat-name" style="text-align: right;">たかさん</p>
               <div class="panel panel-default arrow right user-right">
                 <div class="panel-body">
                   <header class="text-right">
@@ -66,9 +68,8 @@
               </div>
             </div>
             <div class="col-md-2 col-sm-2 hidden-xs">
-              <figure class="thumbnail">
-                <img class="img-responsive" src="../assets/images/pic-t3.jpg">
-                <figcaption class="text-center">username</figcaption>
+              <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
+                <img class="img-responsive" src="../assets/images/pic-t3.jpg" style="border-radius: 50%;">
               </figure>
             </div>
           </article>
@@ -76,7 +77,8 @@
           <!-- Third Comment -->
           <article class="row">
             <div class="col-md-10 col-sm-10">
-              <div class="panel panel-default arrow right user-right" style="background-color: #00a497; border-left-color: #00a497;">
+              <p class="chat-name" style="text-align: right;">たかさん</p>
+              <div class="panel panel-default arrow right user-right" style="background-color: #fffffc; border-left-color: #fffffc;">
                 <div class="panel-body">
                   <header class="text-right">
                     <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
@@ -90,9 +92,8 @@
               </div>
             </div>
             <div class="col-md-2 col-sm-2 hidden-xs">
-              <figure class="thumbnail">
-                <img class="img-responsive" src="../assets/images/pic-t3.jpg">
-                <figcaption class="text-center">username</figcaption>
+              <figure class="thumbnail"  style="border-radius: 50%; background-color: #fffffc;">
+                <img class="img-responsive" src="../assets/images/pic-t3.jpg" style="border-radius: 50%;">
               </figure>
             </div>
           </article>
@@ -100,12 +101,12 @@
           <!-- Second Comment -->
           <article class="row">
             <div class="col-md-2 col-sm-2 hidden-xs">
-              <figure class="thumbnail">
-                <img class="img-responsive" src="../assets/images/pic-t1.jpg">
-                 <figcaption class="text-center">username</figcaption>
+              <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
+                <img class="img-responsive" src="../assets/images/pic-t1.jpg" style="border-radius: 50%;">
                </figure>
             </div>
             <div class="col-md-10 col-sm-10">
+              <p class="chat-name">たかさん</p>
               <div class="panel panel-default arrow left user-left" style="background-image: url(../assets/images/tikoku-sample.jpg); background-size: contain;">
                 <div class="panel-body">
                   <header class="text-left">
@@ -123,14 +124,7 @@
 
           <!-- 俳句入力フォーム -->
           <form action="" method="" accept-charset="utf-8" class="form-horizontal">
-            <div class="form-group chat-input">
-              <div class="col-md-11" style="text-align: center; padding: 10px;">
-                <input type="text" name="" class="form-control">
-              </div>
-              <div class="col-md-1" style="text-align: center; padding: 10px;">
-                <input type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381;">
-              </div>
-            </div>
+            <button type="button" class="btn icon-btn btn-info" style="background-color: #d0576b; border-color: #d0576b;"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info" style="color: #d0576b"></span> 詠む</button>
           </form>
 
         </section>
