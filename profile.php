@@ -9,6 +9,17 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// 自分の作った全句を時系列で表示
+
+$sql = 'SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.haiku_1 ORDER BY h.created';
+$data = array($_SESSION['id']);
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
+$login_user_ku = $stmt->fetch(PDO::FETCH_ASSOC);
+
+var_dump($login_user_ku);
+
+
 ?>
 
 <!DOCTYPE html>
