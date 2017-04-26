@@ -1,20 +1,62 @@
 <?php
 session_start();
 require('dbconnect.php');
+
+// ログインユーザー（仮）
 $_SESSION['login_member_id'] = 1;
-$friend_id = 2;
-$room_id = 1;
 
-$sql = sprintf('SELECT c.*, m.nick_name, m.user_picture_path FROM `chats` AS c LEFT JOIN `members` AS m ON c.sender_id=m.member_id WHERE c.sender_id LIKE %d AND c.reciever_id LIKE %d OR c.sender_id LIKE %d AND c.reciever_id LIKE %d ORDER BY c.created DESC', $_SESSION['login_member_id'], $friend_id, $friend_id, $_SESSION['login_member_id']);
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
+// 画面左側（チャットルーム取得）
+// roomsテーブルから新着順でチャットルームを取得
+$sql = 'SELECT * FROM `rooms` WHERE `member_id_1`=? OR `member_id_2`=? ORDER BY modified DESC';
+$data = array($_SESSION['login_member_id'], $_SESSION['login_member_id']);
+$room_stmt = $dbh->prepare($sql);
+$room_stmt->execute($data);
 
-// 空の配列を定義
-$chats = array();
+// 各チャットの友達情報を取得
+$rooms = array();
+while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
+  if ($record['member_id_1'] == $_SESSION['login_member_id']) {
+    $sql = 'SELECT * FROM `members` WHERE member_id = ?';
+    $data = array($record['member_id_2']);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+    $room = $stmt->fetch(PDO::FETCH_ASSOC);
+  } else {
+    $sql = 'SELECT * FROM `members` WHERE member_id = ?';
+    $data = array($record['member_id_1']);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+    $room = $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+  $rooms[] = $room;
+}
 
-while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
-  // whileの外に用意した配列に入れる
-  $chats[] = $record;
+// 友達選択された時→チャット表示
+if (isset($_POST['friend_id'])) {
+  $friend_id = $_POST['friend_id'];
+
+  // room_idの取得
+  $sql = 'SELECT `room_id` FROM `rooms` WHERE `member_id_1`=? AND `member_id_2`=? OR `member_id_1`=? AND`member_id_2`=?';
+  $data = array($_SESSION['login_member_id'], $friend_id, $friend_id, $_SESSION['login_member_id']);
+  $stmt = $dbh->prepare($sql);
+  $stmt->execute($data);
+  $record = $stmt->fetch(PDO::FETCH_ASSOC);
+  $room_id = $record['room_id'];
+  echo $room_id;
+
+  // チャットの取得
+  $sql = sprintf('SELECT c.*, m.nick_name, m.user_picture_path FROM `chats` AS c LEFT JOIN `members` AS m ON c.sender_id=m.member_id WHERE `room_id`=? ORDER BY c.created DESC', $_SESSION['login_member_id'], $friend_id, $friend_id, $_SESSION['login_member_id']);
+  $data = array($room_id);
+  $stmt = $dbh->prepare($sql);
+  $stmt->execute($data);
+
+  // 空の配列を定義
+  $chats = array();
+
+  while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    // whileの外に用意した配列に入れる
+    $chats[] = $record;
+  }
 }
 
 // 縦書きにする関数
@@ -40,6 +82,18 @@ function tateGaki($haiku) {
   <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
 </head>
 <body>
+  
+  <?php foreach ($rooms as $room) { ?>
+    <form action="chat.php" method="POST" accept-charset="utf-8">
+      <button type="submit">
+        <img src="assets/images/<?php echo $room['user_picture_path']; ?>" width="50" height="50"><br>
+        <p><?php echo $room['nick_name'];?></p><br>
+        <?php echo $room['member_id'];?><br>
+        <input type="hidden" name="friend_id" value="<?php echo $room['member_id']?>">
+      </button>
+    </form>
+  <?php } ?>
+  
 
   <!-- 詠むボタン（MWの呼び出し） -->
   <input type="submit" id="modal-open" class="btn btn-info" value="詠む" style="background-color: #00a381;">
