@@ -1,0 +1,36 @@
+/*全体の枠組み*/
+body {text-align:left;
+}
+
+/*プロフィール画像サイズ*/
+#photo {
+  width: 130px;
+
+}
+
+/*プロフィール名前の位置*/
+h1{
+  padding-top:10px;
+}
+
+/*友達プロフィール画像サイズ*/
+#photo1 {
+  width: 60px;
+
+/*Friendsの文字の大きさ&フォント*/
+.title {
+    font-size: 1.0em;
+    font-weight: bold; 
+}
+
+/*各Friendの名前の大きさ&濃さ*/
+.name {
+    font-size: 0.5em; 
+    font-weight: 700;
+}
+
+#ranking {
+    width: 20px
+}
+
+Contact GitHub API Training Shop Blog About
