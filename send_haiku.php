@@ -22,7 +22,9 @@ if (isset($_SESSION['login_member_id'])) {
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
-    header('Location: chat.php');
+    $url = 'chat.php?friend_id=' . $_POST['friend_id'];
+
+    header('Location: ' . $url);
   
   } else { // タイムライン
 

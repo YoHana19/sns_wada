@@ -5,6 +5,11 @@ require('dbconnect.php');
 // ログインユーザー（仮）
 $_SESSION['login_member_id'] = 1;
 
+// 入れ物用意
+$friend_id = '';
+$room_id = '';
+$chats = array();
+
 // 画面左側（チャットルーム取得）
 // roomsテーブルから新着順でチャットルームを取得
 $sql = 'SELECT * FROM `rooms` WHERE `member_id_1`=? OR `member_id_2`=? ORDER BY modified DESC';
@@ -32,8 +37,8 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 
 // 友達選択された時→チャット表示
-if (isset($_POST['friend_id'])) {
-  $friend_id = $_POST['friend_id'];
+if (isset($_GET['friend_id'])) {
+  $friend_id = $_GET['friend_id'];
 
   // room_idの取得
   $sql = 'SELECT `room_id` FROM `rooms` WHERE `member_id_1`=? AND `member_id_2`=? OR `member_id_1`=? AND`member_id_2`=?';
@@ -49,9 +54,6 @@ if (isset($_POST['friend_id'])) {
   $data = array($room_id);
   $stmt = $dbh->prepare($sql);
   $stmt->execute($data);
-
-  // 空の配列を定義
-  $chats = array();
 
   while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
     // whileの外に用意した配列に入れる
@@ -84,11 +86,20 @@ function tateGaki($haiku) {
 <body>
   
   <?php foreach ($rooms as $room) { ?>
-    <form action="chat.php" method="POST" accept-charset="utf-8">
+    <form action="chat.php" method="GET" accept-charset="utf-8">
       <button type="submit">
+        <?php
+          // 各チャットの最新の句を一件取得
+          $sql = 'SELECT * FROM `chats` WHERE `room_id`=? ORDER BY created DESC';
+          $data = array($room_id);
+          $stmt = $dbh->prepare($sql);
+          $stmt->execute($data);
+          $latest_chat = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
         <img src="assets/images/<?php echo $room['user_picture_path']; ?>" width="50" height="50"><br>
         <p><?php echo $room['nick_name'];?></p><br>
         <?php echo $room['member_id'];?><br>
+        <p><?php echo $latest_chat['chat_1'];?>&nbsp;<?php echo $latest_chat['chat_2'];?>&nbsp;<?php echo $latest_chat['chat_3'];?>
         <input type="hidden" name="friend_id" value="<?php echo $room['member_id']?>">
       </button>
     </form>
@@ -110,6 +121,11 @@ function tateGaki($haiku) {
       
       <input type="text" class="form-control haiku" id="lw_haiku" name="lw_haiku" placeholder="３行目（四〜六文字）"><br>
       <p id="lw_haiku_valid" style="display: none">四から六文字で入力してください</p>
+
+      <!-- 一言説明 -->
+      <input type="text" class="form-control" id="short_comment" name="short_comment" placeholder="一言説明（二十文字以下）" style="display: none;"><br>
+      <p id="short_comment_valid" style="display: none">二十文字以内で入力してください</p>
+
 
       <!-- 写真挿入 -->
       <div>
@@ -145,19 +161,23 @@ function tateGaki($haiku) {
       <div class="login_user" style="float: right;">
         <div><?php echo $chat['nick_name']; ?></div>
         <img src="assets/images/<?php echo $chat['user_picture_path']; ?>" width="100" height="100"><br>
-        <div><?php echo $chat['chat_1']; ?></div>
-        <div><?php echo $chat['chat_2']; ?></div>
-        <div><?php echo $chat['chat_3']; ?></div>
+        <div style="background-image: url(assets/images/<?php echo $chat['back_img']; ?>);">
+          <p><?php echo $chat['chat_1']; ?></p>
+          <p><?php echo $chat['chat_2']; ?></p>
+          <p><?php echo $chat['chat_3']; ?></p>
+        </div>
         <?php echo tateGaki($chat['chat_1']); ?>
       </div>
     <?php else: ?>
       <!-- 友達は左表示 -->
       <div class="friend" style="float: left;">
-        <div><?php echo $chat['nick_name']; ?></div>
+        <a href="user.php?user_id=<?php echo $chat['sender_id']; ?>"><?php echo $chat['nick_name']; ?></a>
         <img src="assets/images/<?php echo $chat['user_picture_path']; ?>" width="100" height="100"><br>
-        <div><?php echo $chat['chat_1']; ?></div>
-        <div><?php echo $chat['chat_2']; ?></div>
-        <div><?php echo $chat['chat_3']; ?></div>
+        <div style="background-image: url(assets/images/<?php echo $chat['back_img']; ?>);">
+          <p><?php echo $chat['chat_1']; ?></p>
+          <p><?php echo $chat['chat_2']; ?></p>
+          <p><?php echo $chat['chat_3']; ?></p>
+        </div>
         <?php echo tateGaki($chat['chat_1']); ?>
       </div>
     <?php endif; ?>
