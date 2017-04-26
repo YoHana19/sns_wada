@@ -1,0 +1,60 @@
+.login-background {
+  /* 画像ファイルの指定 */
+  background-image: url(../../assets/images/japanese-umbrellas.jpg);
+   
+  /* 画像を常に天地左右の中央に配置 */
+  background-position: center center;
+   
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+   
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
+   
+  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+  background-size: cover;
+   
+  /* 背景画像が読み込まれる前に表示される背景のカラー */
+  background-color: #464646;
+  height: 800px;
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400);
+body {
+  background-color:#fff;
+  -webkit-font-smoothing: antialiased;
+  font: normal 14px Roboto,arial,sans-serif;
+}
+
+.container {
+    padding: 25px;
+    position: fixed;
+}
+
+.form-login {
+    background-color: #EDEDED;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+h4 { 
+ border:0 solid #fff; 
+ border-bottom-width:1px;
+ padding-bottom:10px;
+ text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.wrapper {
+    text-align: center;
+}
