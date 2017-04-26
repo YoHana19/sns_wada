@@ -16,21 +16,22 @@ h1{
 /*友達プロフィール画像サイズ*/
 #photo1 {
   width: 60px;
-
+}
 /*Friendsの文字の大きさ&フォント*/
+
 .title {
-    font-size: 1.0em;
-    font-weight: bold; 
+    font-size: 1.0em; 
+    font-weight: 700;
 }
 
 /*各Friendの名前の大きさ&濃さ*/
 .name {
-    font-size: 0.5em; 
+    font-size: 0.9em; 
     font-weight: 700;
 }
 
-#ranking {
-    width: 20px
+.haiku1{
+    font-size: 0.9em; 
 }
 
 Contact GitHub API Training Shop Blog About

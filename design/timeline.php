@@ -16,168 +16,18 @@
 
 </head>
 <body background="../assets/images/back.jpg" bgproperties="fixd">
-<!-- ヘッダー -->
-  <nav class="navbar navbar-webmaster" style="width: 1280px; height: 40px">
-    <div class="header-bk">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">和だ</a>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar">
-        <form class="navbar-form navbar-right search-form" role="search">
-          <input type="text" class="form-control" placeholder="Search">
-          <input type="button" class="btn btn-info haiku-input" value="詠む">
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">友達リクエスト<span class="sr-only">(current)</span></a></li>
-          <li class="active"><a href="#">個人ページ<span class="sr-only">(current)</span></a></li>
-          <li class="active"><a href="#">chat</i><span class="sr-only">(current)</span></a></li>
-          <li class="active"><a href="#">友達一覧<span class="sr-only">(current)</span></a></li>
-          <li class="active"><a href="#">ランク・コラム<span class="sr-only">(current)</span></a></li>
-          <li id="logout" class=""><a href="#logoutModal" data-toggle="modal" data-target="#logoutModal">ログアウト</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
 
-
-  <br>
-  <br>
-  <br>
-
-  <!-- 右サイドバー -->
-
-
-
-  <div class="container content">
-    <div class="row">
-      <!-- 簡易個人プロフ作成 -->
-      
+  <div class="container">
+    <div class="row content">
+      <!-- 左サイドバー -->
       <div class="col-md-3">
-        <img src="../assets/images/saito.jpeg" id="photo">
-        <h4>齋藤 由佳</h4>
-        <h6>おねぇさん トレンディだね 齋藤さん</h6>
-         <div class="clearfix"></div>
-
-          <div class="panel panel-default">  <!-- 「Friends」の一番上の枠 -->
-            <div class="panel-heading c-list">  <!-- 「Friends」の一番上の枠のパネル -->
-              <span class="title">お友達</span>
-            </div>
-          <!-- 直近連絡とった友達順に10件表示 -->
-          <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="list-group-item">
-            <div class="col-md-4">
-            <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span><br/>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-            <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-            <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-            <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-            <li class="list-group-item">
-            <div class="col-md-4">
-              <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1"/>
-            </div>
-            <div class="col-md-8">
-              <span class="name">和田 隆宏</span>
-              <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-            </div>
-            <div class="clearfix"></div>
-
-            <br>
-            <br>
-            <br>
-            <!-- リンク -->
-              <img src="../assets/images/no_img_back.jpg" id="ranking"/>
-              <br>
-              <img src="../assets/images/no_img_back.jpg" id="ranking"/>
-              <br>
-              <img src="../assets/images/no_img_back.jpg" id="ranking"/> 
-          </li>
-        </div>
+        <?php require('left_sidebar.php'); ?>
       </div>
-    
-
+      <div class="col-md-1"></div>
+      <!-- 本コンテンツ -->
       <div class="col-md-7">
           
           <!-- 今日の季語 -->
@@ -364,12 +214,8 @@
             </div>
           </div>
 
-        </div>
-
-      </div>
+          </div> <!-- col-md-7終了タグ -->
     </div>
-          
-
   </div>
 
 
@@ -377,20 +223,7 @@
   <br>
 
 <!-- フッター表示 -->
-  <footer class="footer">
-        <div class="container" style="width: 1279px; height: 40px">
-            <div class="row">
-                <p>© 2017 SNS_wada, All rights reserved.</p>
-
-                    <!-- <ul class="social-icon animate pull-right"> -->
-                    <div class="row">
-                        <!-- <div class="col-md-3"></div> -->
-                        <a href="#" title="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="#" title="twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                    </div>
-
-            </div>
-        </div>
+<?php require('footer.php'); ?>
 
 
 </body>
