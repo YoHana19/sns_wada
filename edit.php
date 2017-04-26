@@ -8,15 +8,13 @@ $sql = 'SELECT * FROM `members`';
 $data = array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
-$login_member_id = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-
+$login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // バリデーション用
 $errors = array();
 
 if (!empty($_POST)) {
+  echo $_POST['email'];
 
   // ニックネームが空だった時
   if ($_POST['nick_name'] == "") {
@@ -36,17 +34,17 @@ if (!empty($_POST)) {
   // 自己紹介句(上中下) 文字数のエラー表示
   if (!empty($_POST['self_intro_up']) && !empty($_POST['self_intro_middle']) && !empty($_POST['self_intro_down'])) {
     // 上の句
-    if (mb_strlen($_POST['self_intro_up']) < 4 || mb_strlen($_POST['self_intro_up']) > 6){  // stringの長さを返す
+    if (mb_strlen($_POST['self_intro_up']) < 4 || mb_strlen($_POST['self_intro_up']) > 6){
       $errors ['self_intro_up'] = 'length';
     }
 
     // 中の句
-    if (mb_strlen($_POST['self_intro_middle']) < 6 || mb_strlen($_POST['self_intro_middle']) > 8){  // stringの長さを返す
+    if (mb_strlen($_POST['self_intro_middle']) < 6 || mb_strlen($_POST['self_intro_middle']) > 8){
       $errors['self_intro_middle'] = 'length';
     }
 
     // 下の句
-    if (mb_strlen($_POST['self_intro_down']) < 4 || mb_strlen($_POST['self_intro_down']) > 6){  // stringの長さを返す
+    if (mb_strlen($_POST['self_intro_down']) < 4 || mb_strlen($_POST['self_intro_down']) > 6){
       $errors['self_intro_down'] = 'length';
     }
   }
@@ -58,8 +56,8 @@ if (!empty($_POST)) {
   if (!empty($user_picture_path)) {
     // 画像が選択されていた場合
     echo $user_picture_path;
-    $ext = substr($user_picture_path , -3); //substr-文字列の一部分を返す , 後ろから3文字を返す
-    $ext = strtolower($ext); // 大文字対応 , strtolower-文字列を小文字にする
+    $ext = substr($user_picture_path , -3);
+    $ext = strtolower($ext);
     if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
       $errors['user_picture_path'] = 'type';
     }
@@ -70,8 +68,8 @@ if (!empty($_POST)) {
   if (!empty($back_picture_path)) {
     // 画像が選択されていた場合
     echo $back_picture_path;
-    $ext = substr($back_picture_path , -3); //substr-文字列の一部分を返す , 後ろから3文字を返す
-    $ext = strtolower($ext); // 大文字対応 , strtolower-文字列を小文字にする
+    $ext = substr($back_picture_path , -3);
+    $ext = strtolower($ext);
     if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
       $errors['back_picture_path'] = 'type';
     }
@@ -79,11 +77,12 @@ if (!empty($_POST)) {
 
 
     // メールアドレスの重複チェック
+
     if(empty($errors)){
       // DBのmembersテーブルに入力されたメールアドレスと同じデータがあるかどうか検索し取得
-      try{
+      try{ //例外発生の可能性があるコード
            $sql = 'SELECT COUNT(*) AS `cnt` FROM `members` WHERE `email` =?'; //COUNT-変数に含まれる全ての要素、あるいはオブジェクトに含まれる何かの数を数える
-           $data =array($email);
+           $data =array($_POST['email']);
            $stmt = $dbh->prepare($sql);
            $stmt->execute($data);
            $record = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -93,7 +92,7 @@ if (!empty($_POST)) {
               $errors['email'] = 'duplicate'; //duplicate-重複
            }
 
-      }catch(PDOException $e){
+      }catch(PDOException $e){ //例外発生時の処理
           echo 'SQL文実行時エラー:' . $e->message();
       }
     }
@@ -114,8 +113,6 @@ if (!empty($_POST)) {
     }
   }
 
-
-
  ?>
 
 <!DOCTYPE html>
@@ -128,7 +125,7 @@ if (!empty($_POST)) {
   <form method="POST" action="edit.php" enctype="multipart/form-data">
     <div>
       <label>ニックネーム</label>
-      <input type="text" name="nick_name" value="<?php echo $login_member_id['nick_name']; ?>">
+      <input type="text" name="nick_name" value="<?php echo $login_member['nick_name']; ?>">
       <?php if(isset($errors['nick_name']) && $errors['nick_name'] == 'blank'): ?>
         <p style="color:red; font-size:10px; margin-top:2px; ">ニックネームを入力してください</p>
       <?php endif; ?>
@@ -136,16 +133,20 @@ if (!empty($_POST)) {
 
     <div>
       <label>メールアドレス</label>
-      <input type="email" name="email" value="<?php echo $login_member_id['email']; ?>">
+      <input type="email" name="email" value="<?php echo $login_member['email']; ?>">
       <?php if(isset($errors['email']) && $errors['email'] == 'blank'): ?>
         <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを入力してください</p>
+      <?php endif; ?>
+
+      <?php if(isset($errors['email']) && $errors['email'] == 'duplicate'): ?>
+        <p style="color:red; font-size:10px; margin-top:2px; ">指定したメールアドレスはすでに登録されています。</p>
       <?php endif; ?>
     </div>
 
     <div>
       <label>メールアドレス確認用</label>
       <input type="email" name="email_check" value="">
-      <?php if(isset($errors['email']) && $errors['email'] == 'not_match'): ?>
+      <?php if(isset($errors['email']) && $errors['email'] && $errors['email'] == 'not_match'): ?>
         <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを正しく入力してください</p>
       <?php endif; ?>
     </div>
@@ -153,7 +154,7 @@ if (!empty($_POST)) {
     <div>
       <label>アイコン画像</label>
       <input type="file" name="user_picture_path">
-      <img src="assets/images/<?php echo $login_member_id['user_picture_path']; ?>" width="100px" height="100px">
+      <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>" width="100px" height="100px">
 
       <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'type') : ?>
         <p style="color:red; font-size:10px; margin-top:2px; ">アイコン画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
@@ -163,7 +164,7 @@ if (!empty($_POST)) {
     <div>
       <label>背景画像</label>
       <input type="file" name="back_picture_path">
-      <img src="assets/images/<?php echo $login_member_id['back_picture_path']; ?>" width="300px" height="100px">
+      <img src="assets/images/<?php echo $login_member['back_picture_path']; ?>" width="300px" height="100px">
 
       <?php if(isset($errors['back_picture_path']) && $errors['back_picture_path'] == 'type'): ?>
         <p style="color:red; font-size:10px; margin-top:2px; ">背景画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
@@ -172,19 +173,19 @@ if (!empty($_POST)) {
 
   <label>自己紹介句</label>
     <p>上の句</p>
-      <input type="text" name="self_intro_up" value="<?php echo $login_member_id['self_intro_1'] ; ?>">
+      <input type="text" name="self_intro_up" value="<?php echo $login_member['self_intro_1'] ; ?>">
       <?php if(isset($errors['self_intro_up']) && $errors['self_intro_up'] == 'length'): ?>
         <p style="color:red; font-size:10px; margin-top:2px;">文字数は4文字以上6文字以下で設定してください</p>
       <?php endif; ?>
 
     <p>中の句</p>
-      <input type="text" name="self_intro_middle" value="<?php echo $login_member_id['self_intro_2']; ?>">
+      <input type="text" name="self_intro_middle" value="<?php echo $login_member['self_intro_2']; ?>">
       <?php if(isset($errors['self_intro_middle']) && $errors['self_intro_middle'] == 'length'): ?>
         <p style="color:red; font-size:10px; margin-top:2px;">文字数は6文字以上8文字以下で設定してください</p>
       <?php endif; ?>
 
     <p>下の句</p>
-      <input type="text" name="self_intro_down" value="<?php echo $login_member_id['self_intro_3']; ?>">
+      <input type="text" name="self_intro_down" value="<?php echo $login_member['self_intro_3']; ?>">
       <?php if(isset($errors['self_intro_down']) && $errors['self_intro_down'] == 'length'): ?>
         <p style="color:red; font-size:10px; margin-top:2px;">文字数は4文字以上6文字以下で設定してください</p>
       <?php endif; ?>
