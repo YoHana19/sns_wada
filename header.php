@@ -25,8 +25,11 @@ require('dbconnect.php');
 <!-- ランキング/コラムボタン->ランキング/コラムページに遷移 -->
 <a href="ranking.php">ランク/コラム</a>
 
-<!-- 運営ページに遷移 -->
+<!-- 運営ボタン->運営ページに遷移 -->
 <a href="manage.php">運営</a>
+
+<!-- ログアウトボタン->ログアウトページへ遷移->終了後topページへ -->
+<a href="logout.php">ログアウト</a>
 
 <!-- 検索ボタン表示 -->
 <form method="POST" action="timeline.php" class="form-horizontal" role='form'>
