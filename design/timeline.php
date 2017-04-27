@@ -29,16 +29,16 @@
       <div class="col-md-1"></div>
       <!-- 本コンテンツ -->
       <div class="col-md-7">
-          
-          <!-- 今日の季語 -->
-          <div class="season_title">
-            <h4>今日の季語</h4>
-          </div>
-          <div class="outer">
-            <div class="season_word">
-              <h1>さくら</h1>
-            </div>
-          </div>
+      
+      <!-- 今日の季語 -->
+      <div class="season_title">
+        <h4>今日の季語</h4>
+      </div>
+      <div class="outer">
+        <div class="season_word">
+          <h1>さくら</h1>
+        </div>
+      </div>
 
           <!-- 詠むボタン -->
           <div style="text-align: right;">
@@ -58,7 +58,7 @@
               <p>3時間前</p>
             </div>
             <div class="active item">
-              <blockquote>
+              <blockquote style="background:#fff0f5">
                 <div class="haiku-text">
                   <h2 class="haiku-text-1">桜<br>か<br>な</h2>
                   <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
@@ -92,7 +92,7 @@
               <p>3時間前</p>
             </div>
             <div class="active item">
-              <blockquote style="background: #d69090">
+              <blockquote style="background:#fff0f5">
                 <div class="haiku-text">
                   <h2 class="haiku-text-1">桜<br>か<br>な</h2>
                   <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
@@ -156,7 +156,7 @@
               <p>3時間前</p>
             </div>
             <div class="active item">
-              <blockquote style="background: #c1e4e9">
+              <blockquote style="background: #fff0f5">
                 <div class="haiku-text">
                   <h2 class="haiku-text-1">桜<br>か<br>な</h2>
                   <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
