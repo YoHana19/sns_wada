@@ -20,6 +20,8 @@
   <!-- ヘッダー -->
   <?php require('header.php'); ?>
 
+  
+
   <div class="container">
     <div class="row content">
       <!-- 左サイドバー -->
