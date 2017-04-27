@@ -2,9 +2,13 @@
 session_start();
 require('dbconnect.php');
 // ↑全ページ共通の2行
-
+if (isset($_search_word)) {//isset:その変数が定義されているかどうか確認する
 $search_word = $_POST['search_word']; // header.phpで使用した変数をtimeline.phpでも使用可能にする
-
+} else {
+  $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY h.created DESC');
+  $stmt = $dbh->prepare($sql);
+  $stmt->execute();
+}
 // 検索ワードで、DBのユーザーネーム/句 の全データからあいまい検索
 // 検索ワード入力フォーム(検索窓) : 検索したワードが入っているくを検索結果として表示する
 // 検索するもの : 一致する全件 句(haikus -> haiku1,2,3)
@@ -50,7 +54,9 @@ $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す�
   echo $word_display['member_id'] . '<br>';
 // 連想配列化された変数の値を取り出して表示
 // $word_displayが検索結果を持っている ← これをtimeline.phpに遷移させる
+
 ?>
 <?php endwhile; ?>
+
 </body>
 </html>

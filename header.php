@@ -1,8 +1,6 @@
 <?php
 session_start();
 require('dbconnect.php');
-
-$search_word = '';
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +28,9 @@ $search_word = '';
 <!-- 運営ページに遷移 -->
 <a href="manage.php">運営</a>
 
-<!-- 友達申請リスト表示 -->
-<a href="friends_apply.php">友達申請リスト</a>
-
 <!-- 検索ボタン表示 -->
 <form method="POST" action="timeline.php" class="form-horizontal" role='form'>
-  <input type="text" name="search_word" value="<?php echo $search_word; ?>">  <!-- 検索したいワードを入力するinput -->
+  <input type="text" name="search_word" value="<?php $search_word = ''; echo $search_word; ?>">  <!-- 検索したいワードを入力するinput -->
   <input type="submit" value="検索" class="btn btn-success btn-xs">     <!-- 検索するinput -->
 </form>
 
