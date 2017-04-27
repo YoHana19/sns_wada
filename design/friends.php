@@ -13,11 +13,12 @@
 <body>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-    <?php require('left_sidebar.php'); ?>
+  <div class="row content">
+    <div class="col-md-3 left-content">
+      <?php require('left_sidebar.php'); ?>
+    </div>
 
-    <div class="col-md-9">
+    <div class="col-md-8">
       <div class="title-ranking" style="text-align: center;">
         <h4><b>ランキング</b></h4>
       </div>
