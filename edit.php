@@ -88,10 +88,12 @@ if (!empty($_POST)) {
            $record = $stmt->fetch(PDO::FETCH_ASSOC);
            var_dump($record);
            if($record['cnt']>0){
+            if ($login_member['email'] != $_POST['email']) {
+             // ログインユーザーのメアドと同じでない場合、重複 = ログインユーザーのメアドでログインした時エラー表示なし
             // 同じメールアドレスがDB内に存在したため
               $errors['email'] = 'duplicate'; //duplicate-重複
            }
-
+}
       }catch(PDOException $e){ //例外発生時の処理
           echo 'SQL文実行時エラー:' . $e->message();
       }
