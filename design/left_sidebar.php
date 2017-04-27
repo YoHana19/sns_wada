@@ -8,7 +8,7 @@
 
   <!-- 簡易個人プロフ -->
   <div class="left-proph">
-    <img src="../assets/images/saito.jpeg" id="photo">
+    <img src="../assets/images/saito.jpg" id="photo">
     <h3>齋藤 由佳</h3>
     <span class="intro-text-3">お<br>ね<br>ぇ<br>さ<br>ん</span>
     <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
