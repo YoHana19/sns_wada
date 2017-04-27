@@ -48,7 +48,7 @@ while ($login_user_ku = $stmt->fetch(PDO::FETCH_ASSOC)){
     <input type="button" style="position: absolute; right: 100px; top: 350px" onclick="location.href='edit.php'" value="プロフィール編集">
   </div>
 
-  <div class="container">
+  
   <?php foreach ($login_user_ku1 as $login_user_ku2): ?>
     <div class="well_3">
           <div class="media">
