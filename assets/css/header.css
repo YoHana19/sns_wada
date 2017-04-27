@@ -57,7 +57,7 @@ p {
 
 /* Links */
 a {
-    color: #f85c37;
+    color: #ffffff;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -104,7 +104,8 @@ a:after {
 	font-weight: 800;
 	font-size: 14px;
 	padding-top: 0px;
-	background-color: #ffffff;
+	/*background-color: #8b0000;*/
+  background: url('../images/header_sample.jpg');
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
