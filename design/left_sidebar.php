@@ -19,126 +19,20 @@
     </div>
 
     <!-- 直近連絡とった友達順に10件表示 -->
-    <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-    <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-    <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-    <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-    <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-        <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-        <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-        <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-        <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-        <li class="list-group-item">
-      <div class="col-md-4">
-        <img src="../assets/images/wada.jpg" class="img-responsive img-circle" id="photo1">
-      </div>
-      <div class="col-md-8">
-        <span class="name">和田 隆宏</span>
-        <span class="haiku1">
-          <p>わだわだや<br> あぁわだわだや<br> わだわだや</p>
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </li>
+    <div class="well_3 chat-room">
+      <?php for ($i=0; $i < 15; $i++) { ?>
+        <div class="media" style="position: relative; margin-top: 7px">
+          <a class="pull-left chat-photo" href="#">
+            <img class="media-object" src="http://placekitten.com/110/110" style="width: 55px; height: 55px; border-radius: 50%">
+          </a>
+          <div class="media-body chat-body">
+            <p class="media-heading chat-nickname">たかさん</p>
+            <p class="chat-intro">あああああ　あああああああ　あああああ</p>
+          </div>
+        </div>
+      <?php } ?>
+    </div>
+    
   </div>
 
 </body>
