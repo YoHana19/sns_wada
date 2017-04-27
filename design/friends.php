@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- 後々統一する -->
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.min.css">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
   <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
 </head>
 
 <body>
@@ -15,66 +15,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-
-        <div class="search">
-          <input type="text" class="form-control input-sm" maxlength="64" placeholder="検索" />
-          <button type="submit" class="btn btn-primary btn-sm">検索</button>
-        </div><br><br>
-
-      <h4><b>自分情報</b></h4>
-      <div class="well_2">
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/120/120">
-          </a>
-            <div class="media-body">
-              <h4 class="media-heading">・ユーザー名</h4>
-              <p class="text-right"></p>
-              <p>・自己紹介句</p>
-            </div>
-        </div>
-      </div>
-
-      <h4>友達一覧</h4>
-      <div class="well_3">
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/110/110">
-          </a>
-            <div class="media-body">
-              <h4 class="media-heading">・ユーザー名</h4>
-                <p class="text-right"></p>
-                <p>・自己紹介句</p>
-            </div>
-        </div>
-      </div>
-
-      <div class="well_3">
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/110/110">
-          </a>
-            <div class="media-body">
-              <h4 class="media-heading">・ユーザー名</h4>
-              <p class="text-right"></p>
-              <p>・自己紹介句</p>
-            </div>
-        </div>
-      </div>
-
-      <div class="well_3">
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/110/110">
-          </a>
-            <div class="media-body">
-              <h4 class="media-heading">・ユーザー名</h4>
-              <p class="text-right"></p>
-              <p>・自己紹介句</p>
-            </div>
-        </div>
-      </div>
-    </div>
+    <?php require('left_sidebar.php'); ?>
 
     <div class="col-md-9">
       <div class="title-ranking" style="text-align: center;">
