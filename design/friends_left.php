@@ -21,6 +21,12 @@
   </form>
 
   <!-- 個人プロフ -->
+  <!-- 簡易個人プロフ -->
+<!--   <img src="../assets/images/wada.jpg" id="photo">
+  <h3>齋藤 由佳</h3>
+  <h5>おねぇさん トレンディだね 齋藤さん</h5>
+  <div class="clearfix"></div> -->
+
   <div class="well_3 chat-room" style="border: groove 2px #dcdddd">
     <div class="media" style="position: relative; margin-top: 7px">
       <a class="pull-left chat-photo" href="#">

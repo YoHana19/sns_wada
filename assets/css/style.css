@@ -8,6 +8,7 @@
 body {
   font-family: 'Hiragino Maru Gothic ProN', 'YuGothic';
   background-image: url(../images/back.jpg);
+  /*background-color: #fffffc;*/
 }
 
 h1 {
