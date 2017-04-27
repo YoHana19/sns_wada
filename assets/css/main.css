@@ -12,3 +12,16 @@ body {
 h1 {
   font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
 }
+
+/* 全体のコンテンツ */
+.content {
+    padding-top: 80px;
+}
+
+/* 左のコンンテンツ */
+.left-content {}
+
+/* 右のコンテンツ */
+.right-content {
+  margin-left: 70px;
+}

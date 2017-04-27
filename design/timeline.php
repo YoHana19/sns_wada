@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="../assets/css/profile.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/chat.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
 
 
 </head>
@@ -23,13 +24,15 @@
 
   <div class="container">
     <div class="row content">
+
       <!-- 左サイドバー -->
-      <div class="col-md-3">
+      <div class="col-md-3 left-content">
         <?php require('left_sidebar.php'); ?>
       </div>
-      <div class="col-md-1"></div>
+    
+
       <!-- 本コンテンツ -->
-      <div class="col-md-7">
+      <div class="col-md-8 right-content">
           
           <!-- 今日の季語 -->
           <div class="season_title">
