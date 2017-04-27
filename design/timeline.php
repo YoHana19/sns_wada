@@ -12,6 +12,7 @@
   <link href="../maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/profile.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
 
 
 </head>
@@ -20,32 +21,31 @@
   <!-- ヘッダー -->
   <?php require('header.php'); ?>
 
-  
-
   <div class="container">
     <div class="row content">
+
       <!-- 左サイドバー -->
-      <div class="col-md-3">
+      <div class="col-md-3 left-content">
         <?php require('left_sidebar.php'); ?>
       </div>
-      <div class="col-md-1"></div>
-      <!-- 本コンテンツ -->
-      <div class="col-md-7">
-      
-      <!-- 今日の季語 -->
-      <div class="season_title">
-        <h4>今日の季語</h4>
-      </div>
-      <div class="outer">
-        <div class="season_word">
-          <h1>さくら</h1>
-        </div>
-      </div>
 
-          <!-- 詠むボタン -->
-          <div style="text-align: right;">
-            <input type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381;">
+      <!-- 本コンテンツ -->
+      <div class="col-md-8 right-content">
+      
+        <!-- 今日の季語 -->
+        <div class="season_title">
+          <h4>今日の季語</h4>
+        </div>
+        <div class="outer">
+          <div class="season_word">
+            <h1>さくら</h1>
           </div>
+        </div>
+
+        <!-- 詠むボタン -->
+        <div style="text-align: right;">
+          <input type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381;">
+        </div>
 
           <!-- 句一覧 -->
 
