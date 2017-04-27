@@ -257,23 +257,6 @@
   margin-top: 6px;
 }
 
-/* yo */
-@media (min-width: 1200px) {
-  .container {
-    width: 90%;
-  }
-}
-
-body {
-  font-family: 'Hiragino Maru Gothic ProN', 'YuGothic';
-  background-image: url(../images/back.jpg);
-}
-
-h1 {
-  font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
-}
-
-
 /* kosei */
 .well_2 {
   min-height: 20px;
