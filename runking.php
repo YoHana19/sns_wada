@@ -23,18 +23,25 @@ $pure_ids = array_count_values($haiku_ids);
 // arsortでキーを昇順に並び替える
 arsort($pure_ids);
 $key = key($pure_ids);
+echo $key . '<br>';
 
-echo $key;
 next($pure_ids);
 $key1 = key($pure_ids);
+echo $key1 . '<br>';
 
-echo $key1;
 next($pure_ids);
 $key2 = key($pure_ids);
-echo $key2 . '<br>';
+echo $key2 . '<br>' . '<br>';
 
+// 句、プロフ画像、名前、よし数取得
+$sql = 'SELECT m.*, m.nick_name, m.user_picture_path FROM `members` AS m LEFT JOIN `haikus` AS h ON t.member_id=m.member_id WHERE `tweet_id`=?';
 
-// よしランキング歌人用sql分
+  $data = array($_REQUEST['tweet_id']);
+  $stmt = $dbh->prepare($sql);
+  $stmt->execute($data);
+  $tweet = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// よしランキング歌人用sql
 $sql = 'SELECT * FROM `likes`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -50,16 +57,17 @@ $pure_member_ids = array_count_values($haiku_member_ids);
 
 arsort($pure_member_ids);
 $member_key = key($pure_member_ids);
+echo $member_key . '<br>';
 
-echo $member_key;
 next($pure_member_ids);
 $member_key_1 = key($pure_member_ids);
+echo $member_key_1 . '<br>';
 
-echo $member_key_1;
 next($pure_member_ids);
 $member_key_2 = key($pure_member_ids);
-echo $member_key_2 . '<br>';
+echo $member_key_2 . '<br>' . '<br>';
 
+$sql = sprintf('SELECT t.*, m.nick_name, m.picture_path FROM `tweets` AS t LEFT JOIN `members` AS m ON t.member_id=m.member_id ORDER BY t.created DESC LIMIT %d,5' , $start);
 
 // あしランキング句用sql文
 $sql = 'SELECT * FROM `dislikes`';
@@ -77,16 +85,17 @@ $bad_pure_ids = array_count_values($bad_haiku_ids);
 arsort($bad_pure_ids);
 
 $bad_key = key($bad_pure_ids);
-echo $bad_key;
+echo $bad_key . '<br>';
 
 next($bad_pure_ids);
 $bad_key_1 = key($bad_pure_ids);
-echo $bad_key_1;
+echo $bad_key_1 . '<br>';
 
 next($bad_pure_ids);
 $bad_key_2 = key($bad_pure_ids);
-echo $bad_key_2 . '<br>';
+echo $bad_key_2 . '<br>' . '<br>';
 
+$sql = sprintf('SELECT t.*, m.nick_name, m.picture_path FROM `tweets` AS t LEFT JOIN `members` AS m ON t.member_id=m.member_id ORDER BY t.created DESC LIMIT %d,5' , $start);
 
 // あしランキング歌人用sql分
 $sql = 'SELECT * FROM `dislikes`';
@@ -103,14 +112,16 @@ $bad_member_ids = array_count_values($bad_member_ids);
 
 arsort($bad_member_ids);
 $member_key = key($bad_member_ids);
+echo $member_key . '<br>';
 
-echo $member_key;
 next($bad_member_ids);
 $member_key_1 = key($bad_member_ids);
+echo $member_key_1 . '<br>';
 
-echo $member_key_1;
 next($bad_member_ids);
 $member_key_2 = key($bad_member_ids);
 echo $member_key_2 . '<br>';
+
+$sql = sprintf('SELECT t.*, m.nick_name, m.picture_path FROM `tweets` AS t LEFT JOIN `members` AS m ON t.member_id=m.member_id ORDER BY t.created DESC LIMIT %d,5' , $start);
 
 ?>
