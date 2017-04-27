@@ -3,9 +3,6 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/header.css">
 </head>
 <body>
   <nav class="navbar navbar-webmaster" style="width: 1280px; height: 40px">

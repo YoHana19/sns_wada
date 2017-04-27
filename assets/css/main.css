@@ -1,12 +1,18 @@
-@media (min-width: 1200px) {
+@media (min-width: 1350px) {
   .container {
     width: 90%;
   }
 }
 
+@media (min-width: 1200px) {
+  .container {
+    width: 1210px;
+  }
+}
+
 body {
   font-family: 'Hiragino Maru Gothic ProN', 'YuGothic';
-  background-color: #fef4f4;
+  background-image: url(../images/back.jpg);
 }
 
 h1 {
