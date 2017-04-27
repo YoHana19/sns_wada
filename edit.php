@@ -2,7 +2,7 @@
 session_start();
 require('dbconnect.php');
 
-$_SESSION['login_member_id'] = 1;
+$_SESSION['login_member_id'] = 2;
 
 $sql = 'SELECT * FROM `members`';
 $data = array($_SESSION['login_member_id']);
@@ -164,7 +164,7 @@ if (!empty($_POST)) {
     <div>
       <label>背景画像</label>
       <input type="file" name="back_picture_path">
-      <img src="assets/images/<?php echo $login_member['back_picture_path']; ?>" width="300px" height="100px">
+      <img src="assets/images/<?php echo $login_member['back_picture_path']; ?>" width="300px" height="200px">
 
       <?php if(isset($errors['back_picture_path']) && $errors['back_picture_path'] == 'type'): ?>
         <p style="color:red; font-size:10px; margin-top:2px; ">背景画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
