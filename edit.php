@@ -2,13 +2,21 @@
 session_start();
 require('dbconnect.php');
 
-$_SESSION['login_member_id'] = 2;
+$_SESSION['login_member_id'] = 1;
 
 $sql = 'SELECT * FROM `members`';
 $data = array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// $file_name ='hogeuga';
+// $user_picture_name='hoge';
+// $back_picture_ath = 'moge';
+// $self_intro_1 ='アイウエオ';
+// $self_intro_2 = 'カキクケコだよ';
+// $self_intro_3 = 'さしすせそ';
+
 
 // バリデーション用
 $errors = array();
@@ -48,7 +56,6 @@ if (!empty($_POST)) {
       $errors['self_intro_down'] = 'length';
     }
   }
-
 
   // 画像表示のエラー
   // アイコン画像
@@ -103,18 +110,37 @@ if (!empty($_POST)) {
 // エラーがなかった場合の処理
   // var_dump($errors);
 
-  if (empty($errors)) {
+
     // 画像アップデート処理
+if (empty($errors)) {
     $picture_name = date('YmdHis') . $file_name;
-    move_uploaded_file($_FILES['user_picture_path']['tmp_name'] , './assets/images/' . $user_picture_name);
-    $_SESSION[''] = $_POST;
-    $_SESSION['']['user_picture_path'] =$user_picture_name;
-    $_SESSION['']['self_intro'] = $self_intro;
-    header('Location: top.php');
+    move_uploaded_file($_FILES['user_picture_path']['tmp_name'] , '/assets/images/' . $user_picture_name);
+    move_uploaded_file($_FILES['back_picture_path']['tmp_name'] , '/assets/images/' . $back_picture_name);
+    // $_SESSION[''] = $_POST;
+    // $_SESSION['nick_name'] = $_POST['nick_name'];
+    // $_SESSION['user_picture_path'] =$user_picture_name;
+    // $_SESSION['back_picture_path'] =$back_picture_name;
+    // $_SESSION['self_intro_1'] = $self_intro_1;
+    // $_SESSION['self_intro_2'] = $self_intro_2;
+    // $_SESSION['self_intro_3'] = $self_intro_3;
+    $_SESSION['nick_name'] = $_POST['nick_name'];
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['user_picture_path'] = $_FILES['user_picture_path']['name'];
+    $_SESSION['back_picture_path'] = $_FILES['back_picture_path']['name'];
+    $_SESSION['self_intro_up'] = $_POST['self_intro_up'];
+    $_SESSION['self_intro_middle'] = $_POST['self_intro_middle'];
+    $_SESSION['self_intro_down'] = $_POST['self_intro_down'];
+
+
+    // $_POST['errors'] = $errors;
+    header('Location:edit-update.php');
     exit();
-    }
+    // echo '<pre>';
+    // var_dump($_POST);
+    // echo '<pre>';
   }
 
+}
  ?>
 
 <!DOCTYPE html>
