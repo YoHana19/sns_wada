@@ -30,7 +30,7 @@ require('../function.php');
       <div class="fb-profile-text">
         <h1>Eli Macy</h1>
         <div class="navbar-fixed">
-          <input type="button" style="left: 370px; top: 490px"/ value="+友達申請">
+          <input type="button" value="+友達申請">
         </div>
       </div>
     </div>
