@@ -31,7 +31,7 @@
           </a>
         <div class="media-body left-display">
           <span class="media-heading left-nickname">たかさん</span>
-          <p class="left-intro">あああああ　あああああああ　あああああ</p>
+          <p class="left-intro">あああああ あああああああ あああああ</p>
         </div>
       </div>
       <?php } ?>

@@ -5,8 +5,8 @@
 
 /* 季語 */
 .season_title {
-    height: 20px;
-    background: #eebbcb;
+    height: 0px;
+    
 }
 
 .season_title h4 {
@@ -24,12 +24,15 @@
     display: table-cell;
     vertical-align: middle;
     height: 230px;
-    background: #eebbcb;
+    border-radius: 30px ;
+}
 }
 
 .season_word h1{
     font-size: 60px;
 }
+
+.background-image
 
 
 
@@ -176,7 +179,7 @@
 /* コメント欄 */
 .comment {
     padding: 20px;
-    background-color: #e0ebaf;
+    background-color:#fffcf9;
 }
 
 .msg {
