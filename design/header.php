@@ -19,8 +19,7 @@
           <li class="active"><a href="#">chat<span class="sr-only">(current)</span></a></li>
           <li class="active"><a href="#">友達一覧<span class="sr-only">(current)</span></a></li>
           <li class="active"><a href="#">ランク・コラム<span class="sr-only">(current)</span></a></li>
-          <li id="logout" class=""><a href="#logoutModal" data-toggle="modal" data-target="#logoutModal">ログアウト</a></li>
-          <li id="logout" class=""><a href="#logoutModal" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></li>
+          <li id="logout" class=""><a href="#logoutModal" data-toggle="modal" data-target="#logoutModal">ログアウト</a></li></a></li>
 
             <form class="navbar-form navbar-right search-form form-horizontal" role="search">
               <!-- 検索フォーム -->
