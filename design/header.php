@@ -30,7 +30,7 @@
           <li class="active"><a href="#">友達リクエスト<span class="sr-only">(current)</span></a></li>
           <li class="active"><a href="#">個人ページ<i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
           <li class="active"><a href="#">chat<span class="sr-only">(current)</span></a></li>
-          <li class="active"><a href="#"><i class="fa fa-address-book-o" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+          <li class="active"><a href="#">友達一覧<span class="sr-only">(current)</span></a></li>
           <li class="active"><a href="#">ランク・コラム<span class="sr-only">(current)</span></a></li>
           <li id="logout" class=""><a href="#logoutModal" data-toggle="modal" data-target="#logoutModal">ログアウト</a></li>
         </ul>
