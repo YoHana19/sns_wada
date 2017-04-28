@@ -8,8 +8,7 @@
 
   <?php $file_name = getFileNameFromUri(); ?>
 
-  <?php if($file_name != 'user.php'): ?>
-    <?php if($file_name != 'profile.php'): ?>
+  <?php if($file_name == 'timeline.php'): ?>
 
       <!-- 簡易個人プロフ -->
       <div class="left-proph">
@@ -20,7 +19,7 @@
         <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
       </div>
       <div class="clearfix"></div>
-    <?php endif; ?>
+
   <?php endif; ?>
 
   <div class="friends-display">
