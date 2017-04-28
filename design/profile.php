@@ -8,9 +8,8 @@ require('../function.php');
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="../maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/timeline.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
@@ -25,7 +24,7 @@ require('../function.php');
         <span class="intro-text-3">お<br>ね<br>ぇ<br>さ<br>ん</span>
         <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
         <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
-        <input type="button" value="背景画像変更" class="change-back-img">
+        <button type="button" class="change-back-img"><i class="fa fa-camera" aria-hidden="true"></i></button>
       </div>
       <img align="left" class="fb-image-profile thumbnail" src="../assets/images/wada.jpg" alt="Profile image example">
       <div class="fb-profile-text">
@@ -57,7 +56,7 @@ require('../function.php');
               <div class="pull-left">
                 <span calss="haiku-comment">もうこんな季節か・・・。</span>
               </div>
-              <p>3時間前</p>
+              <span style="text-align: right; margin-right: 3px;">3時間前</span>
             </div>
             <div class="active item">
               <blockquote>
@@ -78,8 +77,6 @@ require('../function.php');
               <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
             </div>
             <div class="icons">
-              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
-              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
               <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
             </div>
           </div>
@@ -88,8 +85,9 @@ require('../function.php');
           <div class="haiku">
             <div class="carousel-info">
               <div class="pull-left">
+                <span></span>
               </div>
-              <p>3時間前</p>
+              <span style="text-align: right; margin-right: 3px;">3時間前</span>
             </div>
             <div class="active item">
               <blockquote style="background: #d69090">
@@ -110,8 +108,6 @@ require('../function.php');
               <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
             </div>
             <div class="icons">
-              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
-              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
               <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
             </div>
           </div>
@@ -154,8 +150,9 @@ require('../function.php');
           <div class="haiku">
             <div class="carousel-info">
               <div class="pull-left">
+                <span></span>
               </div>
-              <p>3時間前</p>
+              <span style="text-align: right; margin-right: 3px;">3時間前</span>
             </div>
             <div class="active item">
               <blockquote style="background: #c1e4e9">
@@ -176,8 +173,6 @@ require('../function.php');
               <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
             </div>
             <div class="icons">
-              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
-              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
               <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
             </div>
           </div>
@@ -186,8 +181,9 @@ require('../function.php');
           <div class="haiku">
             <div class="carousel-info">
               <div class="pull-left">
+                <span></span>
               </div>
-              <p>3時間前</p>
+              <span style="text-align: right; margin-right: 3px;">3時間前</span>
             </div>
             <div class="active item">
               <blockquote style="background-image: url(../assets/images/sakura_sample.jpg); background-size: cover;">
@@ -208,8 +204,6 @@ require('../function.php');
               <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
             </div>
             <div class="icons">
-              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
-              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
               <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
             </div>
           </div>
