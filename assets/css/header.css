@@ -10,6 +10,25 @@
 /* FONTS */
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
+/*
+.navbar-form,navbar-right,search-form{
+  padding-bottom: px;
+}*/
+
+.navbar-form.navbar-right.search-form {
+  position: relative;
+  bottom: 10px;
+}
+
+
+
+/* 詠むボタン */
+.haiku-input {
+  background-color: #474a4d;
+  border-color: #474a4d;
+  margin-left: 10px;
+}
+
 
 
 /* 詠むボタン */
@@ -57,7 +76,7 @@ p {
 
 /* Links */
 a {
-    color: #f85c37;
+    color: #ffffff;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -98,13 +117,14 @@ a:after {
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 2;
+	z-index: 2;  
 	width: 100%;
 
 	font-weight: 800;
 	font-size: 14px;
-	padding-top: 15px;
-	background-color: #ffffff;
+	padding-top: 0px;
+	/*background-color: #8b0000;*/
+  background: url('../images/header_sample.jpg');
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -113,15 +133,20 @@ a:after {
 }
 
 .navbar-header {
-  padding: 10px 0;
+  padding: 10px;
 }
 
 .navbar-brand {
-	font-size: 60px;
-	padding-top: 10px;
+	font-size: 30px;
+	padding-top: 25px;
 	padding-left: 20px;
 	padding-bottom: 0px;
   margin-left: 30px;
+}
+
+.navbar-bran span {
+  position: absolute;
+  top: 0;
 }
 
 .navbar-nav {
@@ -129,6 +154,8 @@ a:after {
 }
 
 .navbar-form {
+  position: relative;
+  bottom: 20px;
   margin-top: 18px;
 }
 
