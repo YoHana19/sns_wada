@@ -1,12 +1,12 @@
-@media (min-width: 1350px) {
-  .container {
-    width: 90%;
-  }
-}
-
 @media (min-width: 1200px) {
   .container {
     width: 1210px;
+  }
+}
+
+@media (min-width: 1350px) {
+  .container {
+    width: 90%;
   }
 }
 
@@ -19,6 +19,11 @@ h1 {
   font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
 }
 
+p {
+  line-height: 28px;
+}
+
+
 /* 全体のコンテンツ */
 .content {
     padding-top: 80px;
@@ -27,6 +32,8 @@ h1 {
 /* 左のコンンテンツ */
 .left-content {}
 
+
+/* 個人プロフ */
 .left-proph {
   position: relative;
 }
@@ -81,4 +88,3 @@ h1 {
 /* 右のコンテンツ */
 .right-content {
   margin-left: 70px;
-}
