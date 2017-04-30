@@ -26,9 +26,9 @@ require('../function.php');
         <span class="intro-text-2">鳴<br>ら<br>す<br>の<br>は<br>ね</span>
         <span class="intro-text-3">あ<br>な<br>た<br>だ<br>ね</span>
       </div>
-      <img align="left" class ="fb-image-profile thumbnail" src="../assets/images/wada.jpg" alt="Profile image example" style="border-radius:80px;">
+      <img align="left" class ="fb-image-profile thumbnail" src="../assets/images/wada.jpg" alt="Profile image example">
       <div class="fb-profile-text">
-        <h1;>和田隆宏</h1>
+        <h1 style="margin-top:50px;">和田隆宏</h1> <!-- 一応、名前の動かした -->
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@ require('../function.php');
         <form class="form-horizontal">
           <fieldset>
             <!-- ニックネーム -->
-            <div class="form-group" style="padding-top:20px">
+            <div class="form-group" style="padding-top:60px; padding-bottom:10px;">
               <label class="col-md-4 control-label">ニックネーム</label>
               <div class="col-md-4">
                 <input id="nick_name" name="nick_name" placeholder="" class="form-control input-md" required="" type="nick_name" >
@@ -46,7 +46,7 @@ require('../function.php');
             </div>
 
             <!-- メールアドレス -->
-            <div class="form-group">
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label" for="UID">メールアドレス</label>
               <div class="col-md-4">
               <input id="UID" name="UID" placeholder="" class="form-control input-md" required="" type="email">
@@ -54,7 +54,7 @@ require('../function.php');
             </div>
 
             <!-- メールアドレス確認-->
-            <div class="form-group">
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label" for="UID">メールアドレス(確認用)</label>
               <div class="col-md-4">
               <input id="UID" name="UID" placeholder="" class="form-control input-md" required="" type="email">
@@ -62,21 +62,21 @@ require('../function.php');
             </div>
 
             <!-- 自己紹句 -->
-            <div class="form-group">
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label" for="comentario">上の句</label>
               <div class="col-md-4">
                 <input class="form-control" id="coment" name="coment" required="">
               </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label" for="comentario">中の句</label>
               <div class="col-md-4">
                 <input class="form-control" id="coment" name="coment" required="">
               </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label" for="comentario">下の句</label>
               <div class="col-md-4">
                 <input class="form-control" id="coment" name="coment" required="">
