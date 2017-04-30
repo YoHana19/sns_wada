@@ -14,6 +14,7 @@ require('../function.php');
   <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/user.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/edit.css">
 </head>
 <body>
 
@@ -21,13 +22,13 @@ require('../function.php');
   <div class="container content">
     <div class="fb-profile">
       <div class="fb-image-lg" style="width: 100%; height: 400px;">
-        <span class="intro-text-3">お<br>ね<br>ぇ<br>さ<br>ん</span>
-        <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
-        <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
+        <span class="intro-text-1">あ<br>の<br>鐘<br>を<br>ね</span>
+        <span class="intro-text-2">鳴<br>ら<br>す<br>の<br>は<br>ね</span>
+        <span class="intro-text-3">あ<br>な<br>た<br>だ<br>よ</span>
       </div>
       <img align="left" class="fb-image-profile thumbnail" src="../assets/images/wada.jpg" alt="Profile image example">
       <div class="fb-profile-text">
-        <h1>Eli Macy</h1>
+        <h1>和田隆宏</h1>
       </div>
     </div>
   </div>
@@ -62,17 +63,31 @@ require('../function.php');
 
             <!-- 自己紹句 -->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="comentario">自己紹介句</label>
+              <label class="col-md-4 control-label" for="comentario">上の句</label>
               <div class="col-md-4">
-                <textarea class="form-control" id="coment" name="coment" required=""></textarea>
+                <input class="form-control" id="coment" name="coment" required="">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="comentario">中の句</label>
+              <div class="col-md-4">
+                <input class="form-control" id="coment" name="coment" required="">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="comentario">下の句</label>
+              <div class="col-md-4">
+                <input class="form-control" id="coment" name="coment" required="">
               </div>
             </div>
 
             <!-- Button -->
-            <div class="form-group" style="padding-bottom:80px;">
+            <div class="form-group" style="padding-top:50px; padding-bottom:80px; padding-left:220px;">
               <label class="col-md-4 control-label" for="btn_continuar"></label>
               <div class="col-md-8">
-                <button id="btn_continuar" value="送信" class="btn btn-primary">保存</button>
+                <button id  ="btn_continuar" value="送信" class="btn btn-danger">保存</button>
               </div>
             </div>
 
