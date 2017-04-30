@@ -107,7 +107,6 @@
 
 .haiku-text h2 {
     position: absolute;
-    top: 35px;
 }
 
 .haiku-text-1 {
@@ -274,7 +273,6 @@
 .comment {
     padding: 30px 30px 15px 30px;
     background-color:#ffcce5;
-    border:1px solid #c0c0c0;
 }
 
 .msg {
@@ -289,4 +287,8 @@
 .msg span {
     color: #9a493f;
     margin-right: 5px;
+}
+
+.comment-input {
+    margin-top: 8px;
 }

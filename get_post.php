@@ -65,16 +65,19 @@ foreach ($posts as $post) {
     $comments[] = $record;
   }
 
-  // よし！済みかどうかの判定フラグ
+  // コメントの件数の取得
+  $num_comment = count($comments);
+
+  // よし済みかどうかの判定フラグ
   $sql = 'SELECT * FROM `likes` WHERE `member_id`=? AND `haiku_id`=?';
   $data = array($_SESSION['login_member_id'],$post['haiku_id']);
   $is_like_stmt = $dbh->prepare($sql);
   $is_like_stmt->execute($data);
 
   if ($is_like = $is_like_stmt->fetch(PDO::FETCH_ASSOC)) {
-    $state = 'unlike';
+    $state_like = 'unlike';
   } else {
-    $state = 'like';
+    $state_like = 'like';
   }
 
   // よし数のカウント
@@ -82,13 +85,35 @@ foreach ($posts as $post) {
   $data = array($post['haiku_id']);
   $count_stmt = $dbh->prepare($sql);
   $count_stmt->execute($data);
-  $count = $count_stmt->fetch(PDO::FETCH_ASSOC);
+  $count_like = $count_stmt->fetch(PDO::FETCH_ASSOC);
+
+  // あし済みかどうかの判定フラグ
+  $sql = 'SELECT * FROM `dislikes` WHERE `member_id`=? AND `haiku_id`=?';
+  $data = array($_SESSION['login_member_id'],$post['haiku_id']);
+  $is_dislike_stmt = $dbh->prepare($sql);
+  $is_dislike_stmt->execute($data);
+
+  if ($is_dislike = $is_dislike_stmt->fetch(PDO::FETCH_ASSOC)) {
+    $state_dislike = 'undislike';
+  } else {
+    $state_dislike = 'dislike';
+  }
+
+  // あし数のカウント
+  $sql = 'SELECT count(*) AS total FROM `dislikes` WHERE `haiku_id`=?';
+  $data = array($post['haiku_id']);
+  $count_stmt = $dbh->prepare($sql);
+  $count_stmt->execute($data);
+  $count_dislike = $count_stmt->fetch(PDO::FETCH_ASSOC);
 
   // $postに各情報を連結
   $post += array('login_flag' => $login_flag,
                  'comments' => $comments,
-                 'state' => $state,
-                 'like_total' => $count['total']
+                 'num_comment' => $num_comment,
+                 'state_like' => $state_like,
+                 'state_dislike' => $state_dislike,
+                 'like_total' => $count_like['total'],
+                 'dislike_total' => $count_dislike['total']
                  );
 
   // $postsの更新

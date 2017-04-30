@@ -3,7 +3,7 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
   /**
    * 送信ボタンクリック
    */
-  $('button.like').click(function() // inputタグがクリックされたら実行
+  $('button.dislike').click(function() // inputタグがクリックされたら実行
   {
     var h_id = $(this).attr('id'); // クリックされたタグのtweet_idの値を取得
     //POSTメソッドで送るデータを定義します var data = {パラメータ名 : 値};
@@ -20,7 +20,7 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
      */
     $.ajax({
         type: "POST",
-        url: "send_like.php",
+        url: "send_dislike.php",
         data: data,
     /**
      * Ajax通信が成功した場合に呼び出されるメソッド
@@ -32,26 +32,26 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
       // alert(data);
       // jsonデータをJSの配列にパース（変換）する
       var task_data = JSON.parse(data);
-      var input_tag = document.getElementById(task_data['id'] + '_like');
-      var input_icon = document.getElementById(task_data['id'] + '_icon_like');
-      console.log(input_tag);
+      var input_tag = document.getElementById(task_data['id'] + '_dislike');
+      var input_icon = document.getElementById(task_data['id'] + '_icon_dislike');
+      console.log(input_icon);
       console.log(task_data['state']);
-      if (task_data['state'] == 'unlike') {
-        // いいねボタンの表示
+      if (task_data['state'] == 'undislike') {
+        // あしボタンの表示
         console.log('ok');
         input_tag.className = "like btn icon-btn btn-primary btn-color-un";
-        input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-un";
+        input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-un";
       } else {
-        // いいね取り消しボタンの表示
+        // あし取り消しボタンの表示
         console.log('unok');
-        input_tag.className = "like btn icon-btn btn-primary btn-color-like";
-        input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like";
+        input_tag.className = "like btn icon-btn btn-primary btn-color-dislike";
+        input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike";
       }
       
       // いいね数の表示
-      var num_like = 'num_like_' + task_data['id'];
-      console.log(num_like)
-      document.getElementById(num_like).innerHTML = '&thinsp;' + task_data['like_cnt'] + '人';
+      var num_dislike = 'num_dislike_' + task_data['id'];
+      console.log(num_dislike)
+      document.getElementById(num_dislike).innerHTML = '&thinsp;' + task_data['dislike_cnt'] + '人';
     /**
      * Ajax通信が失敗した場合に呼び出されるメソッド
      */
