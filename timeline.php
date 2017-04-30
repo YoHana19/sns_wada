@@ -194,56 +194,54 @@ function tateGaki($haiku) {
                 <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
 
                 <!-- コメント -->
-                  <!-- コメントボタン -->
-                  <button id="<?php echo $comment_id ?>" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button>
+                <!-- コメントボタン -->
+                <button id="<?php echo $comment_id ?>" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button>
 
-                  <!-- コメント欄 -->
-                  <div id="<?php echo $comment_id . '_content' ?>" class="comment" style="display: none; margin-top: 20px;">
-                    <div class="msg row">
-                        <div class="form-group">
-                          <!-- ログインユーザーの写真 -->
+                <!-- コメント欄 -->
+                <div id="<?php echo $comment_id . '_content' ?>" class="comment" style="display: none; margin-top: 20px;">
+                  <div class="msg row">
+                      <div class="form-group">
+                        <!-- ログインユーザーの写真 -->
+                        <div class="col-sm-1">
+                          <?php
+                            $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
+                            $data = array($_SESSION['login_member_id']);
+                            $stmt = $dbh->prepare($sql);
+                            $stmt->execute($data);
+                            $login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
+                          ?>
+                          <img src="assets/images/<?php echo $login_user_picture['user_picture_path'] ?>" width="45" height="45">
+                        </div>
+
+                        <!-- コメント入力フォーム -->
+                        <div class="col-sm-11">
+                          <input type="text" class="comment_content" id="<?php echo $comment_id . '_input' ?>" name="hoge" class="form-control" placeholder="例： comment" style="color: black;">
+                        </div>
+                      </div>  
+                  </div>
+
+                  <!-- コメントの内容 -->
+                  <div id="<?php echo $haiku_id . '_cont' ?>" class="msg">
+                    <?php if(!empty($comments)): ?>
+                  
+                      <?php foreach ($comments as $comment) { ?>
+                        <div class="row">
                           <div class="col-sm-1">
-                            <?php
-                              $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-                              $data = array($_SESSION['login_member_id']);
-                              $stmt = $dbh->prepare($sql);
-                              $stmt->execute($data);
-                              $login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <img src="assets/images/<?php echo $login_user_picture['user_picture_path'] ?>" width="45" height="45">
+                            <img src="assets/images/<?php echo $comment['user_picture_path'] ?>" width="45" height="45">
                           </div>
-
-                          <!-- コメント入力フォーム -->
                           <div class="col-sm-11">
-                            <input type="text" class="comment_content" id="<?php echo $comment_id . '_input' ?>" name="hoge" class="form-control" placeholder="例： comment" style="color: black;">
+                            <p><span class="name"><a href="user.php?user_id=<?php echo $comment['member_id'] ?>"><?php echo $comment['nick_name'] ?></a></span><?php echo $comment['comment'] ?></p>
+                            <!-- <p><?php // echo $comment['created'] ?></p> -->
                           </div>
                         </div>
-                      
-                    </div>
+                      <?php } ?>
+                        
+                    <?php endif; ?>
+                  </div>
 
-                    <!-- コメントの内容 -->
-                    <div id="<?php echo $haiku_id . '_cont' ?>" class="msg">
-                      <?php if(!empty($comments)): ?>
-                    
-                        <?php foreach ($comments as $comment) { ?>
-                          <div class="row">
-                            <div class="col-sm-1">
-                              <img src="assets/images/<?php echo $comment['user_picture_path'] ?>" width="45" height="45">
-                            </div>
-                            <div class="col-sm-11">
-                              <p><span class="name"><a href="user.php?user_id=<?php echo $comment['member_id'] ?>"><?php echo $comment['nick_name'] ?></a></span><?php echo $comment['comment'] ?></p>
-                              <!-- <p><?php // echo $comment['created'] ?></p> -->
-                            </div>
-                          </div>
-                        <?php } ?>
-                          
-                      <?php endif; ?>
-                    </div>
-
-                   <!-- コメント終了 -->
-                </div>
-              </div>
-            </div>
+                </div> <!-- コメント終了 -->
+              </div>　<!-- icon終了 -->
+            </div> <!-- 一件の投稿終了 -->
           <?php } ?> <!-- 繰り返し終了 -->
         </div> <!-- posts終了タグ -->
       </div> <!-- col-md-8(右コンテンツ)終了タグ -->
@@ -308,7 +306,7 @@ function tateGaki($haiku) {
                 // htmlへの追加
 
                 // 投稿句の表示
-                $('#posts').append('<div class="haiku"><div class="carousel-info"><img alt="" src="assets/images/' + user_picture_path + '" class="pull-left"><div class="pull-left"><span class="haiku-name">' + nick_name + '</span><span calss="haiku-comment">' + post['short_comment'] + '</span></div><p>' + created + '</p></div><div class="active item"><blockquote style="background:#fff0f5"><div class="haiku-text"><h2 class="haiku-text-1">' + haiku_1 + '<h2 class="haiku-text-2">' + haiku_2 + '</h2><h2 class="haiku-text-3">' + haiku_3 + '</h2></div></blockquote></div><div style="text-align: right;"><div style="float: left"><i id="' + num_like + ' class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i><i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i></div>');
+                $('#posts').append('<div class="haiku"><div class="carousel-info"><img alt="" src="assets/images/' + user_picture_path + '" class="pull-left"><div class="pull-left"><span class="haiku-name">' + nick_name + '</span><span calss="haiku-comment">' + post['short_comment'] + '</span></div><p>' + created + '</p></div><div class="active item"><blockquote style="background:#fff0f5"><div class="haiku-text"><h2 class="haiku-text-1">' + haiku_1 + '<h2 class="haiku-text-2">' + haiku_2 + '</h2><h2 class="haiku-text-3">' + haiku_3 + '</h2></div></blockquote></div><div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i><i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i></div>');
 
                 console.log('hoge1');
 
@@ -414,7 +412,7 @@ function tateGaki($haiku) {
                 var login_user_picture = task_data['login_user_picture'];
                  
                 $('#posts')
-                .append('<button id="' + comment_id + '" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button><div id="' + comment_id + '_content" class="comment" style="display: none; margin-top: 20px;"><div class="msg row"><div class="form-group"><div class="col-sm-1"><img src="assets/images/' + login_user_picture + '" width="45" height="45"></div><div class="col-sm-11"><input type="text" class="comment_content" id="' + comment_id + '_input" class="form-control" placeholder="例： comment" style="color: black;"></div></div></div><div id="' + haiku_id + '_cont"> class="msg">')
+                .append('<button id="' + comment_id + '" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button><div id="' + comment_id + '_content" class="comment" style="display: none; margin-top: 20px;"><div class="msg row"><div class="form-group"><div class="col-sm-1"><img src="assets/images/' + login_user_picture + '" width="45" height="45"></div><div class="col-sm-11"><input type="text" class="comment_content" id="' + comment_id + '_input" class="form-control" placeholder="例： comment" style="color: black;"></div></div></div><div id="' + haiku_id + '_cont" class="msg">')
 
                 
                 // .on('click', '#' + comment_id, function() { // コメント欄の表示
