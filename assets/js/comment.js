@@ -43,7 +43,8 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
         console.log(haiku_id)
 
         // 新規コメントの追加
-        $('#' + haiku_id).prepend('<p>' + task_data['nick_name'] + '</p><img src="assets/images/' + task_data['user_picture_path'] + '" width="48" height="48"><p>' + task_data['comment'] + '</p><p>' + task_data['created'] + '</p>');
+        $('#' + haiku_id).prepend('<div class="row"><div class="col-sm-1"><img src="assets/images/' + task_data['user_picture_path'] + '" width="45" height="45"></div><div class="col-sm-11"><p><span class="name"><a href="user.php?user_id=' + task_data['member_id'] + '">' + task_data['nick_name'] + '</a></span>' + task_data['comment'] + '</p></div></div>');
+
 
       /**
        * Ajax通信が失敗した場合に呼び出されるメソッド

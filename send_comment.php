@@ -23,6 +23,7 @@ $com_user = $stmt->fetch(PDO::FETCH_ASSOC);
 // コメントを表示を表示させるためのデータを作成
 $data = array('id' => $_POST['haiku_id'],
               'nick_name' => $com_user['nick_name'],
+              'member_id' => $_SESSION['login_member_id'],
               'user_picture_path' => $com_user['user_picture_path'],
               'created' => $com_user['created'],
               'comment' => $_POST['comment']

@@ -1,0 +1,89 @@
+@media (min-width: 1200px) {
+  .container {
+    width: 1210px;
+  }
+}
+
+@media (min-width: 1350px) {
+  .container {
+    width: 90%;
+  }
+}
+
+body {
+  font-family: 'Hiragino Maru Gothic ProN', 'YuGothic';
+  background-image: url(../images/back.jpg);
+}
+
+h1 {
+  font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
+}
+
+p {
+  line-height: 28px;
+}
+
+
+/* 全体のコンテンツ */
+.content {
+    padding-top: 80px;
+}
+
+/* 左のコンンテンツ */
+.left-content {}
+
+/* 個人プロフ */
+.left-proph {
+  position: relative;
+}
+
+.left-proph h3 {
+  padding-left: 15px;
+}
+
+.left-proph span {
+  position: absolute;
+  top: 15px;
+}
+
+.intro-text-1 {
+  left: 160px;
+}
+
+.intro-text-2 {
+  left: 200px;
+}
+
+.intro-text-3 {
+  left: 240px;
+}
+
+/* 友達・チャット一覧表示 */
+.left-display {
+  border-bottom: solid 1px #dcdddd;
+  position: relative;
+  left: 80px;
+  padding-top: 7px
+}
+
+.left-nickname {
+  font-size: 14px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+
+.left-intro {
+  font-size: 7px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.left-photo {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+}
+
+/* 右のコンテンツ */
+.right-content {
+  margin-left: 70px;
