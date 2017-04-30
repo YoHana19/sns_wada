@@ -24,11 +24,11 @@ require('../function.php');
       <div class="fb-image-lg" style="width: 100%; height: 400px;">
         <span class="intro-text-1">あ<br>の<br>鐘<br>を<br>ね</span>
         <span class="intro-text-2">鳴<br>ら<br>す<br>の<br>は<br>ね</span>
-        <span class="intro-text-3">あ<br>な<br>た<br>だ<br>よ</span>
+        <span class="intro-text-3">あ<br>な<br>た<br>だ<br>ね</span>
       </div>
-      <img align="left" class="fb-image-profile thumbnail" src="../assets/images/wada.jpg" alt="Profile image example">
+      <img align="left" class ="fb-image-profile thumbnail" src="../assets/images/wada.jpg" alt="Profile image example" style="border-radius:80px;">
       <div class="fb-profile-text">
-        <h1>和田隆宏</h1>
+        <h1;>和田隆宏</h1>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@ require('../function.php');
         <form class="form-horizontal">
           <fieldset>
             <!-- ニックネーム -->
-            <div class="form-group" style="padding-top:30px">
+            <div class="form-group" style="padding-top:20px">
               <label class="col-md-4 control-label">ニックネーム</label>
               <div class="col-md-4">
                 <input id="nick_name" name="nick_name" placeholder="" class="form-control input-md" required="" type="nick_name" >
