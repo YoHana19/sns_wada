@@ -7,7 +7,7 @@
   <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/timeline.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/header.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="..assets/css/footer.css">
   <link href="../maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/profile.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
@@ -34,14 +34,7 @@
           <h4>今日の季語</h4>
         </div>
         <div class="outer">
-          <div class="season_word">
-            <h1>さくら</h1>
-          </div>
-        </div>
-
-        <!-- 詠むボタン -->
-        <div style="text-align: right;">
-          <input type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381;">
+          <div class="season_word">さくら</div>
         </div>
 
           <!-- 句一覧 -->
@@ -120,7 +113,7 @@
               <form action="" method="" accept-charset="utf-8" class="form-horizontal">
                 <div class="form-group">
                   <div class="col-sm-1">
-                    <img src="../assets/images/proph.jpg" width="30" height="30">
+                    <img src="../assets/images/proph.jpg" width="45" height="45">
                   </div>
                   <div class="col-sm-11">
                     <input type="text" name="nick_name" class="form-control" placeholder="例： Seed kun">
@@ -130,18 +123,18 @@
             </div>
 
             <div class="msg">
-              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
+              <img src="../assets/images/sakura_sample.jpg" width="45" height="45">
               <p><span class="name">Seed kun</span>なかなかやるじゃん</p>
             </div>
 
             <div class="msg">
-              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
+              <img src="../assets/images/sakura_sample.jpg" width="45" height="45">
               <p><span class="name">Seed kun</span>なかなかやるじゃないかああああああああああああああああああああああああああああああああああああああああああああああ</p>
             </div>
 
             <div class="msg">
-              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
-              <p><span class="name">Seed kun</span>だろおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおお</p>
+              <img src="../assets/images/sakura_sample.jpg" width="45" height="45">
+              <p><span class="name">Seed kun</span>だろおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおお</p>
             </div>
           </div>
 

@@ -1,16 +1,18 @@
 /* Content */
 .content {
-    padding-top: 80px;
+    padding-top: 60px;
 }
 
 /* 季語 */
 .season_title {
-    height: 0px;
-    
+    height: 65px;
+    margin-left: 10px;
 }
 
 .season_title h4 {
-    padding: 20px 0px 0px 20px;
+    padding: 20px 0px 0px 0px;
+    font-size: 30px;
+
 }
 
 .outer {
@@ -25,22 +27,18 @@
     vertical-align: middle;
     height: 230px;
     border-radius: 30px ;
-}
-}
-
-.season_word h1{
     font-size: 60px;
+
+    background-image: url(../images/sakura_sample.jpg); background-size: cover;
 }
-
-.background-image
-
 
 
 /* 俳句一覧 */
 .haiku {
-    margin-top: 30px;
+    margin-top: 40px;
     padding: 20px;
-    background-color: white;
+    background-color: #fffffc;
+
 }
 
 .haiku blockquote {
@@ -148,28 +146,30 @@
 /* よし、あし、コメントボタンの色 */
 .btn-color-like {
     color: #fff;
-    background-color: #c7dc68;
-    border-color: #c7dc68;
+    background-color:#ffb433;
+    border-color: #ffb433;
 }
 
 .text-color-like {
-    color: #c7dc68;
+    color: #ffb433;
+    background-color:#fff;
+    border-color:#fff;
 }
 
 .btn-color-dislike {
     color: #fff;
-    background-color: #4f455c;
-    border-color: #4f455c;
+    background-color: #8080ff;
+    border-color: #8080ff;
 }
 
 .text-color-dislike {
-    color: #4f455c;
+    color: #8080ff;
 }
 
 .btn-color-comment {
     color: #fff;
-    background-color: #c8c2c6;
-    border-color: #c8c2c6;
+    background-color: #f09199;
+    border-color: #f09199;
 }
 
 .text-color-comment {
@@ -178,8 +178,9 @@
 
 /* コメント欄 */
 .comment {
-    padding: 20px;
-    background-color:#fffcf9;
+    padding: 30px;
+    background-color:#ffcce5;
+    border:1px solid #c0c0c0;
 }
 
 .msg {
