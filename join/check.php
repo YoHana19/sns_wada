@@ -56,20 +56,18 @@ if (!empty($_POST)) {
 <div class="container">
   <div row>
     <div class="col-md-offset-9 col-md-3 check_contents">
+      <h2 style="font-size: 27px; font-family: serif; border-bottom: 1.5px black solid; margin-bottom: 30px;">ご登録内容のご確認</h2>
       <div>
-        <p>ニックネーム：<br>
-          <?php echo $_SESSION['join']['nick_name']; ?>
-        </p>
+        <p style="border-bottom: 1px black dashed;">ニックネーム</p>
+        <p style="text-align: center;"><?php echo $_SESSION['join']['nick_name']; ?></p>
       </div>
       <div>
-        <p>メールアドレス：<br>
-          <?php echo $_SESSION['join']['email']; ?>
-        </p>
+        <p style="border-bottom: 1px black dashed;">メールアドレス</p>
+        <p style="text-align: center;"><?php echo $_SESSION['join']['email']; ?></p>
       </div>
       <div>
-        <p>パスワード：<br>
-          <?php echo $_SESSION['join']['password']; ?>
-        </p>
+        <p style="border-bottom: 1px black dashed;">パスワード</p>
+        <p style="text-align: center;"><?php echo $_SESSION['join']['password']; ?></p>
       </div>
       <br>
       <form method="POST" action="">
