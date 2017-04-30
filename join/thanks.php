@@ -60,7 +60,7 @@ if (!empty($_POST)) {
 </head>
 <body>
   <div class="login-background" style="text-align: center;">
-    <h1 style="font-size: 340px; color: white; font-family: serif;">圧倒的感謝！</h1>
+    <h1 style="font-size: 340px; color: white; font-family: serif;">圧倒的<br>感謝！</h1>
   </div>
   <div class="virgin-login">
     <div class="container">
