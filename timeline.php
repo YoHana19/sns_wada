@@ -117,7 +117,7 @@ function tateGaki($haiku) {
             <?php $created = $post['created'] ?>
             <?php $num_like = "num_like_" . $haiku_id ?>
             <?php $num_dislike = "num_dislike_" . $haiku_id ?>
-            <?php $num_comment = "num_comment_" . $haiku_id ?>
+            <?php $num_com_id = "num_comment_" . $haiku_id ?>
             <?php $comment_id = "com_id_" . $haiku_id ?>
 
             <?php
@@ -194,7 +194,7 @@ function tateGaki($haiku) {
                 <div style="float: left">
                   <i id="<?php echo $num_like ?>" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;<?php echo $count_yoshi['total']; ?>人</i>
                   <i id="<?php echo $num_dislike ?>" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;<?php echo $count_ashi['total']; ?>人</i>
-                  <i id="<?php echo $num_comment ?>" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;<?php echo $num_comment; ?>件</i>
+                  <i id="<?php echo $num_com_id ?>" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;<?php echo $num_comment; ?>件</i>
                 </div>
                 <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
                 <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
@@ -329,6 +329,7 @@ function tateGaki($haiku) {
                 var num_like = 'num_like_' + haiku_id;
                 var num_dislike = 'num_dislike_' + haiku_id;
                 var comment_id = 'com_id_' + haiku_id;
+                var num_com_id = 'num_comment_' + haiku_id;
 
                 console.log(comment_id);
                 console.log(post);
@@ -336,7 +337,7 @@ function tateGaki($haiku) {
                 // htmlへの追加
 
                 // 投稿句の表示
-                $('#posts').append('<div id="' + haiku_id + '_whole" class="haiku"><div class="carousel-info"><img alt="" src="assets/images/' + user_picture_path + '" class="pull-left"><div class="pull-left"><span class="haiku-name">' + nick_name + '</span><span calss="haiku-comment">' + post['short_comment'] + '</span></div><p>' + created + '</p></div><div class="active item"><blockquote style="background:#fff0f5"><div class="haiku-text"><h2 class="haiku-text-1">' + haiku_1 + '<h2 class="haiku-text-2">' + haiku_2 + '</h2><h2 class="haiku-text-3">' + haiku_3 + '</h2></div></blockquote></div><div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i id="' + num_dislike + '" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;' + post['dislike_total'] + '人</i><i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;' + post['num_comment'] + '件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i></div>');
+                $('#posts').append('<div id="' + haiku_id + '_whole" class="haiku"><div class="carousel-info"><img alt="" src="assets/images/' + user_picture_path + '" class="pull-left"><div class="pull-left"><span class="haiku-name">' + nick_name + '</span><span calss="haiku-comment">' + post['short_comment'] + '</span></div><p>' + created + '</p></div><div class="active item"><blockquote style="background:#fff0f5"><div class="haiku-text"><h2 class="haiku-text-1">' + haiku_1 + '<h2 class="haiku-text-2">' + haiku_2 + '</h2><h2 class="haiku-text-3">' + haiku_3 + '</h2></div></blockquote></div><div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i id="' + num_dislike + '" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;' + post['dislike_total'] + '人</i><i id="' + num_com_id + '" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;' + post['num_comment'] + '件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i></div>');
 
                 console.log('hoge1');
 
@@ -572,10 +573,20 @@ function tateGaki($haiku) {
                       // jsonデータをJSの配列にパース（変換）する
                       var task_data = JSON.parse(data);
                       haiku_id = task_data['id'] + '_cont'
-                      console.log(haiku_id)
+                      console.log(haiku_id);
+                      var num_comment_tag = document.getElementById('num_comment_' + task_data['id']);
+                      var num_c = num_comment_tag.textContent;
+                      console.log(num_c);
+                      var array = num_c.match(/[0-9]+\.?[0-9]*/g);
+                      var num_com = array[0];
+                      var num_com_modified = parseInt(num_com) + 1;
+                      console.log(num_com_modified);
 
                       // 新規コメントの追加
                       $('#' + haiku_id).prepend('<div class="row"><div class="col-sm-1"><img src="assets/images/' + task_data['user_picture_path'] + '" width="45" height="45"></div><div class="col-sm-11"><p><span class="name"><a href="user.php?user_id=' + task_data['member_id'] + '">' + task_data['nick_name'] + '</a></span>' + task_data['comment'] + '</p></div></div>');
+
+                      // コメント件数書き換え
+                      num_comment_tag.innerHTML = '&thinsp;' + num_com_modified + '件';
 
                     /**
                      * Ajax通信が失敗した場合に呼び出されるメソッド
