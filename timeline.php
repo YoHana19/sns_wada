@@ -85,7 +85,7 @@ function tateGaki($haiku) {
 
       <!-- 左サイドバー -->
       <div class="col-md-3 left-content">
-        <?php require('design/left_sidebar.php'); ?>
+        <?php require('left_sidebar.php'); ?>
       </div>
 
       <!-- 本コンテンツ -->

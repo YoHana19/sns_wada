@@ -35,19 +35,10 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
   $rooms[] = $room;
 }
 
-// 縦書きにする関数
-function tateGaki($haiku) {
-  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
-  $v_haiku = '';
-  foreach ($matches as $letter) {
-    $v_haiku .= $letter . "<br>";
-  }
-  return rtrim($v_haiku, "<br>");
-}
 ?>
 
 
-        <!-- <a href="user.php?member_id=<?php echo $room['member_id']; ?>"><?php echo $room['nick_name'];?></a> -->
+        <!-- <a href="user.php?member_id=<?php // echo $room['member_id']; ?>"><?php // echo $room['nick_name'];?></a> -->
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -88,7 +79,7 @@ function tateGaki($haiku) {
           </a>
         <div class="media-body left-display">
           <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
-          <p class="left-intro"><?php echo $login_member['self_intro_1'];?>&nbsp;<?php echo $login_member['self_intro_2'];?>&nbsp;<?php echo $login_member['self_intro_3'];?></p>
+          <p class="left-intro"><?php echo $room['self_intro_1'];?>&nbsp;<?php echo $room['self_intro_2'];?>&nbsp;<?php echo $room['self_intro_3'];?></p>
         </div>
       </div>
       <?php } ?>
