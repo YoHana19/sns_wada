@@ -23,7 +23,6 @@ p {
   line-height: 28px;
 }
 
-
 /* 全体のコンテンツ */
 .content {
     padding-top: 80px;
@@ -87,3 +86,4 @@ p {
 /* 右のコンテンツ */
 .right-content {
   margin-left: 70px;
+}
