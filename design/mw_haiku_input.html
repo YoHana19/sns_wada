@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="../assets/css/mw_haiku_input.css">
+  <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="../assets/css/modal_window.css">
+</head>
+<body>
+  <input type="submit" id="modal-open" class="btn btn-info" value="詠む" >
+
+  <!-- LOGIN FORM -->
+  <div id="modal-content_1" class="content">
+    <div class="text-center"">
+      <div class="logo">
+        <img src="../assets/images/yomu.png">
+      </div>
+      <!-- Main Form -->
+      <div class="login-form-1">
+        <form id="login-form" class="text-left" method="POST" action="">
+          <div class="login-form-main-message"></div>
+          <div class="main-login-form">
+            <div class="login-group">
+              <div class="form-group">
+                <label for="lg_username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="壱行目（四〜六文字）">
+              </div>
+              <div class="form-group">
+                <label for="lg_username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="弐行目（六〜八文字）">
+              </div>
+              <div class="form-group">
+                <label for="lg_username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="参行目（四〜六文字）">
+              </div>
+
+              <div class="form-group" style="margin-top: 15px;">
+                <label for="lg_username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="一言説明（二十文字以下）">
+              </div>
+              <div class="form-group" style="margin-top: 15px; position: relative;">
+                <label for="file_photo" class="photo-button">
+                  <a>画像</a>
+                  <input type="file" id="file_photo" name="picture_path" class="form-control" style="display: none">
+                </label>
+              </div>
+            </div>
+            <button type="button" id="modal-close" class="login-button" style="font-size: 16px;">詠</button>
+          </div>
+        </form>
+      </div>
+      <!-- end:Main Form -->
+    </div>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="../assets/js/jquery-3.1.1.js"></script>
+  <script src="../assets/js/jquery-migrate-1.4.1.js"></script>
+  <script src="../assets/js/bootstrap.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+
+  <!-- jQuery (necessary for Modal Window) -->
+  <script src="../assets/js/modal_window.js"></script>
+  
+  <script>
+    // 1番最初のモーダルウィンドウ呼び出し
+    modalWindowOnFirst('modal-open');
+
+    // 2番目のモーダルウィンドウ呼び出し
+    // modalWindowOn('modal-check', 'modal-content_1', 'modal-content_2');
+
+    // モーダルウィンドウの終了
+    modalWindowOff('modal-close', 'modal-content_2');
+
+    //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
+    $(window).resize(centeringModalSyncer);
+  </script>
+
+</body>
+</html>
