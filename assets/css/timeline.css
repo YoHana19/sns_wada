@@ -1,0 +1,294 @@
+/* Content */
+.content {
+    padding-top: 60px;
+}
+
+/* 季語 */
+.season_title {
+    height: 40px;
+    margin-left: 10px;
+}
+
+.season_title h4 {
+    padding: 0 0 10px 0px;
+    font-size: 30px;
+    margin-top: 0;
+
+}
+
+.outer {
+    display: table;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.season_word {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    height: 230px;
+    border-radius: 30px ;
+    font-size: 60px;
+
+    background-image: url(../images/sakura_sample.jpg); background-size: cover;
+}
+
+
+/* 俳句一覧 */
+.haiku {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fffffc;
+
+}
+
+.haiku blockquote {
+    background: #f8f8f8 none repeat scroll 0 0;
+    border: medium none;
+    color: #666;
+    display: block;
+    height: 300px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 15px;
+    position: relative;
+}
+
+.haiku .carousel-info img {
+    border: 1px solid #f5f5f5;
+    border-radius: 150px !important;
+    height: 75px;
+    padding: 3px;
+    width: 75px;
+}
+.haiku .carousel-info {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.haiku .carousel-info img {
+    margin-right: 15px;
+}
+.haiku .carousel-info span {
+    display: block;
+}
+.haiku span.haiku-name {
+    color: #e6400c;
+    font-size: 16px;
+    font-weight: 300;
+    margin: 23px 0 7px;
+}
+
+.haiku span.haiku-comment {
+    color: #2b2b2b;
+    font-size: 16px;
+    font-weight: 300;
+    margin: 23px 0  40px 7px;
+}
+
+.carousel-info {
+    position: relative;
+}
+
+.carousel-info p {
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    right: 5px;
+    color: #887f7a;
+}
+
+/* 俳句の縦書き */
+.haiku-text {
+    width: 300px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.haiku-text h2 {
+    position: absolute;
+}
+
+.haiku-text-1 {
+    left: 0;
+}
+
+.haiku-text-2 {
+    left: 135px;
+}
+
+.haiku-text-3 {
+    right: 0px;
+}
+
+/* よし、あし、コメント */
+.icons{
+    margin-top: 5px;
+}
+
+.icon-margin {
+    margin-right: 6px;
+}
+
+.btn-glyphicon {
+    padding: 4px;
+    background: #ffffff;
+    margin-right: 4px;
+}
+
+.icon-btn {
+    font-size: 10px;
+    padding: 1px 12px 3px 2px;
+    margin-right: 20px;
+    border-radius: 50px;
+}
+
+/* よし、あし、コメントボタンの色 */
+
+/* よし、あし押されていない時 */
+.btn-color-un {
+    color: #fff;
+    background-color:#d4dcda;
+    border-color: #d4dcda;
+}
+
+.text-color-un {
+    color: #d4dcda;
+    background-color:#fff;
+    border-color:#fff;
+}
+
+.btn-color-un:hover {
+    color: #fff;
+    background-color: #d4dcda;
+    border-color: #d4dcda;
+}
+
+.btn-color-un:focus {
+  color: #fff;
+  background-color: #d4dcda;
+  border-color: #d4dcda;
+}
+
+.btn-color-un:active:focus {
+  color: #fff;
+  background-color: #d4dcda;
+  border-color: #d4dcda;
+  background-image: none;
+}
+
+
+/* よし */
+.btn-color-like {
+    color: #fff;
+    background-color:#ffb433;
+    border-color: #ffb433;
+}
+
+.text-color-like {
+    color: #ffb433;
+    background-color:#fff;
+    border-color:#fff;
+}
+
+.btn-color-like:hover {
+    color: #fff;
+    background-color: #ffb433;
+    border-color: #ffb433;
+}
+
+.btn-color-like:focus {
+  color: #fff;
+  background-color: #ffb433;
+  border-color: #ffb433;
+}
+
+.btn-color-like:active:focus {
+  color: #fff;
+  background-color: #ffb433;
+  border-color: #ffb433;
+  background-image: none;
+}
+
+/* あし */
+.btn-color-dislike {
+    color: #fff;
+    background-color: #8080ff;
+    border-color: #8080ff;
+}
+
+.text-color-dislike {
+    color: #8080ff;
+}
+
+.btn-color-dislike:hover {
+    color: #fff;
+    background-color: #8080ff;
+    border-color: #8080ff;
+}
+
+.btn-color-dislike:focus {
+  color: #fff;
+  background-color: #8080ff;
+  border-color: #8080ff;
+}
+
+.btn-color-dislike:active:focus {
+  color: #fff;
+  background-color: #8080ff;
+  border-color: #8080ff;
+  background-image: none;
+}
+
+.btn-color-comment {
+    color: #fff;
+    background-color: #f09199;
+    border-color: #f09199;
+}
+
+.text-color-comment {
+    color: #e95295;
+}
+
+.btn-color-comment:hover {
+    color: #fff;
+    background-color: #e95295;
+    border-color: #e95295;
+}
+
+.btn-color-comment:focus {
+    color: #fff;
+    background-color: #f09199;
+    border-color: #f09199;
+}
+
+.btn-color-comment:active:focus {
+  color: #fff;
+  background-color: #e95295;
+  border-color: #e95295;
+  background
+}
+
+/* コメント欄 */
+.comment {
+    padding: 30px 30px 15px 30px;
+    background-color:#ffcce5;
+}
+
+.msg {
+    clear: both;
+}
+
+.msg img {
+  float: left;
+  margin: 0 15px 15px 0;
+}
+
+.msg span {
+    color: #9a493f;
+    margin-right: 5px;
+}
+
+.comment-input {
+    margin-top: 8px;
+}
