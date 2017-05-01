@@ -42,10 +42,10 @@ if (!empty($_POST)) {
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="../assets/css/check.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../assets/font-awesome/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../assets/css/check.css">
   <meta charset="utf-8">
   <title>ログイン｜和だ</title>
   <title>ご登録内容の確認</title>
@@ -72,7 +72,7 @@ if (!empty($_POST)) {
       <br>
       <form method="POST" action="">
         <input type="hidden" name="hoge" value="fuga">
-        <a href="index.php?action=rewrite">&laquo;&nbsp;書き直す</a>
+        <a href="join.php?action=rewrite">&laquo;&nbsp;書き直す</a>
         <input type="submit" class="btn btn-success" value="確認して登録" name="会員登録">
       </form>
     </div>
