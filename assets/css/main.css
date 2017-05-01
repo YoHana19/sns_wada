@@ -1,0 +1,27 @@
+@media (min-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+}
+
+body {
+  font-family: 'Hiragino Maru Gothic ProN', 'YuGothic';
+  background-color: #fef4f4;
+}
+
+h1 {
+  font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
+}
+
+/* 全体のコンテンツ */
+.content {
+    padding-top: 80px;
+}
+
+/* 左のコンンテンツ */
+.left-content {}
+
+/* 右のコンテンツ */
+.right-content {
+  margin-left: 70px;
+}
