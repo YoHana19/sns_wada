@@ -2,7 +2,6 @@
 session_start();
 require('dbconnect.php');
 
-$_SESSION['login_member_id'] = 2;
 $_SESSION['page'] = 1;
 
 // ページング機能
@@ -280,7 +279,6 @@ function tateGaki($haiku) {
   <script src="assets/js/jquery-3.1.1.js"></script>
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>
-
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>
   <script src="assets/js/comment.js"></script>
@@ -525,16 +523,12 @@ function tateGaki($haiku) {
                 });              
                 }
 
-
-
-
                 // コメント欄
                 var comments = post['comments'];
                 var login_user_picture = task_data['login_user_picture'];
                  
                 $('#' + haiku_id + '_icons')
                 .append('<button id="' + comment_id + '" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button><div id="' + comment_id + '_content" class="comment" style="display: none; margin-top: 20px;"><div class="msg row"><div class="form-group"><div class="col-sm-1"><img src="assets/images/' + login_user_picture + '" width="45" height="45"></div><div class="col-sm-11"><input type="text" class="comment_content form-control comment-input" id="' + comment_id + '_input" placeholder="例： コメント"></div></div></div><div id="' + haiku_id + '_cont" class="msg"></div></div>')
-
                 
                 // .on('click', '#' + comment_id, function() { // コメント欄の表示
                 //   console.log('hoge11')
@@ -605,7 +599,9 @@ function tateGaki($haiku) {
                   // 繰り返し文
                   comments.forEach(function(comment) {
                     $('#' + haiku_id + '_cont')
+
                     .append('<div class="row"><div class="col-sm-1"><img src="assets/images/' + comment['user_picture_path'] + '" width="45" height="45"></div><div class="col-sm-11"><p><span class="name"><a href="user.php?user_id=' + comment['member_id'] + '">' + comment['nick_name'] + '</a></span>' + comment['comment'] + '</p></div></div>')
+
                     .on('click', 'a', function() {
                       location.href = 'user.php?user_id=' + comment['member_id'];
                     });
@@ -614,8 +610,6 @@ function tateGaki($haiku) {
 
                 $('#posts')
                 .append('</div></div></div></div>');
-
-
                 console.log('hoge5');
                 
               }); // 大きいforeachの終了
