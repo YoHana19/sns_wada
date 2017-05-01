@@ -1,3 +1,7 @@
+<?php
+require('../function.php');
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,15 +10,22 @@
 </head>
 <body>
 
-  <!-- 簡易個人プロフ -->
-  <div class="left-proph">
-    <img src="assets/images/saito.jpg" id="photo">
-    <h3>齋藤 由佳</h3>
-    <span class="intro-text-3">お<br>ね<br>ぇ<br>さ<br>ん</span>
-    <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
-    <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
-  </div>
-    <div class="clearfix"></div>
+  <?php $file_name = getFileNameFromUri(); ?>
+
+  <?php if($file_name == 'timeline.php'): ?>
+
+      <!-- 簡易個人プロフ -->
+      <div class="left-proph">
+        <img src="../assets/images/saito.jpg" id="photo">
+        <h3>齋藤 由佳</h3>
+        <span class="intro-text-3">お<br>ね<br>ぇ<br>さ<br>ん</span>
+        <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
+        <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
+      </div>
+      <div class="clearfix"></div>
+
+  <?php endif; ?>
+
 
   <div class="friends-display">
     <!-- タイトル表示 -->

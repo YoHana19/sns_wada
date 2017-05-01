@@ -76,7 +76,9 @@
 .fa.fa-pull-right {
   margin-left: .3em;
 }
+
 /* Deprecated as of 4.7.0 */
+
 .pull-right {
   float: right;
 }
