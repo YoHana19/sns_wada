@@ -54,7 +54,7 @@ p {
 }
 
 .mt {
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
 /* Links */
@@ -91,28 +91,28 @@ a:after {
     height: 1px;
     border: 0;
     border-top: 1px solid #ccc;
-    margin:	 1em 0;
+    margin:  1em 0;
     padding: 0;
 }
 
 
 .navbar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 2;  
-	width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;  
+  width: 100%;
 
-	font-weight: 800;
-	font-size: 14px;
-	padding-top: 0px;
-	/*background-color: #8b0000;*/
+  font-weight: 800;
+  font-size: 14px;
+  padding-top: 0px;
+  /*background-color: #8b0000;*/
   background: url('../images/header_sample.jpg');
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	color: #ffffff;
-	background-color: #74cfae;
+  color: #ffffff;
+  background-color: #74cfae;
 }
 
 .navbar-header {
@@ -120,10 +120,10 @@ a:after {
 }
 
 .navbar-brand {
-	font-size: 40px;
-	padding-top: 20px;
-	padding-left: 20px;
-	padding-bottom: 0px;
+  font-size: 40px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 0px;
   margin-left: 30px;
 }
 
@@ -143,26 +143,26 @@ a:after {
 }*/
 
 .btn-theme {
-	color: #ffffff;
-	background-color: #74cfae;
-	border-color: transparent;
+  color: #ffffff;
+  background-color: #74cfae;
+  border-color: transparent;
 }
 
 .lead {
-	letter-spacing: 1px;
+  letter-spacing: 1px;
 }
 
 
 /*header*/
 
 /*nav.navbar-webmaster a {
-	color: #fff;
+  color: #fff;
 }*/
 nav.navbar-webmaster ul.navbar-nav a {
-	color: #fff;
-	/*border-style: solid;*/
-	border-width: 2px 0 0 0;
-	/*border-color:#1b242c;*/
+  color: #fff;
+  /*border-style: solid;*/
+  border-width: 2px 0 0 0;
+  /*border-color:#1b242c;*/
 }
 nav.navbar-webmaster ul.navbar-nav a:hover,
 nav.navbar-webmaster ul.navbar-nav a:visited,

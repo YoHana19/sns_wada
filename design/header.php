@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<title></title>
+  <meta charset="utf-8">
+  <title></title>
 </head>
 <body>
   <nav class="navbar navbar-webmaster" style="width:'auto'; height: 80px">
@@ -40,9 +40,9 @@
       </div>
     </div>
   </nav>
-	</nav>
+  </nav>
 
-	<script src="../assets/js/bootstrap.js"></script>
-	<!-- <script src="../assets/js/chart.js"></script>-->
+  <script src="../assets/js/bootstrap.js"></script>
+  <!-- <script src="../assets/js/chart.js"></script>-->
 </body>
 </html>
