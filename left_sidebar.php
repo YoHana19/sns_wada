@@ -2,10 +2,8 @@
 require('dbconnect.php');
 require('function.php');
 
-$_SESSION['login_member_id']=1;
-
 // ログインユーザー情報の取得
-$sql = 'SELECT * FROM  `members`';
+$sql = 'SELECT * FROM  `members` WHERE `member_id`=?';
 $data =array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
