@@ -1,6 +1,6 @@
 <?php 
-session_start();
-require ('dbconnect.php');
+require('dbconnect.php');
+require('function.php');
 
 $_SESSION['login_member_id']=1;
 
@@ -36,7 +36,20 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
   }
   $rooms[] = $room;
 }
+
+// 縦書きにする関数
+function tateGaki($haiku) {
+  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+  $v_haiku = '';
+  foreach ($matches as $letter) {
+    $v_haiku .= $letter . "<br>";
+  }
+  return rtrim($v_haiku, "<br>");
+}
 ?>
+
+
+        <!-- <a href="user.php?member_id=<?php echo $room['member_id']; ?>"><?php echo $room['nick_name'];?></a> -->
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -45,25 +58,43 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
   <title></title>
 </head>
 <body>
-  <div class="msg">
-    <!-- ログインユーザー情報 -->
-    <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>" width="50" height="50">
-    <br>
-    <a href="profile.php"><?php echo $login_member['nick_name'];?></a>
-    <p><?php echo $login_member['self_intro'];?></p>
-    <p><?php echo $login_member['bozu_points'];?>point</p>
 
-    <!-- 友達情報 -->
-    <p>
+  <?php $file_name = getFileNameFromUri(); ?>
+
+  <?php if($file_name == 'timeline.php'): ?>
+
+      <!-- 簡易個人プロフ -->
+      <div class="left-proph">
+        <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>" id="photo">
+        <h3><?php echo $login_member['nick_name'];?></h3>
+        <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
+        <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
+        <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
+      </div>
+      <div class="clearfix"></div>
+
+  <?php endif; ?>
+
+  <div class="friends-display">
+    <!-- タイトル表示 -->
+    <div class="friends-title">
+      <span class="title">お仲間</span>
+    </div>
+
+    <!-- 直近連絡とった友達順に10件表示 -->
+    <div class="well_3">
       <?php foreach ($rooms as $room) { ?>
-        <img src="assets/images/<?php echo $room['user_picture_path']; ?>" width="50" height="50">
-        <br>
-        <a href="user.php?member_id=<?php echo $room['member_id']; ?>"><?php echo $room['nick_name'];?></a>
-        <br>
-        <?php echo $room['self_intro'];?>
-        <br>
+        <div class="media" style="position: relative; margin-top: 7px">
+          <a class="pull-left left-photo" href="#">
+            <img class="media-object" src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
+          </a>
+        <div class="media-body left-display">
+          <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
+          <p class="left-intro"><?php echo $login_member['self_intro_1'];?>&nbsp;<?php echo $login_member['self_intro_2'];?>&nbsp;<?php echo $login_member['self_intro_3'];?></p>
+        </div>
+      </div>
       <?php } ?>
-    </p>
+    </div>
   </div>
 </body>
 </html>
