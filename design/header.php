@@ -6,7 +6,6 @@
 </head>
 <body>
   <nav class="navbar navbar-webmaster" style="width:'auto'; height: 80px">
-    <div class=""></div>
     <div class="header-bk">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">和だ</a>

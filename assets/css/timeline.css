@@ -144,6 +144,7 @@
 }
 
 /* よし、あし、コメントボタンの色 */
+/* よし */
 .btn-color-like {
     color: #fff;
     background-color:#ffb433;
@@ -151,11 +152,31 @@
 }
 
 .text-color-like {
-    color: #ffb433;
+    color: #f08300;
     background-color:#fff;
     border-color:#fff;
 }
 
+.btn-color-like:hover {
+    color: #fff;
+    background-color: #f08300;
+    border-color: #f08300;
+}
+
+.btn-color-like:focus {
+  color: #fff;
+  background-color: #f08300;
+  border-color: #f08300;
+}
+
+.btn-color-like:active:focus {
+  color: #fff;
+  background-color: #f08300;
+  border-color: #f08300;
+  background-image: none;
+}
+
+/* あし */
 .btn-color-dislike {
     color: #fff;
     background-color: #8080ff;
@@ -163,7 +184,26 @@
 }
 
 .text-color-dislike {
-    color: #8080ff;
+    color: #1e50a2;
+}
+
+.btn-color-dislike:hover {
+    color: #fff;
+    background-color: #1e50a2;
+    border-color: #1e50a2;
+}
+
+.btn-color-dislike:focus {
+  color: #fff;
+  background-color: #1e50a2;
+  border-color: #1e50a2;
+}
+
+.btn-color-dislike:active:focus {
+  color: #fff;
+  background-color: #1e50a2;
+  border-color: #1e50a2;
+  background-image: none;
 }
 
 .btn-color-comment {
@@ -173,7 +213,26 @@
 }
 
 .text-color-comment {
-    color: #c8c2c6;
+    color: #e95295;
+}
+
+.btn-color-comment:hover {
+    color: #fff;
+    background-color: #e95295;
+    border-color: #e95295;
+}
+
+.btn-color-comment:focus {
+    color: #fff;
+    background-color: #f09199;
+    border-color: #f09199;
+}
+
+.btn-color-comment:active:focus {
+  color: #fff;
+  background-color: #e95295;
+  border-color: #e95295;
+  background
 }
 
 /* コメント欄 */
