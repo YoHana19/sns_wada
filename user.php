@@ -1,26 +1,26 @@
 <?php
 session_start();
 require('dbconnect.php');
+$_SESSION['login_member_id'] = 1;
 $_REQUEST['user_id'] = 3;
 
+// 該当ユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
 $data = array($_REQUEST['user_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
-$another_user = $stmt->fetch(PDO::FETCH_ASSOC);
+$user_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // 自分の作った全句を時系列で表示
 
-$sql = 'SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.member_id =? ORDER BY h.created';
+$sql = 'SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY created DESC';
 $data = array($_REQUEST['user_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 
-$user_ku1 = array();
-while ($user_ku = $stmt->fetch(PDO::FETCH_ASSOC)){
-  $user_ku1[] = $user_ku;
-}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -30,57 +30,11 @@ while ($user_ku = $stmt->fetch(PDO::FETCH_ASSOC)){
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <link rel="stylesheet" type="text/css" href="assets/css/user.css">
-</head>
-<body>
-
-<!--プロフィール写真/ 一言-->
-  <img align="left" class="fb-image-lg" src="assets/images/<?php echo $another_user['back_picture_path']; ?>" alt="Profile image example"/>
-  <img align="left" class="fb-image-profile thumbnail" src="assets/images/<?php echo $another_user['user_picture_path']; ?>" alt="Profile imexample"/>
-  
-  <div class="container">
-   <h1><?php echo $another_user['nick_name']; ?></h1>
-    <p><?php echo $another_user['self_intro']; ?></p>
-  </div>
-
-  </div>
-   <?php foreach ($user_ku1 as $user_ku2): ?>
-    <div class="well_3">
-          <div class="media">
-            <a class="pull-left" href="chat.php">
-              <img class="media-object" src="assets/images/<?php echo $user_ku2['user_picture_path']; ?>">
-            </a>
-              <div class="media-body">
-                  <p class="text-right"></p>
-                  <p>・<?php echo $user_ku2['haiku_1']; ?></p>
-                  <p>・<?php echo $user_ku2['haiku_2']; ?></p>
-                  <p>・<?php echo $user_ku2['haiku_3']; ?></p>
-                  <p><?php echo $user_ku2['created']; ?></p>
-              </div>
-          </div>
-    </div>
-  <?php endforeach; ?>
-  
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/user.css">
 </head>
 <body>
 
@@ -92,7 +46,7 @@ while ($user_ku = $stmt->fetch(PDO::FETCH_ASSOC)){
         <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
         <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
       </div>
-      <img align="left" class="fb-image-profile thumbnail" src="../assets/images/wada.jpg" alt="Profile image example"/>
+      <img align="left" class="fb-image-profile thumbnail" src="assets/images/wada.jpg" alt="Profile image example"/>
       <div class="fb-profile-text">
         <h1>Eli Macy</h1>
         <div class="navbar-fixed">
@@ -110,173 +64,181 @@ while ($user_ku = $stmt->fetch(PDO::FETCH_ASSOC)){
         <div class="col-md-3 left-content">
           <?php require('left_sidebar.php'); ?>
         </div>
+        
         <div class="col-md-8 right-content">
-          
 
           <!-- 句一覧 -->
+          <div id="posts">
 
-          <!-- １つ目 -->
-          <div class="haiku">
-            <div class="carousel-info">
-              <div class="pull-left">
-                <span calss="haiku-comment">もうこんな季節か・・・。</span>
-              </div>
-              <p>3時間前</p>
-            </div>
-            <div class="active item">
-              <blockquote>
-                <div class="haiku-text">
-                  <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                  <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                  <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
-                </div>
-              </blockquote>
-            </div>
-            <div style="text-align: right;">
-              <div style="float: left">
-                <i class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;10人</i>
-                <i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i>
-                <i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i>
-              </div>
-              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
-              <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
-            </div>
-            <div class="icons">
-              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
-              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
-              <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
-            </div>
-          </div>
+            <!-- 繰り返し処理 -->
+            <?php while ($post = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
 
-          <!-- ２つ目 -->
-          <div class="haiku">
-            <div class="carousel-info">
-              <div class="pull-left">
-              </div>
-              <p>3時間前</p>
-            </div>
-            <div class="active item">
-              <blockquote style="background: #d69090">
-                <div class="haiku-text">
-                  <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                  <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                  <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
-                </div>
-              </blockquote>
-            </div>
-            <div style="text-align: right;">
-              <div style="float: left">
-                <i class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;10人</i>
-                <i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i>
-                <i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i>
-              </div>
-              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
-              <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
-            </div>
-            <div class="icons">
-              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
-              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
-              <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
-            </div>
-          </div>
-          <!-- コメント欄 -->
-          <div class="comment">
-            <div class="msg">
-              <form action="" method="" accept-charset="utf-8" class="form-horizontal">
-                <div class="form-group">
-                  <div class="col-sm-1">
-                    <img src="http://lorempixel.com/180/180/people/9/" width="30" height="30">
+              <!-- パラメーター設定 -->
+              <?php $member_id = $post['member_id'] ?>
+              <?php $haiku_id = $post['haiku_id'] ?>
+              <?php $nick_name = $post['nick_name'] ?>
+              <?php $user_picture_path = $post['user_picture_path'] ?>
+              <?php $haiku_1 = $post['haiku_1'] ?>
+              <?php $haiku_2 = $post['haiku_2'] ?>
+              <?php $haiku_3 = $post['haiku_3'] ?>
+              <?php $created = $post['created'] ?>
+              <?php $num_like = "num_like_" . $haiku_id ?>
+              <?php $num_dislike = "num_dislike_" . $haiku_id ?>
+              <?php $num_com_id = "num_comment_" . $haiku_id ?>
+              <?php $comment_id = "com_id_" . $haiku_id ?>
+
+              <?php
+                // コメントの取得
+                $sql = 'SELECT c.*, m.nick_name, m.user_picture_path FROM `comments` AS c LEFT JOIN `members` AS m ON c.member_id=m.member_id WHERE `haiku_id`=? ORDER BY c.created DESC';
+                $data = array($haiku_id);
+                $stmt = $dbh->prepare($sql);
+                $stmt->execute($data);
+
+                // 空の配列を定義
+                $comments = array();
+
+                while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                  // whileの外に用意した配列に入れる
+                  $comments[] = $record;
+                  // 配列名の後に[]をつけると最後の段を指定する]
+                }
+
+                // コメント件数の取得
+                $num_comment = count($comments);
+              ?>
+
+              <!-- 投稿 -->
+              <div class="haiku">
+                <div class="carousel-info">
+                  <img alt="" src="assets/images/<?php echo $user_picture_path ?>" class="pull-left">
+                  <div class="pull-left">
+                    <span class="haiku-name"><?php echo $nick_name ?></span>
+                    <span calss="haiku-comment"><?php echo $post['short_comment'] ?></span>
                   </div>
-                  <div class="col-sm-11">
-                    <input type="text" name="nick_name" class="form-control" placeholder="例： Seed kun">
+                  <p><?php echo $created ?></p>
+                </div>
+                <div class="active item">
+                  <blockquote style="background:#fff0f5">
+                    <div class="haiku-text">
+                      <h2 class="haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
+                      <h2 class="haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
+                      <h2 class="haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
+                    </div>
+                  </blockquote>
+                </div>
+
+                <?php
+                  // よし済みかどうかの判定処理
+                  $sql = 'SELECT * FROM `likes` WHERE `member_id`=? AND `haiku_id`=?';
+                  $data = array($_SESSION['login_member_id'],$haiku_id);
+                  $is_like_stmt = $dbh->prepare($sql);
+                  $is_like_stmt->execute($data);
+
+                  // よし数カウント処理
+                  $sql = 'SELECT count(*) AS total FROM `likes` WHERE `haiku_id`=?';
+                  $data = array($haiku_id);
+                  $count_stmt = $dbh->prepare($sql);
+                  $count_stmt->execute($data);
+                  $count_yoshi = $count_stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+
+                <?php
+                  // あし済みかどうかの判定処理
+                  $sql = 'SELECT * FROM `dislikes` WHERE `member_id`=? AND `haiku_id`=?';
+                  $data = array($_SESSION['login_member_id'],$haiku_id);
+                  $is_dislike_stmt = $dbh->prepare($sql);
+                  $is_dislike_stmt->execute($data);
+
+                  // あし数カウント処理
+                  $sql = 'SELECT count(*) AS total FROM `dislikes` WHERE `haiku_id`=?';
+                  $data = array($haiku_id);
+                  $count_stmt = $dbh->prepare($sql);
+                  $count_stmt->execute($data);
+                  $count_ashi = $count_stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+
+                <div style="text-align: right;">
+                  <div style="float: left">
+                    <i id="<?php echo $num_like ?>" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;<?php echo $count_yoshi['total']; ?>人</i>
+                    <i id="<?php echo $num_dislike ?>" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;<?php echo $count_ashi['total']; ?>人</i>
+                    <i id="<?php echo $num_com_id ?>" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;<?php echo $num_comment; ?>件</i>
+                  </div>
+                  <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
+                  <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
+                </div>
+
+                <div class="icons">
+                  <!-- よし -->
+                  <?php if($is_like = $is_like_stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                    <!-- よしデータが存在する（削除ボタン表示） -->
+                    <button type="button" id="<?php echo $haiku_id . '_like' ?>" class="like btn icon-btn btn-primary btn-color-like"><span id="<?php echo $haiku_id . '_icon_like' ?>" class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</button>
+                  <?php else: ?>
+                    <!-- いいね！データが存在しない（いいねボタン表示） -->
+                    <button type="button" id="<?php echo $haiku_id . '_like' ?>" class="like btn icon-btn btn-primary btn-color-un"><span id="<?php echo $haiku_id . '_icon_like' ?>" class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-un"></span>よし</button>
+                  <?php endif; ?>
+
+                  <!-- あし -->
+                  <?php if($is_dislike = $is_dislike_stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                    <!-- よしデータが存在する（削除ボタン表示） -->
+                    <button type="button" id="<?php echo $haiku_id . '_dislike' ?>" class="dislike btn icon-btn btn-primary btn-color-dislike"><span id="<?php echo $haiku_id . '_icon_dislike' ?>" class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</button>
+                  <?php else: ?>
+                    <!-- いいね！データが存在しない（いいねボタン表示） -->
+                    <button type="button" id="<?php echo $haiku_id . '_dislike' ?>" class="dislike btn icon-btn btn-primary btn-color-un"><span id="<?php echo $haiku_id . '_icon_dislike' ?>" class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-un"></span>あし</button>
+                  <?php endif; ?>
+                  <!-- <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a> -->
+
+                  <!-- コメント -->
+                    <!-- コメントボタン -->
+                    <button id="<?php echo $comment_id ?>" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button>
+
+                    <!-- コメント欄 -->
+                    <div id="<?php echo $comment_id . '_content' ?>" class="comment" style="display: none; margin-top: 20px;">
+                      <div class="msg row">
+                        <div class="form-group">
+                          <!-- ログインユーザーの写真 -->
+                          <div class="col-sm-1">
+                            <?php
+                              $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
+                              $data = array($_SESSION['login_member_id']);
+                              $stmt = $dbh->prepare($sql);
+                              $stmt->execute($data);
+                              $login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
+                            ?>
+                            <img src="assets/images/<?php echo $login_user_picture['user_picture_path'] ?>" width="45" height="45">
+                          </div>
+
+                          <!-- コメント入力フォーム -->
+                          <div class="col-sm-11">
+                            <input type="text" class="comment_content form-control comment-input" id="<?php echo $comment_id . '_input' ?>" placeholder="例： コメント">
+                          </div>
+                        </div>  
+                      </div>
+
+                      <!-- コメントの内容 -->
+                      <div id="<?php echo $haiku_id . '_cont' ?>" class="msg">
+                        <?php if(!empty($comments)): ?>
+                      
+                          <?php foreach ($comments as $comment) { ?>
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <img src="assets/images/<?php echo $comment['user_picture_path'] ?>" width="45" height="45">
+                              </div>
+                              <div class="col-sm-11">
+                                <p><span class="name"><a href="user.php?user_id=<?php echo $comment['member_id'] ?>"><?php echo $comment['nick_name'] ?></a></span><?php echo $comment['comment'] ?></p>
+                                <!-- <p><?php // echo $comment['created'] ?></p> -->
+                              </div>
+                            </div>
+                          <?php } ?>
+                            
+                        <?php endif; ?>
+                      </div>
+
+                     <!-- コメント終了 -->
                   </div>
                 </div>
-              </form>
-            </div>
-
-            <div class="msg">
-              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
-              <p><span class="name">Seed kun</span>なかなかやるじゃん</p>
-            </div>
-
-            <div class="msg">
-              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
-              <p><span class="name">Seed kun</span>なかなかやるじゃないかああああああああああああああああああああああああああああああああああああああああああああああ</p>
-            </div>
-
-            <div class="msg">
-              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
-              <p><span class="name">Seed kun</span>だろおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおお</p>
-            </div>
-            <div class="msg">
-              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
-              <p><span class="name">Seed kun</span>くれいじーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー！</p>
-            </div>
-          </div>
-
-          <!-- ３つ目 -->
-          <div class="haiku">
-            <div class="carousel-info">
-              <div class="pull-left">
               </div>
-              <p>3時間前</p>
-            </div>
-            <div class="active item">
-              <blockquote style="background: #c1e4e9">
-                <div class="haiku-text">
-                  <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                  <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                  <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
-                </div>
-              </blockquote>
-            </div>
-            <div style="text-align: right;">
-              <div style="float: left">
-                <i class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;10人</i>
-                <i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i>
-                <i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i>
-              </div>
-              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
-              <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
-            </div>
-            <div class="icons">
-              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
-              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
-              <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
-            </div>
-          </div>
-
-          <!-- ４つ目 -->
-          <div class="haiku">
-            <div class="carousel-info">
-              <div class="pull-left">
-              </div>
-              <p>3時間前</p>
-            </div>
-            <div class="active item">
-              <blockquote style="background-image: url(../assets/images/sakura_sample.jpg); background-size: cover;">
-                <div class="haiku-text">
-                  <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                  <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                  <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
-                </div>
-              </blockquote>
-            </div>
-            <div style="text-align: right;">
-              <div style="float: left">
-                <i class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;10人</i>
-                <i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i>
-                <i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i>
-              </div>
-              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
-              <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
-            </div>
-            <div class="icons">
-              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
-              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
-              <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
-            </div>
-          </div>
+            <?php } ?> <!-- 繰り返し終了 -->
+          </div> <!-- posts終了タグ -->
 
         </div>
       </div>
