@@ -13,10 +13,19 @@ $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // 自分の作った全句を時系列で表示
 
-$sql = 'SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY created DESC';
+$sql = 'SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.member_id=? ORDER BY created DESC';
 $data = array($_REQUEST['user_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
+
+// 空の配列を定義
+$posts = array();
+
+while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  // whileの外に用意した配列に入れる
+  $posts[] = $record;
+  // 配列名の後に[]をつけると最後の段を指定する]
+}
 
 ?>
 
@@ -71,7 +80,7 @@ $stmt->execute($data);
           <div id="posts">
 
             <!-- 繰り返し処理 -->
-            <?php while ($post = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+            <?php foreach ($posts as $post) { ?>
 
               <!-- パラメーター設定 -->
               <?php $member_id = $post['member_id'] ?>

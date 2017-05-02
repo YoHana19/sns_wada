@@ -2,6 +2,11 @@
 require('dbconnect.php');
 require('function.php');
 
+$_REQUEST['user_id'] = 3;
+
+// ページ名の取得
+$file_name = getFileNameFromUri();
+
 // ログインユーザー情報の取得
 $sql = 'SELECT * FROM  `members` WHERE `member_id`=?';
 $data =array($_SESSION['login_member_id']);
@@ -9,17 +14,22 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if ($file_name == 'timeline.php') {
+  $key_id = $_SESSION['login_member_id'];
+} else {
+  $key_id = $_REQUEST['user_id'];
+}
 
 // roomsテーブルから新着チャットを10件取得
 $sql = 'SELECT * FROM `rooms` WHERE `member_id_1`=? OR `member_id_2`=? ORDER BY modified DESC LIMIT 0, 10';
-$data = array($_SESSION['login_member_id'], $_SESSION['login_member_id']);
+$data = array($key_id, $key_id);
 $room_stmt = $dbh->prepare($sql);
 $room_stmt->execute($data);
 
 // 各チャットの友達情報を取得
 $rooms = array();
 while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
-  if ($record['member_id_1'] == $_SESSION['login_member_id']) {
+  if ($record['member_id_1'] == $key_id) {
     $sql = 'SELECT * FROM `members` WHERE member_id = ?';
     $data = array($record['member_id_2']);
     $stmt = $dbh->prepare($sql);
@@ -57,8 +67,7 @@ function tateGaki($haiku) {
 </head>
 <body>
 
-  <?php $file_name = getFileNameFromUri(); ?>
-
+<!-- タイムラインページだったら -->
   <?php if($file_name == 'timeline.php'): ?>
 
       <!-- 簡易個人プロフ -->
