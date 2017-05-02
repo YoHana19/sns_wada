@@ -27,31 +27,44 @@
   <h5>おねぇさん トレンディだね 齋藤さん</h5>
   <div class="clearfix"></div> -->
 
-  <div class="well_3 chat-room" style="border: groove 2px #dcdddd">
-    <div class="media" style="position: relative; margin-top: 7px">
-      <a class="pull-left chat-photo" href="#">
-        <img class="media-object" src="../assets/images/wada.jpg" style="width: 55px; height: 55px; border-radius: 50%">
-      </a>
-      <div class="media-body chat-body">
-        <p class="media-heading chat-nickname">たかさん</p>
-        <p class="chat-intro">あああああ　あああああああ　あああああ</p>
+  <div class="friends-display">
+    <!-- タイトル表示 -->
+    <div class="friends-title">
+      <span class="title">吾輩</span>
+    </div>
+    <div class="well_3 left-proph-wrap">
+        <div class="media" style="position: relative; margin-top: 7px">
+          <a class="pull-left left-photo" href="#">
+            <img class="media-object" src="../assets/images/saito.jpg" style="width: 55px; height: 55px; border-radius: 50%">
+          </a>
+        <div class="media-body left-proph-simple">
+          <span class="media-heading left-nickname">たかさん</span>
+          <p class="left-intro">あああああ　あああああああ　あああああ</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 友達一覧 -->
-  <div class="well_3">
-    <?php for ($i=0; $i < 15; $i++) { ?>
-      <div class="media" style="position: relative; margin-top: 7px">
-        <a class="pull-left left-photo" href="#">
-          <img class="media-object" src="../assets/images/saito.jpg" style="width: 55px; height: 55px; border-radius: 50%">
-        </a>
-      <div class="media-body left-display">
-        <span class="media-heading left-nickname">たかさん</span>
-        <p class="left-intro">あああああ　あああああああ　あああああ</p>
-      </div>
+  <div class="friends-display">
+    <!-- タイトル表示 -->
+    <div class="friends-title">
+      <span class="title">お仲間</span>
     </div>
-    <?php } ?>
+
+    <!-- 友達一覧 -->
+    <div class="well_3">
+      <?php for ($i=0; $i < 15; $i++) { ?>
+        <div class="media" style="position: relative; margin-top: 7px">
+          <a class="pull-left left-photo" href="#">
+            <img class="media-object" src="../assets/images/saito.jpg" style="width: 55px; height: 55px; border-radius: 50%">
+          </a>
+        <div class="media-body left-display">
+          <span class="media-heading left-nickname">たかさん</span>
+          <p class="left-intro">あああああ　あああああああ　あああああ</p>
+        </div>
+      </div>
+      <?php } ?>
+    </div>
   </div>
 </body>
 </html>

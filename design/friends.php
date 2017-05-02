@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/friends.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/chat.css">
 </head>
 
 <body>

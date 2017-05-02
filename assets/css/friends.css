@@ -1,3 +1,11 @@
+/* 左側 */
+.left-proph-simple {
+  border-bottom: none;
+  position: relative;
+  left: 80px;
+  padding-top: 7px;
+}
+
 /* ランキング タイトル*/
 .top-ranking {
   position: relative;
