@@ -145,7 +145,22 @@
 }
 
 
+.left-proph span {
+  position: absolute;
+  top: 15px;
+}
 
+.intro-text-1 {
+  left: 160px;
+}
+
+.intro-text-2 {
+  left: 200px;
+}
+
+.intro-text-3 {
+  left: 240px;
+}
 
 
 
