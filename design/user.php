@@ -45,7 +45,6 @@ require('../function.php');
           <?php require('left_sidebar.php'); ?>
         </div>
         <div class="col-md-8 right-content">
-          
 
           <!-- 句一覧 -->
 

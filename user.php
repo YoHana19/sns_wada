@@ -2,6 +2,12 @@
 session_start();
 require('dbconnect.php');
 
+// ユーザーidがログインidと一致した場合プロフページにとばす
+if ($_REQUEST['user_id'] == $_SESSION['login_member_id']) {
+  header('Location: profile.php');
+  exit();
+}
+
 // 該当ユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
 $data = array($_REQUEST['user_id']);
@@ -288,6 +294,9 @@ function tateGaki($haiku) {
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>
   <script src="assets/js/friend.js"></script>
+  <script src="assets/js/likes.js"></script>
+  <script src="assets/js/dislikes.js"></script>
+  <script src="assets/js/comment.js"></script>
 
 </body>
 </html>
