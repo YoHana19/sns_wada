@@ -76,11 +76,15 @@ $search_friend_count = count($friends);
   <!-- 後々統一する -->
   <meta charset="utf-8">
   <title></title>
+  <!-- Bootstrap -->
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
-  <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
-  <link rel="stylesheet" type="text/css" href="assets/css/friends_design.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/friends.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/chat.css">
 </head>
 
 <body>
@@ -139,5 +143,35 @@ $search_friend_count = count($friends);
 </body>
 </html>
 
-<!-- col-md-9 の範囲内でサイズの変更 -->
-<!-- ランキングの後ろにバックグラウンドの指定 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/friends.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/chat.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row content">
+      <div class="col-md-3 left-content">
+        <?php require('friends_left.php'); ?>
+      </div>
+
+      <div class="col-md-8 right-content">
+        <?php require('assets/friends_ranking.php'); ?>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
