@@ -58,7 +58,7 @@ $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す�
   <?php require('header.php'); ?>
 
   <div class="container">
-    <div class="row content">
+    <div class="row whole_content">
 
       <!-- 左サイドバー -->
       <div class="col-md-3 left-content">
@@ -257,8 +257,6 @@ $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す�
   </div>
 
 
-  <br>
-  <br>
 
 <!-- フッター表示 -->
 <?php require('footer.php'); ?>
