@@ -179,6 +179,13 @@ function rankGet($array_ids) {              // $array_idsは配列
   <title></title>
 </head>
 <body>
+  <?php foreach ($haikus_info as $haiku_info) : ?>
+    <a href="profile.php"><?php echo $haiku_info['nick_name']; ?></a><br>
+    <a href="profile.php"><?php echo $member_info['nick_name']; ?></a><br>
+    <a href="profile.php"><?php echo $bad_haiku_info['nick_name']; ?></a><br>
+    <a href="profile.php"><?php echo $bad_member_info['nick_name']; ?></a><br>
+  <?php endforeach; ?>
+  <?php echo '<br>'; ?>
   <?php foreach ($haikus_info as $haiku_info): ?>
     <img src="assets/images/<?php echo $haiku_info['user_picture_path']; ?>" width="100" height="100">
     <img src="assets/images/<?php echo $member_info['user_picture_path']; ?>" width="100" height="100">
