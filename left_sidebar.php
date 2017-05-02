@@ -2,8 +2,6 @@
 require('dbconnect.php');
 require('function.php');
 
-$_REQUEST['user_id'] = 1;
-
 // ページ名の取得
 $file_name = getFileNameFromUri();
 
@@ -51,7 +49,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 
-<!-- <a href="user.php?member_id=<?php // echo $room['member_id']; ?>"><?php // echo $room['nick_name'];?></a> -->
+</a>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -86,15 +84,15 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
     <!-- 直近連絡とった友達順に10件表示 -->
     <div class="well_3">
       <?php foreach ($rooms as $room) { ?>
-        <div class="media" style="position: relative; margin-top: 7px">
-          <a class="pull-left left-photo" href="#">
-            <img class="media-object" src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
-          </a>
-        <div class="media-body left-display">
-          <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
-          <p class="left-intro"><?php echo $login_member['self_intro_1'];?>&nbsp;<?php echo $login_member['self_intro_2'];?>&nbsp;<?php echo $login_member['self_intro_3'];?></p>
-        </div>
-      </div>
+          <div class="media" style="position: relative; margin-top: 7px">
+            <a class="pull-left left-photo" href="user.php?user_id=<?php echo $room['member_id']; ?>">
+              <img class="media-object" src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
+            </a>
+            <div class="media-body left-display">
+              <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
+              <p class="left-intro"><?php echo $room['self_intro_1'];?>&nbsp;<?php echo $room['self_intro_2'];?>&nbsp;<?php echo $room['self_intro_3'];?></p>
+            </div>
+          </div>
       <?php } ?>
     </div>
   </div>
