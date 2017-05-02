@@ -1,4 +1,4 @@
-/*
+
  * Author: Carlos Alvarez
  * URL: http://alvarez.is
  *
@@ -42,6 +42,12 @@
   background-color: black;
   border-color: gray;
 }
+
+/* 友達リクエスト */
+.request_display {
+  /*display: none;*/
+}
+
 
 /* 検索フォーム */
 .form-control,
@@ -236,4 +242,4 @@ nav.navbar-webmaster ul.dropdown-menu > li > a:hover { background: #f14444; colo
 nav.navbar-webmaster span.badge { background: #f14444; font-weight: normal; font-size: 11px; margin: 0 4px; }
 nav.navbar-webmaster span.badge.new { background: rgba(255, 0, 0, 0.8); color: #fff; }
 
-/*header*/
+/*header

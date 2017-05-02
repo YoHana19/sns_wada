@@ -1,5 +1,15 @@
 <?php
 require('dbconnect.php');
+
+$sql = 'SELECT * FROM `friends` AS f LEFT JOIN `members` AS m ON f.friend_member_id=m.member_id WHERE f.friend_member_id=? AND f.state=0 ORDER BY m.nick_name';
+$data = array($_SESSION['login_member_id']);
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
+
+$requests = array();
+while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $requests[] = $request;
+}
 ?>
 
 
@@ -19,7 +29,7 @@ require('dbconnect.php');
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav navbar-right">
           <!-- 友達リクエスト -->
-          <li class="active click"><a href="#"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+          <li class="active click request_button"><a><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
           <!-- プロフページ -->
           <li class="active click"><a href="profile.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></i><i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
           <!-- チャットページ -->
@@ -50,7 +60,23 @@ require('dbconnect.php');
     </div>
   </nav>
   
-    <!-- LOGIN FORM -->
+  <!-- 友達リクエスト一覧 -->
+  <div id="requests" class="requests_display">
+    <div class="well_3">
+      <?php foreach ($rooms as $room) { ?>
+        <div class="media" style="position: relative; margin-top: 7px">
+          <a class="pull-left left-photo" href="#">
+            <img class="media-object" src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
+          </a>
+        <div class="media-body left-display">
+          <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
+          <p class="left-intro"><?php echo $login_member['self_intro_1'];?>&nbsp;<?php echo $login_member['self_intro_2'];?>&nbsp;<?php echo $login_member['self_intro_3'];?></p>
+        </div>
+      </div>
+    <?php } ?>
+  </div>
+
+  <!-- LOGIN FORM -->
   <div id="modal-content_1" class="content">
     <div class="text-center"">
       <div class="logo">
