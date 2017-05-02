@@ -3,10 +3,10 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
   /**
    * 送信ボタンクリック
    */
-  $('input.friend').click(function() // inputタグがクリックされたら実行
+  $('button.friend').click(function() // inputタグがクリックされたら実行
   {
     var user_id = $(this).attr('id'); // クリックされたタグのuser_idの値を取得
-    //POSTメソッドで送るデータを定義します var data = {パラメータ名 : 値};
+    console.log(user_id);
     var data = {user_id : user_id}; // JSで連想配列を定義
     // $data = array('hoge' => 'ほげ'); PHPの連想配列
     // ここで定義したkeyが受け取り側の$_POSTのkeyになる
@@ -30,20 +30,17 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
       var task_data = JSON.parse(data);
       var input_tag = document.getElementById(task_data['id']);
       console.log(task_data['state']);
-      if (task_data['state'] == 'undone') {
-        // 友達申請ボタンの表示
+      console.log(task_data['id']);
+      if (task_data['state'] == 'request') {
+        // 友達リクエスト中の表示
         console.log('ok');
-        input_tag.className = "btn btn-primary btn-xs";
-        input_tag.value = "友達申請"
-        $('#undone_msg').css('display', '');
-        $('#done_msg').css('display', 'none');
-      } else {
-        // 申請取り消しボタンの表示
-        console.log('unok');
-        input_tag.className = "btn btn-danger btn-xs";
-        input_tag.value = "申請取り消し";
-        $('#undone_msg').css('display', 'none');
-        $('#done_msg').css('display', '');
+        input_tag.className = "btn btn-primary btn-color-likes";
+        input_tag.innerText = '友達リクエスト中'
+      // } else {
+      //   // 申請取り消しボタンの表示
+      //   console.log('unok');
+      //   input_tag.className = "btn icon-btn btn-primary btn-color-likes";
+      //   input_tag.value = "友達リクエスト取消"
       }
       
     /**

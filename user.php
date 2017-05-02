@@ -1,8 +1,8 @@
 <?php
 session_start();
 require('dbconnect.php');
-$_SESSION['login_member_id'] = 2;
-$_REQUEST['user_id'] = 1;
+$_SESSION['login_member_id'] = 3;
+$_REQUEST['user_id'] = 2;
 
 // 該当ユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
@@ -27,6 +27,21 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
   // 配列名の後に[]をつけると最後の段を指定する]
 }
 
+// 友達stateの判定
+$sql = 'SELECT * FROM `friends` WHERE `login_member_id`=? AND `friend_member_id`=?';
+$data = array($_SESSION['login_member_id'],$_REQUEST['user_id']);
+$friend_stmt = $dbh->prepare($sql);
+$friend_stmt->execute($data);
+if ($friend_state = $friend_stmt->fetch(PDO::FETCH_ASSOC)) {
+  if ($friend_state['state'] == 0) {
+    $state = 'request'; // 友達申請中
+  } else {
+    $state = 'friend'; // 既に友達
+  } 
+} else {
+  $state = 'unfriend'; // 他人
+}
+
 // 縦書きにする関数
 function tateGaki($haiku) {
   $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
@@ -44,8 +59,7 @@ function tateGaki($haiku) {
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
@@ -65,8 +79,19 @@ function tateGaki($haiku) {
       <img align="left" class="fb-image-profile thumbnail" src="assets/images/wada.jpg" alt="Profile image example"/>
       <div class="fb-profile-text">
         <h1><?php echo $user_info['nick_name'] ?></h1>
+
+        <!-- 友達申請 -->
         <div class="navbar-fixed">
-          <input type="button" value="+友達申請">
+          <?php if($state == 'friend'): ?>
+            <!-- 既に友達 -->
+            <button type="button" id="<?php echo $user_info['member_id'] ?>" class="btn btn-primary btn-color-unlike">友達</button>
+          <?php elseif($state == 'request'): ?>
+            <!-- 既に申請済み -->
+            <button type="button" id="<?php echo $user_info['member_id'] ?>" class="btn btn-primary btn-color-likes">友達リクエスト中</button>
+          <?php else: ?>
+            <!-- まだ申請していない -->
+            <button type="button" id="<?php echo $user_info['member_id'] ?>" class="friend btn btn-primary btn-color-un">+ 友達申請</button>
+          <?php endif; ?>
         </div>
       </div>
     </div>

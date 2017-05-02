@@ -2,24 +2,24 @@
 session_start();
 require('dbconnect.php');
 
-// 友達リクエストを取り消す処理を入れる場合
-// 友達申請済みかどうかの判定処理
-$sql = 'SELECT * FROM `friends` WHERE `login_member_id`=? AND `friend_member_id`=?';
-$data = array($_SESSION['login_member_id'],$_POST['user_id']);
-$friend_stmt = $dbh->prepare($sql);
-$friend_stmt->execute($data);
+// // 友達リクエストを取り消す処理を入れる場合
+// // 友達申請済みかどうかの判定処理
+// $sql = 'SELECT * FROM `friends` WHERE `login_member_id`=? AND `friend_member_id`=?';
+// $data = array($_SESSION['login_member_id'],$_POST['user_id']);
+// $friend_stmt = $dbh->prepare($sql);
+// $friend_stmt->execute($data);
 
-if ($friend = $friend_stmt->fetch(PDO::FETCH_ASSOC)) {
-    // 申請済み or 友達
-    if ($friend['state'] == 0) { // 申請済み
-      $sql = 'DELETE FROM `friends` WHERE `login_member_id`=? AND `friend_member_id`=?';
-      $data = array($_SESSION['login_member_id'],$_POST['user_id']);
-      $friend_stmt = $dbh->prepare($sql);
-      $friend_stmt->execute($data);
-      $state = 'undone';
-    }
+// if ($friend = $friend_stmt->fetch(PDO::FETCH_ASSOC)) {
+//     // 申請済み or 友達
+//     if ($friend['state'] == 0) { // 申請済み
+//       $sql = 'DELETE FROM `friends` WHERE `login_member_id`=? AND `friend_member_id`=?';
+//       $data = array($_SESSION['login_member_id'],$_POST['user_id']);
+//       $friend_stmt = $dbh->prepare($sql);
+//       $friend_stmt->execute($data);
+//       $state = 'undone';
+//     }
 
-} else {
+// } else {
   // 未申請
   $sql = 'INSERT INTO `friends` set `friend_id`=NULL,
                                     `login_member_id`=?,
@@ -28,8 +28,8 @@ if ($friend = $friend_stmt->fetch(PDO::FETCH_ASSOC)) {
   $data = array($_SESSION['login_member_id'],$_POST['user_id']);
   $like_stmt = $dbh->prepare($sql);
   $like_stmt->execute($data);
-  $state = 'done';
-}
+  $state = 'request';
+// }
 
 // 画面の表示を切り替えるためのデータを作成
 $data = array('id' => $_POST['user_id'],

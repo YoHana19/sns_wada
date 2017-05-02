@@ -7,14 +7,14 @@ require('../function.php');
 <head>
   <meta charset="utf-8">
   <title></title>
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
+  <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/user.css">
 </head>
 <body>
 
@@ -26,7 +26,7 @@ require('../function.php');
         <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
         <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
       </div>
-      <img align="left" class="fb-image-profile thumbnail" src="assets/images/wada.jpg" alt="Profile image example"/>
+      <img align="left" class="fb-image-profile thumbnail" src="../assets/images/wada.jpg" alt="Profile image example"/>
       <div class="fb-profile-text">
         <h1>Eli Macy</h1>
         <div class="navbar-fixed">
