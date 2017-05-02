@@ -1,8 +1,8 @@
 <?php
 session_start();
 require('dbconnect.php');
-$_SESSION['login_member_id'] = 1;
-$_REQUEST['user_id'] = 3;
+$_SESSION['login_member_id'] = 2;
+$_REQUEST['user_id'] = 1;
 
 // 該当ユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
@@ -27,9 +27,16 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
   // 配列名の後に[]をつけると最後の段を指定する]
 }
 
+// 縦書きにする関数
+function tateGaki($haiku) {
+  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+  $v_haiku = '';
+  foreach ($matches as $letter) {
+    $v_haiku .= $letter . "<br>";
+  }
+  return rtrim($v_haiku, "<br>");
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -51,13 +58,13 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <div class="container content">
     <div class="fb-profile">
       <div class="fb-image-lg" style="width: 100%; height: 400px;">
-        <span class="intro-text-3">お<br>ね<br>ぇ<br>さ<br>ん</span>
-        <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
-        <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
+        <span class="intro-text-3"><?php echo tateGaki($user_info['self_intro_3']); ?></span>
+        <span class="intro-text-2"><?php echo tateGaki($user_info['self_intro_2']); ?></span>
+        <span class="intro-text-1"><?php echo tateGaki($user_info['self_intro_1']); ?></span>
       </div>
       <img align="left" class="fb-image-profile thumbnail" src="assets/images/wada.jpg" alt="Profile image example"/>
       <div class="fb-profile-text">
-        <h1>Eli Macy</h1>
+        <h1><?php echo $user_info['nick_name'] ?></h1>
         <div class="navbar-fixed">
           <input type="button" value="+友達申請">
         </div>
@@ -252,5 +259,12 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
         </div>
       </div>
   </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="assets/js/jquery-3.1.1.js"></script>
+  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/friend.js"></script>
+
 </body>
 </html>

@@ -2,7 +2,7 @@
 require('dbconnect.php');
 require('function.php');
 
-$_REQUEST['user_id'] = 3;
+$_REQUEST['user_id'] = 1;
 
 // ページ名の取得
 $file_name = getFileNameFromUri();
@@ -45,15 +45,6 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
   $rooms[] = $room;
 }
 
-// 縦書きにする関数
-function tateGaki($haiku) {
-  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
-  $v_haiku = '';
-  foreach ($matches as $letter) {
-    $v_haiku .= $letter . "<br>";
-  }
-  return rtrim($v_haiku, "<br>");
-}
 ?>
 
 
