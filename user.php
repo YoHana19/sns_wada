@@ -1,8 +1,6 @@
 <?php
 session_start();
 require('dbconnect.php');
-$_SESSION['login_member_id'] = 3;
-$_REQUEST['user_id'] = 2;
 
 // 該当ユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';

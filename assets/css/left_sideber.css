@@ -18,6 +18,7 @@ h1{
 #photo1 {
   width: 60px;
 }
+
 /*Friendsの文字の大きさ&フォント*/
 
 .title {
@@ -35,6 +36,16 @@ h1{
     font-size: 0.9em; 
 }
 
+/* 友達一覧 */
+.well_3 {
+  min-height: 20px;
+  padding: 2px;
+  background-color: #fffffc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
 .friends-display {
   margin-top: 60px;
 }
@@ -46,13 +57,3 @@ h1{
     .title{
       font-size: 20px;
     }
-
-/* 友達一覧の全体枠 */
-.well_3 {
-  min-height: 20px;
-  padding: 2px;
-  background-color: #fffffc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-}

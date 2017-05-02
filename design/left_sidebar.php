@@ -32,11 +32,11 @@
       <?php for ($i=0; $i < 15; $i++) { ?>
         <div class="media" style="position: relative; margin-top: 7px">
           <a class="pull-left left-photo" href="#">
-            <img class="media-object" src="http://placekitten.com/110/110" style="width: 55px; height: 55px; border-radius: 50%">
+            <img class="media-object" src="assets/images/proph.jpg" style="width: 55px; height: 55px; border-radius: 50%">
           </a>
         <div class="media-body left-display">
           <span class="media-heading left-nickname">たかさん</span>
-          <p class="left-intro">あああああ　あああああああ　あああああ</p>
+          <p class="left-intro">あああああ あああああああ あああああ</p>
         </div>
       </div>
       <?php } ?>

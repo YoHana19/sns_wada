@@ -23,13 +23,14 @@ p {
   line-height: 28px;
 }
 
+/* 全体のコンテンツ */
 
-/*== 全体のコンテンツ ==*/
 .content {
     padding-top: 80px;
 }
 
-/*== 左のコンンテンツ ==*/
+/* 左のコンンテンツ */
+
 .left-content {}
 
 /* 個人プロフ */
@@ -84,7 +85,7 @@ p {
   left: 7px;
 }
 
-/*== 右のコンテンツ ==*/
+/* 右のコンテンツ */
 .right-content {
   margin-left: 70px;
 }

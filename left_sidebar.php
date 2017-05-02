@@ -14,6 +14,7 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
 if ($file_name == 'timeline.php') {
   $key_id = $_SESSION['login_member_id'];
 } else {
@@ -23,13 +24,16 @@ if ($file_name == 'timeline.php') {
 // roomsテーブルから新着チャットを10件取得
 $sql = 'SELECT * FROM `rooms` WHERE `member_id_1`=? OR `member_id_2`=? ORDER BY modified DESC LIMIT 0, 10';
 $data = array($key_id, $key_id);
+
 $room_stmt = $dbh->prepare($sql);
 $room_stmt->execute($data);
 
 // 各チャットの友達情報を取得
 $rooms = array();
 while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
+
   if ($record['member_id_1'] == $key_id) {
+
     $sql = 'SELECT * FROM `members` WHERE member_id = ?';
     $data = array($record['member_id_2']);
     $stmt = $dbh->prepare($sql);
@@ -47,8 +51,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 
-
-        <!-- <a href="user.php?member_id=<?php echo $room['member_id']; ?>"><?php echo $room['nick_name'];?></a> -->
+<!-- <a href="user.php?member_id=<?php // echo $room['member_id']; ?>"><?php // echo $room['nick_name'];?></a> -->
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -58,7 +61,8 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 </head>
 <body>
 
-<!-- タイムラインページだったら -->
+
+  <!-- タイムラインページだったら -->
   <?php if($file_name == 'timeline.php'): ?>
 
       <!-- 簡易個人プロフ -->
