@@ -1,3 +1,15 @@
+<?php
+// 縦書きにする関数
+function tateGaki($haiku) {
+  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+  $v_haiku = '';
+  foreach ($matches as $letter) {
+    $v_haiku .= $letter . "<br>";
+  }
+  return rtrim($v_haiku, "<br>");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>

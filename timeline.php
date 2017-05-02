@@ -31,6 +31,16 @@ $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h 
 $stmt = $dbh->prepare($sql); //phpmyadmyn で言うところの[sql]をセット(記入)する処理
 $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す処理
 // $word_display = $stmt->fetch(PDO::FETCH_ASSOC); //取ってきたものを配列化
+
+// 縦書きにする関数
+function tateGaki($haiku) {
+  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+  $v_haiku = '';
+  foreach ($matches as $letter) {
+    $v_haiku .= $letter . "<br>";
+  }
+  return rtrim($v_haiku, "<br>");
+}
 ?>
 
 
@@ -43,7 +53,6 @@ $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す�
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
   <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
@@ -51,6 +60,7 @@ $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す�
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <!-- For Modal Window -->
   <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
 </head>
 <body>
 

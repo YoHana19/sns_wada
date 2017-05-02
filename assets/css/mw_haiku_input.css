@@ -43,6 +43,8 @@ Last change : 2015/03/27
 /* エラー文 */
 .haiku-input-err {
   color: #f08300;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
 /* 戻るボタン */
