@@ -107,6 +107,15 @@ if (empty($errors)) {
   }
 }
 
+// 縦書きにする関数
+function tateGaki($haiku) {
+  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+  $v_haiku = '';
+  foreach ($matches as $letter) {
+    $v_haiku .= $letter . "<br>";
+  }
+  return rtrim($v_haiku, "<br>");
+}
  ?>
 
 <!DOCTYPE html>
@@ -127,16 +136,13 @@ if (empty($errors)) {
 
   <div class="container content">
     <div class="fb-profile">
-     <img class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['back_picture_path']; ?>" alt="Profile image example" style="width: 100%; height: 400px;">
-        <span class="intro-text-1"><?php echo $login_member['self_intro_1'];?></span>
-        <span class="intro-text-2"><?php echo $login_member['self_intro_2'];?></span>
-        <span class="intro-text-3"><?php echo $login_member['self_intro_3'];?></span>
+      <div class="fb-image-lg" style="background-image: url(assets/images/<?php echo $login_member['back_picture_path']; ?>);  width: 100%; height: 450px;">
+        <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
+        <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']);?></span>
+        <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']);?></span>
       </div>
-
-    <div>
       <img align="left" class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example" style="width:300px; height:300px; margin-top:-200px; margin-left:100px;">
-    <div class="fb-profile-text">
-
+      <div class="fb-profile-text">
         <h1 style="margin-top:10px;"><?php echo $login_member['nick_name']; ?></h1>
       </div>
     </div>
@@ -147,7 +153,7 @@ if (empty($errors)) {
         <form method="POST" action="edit_page.php" enctype="multipart/form-data" class="form-horizontal">
           <fieldset>
 
-            <div class="form-group" style="padding-top:100px; padding-bottom:10px;">
+            <div class="form-group" style="padding-top:80px; padding-bottom:10px;">
               <label class="col-md-4 control-label">ニックネーム</label>
               <div class="col-md-4">
                 <input id="nick_name" name="nick_name" placeholder="" class="form-control input-md" required="" value="<?php echo $login_member['nick_name']; ?>">
@@ -212,7 +218,7 @@ if (empty($errors)) {
 
             <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label">アイコン画像</label>
-              <input type="file" name="user_picture_path" required="">
+              <input type="file" name="user_picture_path" required="" style="margin-left:480px;">
             <div class="fb-profile-text">
               <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'type') : ?>
                 <p style="color:red; font-size:10px; margin-top:2px; margin-left:300px  ">アイコン画像は「.gif」,「.jpg」,「.png」, 「.jpeg」の画像を指定してください</p>
@@ -221,7 +227,7 @@ if (empty($errors)) {
 
             <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label">背景画像</label>
-              <input type="file" name="back_picture_path" required="">
+              <input type="file" name="back_picture_path" required="" style="margin-left:495px;">
             <div class="fb-profile-text">
               <?php if(isset($errors['back_picture_path']) && $errors['back_picture_path'] == 'type'): ?>
                 <p style="color:red; font-size:10px; margin-top:2px; margin-left:300px ">背景画像は「.gif」,「.jpg」,「.png」,「.jpeg」の画像を指定してください</p>

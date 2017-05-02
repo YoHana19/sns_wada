@@ -10,85 +10,61 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// $file_name ='hogeuga';
-// $user_picture_name='hoge';
-// $back_picture_ath = 'moge';
-// $self_intro_1 ='アイウエオ';
-// $self_intro_2 = 'カキクケコだよ';
-// $self_intro_3 = 'さしすせそ';
-
-
-// バリデーション用
 $errors = array();
 
 if (!empty($_POST)) {
   echo $_POST['email'];
 
-  // ニックネームが空だった時
   if ($_POST['nick_name'] == "") {
     $errors['nick_name'] = 'blank';
   }
 
-  // メールアドレスが空だった時
   if ($_POST['email'] == "") {
     $errors['email'] = 'blank';
   } else {
-    // メモ「上記のメールアドレスと一致するかをif文で出すこと!!!」
     if ($_POST['email_check'] != $_POST['email']) {
       $errors['email'] = 'not_match';
     }
   }
 
-  // 自己紹介句(上中下) 文字数のエラー表示
-  if (!empty($_POST['self_intro_up']) && !empty($_POST['self_intro_middle']) && !empty($_POST['self_intro_down'])) {
-    // 上の句
-    if (mb_strlen($_POST['self_intro_up']) < 4 || mb_strlen($_POST['self_intro_up']) > 6){
-      $errors ['self_intro_up'] = 'length';
+  if (!empty($_POST['self_intro_1']) && !empty($_POST['self_intro_2']) && !empty($_POST['self_intro_3'])) {
+
+    if (mb_strlen($_POST['self_intro_1']) < 4 || mb_strlen($_POST['self_intro_1']) > 6){
+      $errors ['self_intro_1'] = 'length';
     }
 
-    // 中の句
-    if (mb_strlen($_POST['self_intro_middle']) < 6 || mb_strlen($_POST['self_intro_middle']) > 8){
-      $errors['self_intro_middle'] = 'length';
+    if (mb_strlen($_POST['self_intro_2']) < 6 || mb_strlen($_POST['self_intro_2']) > 8){
+      $errors['self_intro_2'] = 'length';
     }
 
-    // 下の句
-    if (mb_strlen($_POST['self_intro_down']) < 4 || mb_strlen($_POST['self_intro_down']) > 6){
-      $errors['self_intro_down'] = 'length';
+    if (mb_strlen($_POST['self_intro_3']) < 4 || mb_strlen($_POST['self_intro_3']) > 6){
+      $errors['self_intro_3'] = 'length';
     }
   }
 
-  // 画像表示のエラー
-  // アイコン画像
   $user_picture_path = $_FILES['user_picture_path']['name'];
   if (!empty($user_picture_path)) {
-    // 画像が選択されていた場合
     echo $user_picture_path;
     $ext = substr($user_picture_path , -3);
     $ext = strtolower($ext);
-    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
+    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif' && $ext !='jpg') {
       $errors['user_picture_path'] = 'type';
     }
-  }
+}
 
-  // 背景画像
   $back_picture_path = $_FILES['back_picture_path']['name'];
   if (!empty($back_picture_path)) {
-    // 画像が選択されていた場合
     echo $back_picture_path;
     $ext = substr($back_picture_path , -3);
     $ext = strtolower($ext);
-    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
+    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif' && $ext !='jpg') {
       $errors['back_picture_path'] = 'type';
     }
   }
 
-
-    // メールアドレスの重複チェック
-
     if(empty($errors)){
-      // DBのmembersテーブルに入力されたメールアドレスと同じデータがあるかどうか検索し取得
-      try{ //例外発生の可能性があるコード
-           $sql = 'SELECT COUNT(*) AS `cnt` FROM `members` WHERE `email` =?'; //COUNT-変数に含まれる全ての要素、あるいはオブジェクトに含まれる何かの数を数える
+      try{
+           $sql = 'SELECT COUNT(*) AS `cnt` FROM `members` WHERE `email` =?';
            $data =array($_POST['email']);
            $stmt = $dbh->prepare($sql);
            $stmt->execute($data);
@@ -96,22 +72,14 @@ if (!empty($_POST)) {
            var_dump($record);
            if($record['cnt']>0){
             if ($login_member['email'] != $_POST['email']) {
-             // ログインユーザーのメアドと同じでない場合、重複 = ログインユーザーのメアドでログインした時エラー表示なし
-            // 同じメールアドレスがDB内に存在したため
-              $errors['email'] = 'duplicate'; //duplicate-重複
+              $errors['email'] = 'duplicate';
            }
 }
-      }catch(PDOException $e){ //例外発生時の処理
+      }catch(PDOException $e){
           echo 'SQL文実行時エラー:' . $e->message();
       }
     }
 
-// 保留！！！！！
-// エラーがなかった場合の処理
-  // var_dump($errors);
-
-
-    // 画像アップデート処理
 if (empty($errors)) {
     $user_picture_name = date('YmdHis') . $user_picture_path;
     $back_picture_name = date('YmdHis') . $back_picture_path;
@@ -128,116 +96,154 @@ if (empty($errors)) {
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['user_picture_path'] = $user_picture_name;
     $_SESSION['back_picture_path'] = $back_picture_name;
-    $_SESSION['self_intro_up'] = $_POST['self_intro_up'];
-    $_SESSION['self_intro_middle'] = $_POST['self_intro_middle'];
-    $_SESSION['self_intro_down'] = $_POST['self_intro_down'];
+    $_SESSION['self_intro_1'] = $_POST['self_intro_1'];
+    $_SESSION['self_intro_2'] = $_POST['self_intro_2'];
+    $_SESSION['self_intro_3'] = $_POST['self_intro_3'];
 
 
     // $_POST['errors'] = $errors;
     header('Location:edit-update.php');
     exit();
-    // echo '<pre>';
-    // var_dump($_POST);
-    // echo '<pre>';
   }
+}
 
+// 縦書きにする関数
+function tateGaki($haiku) {
+  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+  $v_haiku = '';
+  foreach ($matches as $letter) {
+    $v_haiku .= $letter . "<br>";
+  }
+  return rtrim($v_haiku, "<br>");
 }
  ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <title></title>
   <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+  <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="../maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/edit.css">
 </head>
 <body>
-  <form method="POST" action="edit.php" enctype="multipart/form-data">
-    <div>
-      <label>ニックネーム</label>
-      <input type="text" name="nick_name" value="<?php echo $login_member['nick_name']; ?>">
-      <?php if(isset($errors['nick_name']) && $errors['nick_name'] == 'blank'): ?>
-        <p style="color:red; font-size:10px; margin-top:2px; ">ニックネームを入力してください</p>
-      <?php endif; ?>
+
+  <div class="container content">
+    <div class="fb-profile">
+      <div class="fb-image-lg" style="background-image: url(assets/images/<?php echo $login_member['back_picture_path']; ?>);  width: 100%; height: 450px;">
+        <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
+        <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']);?></span>
+        <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']);?></span>
+      </div>
+      <img align="left" class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example" style="width:300px; height:300px; margin-top:-200px; margin-left:100px;">
+      <div class="fb-profile-text">
+        <h1 style="margin-top:10px;"><?php echo $login_member['nick_name']; ?></h1>
+      </div>
     </div>
+  </div>
 
-    <div>
-      <label>メールアドレス</label>
-      <input type="email" name="email" value="<?php echo $login_member['email']; ?>">
-      <?php if(isset($errors['email']) && $errors['email'] == 'blank'): ?>
-        <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを入力してください</p>
-      <?php endif; ?>
+  <div class="container content">
+      <div class="row">
+        <form method="POST" action="edit_page.php" enctype="multipart/form-data" class="form-horizontal">
+          <fieldset>
 
-      <?php if(isset($errors['email']) && $errors['email'] == 'duplicate'): ?>
-        <p style="color:red; font-size:10px; margin-top:2px; ">指定したメールアドレスはすでに登録されています。</p>
-      <?php endif; ?>
-    </div>
+            <div class="form-group" style="padding-top:80px; padding-bottom:10px;">
+              <label class="col-md-4 control-label">ニックネーム</label>
+              <div class="col-md-4">
+                <input id="nick_name" name="nick_name" placeholder="" class="form-control input-md" required="" value="<?php echo $login_member['nick_name']; ?>">
+                <?php if(isset($errors['nick_name']) && $errors['nick_name'] == 'blank'):?>
+                  <p style="color:red; font-size:10px; margin-top:2px; ">ニックネームを入力してください</p>
+                <?php endif;?>
+              </div>
+            </div>
 
-    <div>
-      <label>メールアドレス確認用</label>
-      <input type="email" name="email_check" value="">
-      <?php if(isset($errors['email']) && $errors['email'] && $errors['email'] == 'not_match'): ?>
-        <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを正しく入力してください</p>
-      <?php endif; ?>
-    </div>
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label" for="UID">メールアドレス</label>
+              <div class="col-md-4">
+                <input id="UID" name="email" placeholder="" class="form-control input-md" required="" value="<?php echo $login_member['email']; ?>">
+                <?php if(isset($errors['email']) && $errors['email'] == 'blank'): ?>
+                  <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを入力してください</p>
+                <?php endif; ?>
+                <?php if(isset($errors['email']) && $errors['email'] == 'duplicate'): ?>
+                  <p style="color:red; font-size:10px; margin-top:2px; ">指定したメールアドレスはすでに登録されています。</p>
+                <?php endif; ?>
+              </div>
+            </div>
 
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label" for="UID">メールアドレス(確認用)</label>
+              <div class="col-md-4">
+                <input id="UID" name="email_check" placeholder="" class="form-control input-md" type="email" required="" value="<?php echo $login_member['email']; ?>">
+                <?php if(isset($errors['email']) && $errors['email'] && $errors['email'] == 'not_match'): ?>
+                  <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを正しく入力してください</p>
+                <?php endif; ?>
+              </div>
+            </div>
 
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label" for="comentario">(自己紹介句)上の句</label>
+              <div class="col-md-4">
+                <input class="form-control" id="coment" name="self_intro_1" value="<?php echo $login_member['self_intro_1'] ; ?>">
+                <?php if(isset($errors['self_intro_1']) && $errors['self_intro_1'] == 'length'): ?>
+                  <p style="color:red; font-size:10px; margin-top:2px;">文字数は4文字以上6文字以下で設定してください</p>
+                <?php endif; ?>
+              </div>
+            </div>
 
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label" for="comentario">中の句</label>
+              <div class="col-md-4">
+                <input class="form-control" id="coment" name="self_intro_2" value="<?php echo $login_member['self_intro_2']; ?>">
+                <?php if(isset($errors['self_intro_2']) && $errors['self_intro_2'] == 'length'): ?>
+                  <p style="color:red; font-size:10px; margin-top:2px;">文字数は6文字以上8文字以下で設定してください</p>
+                <?php endif; ?>
+              </div>
+            </div>
 
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label" for="comentario">下の句</label>
+              <div class="col-md-4">
+                <input class="form-control" id="coment" name="self_intro_3" value="<?php echo $login_member['self_intro_3']; ?>">
+                <?php if(isset($errors['self_intro_3']) && $errors['self_intro_3'] == 'length'): ?>
+                  <p style="color:red; font-size:10px; margin-top:2px;">文字数は4文字以上6文字以下で設定してください</p>
+                <?php endif; ?>
+              </div>
+            </div>
 
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label">アイコン画像</label>
+              <input type="file" name="user_picture_path" required="" style="margin-left:480px;">
+            <div class="fb-profile-text">
+              <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'type') : ?>
+                <p style="color:red; font-size:10px; margin-top:2px; margin-left:300px  ">アイコン画像は「.gif」,「.jpg」,「.png」, 「.jpeg」の画像を指定してください</p>
+              <?php endif; ?>
+            </div>
 
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label">背景画像</label>
+              <input type="file" name="back_picture_path" required="" style="margin-left:495px;">
+            <div class="fb-profile-text">
+              <?php if(isset($errors['back_picture_path']) && $errors['back_picture_path'] == 'type'): ?>
+                <p style="color:red; font-size:10px; margin-top:2px; margin-left:300px ">背景画像は「.gif」,「.jpg」,「.png」,「.jpeg」の画像を指定してください</p>
+              <?php endif; ?>
+            </div>
 
+            <div class="form-group" style="padding-top:70px; padding-bottom:80px; padding-left:220px;">
+              <label class="col-md-4 control-label" for="btn_continuar"></label>
+              <div class="col-md-8">
+                <button id  ="btn_continuar" value="送信" class="btn btn-danger">保存</button>
+              </div>
+            </div>
 
-    <div>
-      <label>アイコン画像</label>
-      <input type="file" name="user_picture_path">
-      <img align="left" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" class ="fb-image-profile thumbnail" alt="Profile image example">
-    <div class="fb-profile-text">
-      <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'type') : ?>
-        <p style="color:red; font-size:10px; margin-top:2px; ">アイコン画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
-      <?php endif; ?>
-    </div>
-
-
-    <div>
-      <label>背景画像</label>
-      <input type="file" name="back_picture_path">
-      <img src="assets/images/<?php echo $login_member['back_picture_path']; ?>" width="300px" height="200px">
-
-      <?php if(isset($errors['back_picture_path']) && $errors['back_picture_path'] == 'type'): ?>
-        <p style="color:red; font-size:10px; margin-top:2px; ">背景画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
-      <?php endif; ?>
-    </div>
-
-
-
-
-
-
-
-
-
-  <label>自己紹介句</label>
-    <p>上の句</p>
-      <input type="text" name="self_intro_up" value="<?php echo $login_member['self_intro_1'] ; ?>">
-      <?php if(isset($errors['self_intro_up']) && $errors['self_intro_up'] == 'length'): ?>
-        <p style="color:red; font-size:10px; margin-top:2px;">文字数は4文字以上6文字以下で設定してください</p>
-      <?php endif; ?>
-
-    <p>中の句</p>
-      <input type="text" name="self_intro_middle" value="<?php echo $login_member['self_intro_2']; ?>">
-      <?php if(isset($errors['self_intro_middle']) && $errors['self_intro_middle'] == 'length'): ?>
-        <p style="color:red; font-size:10px; margin-top:2px;">文字数は6文字以上8文字以下で設定してください</p>
-      <?php endif; ?>
-
-    <p>下の句</p>
-      <input type="text" name="self_intro_down" value="<?php echo $login_member['self_intro_3']; ?>">
-      <?php if(isset($errors['self_intro_down']) && $errors['self_intro_down'] == 'length'): ?>
-        <p style="color:red; font-size:10px; margin-top:2px;">文字数は4文字以上6文字以下で設定してください</p>
-      <?php endif; ?>
-
-    <div>
-      <button type="submit" value="送信">保存</button>
-    </div>
-  </form>
+          </fieldset>
+        </form>
+      </div>
+  </div>
 </body>
 </html>
