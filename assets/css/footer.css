@@ -1,4 +1,4 @@
-*　フッダー　*/
+/*　フッダー　*/
 .footer {
   /* containerからの絶対位置を定義 */
   position: relative;
@@ -7,9 +7,10 @@
   height: 40px;
   background-color: #00552e;
   color: white;
-  background-image: url(../images/header_sample.jpg);
+  /*background-image: url(../images/header_sample.jpg);*/
   text-align: center;
 }
 
 .footer1 {
   padding-top: 10px;
+}
