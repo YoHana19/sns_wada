@@ -29,7 +29,7 @@
         <div class="ranking-2">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="http://placekitten.com/110/110">
+              <img class="media-object" src="../assets/images/wada.jpg">
             </a>
               <div class="media-body">
                 <h4 class="media-heading">ユーザー名</h4>
@@ -41,7 +41,7 @@
         <div class="ranking-3">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="http://placekitten.com/110/110">
+              <img class="media-object" src="../assets/images/wada.jpg">
             </a>
               <div class="media-body">
                 <h4 class="media-heading">ユーザー名</h4>
@@ -70,7 +70,7 @@
         <div class="ranking-2">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="http://placekitten.com/110/110">
+              <img class="media-object" src="../assets/images/wada.jpg">
             </a>
               <div class="media-body">
                 <h4 class="media-heading">ユーザー名</h4>
@@ -82,7 +82,7 @@
         <div class="ranking-3">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="http://placekitten.com/110/110">
+              <img class="media-object" src="../assets/images/wada.jpg">
             </a>
               <div class="media-body">
                 <h4 class="media-heading">ユーザー名</h4>

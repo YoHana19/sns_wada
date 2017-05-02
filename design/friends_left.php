@@ -30,7 +30,7 @@
   <div class="well_3 chat-room" style="border: groove 2px #dcdddd">
     <div class="media" style="position: relative; margin-top: 7px">
       <a class="pull-left chat-photo" href="#">
-        <img class="media-object" src="http://placekitten.com/110/110" style="width: 55px; height: 55px; border-radius: 50%">
+        <img class="media-object" src="../assets/images/wada.jpg" style="width: 55px; height: 55px; border-radius: 50%">
       </a>
       <div class="media-body chat-body">
         <p class="media-heading chat-nickname">たかさん</p>
@@ -40,17 +40,17 @@
   </div>
 
   <!-- 友達一覧 -->
-  <div class="well_3 chat-room">
+  <div class="well_3">
     <?php for ($i=0; $i < 15; $i++) { ?>
       <div class="media" style="position: relative; margin-top: 7px">
-        <a class="pull-left chat-photo" href="#">
-          <img class="media-object" src="http://placekitten.com/110/110" style="width: 55px; height: 55px; border-radius: 50%">
+        <a class="pull-left left-photo" href="#">
+          <img class="media-object" src="../assets/images/saito.jpg" style="width: 55px; height: 55px; border-radius: 50%">
         </a>
-        <div class="media-body chat-body">
-          <p class="media-heading chat-nickname">たかさん</p>
-          <p class="chat-intro">あああああ　あああああああ　あああああ</p>
-        </div>
+      <div class="media-body left-display">
+        <span class="media-heading left-nickname">たかさん</span>
+        <p class="left-intro">あああああ　あああああああ　あああああ</p>
       </div>
+    </div>
     <?php } ?>
   </div>
 </body>
