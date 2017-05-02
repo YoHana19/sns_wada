@@ -3,16 +3,16 @@ session_start();
 require('dbconnect.php');
 $_SESSION['id'] = 1;
 $_REQUEST['user_id'] = 3;
+$user_id = $_REQUEST['user_id'];
 
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-$data = array($_REQUEST['user_id']);
+$data = array($user_id);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $another_user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // 自分の作った全句を時系列で表示
 
-$user_id = $_REQUEST['user_id'];
 $sql = 'SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.member_id =? ORDER BY h.created';
 $data = array($_REQUEST['user_id']);
 $stmt = $dbh->prepare($sql);
