@@ -37,33 +37,51 @@ if (!empty($_POST)) {
 
 ?>
 
+
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../assets/font-awesome/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../assets/css/check.css">
+  <meta charset="utf-8">
+  <title>ログイン｜和だ</title>
+  <title>ご登録内容の確認</title>
 </head>
 <body>
-  <div>
-    ニックネーム：<br>
-    <?php echo $_SESSION['join']['nick_name']; ?>
+
+<div class="check">
+<div class="container">
+  <div row>
+    <div class="col-md-offset-9 col-md-3 check_contents">
+      <h2 style="font-size: 27px; font-family: serif; border-bottom: 1.5px black solid; margin-bottom: 30px;">ご登録内容のご確認</h2>
+      <div>
+        <p style="border-bottom: 1px black dashed;">ニックネーム</p>
+        <p style="text-align: center;"><?php echo $_SESSION['join']['nick_name']; ?></p>
+      </div>
+      <div>
+        <p style="border-bottom: 1px black dashed;">メールアドレス</p>
+        <p style="text-align: center;"><?php echo $_SESSION['join']['email']; ?></p>
+      </div>
+      <div>
+        <p style="border-bottom: 1px black dashed;">パスワード</p>
+        <p style="text-align: center;"><?php echo $_SESSION['join']['password']; ?></p>
+      </div>
+      <br>
+      <form method="POST" action="">
+        <input type="hidden" name="hoge" value="fuga">
+        <a href="join.php?action=rewrite">&laquo;&nbsp;書き直す</a>
+        <input type="submit" class="btn btn-success" value="確認して登録" name="会員登録">
+      </form>
+    </div>
   </div>
-  <div>
-    メールアドレス：<br>
-    <?php echo $_SESSION['join']['email']; ?>
-  </div>
-  <div>
-    パスワード：<br>
-    <?php echo $_SESSION['join']['password']; ?>
-  </div>
-  <br>
-  <form method="POST" action="">
-    <input type="hidden" name="hoge" value="fuga">
-    <a href="index.php?action=rewrite">&laquo;&nbsp;書き直す</a>
-    <input type="submit" name="会員登録">
-  </form>
+</div>
+</div>
+
 </body>
 </html>
-
 
 
 

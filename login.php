@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('dbconnect.php');
+
 $email = '';
 $password = '';
 
@@ -46,7 +47,7 @@ if (!empty($_POST)) {
                 // $_COOKIE['キー'] → 値
             }
             // ログインした際の時間をセッションに保存
-            header('Location: top.php');
+            header('Location: timeline.php');
             exit();
         }
     } else {
