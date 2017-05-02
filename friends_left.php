@@ -1,5 +1,5 @@
 <?php
-
+require('dbconnect.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,12 +11,12 @@
 <body>
   
   <!-- 検索フォーム -->
-  <form action="" method="" accept-charset="utf-8" class="form-horizontal">
+  <form action="friends.php" method="GET" accept-charset="utf-8" class="form-horizontal">
     <div id="custom-search-input">
       <div class="input-group">
-        <input type="text" class="search-query form-control" placeholder=" 友達検索">
+        <input type="text" name="search_word" class="search-query form-control" placeholder=" 友達検索" value="<?php echo $search_word ?>">
         <span class="input-group-btn">
-          <button class="btn btn-danger" type="button">
+          <button class="btn btn-danger" type="submit">
             <span class="glyphicon glyphicon-search" style="color: #dcdddd"></span>
           </button>
         </span>
@@ -32,11 +32,11 @@
     <div class="well_3 left-proph-wrap">
         <div class="media" style="position: relative; margin-top: 7px">
           <a class="pull-left left-photo" href="#">
-            <img class="media-object" src="../assets/images/saito.jpg" style="width: 55px; height: 55px; border-radius: 50%">
+            <img class="media-object" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
           </a>
         <div class="media-body left-proph-simple">
-          <span class="media-heading left-nickname">たかさん</span>
-          <p class="left-intro">あああああ　あああああああ　あああああ</p>
+          <span class="media-heading left-nickname"><?php echo $login_member['nick_name'];?></span>
+          <p class="left-intro"><?php echo $login_member['self_intro_1'];?>&nbsp;<?php echo $login_member['self_intro_2'];?>&nbsp;<?php echo $login_member['self_intro_3'];?></p>
         </div>
       </div>
     </div>
@@ -46,18 +46,19 @@
     <!-- タイトル表示 -->
     <div class="friends-title">
       <span class="title">お仲間</span>
+      <span style="margin-left: 220px;"><?php echo $num_friends ?></span>
     </div>
 
     <!-- 友達一覧 -->
     <div class="well_3">
-      <?php for ($i=0; $i < 15; $i++) { ?>
+      <?php foreach ($friends as $friend) { ?>
         <div class="media" style="position: relative; margin-top: 7px">
           <a class="pull-left left-photo" href="#">
-            <img class="media-object" src="../assets/images/saito.jpg" style="width: 55px; height: 55px; border-radius: 50%">
+            <img class="media-object" src="assets/images/<?php echo $friend['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
           </a>
         <div class="media-body left-display">
-          <span class="media-heading left-nickname">たかさん</span>
-          <p class="left-intro">あああああ　あああああああ　あああああ</p>
+          <span class="media-heading left-nickname"><?php echo $friend['nick_name'];?></span>
+          <p class="left-intro"><?php echo $friend['self_intro_1'];?>&nbsp;<?php echo $friend['self_intro_2'];?>&nbsp;<?php echo $friend['self_intro_3'];?></p>
         </div>
       </div>
       <?php } ?>
