@@ -113,9 +113,10 @@ if (!empty($_POST)) {
 
     // 画像アップデート処理
 if (empty($errors)) {
-    $picture_name = date('YmdHis') . $file_name;
-    move_uploaded_file($_FILES['user_picture_path']['tmp_name'] , '/assets/images/' . $user_picture_name);
-    move_uploaded_file($_FILES['back_picture_path']['tmp_name'] , '/assets/images/' . $back_picture_name);
+    $user_picture_name = date('YmdHis') . $user_picture_path;
+    $back_picture_name = date('YmdHis') . $back_picture_path;
+    move_uploaded_file($_FILES['user_picture_path']['tmp_name'] , 'assets/images/' . $user_picture_name);
+    move_uploaded_file($_FILES['back_picture_path']['tmp_name'] , 'assets/images/' . $back_picture_name);
     // $_SESSION[''] = $_POST;
     // $_SESSION['nick_name'] = $_POST['nick_name'];
     // $_SESSION['user_picture_path'] =$user_picture_name;
@@ -125,8 +126,8 @@ if (empty($errors)) {
     // $_SESSION['self_intro_3'] = $self_intro_3;
     $_SESSION['nick_name'] = $_POST['nick_name'];
     $_SESSION['email'] = $_POST['email'];
-    $_SESSION['user_picture_path'] = $_FILES['user_picture_path']['name'];
-    $_SESSION['back_picture_path'] = $_FILES['back_picture_path']['name'];
+    $_SESSION['user_picture_path'] = $user_picture_name;
+    $_SESSION['back_picture_path'] = $back_picture_name;
     $_SESSION['self_intro_up'] = $_POST['self_intro_up'];
     $_SESSION['self_intro_middle'] = $_POST['self_intro_middle'];
     $_SESSION['self_intro_down'] = $_POST['self_intro_down'];
@@ -179,6 +180,13 @@ if (empty($errors)) {
       <?php endif; ?>
     </div>
 
+
+
+
+
+
+
+
     <div>
       <label>アイコン画像</label>
       <input type="file" name="user_picture_path">
@@ -189,6 +197,10 @@ if (empty($errors)) {
       <?php endif; ?>
     </div>
 
+
+
+
+
     <div>
       <label>背景画像</label>
       <input type="file" name="back_picture_path">
@@ -198,6 +210,14 @@ if (empty($errors)) {
         <p style="color:red; font-size:10px; margin-top:2px; ">背景画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
       <?php endif; ?>
     </div>
+
+
+
+
+
+
+
+
 
   <label>自己紹介句</label>
     <p>上の句</p>
