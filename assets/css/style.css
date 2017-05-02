@@ -8,17 +8,12 @@
 
   padding-left: 321px;
   padding-bottom: 50px;
-
 }
 
 .runking-title {
   padding-top: 50px;
   padding-bottom: 25px;
   padding-left: 323px;
-}
-
-.point {
-  text-align: center; 
 }
 
 .ku-name {
@@ -56,6 +51,10 @@
   margin-left: 140px;
 }
 
+.name {
+  margin-left: 140px;
+}
+
 /* ランキング 1位 */
 .ranking-1 {
   width: 100%;
@@ -75,7 +74,7 @@
   margin: auto;
 }
 .media-body2 {
-  padding: 1px 0 0 0;
+  padding: 1px 0 10px 0;
 }
 /* ランキング 2位以下 */
 .ranking-less2 {
@@ -141,30 +140,35 @@
 }
 
 .media-body2 {
-  margin: auto;
-}
-
-
-.left-proph span {
-  position: absolute;
-  top: 15px;
-}
-
-.intro-text-1 {
-  left: 160px;
-}
-
-.intro-text-2 {
-  left: 200px;
-}
-
-.intro-text-3 {
-  left: 240px;
+  padding-right: 150px;
 }
 
 
 
+/* 俳句の縦書き */
+.haiku-text {
+    width: 300px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
 
+.haiku-text h2 {
+    position: absolute;
+    top: 35px;
+}
+
+.haiku-text-1 {
+    left: 0;
+}
+
+.haiku-text-2 {
+    left: 135px;
+}
+
+.haiku-text-3 {
+    right: 0px;
+}
 
 
 
