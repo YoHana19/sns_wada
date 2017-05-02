@@ -1,7 +1,6 @@
 <?php
 session_start();
 require('dbconnect.php');
-require('function.php');
 $_SESSION['login_member_id'] = 1;
 
 // 該当ユーザーの情報取得
@@ -66,7 +65,7 @@ function tateGaki($haiku) {
       <div class="fb-profile-text">
         <h1><?php echo $login_user['nick_name']; ?></h1>
         <div class="navbar-fixed">
-          <input type="button" value="プロフィール編集">
+          <input type="button" onclick="location.href='edit.php'" value="プロフィール編集">
         </div>
       </div>
     </div>
