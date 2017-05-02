@@ -24,16 +24,22 @@ p {
 }
 
 /* 全体のコンテンツ */
+
 .content {
     padding-top: 80px;
 }
 
 /* 左のコンンテンツ */
+
 .left-content {}
 
 /* 個人プロフ */
 .left-proph {
   position: relative;
+}
+
+.left-proph h3 {
+  padding-left: 15px;
 }
 
 .left-proph span {
