@@ -190,15 +190,12 @@ if (empty($errors)) {
     <div>
       <label>アイコン画像</label>
       <input type="file" name="user_picture_path">
-      <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>" width="100px" height="100px">
-
+      <img align="left" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" class ="fb-image-profile thumbnail" alt="Profile image example">
+    <div class="fb-profile-text">
       <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'type') : ?>
         <p style="color:red; font-size:10px; margin-top:2px; ">アイコン画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
       <?php endif; ?>
     </div>
-
-
-
 
 
     <div>

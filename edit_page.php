@@ -44,27 +44,23 @@ if (!empty($_POST)) {
 
   $user_picture_path = $_FILES['user_picture_path']['name'];
   if (!empty($user_picture_path)) {
-    // 画像が選択されていた場合
     echo $user_picture_path;
     $ext = substr($user_picture_path , -3);
     $ext = strtolower($ext);
-    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
+    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif' && $ext !='jpg') {
       $errors['user_picture_path'] = 'type';
     }
-  }
+}
 
-  // 背景画像
   $back_picture_path = $_FILES['back_picture_path']['name'];
   if (!empty($back_picture_path)) {
-    // 画像が選択されていた場合
     echo $back_picture_path;
     $ext = substr($back_picture_path , -3);
     $ext = strtolower($ext);
-    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
+    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif' && $ext !='jpg') {
       $errors['back_picture_path'] = 'type';
     }
   }
-
 
     if(empty($errors)){
       try{
@@ -100,20 +96,17 @@ if (empty($errors)) {
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['user_picture_path'] = $user_picture_name;
     $_SESSION['back_picture_path'] = $back_picture_name;
-    $_SESSION['self_intro_up'] = $_POST['self_intro_up'];
-    $_SESSION['self_intro_middle'] = $_POST['self_intro_middle'];
-    $_SESSION['self_intro_down'] = $_POST['self_intro_down'];
+    $_SESSION['self_intro_1'] = $_POST['self_intro_1'];
+    $_SESSION['self_intro_2'] = $_POST['self_intro_2'];
+    $_SESSION['self_intro_3'] = $_POST['self_intro_3'];
 
 
     // $_POST['errors'] = $errors;
     header('Location:edit-update.php');
     exit();
-    // echo '<pre>';
-    // var_dump($_POST);
-    // echo '<pre>';
   }
-
 }
+
  ?>
 
 <!DOCTYPE html>
@@ -134,36 +127,30 @@ if (empty($errors)) {
 
   <div class="container content">
     <div class="fb-profile">
-      <div class="fb-image-lg" style="width: 100%; height: 400px;">
+     <img class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['back_picture_path']; ?>" alt="Profile image example" style="width: 100%; height: 400px;">
         <span class="intro-text-1"><?php echo $login_member['self_intro_1'];?></span>
         <span class="intro-text-2"><?php echo $login_member['self_intro_2'];?></span>
         <span class="intro-text-3"><?php echo $login_member['self_intro_3'];?></span>
       </div>
 
     <div>
-      <input type="file" name="user_picture_path">
-      <img align="left" class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
+      <img align="left" class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example" style="width:300px; height:300px; margin-top:-200px; margin-left:100px;">
     <div class="fb-profile-text">
-      <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'type') : ?>
-        <p style="color:red; font-size:10px; margin-top:2px; ">アイコン画像は「.gif」,「.jpg」,「.png」の画像を指定してください</p>
-      <?php endif; ?>
-    </div>
 
-        <h1 style="margin-top:50px;"><?php echo $login_member['nick_name']; ?></h1>
+        <h1 style="margin-top:10px;"><?php echo $login_member['nick_name']; ?></h1>
       </div>
     </div>
   </div>
-
 
   <div class="container content">
       <div class="row">
         <form method="POST" action="edit_page.php" enctype="multipart/form-data" class="form-horizontal">
           <fieldset>
 
-            <div class="form-group" style="padding-top:60px; padding-bottom:10px;">
+            <div class="form-group" style="padding-top:100px; padding-bottom:10px;">
               <label class="col-md-4 control-label">ニックネーム</label>
               <div class="col-md-4">
-                <input id="nick_name" name="nick_name" placeholder="" class="form-control input-md" value="<?php echo $login_member['nick_name']; ?>">
+                <input id="nick_name" name="nick_name" placeholder="" class="form-control input-md" required="" value="<?php echo $login_member['nick_name']; ?>">
                 <?php if(isset($errors['nick_name']) && $errors['nick_name'] == 'blank'):?>
                   <p style="color:red; font-size:10px; margin-top:2px; ">ニックネームを入力してください</p>
                 <?php endif;?>
@@ -173,7 +160,7 @@ if (empty($errors)) {
             <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label" for="UID">メールアドレス</label>
               <div class="col-md-4">
-                <input id="UID" name="email" placeholder="" class="form-control input-md" value="<?php echo $login_member['email']; ?>">
+                <input id="UID" name="email" placeholder="" class="form-control input-md" required="" value="<?php echo $login_member['email']; ?>">
                 <?php if(isset($errors['email']) && $errors['email'] == 'blank'): ?>
                   <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを入力してください</p>
                 <?php endif; ?>
@@ -186,7 +173,7 @@ if (empty($errors)) {
             <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label" for="UID">メールアドレス(確認用)</label>
               <div class="col-md-4">
-                <input id="UID" name="email_check" placeholder="" class="form-control input-md" type="email">
+                <input id="UID" name="email_check" placeholder="" class="form-control input-md" type="email" required="" value="<?php echo $login_member['email']; ?>">
                 <?php if(isset($errors['email']) && $errors['email'] && $errors['email'] == 'not_match'): ?>
                   <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを正しく入力してください</p>
                 <?php endif; ?>
@@ -223,7 +210,25 @@ if (empty($errors)) {
               </div>
             </div>
 
-            <div class="form-group" style="padding-top:50px; padding-bottom:80px; padding-left:220px;">
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label">アイコン画像</label>
+              <input type="file" name="user_picture_path" required="">
+            <div class="fb-profile-text">
+              <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'type') : ?>
+                <p style="color:red; font-size:10px; margin-top:2px; margin-left:300px  ">アイコン画像は「.gif」,「.jpg」,「.png」, 「.jpeg」の画像を指定してください</p>
+              <?php endif; ?>
+            </div>
+
+            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
+              <label class="col-md-4 control-label">背景画像</label>
+              <input type="file" name="back_picture_path" required="">
+            <div class="fb-profile-text">
+              <?php if(isset($errors['back_picture_path']) && $errors['back_picture_path'] == 'type'): ?>
+                <p style="color:red; font-size:10px; margin-top:2px; margin-left:300px ">背景画像は「.gif」,「.jpg」,「.png」,「.jpeg」の画像を指定してください</p>
+              <?php endif; ?>
+            </div>
+
+            <div class="form-group" style="padding-top:70px; padding-bottom:80px; padding-left:220px;">
               <label class="col-md-4 control-label" for="btn_continuar"></label>
               <div class="col-md-8">
                 <button id  ="btn_continuar" value="送信" class="btn btn-danger">保存</button>
