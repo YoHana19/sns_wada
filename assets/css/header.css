@@ -33,7 +33,12 @@
   border-color: gray;
 }
 
-.haiku-input:active {
+.haiku-input:focus {
+  background-color: black;
+  border-color: gray;
+}
+
+.haiku-input:active:focus {
   background-color: black;
   border-color: gray;
 }
@@ -64,6 +69,15 @@
   border-color: gray;
 }
 
+.btn-danger:focus{
+  background-color: black;
+  border-color: gray;
+}
+
+.btn-danger:active:focus{
+  background-color: black;
+  border-color: gray;
+}
 
 /* OVERALL ASPECT */
 
