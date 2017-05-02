@@ -33,30 +33,236 @@ $stmt->execute(); //phpmyadmyn で言うところの[実行]ボタンを押す�
 // $word_display = $stmt->fetch(PDO::FETCH_ASSOC); //取ってきたものを配列化
 ?>
 
+
+
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
+  <meta charset="utf-8">
   <title></title>
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
 </head>
 <body>
-  <!-- 検索ワード入力フォーム(検索窓) : 検索したワードが入っている句を検索結果として表示する -->
-<!-- 検索結果表示 -->
-<?php echo '検索したワード: ' . $search_word . '<br>'; ?>
-<?php while($word_display = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-<img src="assets/images/<?php echo $word_display['user_picture_path']; ?>" width="100" height="100"><br>
-<?php
-  echo $word_display['nick_name'] . '<br>';
-  echo $word_display['haiku_1'] . '<br>';
-  echo $word_display['haiku_2'] . '<br>';
-  echo $word_display['haiku_3'] . '<br>';
-  echo $word_display['created'] . '<br>';
-  echo $word_display['haiku_id'] . '<br>';
-  echo $word_display['member_id'] . '<br>';
-// 連想配列化された変数の値を取り出して表示
-// $word_displayが検索結果を持っている ← これをtimeline.phpに遷移させる
 
-?>
-<?php endwhile; ?>
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
+
+  <div class="container">
+    <div class="row content">
+
+      <!-- 左サイドバー -->
+      <div class="col-md-3 left-content">
+        <?php require('left_sidebar.php'); ?>
+      </div>
+
+      <!-- 本コンテンツ -->
+      <div class="col-md-8 right-content">
+      
+        <!-- 今日の季語 -->
+        <div class="season_title">
+          <h4>今日の季語</h4>
+        </div>
+        <div class="outer">
+          <div class="season_word">
+            <h1>さくら</h1>
+          </div>
+        </div>
+
+        <!-- 詠むボタン -->
+        <div style="text-align: right;">
+          <input type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381;">
+        </div>
+
+          <!-- 句一覧 -->
+
+          <!-- １つ目 -->
+          <div class="haiku">
+            <div class="carousel-info">
+              <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+              <div class="pull-left">
+                <span class="haiku-name">Lina Mars</span>
+                <span calss="haiku-comment">もうこんな季節か・・・。</span>
+              </div>
+              <p>3時間前</p>
+            </div>
+            <div class="active item">
+              <blockquote style="background:#fff0f5">
+                <div class="haiku-text">
+                  <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                  <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                  <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                </div>
+              </blockquote>
+            </div>
+            <div style="text-align: right;">
+              <div style="float: left">
+                <i class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;10人</i>
+                <i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i>
+                <i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i>
+              </div>
+              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
+              <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
+            </div>
+            <div class="icons">
+              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
+              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
+              <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
+            </div>
+          </div>
+
+          <!-- ２つ目 -->
+          <div class="haiku">
+            <div class="carousel-info">
+              <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+              <div class="pull-left">
+                <span class="haiku-name">Lina Mars</span>
+              </div>
+              <p>3時間前</p>
+            </div>
+            <div class="active item">
+              <blockquote style="background:#fff0f5">
+                <div class="haiku-text">
+                  <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                  <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                  <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                </div>
+              </blockquote>
+            </div>
+            <div style="text-align: right;">
+              <div style="float: left">
+                <i class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;10人</i>
+                <i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i>
+                <i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i>
+              </div>
+              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
+              <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
+            </div>
+            <div class="icons">
+              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
+              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
+              <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
+            </div>
+          </div>
+          <!-- コメント欄 -->
+          <div class="comment">
+            <div class="msg">
+              <form action="" method="" accept-charset="utf-8" class="form-horizontal">
+                <div class="form-group">
+                  <div class="col-sm-1">
+                    <img src="../assets/images/proph.jpg" width="30" height="30">
+                  </div>
+                  <div class="col-sm-11">
+                    <input type="text" name="nick_name" class="form-control" placeholder="例： Seed kun">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="msg">
+              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
+              <p><span class="name">Seed kun</span>なかなかやるじゃん</p>
+            </div>
+
+            <div class="msg">
+              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
+              <p><span class="name">Seed kun</span>なかなかやるじゃないかああああああああああああああああああああああああああああああああああああああああああああああ</p>
+            </div>
+
+            <div class="msg">
+              <img src="../assets/images/sakura_sample.jpg" width="30" height="30">
+              <p><span class="name">Seed kun</span>だろおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおお</p>
+            </div>
+          </div>
+
+          <!-- ３つ目 -->
+          <div class="haiku">
+            <div class="carousel-info">
+              <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+              <div class="pull-left">
+                <span class="haiku-name">Lina Mars</span>
+              </div>
+              <p>3時間前</p>
+            </div>
+            <div class="active item">
+              <blockquote style="background: #fff0f5">
+                <div class="haiku-text">
+                  <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                  <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                  <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                </div>
+              </blockquote>
+            </div>
+            <div style="text-align: right;">
+              <div style="float: left">
+                <i class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;10人</i>
+                <i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i>
+                <i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i>
+              </div>
+              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
+              <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
+            </div>
+            <div class="icons">
+              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
+              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
+              <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
+            </div>
+          </div>
+
+          <!-- ４つ目 -->
+          <div class="haiku">
+            <div class="carousel-info">
+              <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+              <div class="pull-left">
+                <span class="haiku-name">Lina Mars</span>
+              </div>
+              <p>3時間前</p>
+            </div>
+            <div class="active item">
+              <blockquote style="background-image: url(../assets/images/sakura_sample.jpg); background-size: cover;">
+                <div class="haiku-text">
+                  <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                  <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                  <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                </div>
+              </blockquote>
+            </div>
+            <div style="text-align: right;">
+              <div style="float: left">
+                <i class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;10人</i>
+                <i class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;5人</i>
+                <i class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;3件</i>
+              </div>
+              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
+              <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
+            </div>
+            <div class="icons">
+              <a class="btn icon-btn btn-primary btn-color-like" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like"></span>よし</a>
+              <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a>
+              <a class="btn icon-btn btn-color-comment" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</a>
+            </div>
+          </div>
+
+          </div> <!-- col-md-7終了タグ -->
+    </div>
+  </div>
+
+
+  <br>
+  <br>
+
+<!-- フッター表示 -->
+<?php require('footer.php'); ?>
+
 
 </body>
 </html>
