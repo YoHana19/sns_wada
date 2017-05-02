@@ -4,13 +4,14 @@
 <head>
   <meta charset="utf-8">
   <title></title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+    
 </head>
-
-<body>
+<!--  背景 -->
+<body class="background">
 <!-- 自分情報(左上のやつ) -->
 <div class="container">
   <div class="row">
@@ -18,13 +19,13 @@
   </div>
 
   <div class="col-md-9">
-  <div class="ranking-column">
-    <h4><b>ランク/コラム</b></h4>
-  </div>
+
+    <div class="ranking-column">
+    <h4><img src="../assets/images/column.png" width="200" height="60">
+    </h4>
+    </div>
 
   <!-- コラム/ランキング -->
-    <h2>　</h2>
-
     <div class="col-md-4 col-md-push-4">
       <img class="img-responsive img-circle" src="https://farm1.staticflickr.com/1/2759520_6dea8b9007.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
     </div>
@@ -40,157 +41,183 @@
   <div class="row">
     <div class="col-md-offset-3 col-md-9">
       <div class="runking-title">
-      <h4><b>ランキング</b></h4>
+        <img src="../assets/images/rank-title.png" width="500" height="80">
     </div>
     </div>
   </div>
 
 <!-- ランキング -->
-
-<div class="row">
-  <div class="col-md-offset-4 col-md-3 yosi-ranking">
+<div class="col-md-offset-3 col-md-9 yosi-ranking"> 
   <!-- 俳人 -->
-    <h5>俳人</h5>
-    <h4>よし</h4>
-    <h3>1</h3>
-    <h4>名前</h4><br>
-
-  <div class="row">
-    <div class="col-md-2">
-      <h1>2</h1>
-      <h1>3</h1>
-    </div>
-
-    <div class="col-md-3 ranking-picture">
-      <img src="http://placekitten.com/150/150">
-      <img src="http://placekitten.com/150/150">
-    </div>
-
-    <div class="col-md-7">
-      <div class="well">
-        <div class="media">
-          <a class="pull-left" href="#">
-          </a>
-            <div class="media-body">
-              <p class="media-heading">・ユーザー名</p>
-              <p class="text-left">・ポイント数</p>
-             </div>
+  <h5><img src="../assets/images/kajin.png" width="120" height="70"></h5>
+  <!-- よし ランキング -->
+      <div class="col-md-6">
+        <!-- 俳人よしランキング1位 -->
+        <div class="title-ranking">
+          <img src="../assets/images/yoshi.png" width="80" height="45">
         </div>
-      </div>
+        <div class="ranking-1">
+          <div class="photo"><img class="media-object picuture-position" src="../assets/images/wada.jpg"></div>
+          <h1>たかさん</h1>
+          <div class="point">30 よし</div>
+        </div>
   
-        <div class="well">
-          <div class="media">
-            <a class="pull-left" href="#">
-            </a>
-            <div class="media-body">
-              <p class="media-heading">・ユーザー名</p>
-              <p class="text-left">・ポイント数</p>
-             </div>
+        <!-- 俳人よしランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="ranking-2">
+            <div class="media">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>15 よし</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="ranking-3">
+            <div class="media">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>3 よし</p>
+              </div>
+            </div>
           </div>
         </div>
+              <!-- 句 -->
+        <div class="ku-name"><h5><img src="../assets/images/ku.png" width="80" height="60"></h5></div>
+        <h3></h3>
+
+<!-- 俳人よしランキング1位 -->
+        <div class="title-ranking">
+          <img src="../assets/images/yoshi.png" width="80" height="45">
+        </div>
+        <div class="kuranking-1">
+          <div class="photo"><img class="media-object picuture-position" src="../assets/images/wada.jpg"></div>
+          <h1>たかさん</h1>
+          <div class="point">30 よし</div>
+        </div>
+  
+        <!-- 俳人よしランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="kuranking-2">
+            <div class="media">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              <div class="media-body2">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>15 よし</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="kuranking-3">
+            <div class="media">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              <div class="media-body2">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>3 よし</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      
+      </div><!--col-md-6-->
+
+
+
+
+
+
+    <!--あし ランキング -->
+      <div class="col-md-6">
+        <!-- あしランキングトップ画像 -->
+        <div class="title-ranking">
+          <img src="../assets/images/ashi.png" width="100" height="45">
+        </div>
+        <div class="ranking-1">
+          <img class="media-object picuture-position" src="http://placekitten.com/255/255">
+          <h1>さいとうさん</h1>
+          <div class="point">30 あし</div>
+        </div>
+  
+        <!--あし ランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="ranking-2">
+            <div class="media">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>15 あし</p>
+              </div>
+            </div>
+          </div>
+  
+            <div class="ranking-3">
+              <div class="media">
+                <img class="media-object" src="http://placekitten.com/110/110">
+                <div class="media-body">
+                  <h4 class="media-heading">ユーザー名</h4>
+                  <p>3 あし</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        <!-- 句 -->
+      <div class="title-ranking2">
+        <h5> </h5>
+        <img src="../assets/images/ashi.png" width="100" height="45">
+      </div>
+        <!-- あしランキングトップ画像 -->
+      <div class="title-ranking"></div>
+        <div class="kuranking-1">
+          <a class="pull-left" href="#">
+            <img class="media-object picuture-position" src="http://placekitten.com/255/255">
+            <h1>さいとうさん</h1>
+            <div class="point">30 あし
+            </div>
+          </a>
+  
+        <!--あし ランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="kuranking-2">
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="http://placekitten.com/110/110">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>15 あし</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="kuranking-3">
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="http://placekitten.com/110/110">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>3 あし</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div><!--col-md-6-->
 
-  </div>
 
-      <!-- 句 -->
-      <h5>句</h5>
-      <h4>よし</h4>
-      <h3>1</h3>
-      <h4>名前</h4><br>
 
-    <div class="well">
-        <div class="media">
-          <a class="pull-left" href="#">
-          </a>
-          <div class="media-body">
-            <p class="media-heading">・ユーザー名</p>
-            <p class="text-left">・ポイント数</p>
-            <p class="text-left">・自己紹介句</p>
-           </div>
-        </div>
-      </div>
 
-      <div class="well">
-        <div class="media">
-          <a class="pull-left" href="#">
-          </a>
-          <div class="media-body">
-            <p class="media-heading">・ユーザー名</p>
-            <p class="text-left">・ポイント数</p>
-            <p class="text-left">・自己紹介句</p>
-           </div>
-        </div>
-      </div>
-  </div>
-
-  <!-- 俳人 -->
-  <div class="col-md-offset-1 col-md-3 asi-ranking">
-  <h5>　</h5>
-    <h4>あし</h4>
-    <h3>1</h3>
-    <h4>名前</h4><br>
-
-    <div class="well">
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/150/150">
-          </a>
-          <div class="media-body">
-            <p class="media-heading">・ユーザー名</p>
-            <p class="text-left">・ポイント数</p>
-           </div>
-        </div>
-      </div>
-
-      <div class="well">
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/150/150">
-          </a>
-          <div class="media-body">
-            <p class="media-heading">・ユーザー名</p>
-            <p class="text-left">・ポイント数</p>
-           </div>
-        </div>
-      </div>
-
-      <!-- 句 -->
-      <h5>句</h5>
-      <h4>よし</h4>
-      <h3>1</h3>
-      <h4>名前</h4><br>
-
-    <div class="well">
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/150/150">
-          </a>
-          <div class="media-body">
-            <p class="media-heading">・ユーザー名</p>
-            <p class="text-left">・ポイント数</p>
-            <p class="text-left">・自己紹介句</p>
-           </div>
-        </div>
-      </div>
-
-      <div class="well">
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/150/150">
-          </a>
-          <div class="media-body">
-            <p class="media-heading">・ユーザー名</p>
-            <p class="text-left">・ポイント数</p>
-            <p class="text-left">・自己紹介句</p>
-           </div>
-        </div>
-      </div>
-
-  </div>
 </div>
 
-  </div> <!-- でかいrow -->
-</div>
+
 
 </body>
 </html>

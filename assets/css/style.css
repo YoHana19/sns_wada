@@ -1,71 +1,156 @@
-.well-2 {
-  min-height: 20px;
-  padding: 19px;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-}
 
-.well-2 blockquote {
-  border-color: #ddd;
-  border-color: rgba(0, 0, 0, .15);
-}
-
-.well-3 {
-  min-height: 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-}
-
-.well-3 blockquote {
-  border-color: #ddd;
-  border-color: rgba(0, 0, 0, .15);
+.background {
+  background-image: url(../images/back.jpg);
+  padding-top: 80px;
 }
 
 .ranking-column {
-    background-color: #62bcfa;
-    padding-left: 350px;
-    padding-bottom: 15px;
+
+  padding-left: 321px;
+  padding-bottom: 50px;
+
 }
 
-.runking-title h4 {
-    background-color: #62bcfa;
-    padding-left: 350px;
+.runking-title {
+  padding-top: 50px;
+  padding-bottom: 25px;
+  padding-left: 323px;
 }
 
-.yosi-ranking h4 {
-    background-color: #e198b4;
-    text-align: center;
+.point {
+  text-align: center; 
 }
 
-.yosi-ranking h3 {
-  width: 255px;
-  height: 255px;
-  background-image: url("http://placekitten.com/150/150");
-  background-size: 255px;
-  border: solid 2px;
-  text-shadow: white 0px 0px 2px;
+.ku-name {
+  padding-top: 50px;
 }
 
-.asi-ranking h4 {
-    background-color: #a59aca;
-    text-align: center;
+/* ランキング タイトル*/
+.top-ranking {
+  position: relative;
+  height: 225px;
 }
 
-.asi-ranking h3 {
-  width: 255px;
-  height: 255px;
-  background-image: url("http://placekitten.com/150/150");
-  background-size: 255px;
-  border: solid 2px;
-  text-shadow: white 0px 0px 2px;
+.rank-title {
+  position: absolute;
+  top: 80px;
+  left: 255px;
+  width: 700px;
 }
 
-.menu-size {
-   width: 1000px;
+.rank-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 270px;
 }
+
+.title-ranking {
+  margin: 0 0 50px 140px;
+  top: 80px;
+}
+
+.title-ranking2{
+  margin-top: 190px;
+  margin-right: 50px;
+  margin-left: 140px;
+}
+
+/* ランキング 1位 */
+.ranking-1 {
+  width: 100%;
+  text-align: center;
+}
+
+
+.ranking-1 img {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+
+.ranking-1 p {
+  font-size: 15px;
+  margin: auto;
+}
+.media-body2 {
+  padding: 1px 0 0 0;
+}
+/* ランキング 2位以下 */
+.ranking-less2 {
+  margin-top: 60px;
+  text-align: center; 
+
+}
+
+.ranking-less2 img {
+  border-radius: 6px;
+  margin: auto;
+}
+
+
+/* ランキング 2位 */
+.ranking-2 {
+  margin-bottom: 50px;
+}
+
+.ranking-2 img {
+  width: 200px;
+  height: 200px;
+}
+
+.media-heading {
+  padding: 10px 0 0 0;
+  font-size: 20px;
+}
+
+.ranking-2 p {
+  padding: 5px 0 0 0;
+}
+
+/* ランキング 3位 */
+.ranking-3 {
+  margin-bottom: 50px;
+}
+
+.ranking-3 img {
+  width: 100px;
+  height: 100px;
+}
+
+.kuranking-1 img {
+  width: 100px;
+  height: 100px;
+}
+
+.kuranking-2 img {
+  width: 100px;
+  height: 100px;
+}
+
+.kuranking-3 img {
+  width: 100px;
+  height: 100px;
+}
+
+
+.media-heading {
+  padding: 10px 0 0 0;
+  font-size: 17px;
+}
+
+.media-body2 {
+  margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
