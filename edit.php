@@ -150,7 +150,7 @@ function tateGaki($haiku) {
 
   <div class="container content">
       <div class="row">
-        <form method="POST" action="edit_page.php" enctype="multipart/form-data" class="form-horizontal">
+        <form method="POST" action="edit.php" enctype="multipart/form-data" class="form-horizontal">
           <fieldset>
 
             <div class="form-group" style="padding-top:80px; padding-bottom:10px;">
