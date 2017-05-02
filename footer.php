@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
 </head>
-<body background="../assets/images/back.jpg" bgproperties="fixd">
+<body background="assets/images/back.jpg" bgproperties="fixd">
   <footer class="footer">
     <div class="container" style="width: auto; height: 40px">
       <div class="row"> 
