@@ -1,13 +1,10 @@
 <?php
 session_start();
 require('dbconnect.php');
-require('function.php');
-$_SESSION['id'] = 1;
 $_REQUEST['user_id'] = 3;
-$user_id = $_REQUEST['user_id'];
 
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-$data = array($user_id);
+$data = array($_REQUEST['user_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $another_user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -23,10 +20,6 @@ $user_ku1 = array();
 while ($user_ku = $stmt->fetch(PDO::FETCH_ASSOC)){
   $user_ku1[] = $user_ku;
 }
-
-// echo '<pre>';
-// var_dump($user_ku1);
-// echo '</pre>';
 ?>
 
 <!DOCTYPE html>
