@@ -73,13 +73,20 @@ function tateGaki($haiku) {
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
   <link rel="stylesheet" type="text/css" href="..assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+    <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
 </head>
 <body>
+
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
+
   <div class="container">
     <div class="row content">
 
