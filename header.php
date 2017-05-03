@@ -42,9 +42,9 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   <div class="media-body" style="padding-top: 6px;">
                     <span class="media-heading"><?php echo $request['nick_name'];?></span>
                   </div>
-                  <div id="<?php echo $request['friend_id'] . '_cont' ?>" class="request-button" style="text-align: right; padding-right: 5px;">
-                    <button type="button" id="<?php echo $request['friend_id'] . '_a' ?>" class="request rsequest-admit">許可</button>
-                    <button type="button" id="<?php echo $request['friend_id'] . '_r' ?>" class="request request-delete">削除</button>
+                  <div id="<?php echo $request['login_member_id'] . '_cont' ?>" class="request-button" style="text-align: right; padding-right: 5px;">
+                    <button type="button" id="<?php echo $request['login_member_id'] . '_a' ?>" class="request rsequest-admit">許可</button>
+                    <button type="button" id="<?php echo $request['login_member_id'] . '_r' ?>" class="request request-delete">削除</button>
                   </div>
                 </div>
               <?php } ?>
