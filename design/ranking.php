@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 // ランキングよし・あし、俳人・句それぞれのランキング上位3件を取ってくる
 
 // よしランキング句用sql文
@@ -126,7 +126,7 @@ foreach ($bad_haiku_rank as $bad_haiku) { //(良し数)
 }
 
 
-// よしランキング歌人用sql文
+// あしランキング歌人用sql文
 $sql = 'SELECT * FROM `dislikes`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -186,7 +186,8 @@ function rankGet($array_ids) {              // $array_idsは配列
   <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
 </head>
-<body>
+<body class="background">
+<!-- <body> -->
   <?php foreach ($haikus_info as $haiku_info) : ?>
     <a href="profile.php"><?php echo $haiku_info['nick_name']; ?></a><br>
     <a href="profile.php"><?php echo $member_info['nick_name']; ?></a><br>
@@ -200,6 +201,207 @@ function rankGet($array_ids) {              // $array_idsは配列
     <img src="assets/images/<?php echo $bad_haiku_info['user_picture_path']; ?>" width="100" height="100">
     <img src="assets/images/<?php echo $bad_member_info['user_picture_path']; ?>" width="100" height="100">
   <?php endforeach; ?>
+  <!--  背景 -->
+
+<!-- 自分情報(左上のやつ) -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"><br><br>
+  </div>
+
+  <div class="col-md-9">
+
+    <div class="ranking-column">
+    <h4><img src="../assets/images/column.png" width="200" height="60">
+    </h4>
+    </div>
+
+  <!-- コラム/ランキング -->
+    <div class="col-md-4 col-md-push-4">
+      <img class="img-responsive img-circle" src="https://farm1.staticflickr.com/1/2759520_6dea8b9007.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
+    </div>
+
+    <div class="col-md-4 col-md-pull-4 ">
+      <img class="img-responsive img-circle" src="https://farm2.staticflickr.com/1109/809710325_4289dc484e.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
+    </div>
+
+    <div class="col-md-4">
+      <img class="img-responsive img-circle" src="https://farm3.staticflickr.com/2353/2216602404_679d01cd4b.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr"><br><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-3 col-md-9">
+      <div class="runking-title">
+        <img src="../assets/images/rank-title.png" width="500" height="80">
+    </div>
+    </div>
+  </div>
+
+<!-- ランキング -->
+<div class="col-md-offset-3 col-md-9 yosi-ranking"> 
+  <!-- 俳人 -->
+  <h5><img src="../assets/images/kajin.png" width="120" height="70"></h5>
+  <!-- よし ランキング -->
+      <div class="col-md-6">
+        <!-- 俳人よしランキング1位 -->
+        <div class="title-ranking">
+          <img src="../assets/images/yoshi.png" width="80" height="45">
+        </div>
+        <div class="ranking-1">
+          <div class="photo"><img class="media-object picuture-position" src="../assets/images/wada.jpg"></div>
+          <h1>たかさん</h1>
+          <div class="point">30 よし</div>
+        </div>
   
+        <!-- 俳人よしランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="ranking-2">
+            <div class="media">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>15 よし</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="ranking-3">
+            <div class="media">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>3 よし</p>
+              </div>
+            </div>
+          </div>
+        </div>
+              <!-- 句 -->
+        <div class="ku-name"><h5><img src="../assets/images/ku.png" width="80" height="60"></h5></div>
+        <h3></h3>
+
+<!-- 俳人よしランキング1位 -->
+        <div class="title-ranking">
+          <img src="../assets/images/yoshi.png" width="80" height="45">
+        </div>
+        <div class="kuranking-1">
+          <div class="photo"><img class="media-object picuture-position" src="../assets/images/wada.jpg"></div>
+          <h1>たかさん</h1>
+          <div class="point">30 よし</div>
+        </div>
+  
+        <!-- 俳人よしランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="kuranking-2">
+            <div class="media">
+              <a class="pull-left" href="#">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              </a>
+              <div class="media-body2">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>15 よし</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="kuranking-3">
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="http://placekitten.com/110/110">
+              </a>
+              <div class="media-body2">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>3 よし</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!--col-md-6-->
+
+    <!--あし ランキング -->
+      <div class="col-md-6">
+        <!-- あしランキングトップ画像 -->
+        <div class="title-ranking">
+          <img src="../assets/images/ashi.png" width="100" height="45">
+        </div>
+        <div class="ranking-1">
+          <img class="media-object picuture-position" src="http://placekitten.com/255/255">
+          <h1>さいとうさん</h1>
+          <div class="point">30 あし</div>
+        </div>
+  
+        <!--あし ランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="ranking-2">
+            <div class="media">
+              <img class="media-object" src="http://placekitten.com/110/110">
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>15 あし</p>
+              </div>
+            </div>
+          </div>
+  
+            <div class="ranking-3">
+              <div class="media">
+                <img class="media-object" src="http://placekitten.com/110/110">
+                <div class="media-body">
+                  <h4 class="media-heading">ユーザー名</h4>
+                  <p>3 あし</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        <!-- 句 -->
+      <div class="title-ranking2">
+        <h5> </h5>
+        <img src="../assets/images/ashi.png" width="100" height="45">
+      </div>
+        <!-- あしランキングトップ画像 -->
+      <div class="title-ranking"></div>
+        <div class="kuranking-1">
+          <span class="intro-text-3">お<br>ね<br>ぇ<br>さ<br>ん</span>
+          <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
+          <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
+          <img class="media-object picuture-position" src="http://placekitten.com/255/255">
+          <h1>さいとうさん</h1>
+          <div class="point">30 あし
+          </div>
+        <!--あし ランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="kuranking-2">
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="http://placekitten.com/110/110">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>15 あし</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="kuranking-3">
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="http://placekitten.com/110/110">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading">ユーザー名</h4>
+                <p>3 あし</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!--col-md-6-->
+</div>
+
 </body>
 </html>
+
+<!-- 順位のバックグラウンドをプロフィール画像に(順位を画像内に表示) -->
+<!-- 各ランキングの画像のサイズ調節 -->
+<!-- bootstrapで左右スクロール出来る物を探す(コラム/ニュース) -->
