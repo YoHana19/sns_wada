@@ -28,24 +28,35 @@ foreach ($haiku_rank as $haiku) {
   $haikus_info[] = $record;
 }
 
-echo '<pre>';
-var_dump($haikus_info);
-echo '</pre>';
+// $haiku_rank[0][0]
 
-foreach ($haikus_info as $haiku_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
-  echo $haiku_info['nick_name'];
-  echo '<br>';
-  echo $haiku_info['haiku_1'];
-  echo '<br>';
-  echo $haiku_info['haiku_2'];
-  echo '<br>';
-  echo $haiku_info['haiku_3'];
-  echo "<br>" . "<br>";
-}
+// $haiku_rank[0][1] 
+// $haiku_rank[1][1]
+
+// echo '<pre>';
+// var_dump($haikus_info);
+// echo '</pre>';
+
+// foreach ($haikus_info as $haiku_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
+  // echo tateGaki($haiku_info['nick_name']);
+  // echo '<br>';
+  // echo $haiku_info['haiku_1'];
+  // echo '<br>';
+  // echo $haiku_info['haiku_2'];
+  // echo '<br>';
+  // echo $haiku_info['haiku_3'];
+  // echo "<br>" . "<br>";
+// }
+
+// echo '<pre>';
+// var_dump($haiku_info);
+// echo '</pre>';
 
 foreach ($haiku_rank as $haiku) { //(良し数)
-  echo $haiku[1] . '<br>';
+  // echo $haiku[1] . '<br>';
 }
+
+// var_dump($haiku_rank);
 
 
 // よしランキング歌人用sql文
@@ -71,21 +82,21 @@ foreach ($member_rank as $member) {
   $members_info[] = $member_record;
 }
 
-echo "<pre>";
-var_dump($members_info);
-echo "</pre>";
+// echo "<pre>";
+// var_dump($members_info);
+// echo "</pre>";
 
-foreach ($members_info as $member_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
-  echo $member_info['nick_name'];
-  echo '<br>' . '<br>';
-}
+// foreach ($members_info as $member_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
+  // var_dump($member_info['nick_name']) ;
+  // echo '<br>' . '<br>';
+// }
 
-foreach ($member_rank as $member) { //(良し数)
-  echo $member[1];
-  echo '<br>';
-}
+// foreach ($member_rank as $member) { //(良し数)
+  // echo $member[1];
+  // echo '<br>';
+// }
 
-var_dump($member);
+// var_dump($member);
 
 
 
@@ -114,21 +125,26 @@ foreach ($bad_haiku_rank as $bad_haiku) {
   $bad_haikus_info[] = $bad_record;
 }
 
-foreach ($bad_haikus_info as $bad_haiku_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
-  echo $bad_haiku_info['nick_name'];
-  echo '<br>';
-  echo $bad_haiku_info['haiku_1'];
-  echo '<br>';
-  echo $bad_haiku_info['haiku_2'];
-  echo '<br>';
-  echo $bad_haiku_info['haiku_3'];
-  echo "<br>" . "<br>";
-}
+// echo '<pre>';
+// var_dump($bad_haikus_info);
+// echo '</pre>';
+
+// foreach ($bad_haikus_info as $bad_haiku_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
+  // echo $bad_haiku_info['nick_name'];
+  // echo '<br>';
+  // echo $bad_haiku_info['haiku_1'];
+  // echo '<br>';
+  // echo $bad_haiku_info['haiku_2'];
+  // echo '<br>';
+  // echo $bad_haiku_info['haiku_3'];
+  // echo "<br>" . "<br>";
+// }
 
 foreach ($bad_haiku_rank as $bad_haiku) { //(悪し数)
-  echo $bad_haiku[1] . '<br>';
+  // echo $bad_haiku[1] . '<br>';
 }
 
+// var_dump($bad_haiku[1]);
 
 // あしランキング歌人用sql文
 $sql = 'SELECT * FROM `dislikes`';
@@ -154,13 +170,13 @@ foreach ($bad_member_rank as $bad_member) {
 }
 
 foreach ($bad_members_info as $bad_member_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
-  echo $bad_member_info['nick_name'];
-  echo '<br>' . '<br>';
+  // echo $bad_member_info['nick_name'];
+  // echo '<br>' . '<br>';
 }
 
-foreach ($bad_member_rank as $bad_member) { //(良し数)
-  echo $bad_member[1];
-  echo '<br>';
+foreach ($bad_member_rank as $bad_member) { //(悪し数)
+  // echo $bad_member[1];
+  // echo '<br>';
 
   // var_dump($bad_member[1]);
 }
@@ -181,7 +197,17 @@ function rankGet($array_ids) {                  // $array_idsは配列
   return $array_ranks;
 }
 
+// 縦書きにする関数
+function tateGaki($haiku) {
+ $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+ $v_haiku = '';
+ foreach ($matches as $letter) {
+   $v_haiku .= $letter . "<br>";
+ }
+ return rtrim($v_haiku, "<br>");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -195,19 +221,19 @@ function rankGet($array_ids) {                  // $array_idsは配列
 </head>
 <body class="background">
 <!-- <body> -->
-  <?php foreach ($haikus_info as $haiku_info) : ?>
-    <a href="profile.php"><?php echo $haiku_info['nick_name']; ?></a><br>
+ <!--  <?php foreach ($haikus_info as $haiku_info) : ?> -->
+  <!--   <a href="profile.php"><?php echo $haiku_info['nick_name']; ?></a><br>
     <a href="profile.php"><?php echo $member_info['nick_name']; ?></a><br>
     <a href="profile.php"><?php echo $bad_haiku_info['nick_name']; ?></a><br>
-    <a href="profile.php"><?php echo $bad_member_info['nick_name']; ?></a><br>
-  <?php endforeach; ?>
+    <a href="profile.php"><?php echo $bad_member_info['nick_name']; ?></a><br> -->
+  <!-- <?php endforeach; ?> -->
   <?php echo '<br>'; ?>
-  <?php foreach ($haikus_info as $haiku_info): ?>
-    <img src="assets/images/<?php echo $haiku_info['user_picture_path']; ?>" width="100" height="100">
-    <img src="assets/images/<?php echo $member_info['user_picture_path']; ?>" width="100" height="100">
-    <img src="assets/images/<?php echo $bad_haiku_info['user_picture_path']; ?>" width="100" height="100">
-    <img src="assets/images/<?php echo $bad_member_info['user_picture_path']; ?>" width="100" height="100">
-  <?php endforeach; ?>
+  <!-- <?php foreach ($haikus_info as $haiku_info): ?> -->
+   <!--  <img src="assets/images/<?php echo $haikus_info['user_picture_path']; ?>" width="100" height="100">
+    <img src="assets/images/<?php echo $members_info['user_picture_path']; ?>" width="100" height="100">
+    <img src="assets/images/<?php echo $bad_haikus_info['user_picture_path']; ?>" width="100" height="100">
+    <img src="assets/images/<?php echo $bad_members_info['user_picture_path']; ?>" width="100" height="100"> -->
+  <!-- <?php endforeach; ?> -->
   <!--  背景 -->
 
 <!-- 自分情報(左上のやつ) -->
@@ -219,7 +245,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
   <div class="col-md-9">
 
     <div class="ranking-column">
-    <h4><img src="../assets/images/column.png" width="200" height="60">
+    <h4><img src="assets/images/column.png" width="200" height="60">
     </h4>
     </div>
 
@@ -247,7 +273,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
 <!-- ランキング -->
 <div class="col-md-offset-3 col-md-9 yosi-ranking"> 
   <!-- 歌人 -->
-  <h5><img src="../assets/images/kajin.png" width="120" height="70"></h5>
+  <h5><img src="assets/images/kajin.png" width="120" height="70"></h5>
   <!-- よし ランキング -->
       <div class="col-md-6">
         <!-- 歌人よしランキング1位 -->
@@ -255,29 +281,29 @@ function rankGet($array_ids) {                  // $array_idsは配列
           <img src="assets/images/yoshi.png" width="80" height="45">
         </div>
           <div class="ranking-1">
-            <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $haiku_info['user_picture_path']; ?>"></div>
-            <h1><?php echo $haiku_info['nick_name'][0]; ?></h1>
-            <div class="point"><?php echo $haiku[0] ?>よし</div>
+            <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $members_info[0]['user_picture_path']; ?>"></div>
+            <h1><?php echo $members_info[0]['nick_name']; ?></h1>
+            <div class="point"><?php echo $member_rank[0][1] ?>よし</div>
           </div>
         
         <!-- 俳人よしランキング2位以下 -->
         <div class="ranking-less2">
           <div class="ranking-2">
             <div class="media">
-              <img class="media-object" src="assets/images/<?php echo $haiku_info['user_picture_path']; ?>">
+              <img class="media-object" src="assets/images/<?php echo $members_info[1]['user_picture_path']; ?>">
               <div class="media-body">
-                <h4 class="media-heading"><?php echo $haiku_info['nick_name']; ?></h4>
-                <p><?php echo $haiku[1] ?>よし</p>
+                <h4 class="media-heading"><?php echo $members_info[1]['nick_name']; ?></h4>
+                <p><?php echo $member_rank[1][1] ?>よし</p>
               </div>
             </div>
           </div>
   
           <div class="ranking-3">
             <div class="media">
-              <img class="media-object" src="assets/images/<?php echo $haiku_info['user_picture_path']; ?>">
+              <img class="media-object" src="assets/images/<?php echo $members_info[2]['user_picture_path']; ?>">
               <div class="media-body">
-                <h4 class="media-heading"><?php echo $haiku_info['nick_name']; ?></h4>
-                <p><?php echo $haiku[2] ?>よし</p>
+                <h4 class="media-heading"><?php echo $members_info[2]['nick_name']; ?></h4>
+                <p><?php echo $member_rank[2][1] ?>よし</p>
               </div>
             </div>
           </div>
@@ -288,7 +314,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
 
 <!-- 俳人よしランキング1位 -->
         <div class="title-ranking">
-          <img src="../assets/images/yoshi.png" width="80" height="45" >
+          <img src="assets/images/yoshi.png" width="80" height="45" >
         </div>
         <div class="kuranking-1">
             <!-- 句の詳細 -->
@@ -298,9 +324,9 @@ function rankGet($array_ids) {                  // $array_idsは配列
                 <div class="active item">
                   <blockquote style="background: #d69090">
                     <div class="haiku-text">
-                      <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                      <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                      <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                      <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[0]['haiku_1']); ?>
+                      <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[0]['haiku_2']); ?>
+                      <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[0]['haiku_3']); ?>
                     </div>
                   </blockquote>
                 </div>
@@ -309,10 +335,10 @@ function rankGet($array_ids) {                  // $array_idsは配列
           </div>
              <!-- 区の詳細ここまで -->
           <a class="pull-left" href="#">
-          <div class="photo"><img class="media-object picuture-position" src="../assets/images/wada.jpg" style="border-radius: 50px;"></div>
+          <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $haikus_info[0]['user_picture_path']; ?>" style="border-radius: 50px;"></div>
           </a>
-          <div class="name"><h1>たかさん</h1></div>
-            <h3>30 よし</h3>
+          <div class="name"><h1><?php echo $haikus_info[0]['nick_name']; ?></h1></div>
+            <h3><?php echo $haiku_rank[0][1] ?> よし</h3>
           </div>
   
         <!-- 俳人よしランキング2位以下 -->
@@ -326,9 +352,9 @@ function rankGet($array_ids) {                  // $array_idsは配列
                     <div class="active item">
                       <blockquote style="background: #d69090">
                         <div class="haiku-text">
-                          <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                          <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                          <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                          <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[1]['haiku_1']); ?>
+                          <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[1]['haiku_2']); ?>
+                          <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[1]['haiku_3']); ?>
                         </div>
                       </blockquote>
                     </div>
@@ -339,11 +365,11 @@ function rankGet($array_ids) {                  // $array_idsは配列
             
               <div class="media2">
                 <a class="pull-left" href="#">
-                <img class="media-object" src="http://placekitten.com/110/110" style="border-radius: 50px;">
+                <img class="media-object" src="assets/images/<?php echo $haikus_info[1]['user_picture_path']; ?>" style="border-radius: 50px;">
                 </a>
                 <div class="media-body2">
-                  <h4 class="media-heading">ユーザー名</h4>
-                  <h4>15 よし</h4>
+                  <h4 class="media-heading"><?php echo $haikus_info[1]['nick_name']; ?></h4>
+                  <h4><?php echo $haiku_rank[1][1] ?> よし</h4>
                 </div>
               </div>
             </div>
@@ -357,9 +383,9 @@ function rankGet($array_ids) {                  // $array_idsは配列
                   <div class="active item">
                     <blockquote style="background: #d69090">
                       <div class="haiku-text">
-                        <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                        <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                        <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                       <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[2]['haiku_1']); ?>
+                       <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[2]['haiku_2']); ?>
+                       <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[2]['haiku_3']); ?>
                       </div>
                     </blockquote>
                   </div>
@@ -370,52 +396,47 @@ function rankGet($array_ids) {                  // $array_idsは配列
 
             <div class="media2">
               <a class="pull-left" href="#">
-                <img class="media-object" src="http://placekitten.com/110/110" style="border-radius: 50px;">
+                <img class="media-object" src="assets/images/<?php echo $haikus_info[2]['user_picture_path']; ?>" style="border-radius: 50px;">
               </a>
               <div class="media-body2">
-                <h4 class="media-heading">ユーザー名</h4>
-                <h5>3 よし</h5>
+                <h4 class="media-heading"><?php echo $haikus_info[2]['nick_name']; ?></h4>
+                <h5><?php echo $haiku_rank[2][1] ?> よし</h5>
               </div>
             </div>
           </div>
         </div>
       </div><!--col-md-6-->
 
-
-
-
-
-
     <!--あし ランキング -->
       <div class="col-md-6">
         <!-- あしランキングトップ画像 -->
         <div class="title-ranking">
-          <img src="../assets/images/ashi.png" width="100" height="45">
+          <img src="assets/images/ashi.png" width="100" height="45">
         </div>
         <div class="ranking-1">
-          <img class="media-object picuture-position" src="http://placekitten.com/255/255">
-          <h1>さいとうさん</h1>
-          <h3>30 あし</h3>
+          <img class="media-object picuture-position" src="assets/images/<?php echo $bad_members_info[0]['user_picture_path']; ?>">
+          <h1><?php echo $bad_members_info[0]['nick_name']; ?></h1>
+          <h3><?php echo $bad_member_rank[0][1]; ?> あし</h3>
         </div>
   
         <!--あし ランキング2位以下 -->
         <div class="ranking-less2">
           <div class="ranking-2">
             <div class="media">
-              <img class="media-object" src="http://placekitten.com/110/110">
+              <img class="media-object" src="assets/images/<?php echo $bad_members_info[1]['user_picture_path']; ?>">
               <div class="media-body">
-                <h4>ユーザー名</h4>
-                <h4>15 あし</h4>
+                <h4><?php echo $bad_members_info[1]['nick_name']; ?></h4>
+                <h4><?php echo $bad_member_rank[1][1]; ?> あし</h4>
               </div>
             </div>
           </div>
 
           <div class="ranking-3">
             <div class="media">
-              <img class="media-object" src="http://placekitten.com/110/110">
+              <img class="media-object" src="assets/images/<?php echo $bad_members_info[2]['user_picture_path']; ?>">
               <div class="media-body">
-                <h4>ユーザー名</h4>
-                <h5>3 あし</h5>
+                <h4><?php echo $bad_members_info[2]['nick_name']; ?></h4>
+                <h5><?php echo $bad_member_rank[2][1] ?> あし</h5>
               </div>
             </div>
           </div>
@@ -423,7 +444,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
       <!-- 句 -->
         <div class="title-ranking2">
           <h5> </h5>
-          <img src="../assets/images/ashi.png" width="100" height="45">
+          <img src="assets/images/ashi.png" width="100" height="45">
         </div>
           <!-- あしランキングトップ画像 -->
         <div class="title-ranking"></div>
@@ -436,9 +457,9 @@ function rankGet($array_ids) {                  // $array_idsは配列
                   <div class="active item">
                     <blockquote style="background: #d69090">
                       <div class="haiku-text">
-                        <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                        <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                        <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                        <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[0]['haiku_1']); ?>
+                        <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[0]['haiku_2']); ?>
+                        <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[0]['haiku_3']); ?>
                       </div>
                     </blockquote>
                   </div>
@@ -448,10 +469,10 @@ function rankGet($array_ids) {                  // $array_idsは配列
              <!-- 区の詳細ここまで -->
 
             <a class="pull-left" href="#"> 
-              <img class="media-object picuture-position" src="http://placekitten.com/255/255" style="border-radius: 50px;">
+              <img class="media-object picuture-position" src="assets/images/<?php echo $bad_haikus_info[0]['user_picture_path']; ?>" style="border-radius: 50px;">
             </a>
-            <h1 >さいとうさん</h1>
-            <h3>30 あし</h3>
+            <h1 ><?php echo $bad_haikus_info[0]['nick_name']; ?></h1>
+            <h3><?php echo $bad_haiku_rank[0][1] ?> あし</h3>
 
 
         <!-- 俳人あし
@@ -466,9 +487,9 @@ function rankGet($array_ids) {                  // $array_idsは配列
                     <div class="active item">
                       <blockquote style="background: #d69090">
                         <div class="haiku-text">
-                          <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                          <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                          <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                          <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[1]['haiku_1']); ?>
+                          <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[1]['haiku_2']); ?>
+                          <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[1]['haiku_3']); ?>
                         </div>
                       </blockquote>
                     </div>
@@ -479,11 +500,11 @@ function rankGet($array_ids) {                  // $array_idsは配列
             
               <div class="media2">
                 <a class="pull-left" href="#">
-                <img class="media-object" src="http://placekitten.com/110/110" style="border-radius: 50px;">
+                <img class="media-object" src="assets/images/<?php echo $bad_haikus_info[1]['user_picture_path']; ?>" style="border-radius: 50px;">
                 </a>
                 <div class="media-body2">
-                  <h4 class="media-heading">ユーザー名</h4>
-                  <h4>15 あし</h4>
+                  <h4 class="media-heading"><?php echo $bad_haikus_info[1]['nick_name']; ?></h4>
+                  <h4><?php echo $bad_haiku_rank[1][1] ?> あし</h4>
                 </div>
               </div>
             </div>
@@ -497,9 +518,9 @@ function rankGet($array_ids) {                  // $array_idsは配列
                   <div class="active item">
                     <blockquote style="background: #d69090">
                       <div class="haiku-text">
-                        <h2 class="haiku-text-1">桜<br>か<br>な</h2>
-                        <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
-                        <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                        <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[2]['haiku_1']); ?>
+                        <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[2]['haiku_2']); ?>
+                        <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[2]['haiku_3']); ?>
                       </div>
                     </blockquote>
                   </div>
@@ -510,11 +531,11 @@ function rankGet($array_ids) {                  // $array_idsは配列
 
             <div class="media2">
               <a class="pull-left" href="#">
-                <img class="media-object" src="http://placekitten.com/110/110" style="border-radius: 50px;" >
+                <img class="media-object" src="assets/images/<?php echo $bad_haikus_info[2]['user_picture_path']; ?>" style="border-radius: 50px;" >
               </a>
               <div class="media-body2">
-                <h4 class="media-heading">ユーザー名</h4>
-                <h5>3 あし</h5>
+                <h4 class="media-heading"><?php echo $bad_haikus_info[2]['nick_name']; ?></h4>
+                <h5><?php echo $bad_haiku_rank[2][1] ?> あし</h5>
               </div>
             </div>
           </div>
