@@ -79,7 +79,6 @@ function tateGaki($haiku) {
   <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <!-- For Modal Window -->
-  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
   <link rel="stylesheet" type="text/css" href="assets/css/header.css">
 
 </head>
