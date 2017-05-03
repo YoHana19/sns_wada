@@ -1,0 +1,25 @@
+.haiku-text {
+  border-radius: 80px;
+  padding-top: 50px;
+}
+
+.haiku-text-1{
+  font-family: serif;
+  font-size: 50px;
+  padding-left: 60px;
+}
+
+.haiku-text-2{
+  font-family: serif;
+  font-size: 50px;
+  padding-left: 60px;
+}
+.haiku-text-3{
+  font-family: serif;
+  font-size: 50px;
+  padding-left: 60px;
+}
+
+.user-right {
+  background-color: #f2dede;
+}
