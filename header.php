@@ -124,7 +124,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
               <div class="form-group" style="margin-top: 15px; position: relative; padding-right: 0;">
                 <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
                 <img id="photo_img" src="assets/images/photo_submit.png" alt="参照" class="img-submit">
-                <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 15px">
+                <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 10px; width: 200px;">
               </div>
             </div>
 
