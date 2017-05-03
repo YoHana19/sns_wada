@@ -13,7 +13,8 @@
 
   <!-- よし ランキング -->
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 " >
+    <div class="senter">
       <!-- よしランキング1位 -->
       <div class="title-ranking">
         <img src="../assets/images/yoshi.png" alt="">
@@ -47,7 +48,7 @@
         </div>
       </div>
     </div>
-
+  </div>
 
     <!--あし ランキング -->
     <div class="col-md-6">
