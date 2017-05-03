@@ -47,6 +47,7 @@ function tateGaki($haiku) {
   <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
   <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
@@ -232,6 +233,9 @@ function tateGaki($haiku) {
         </div>
       </div>
   </div>
+
+  <!-- フッター -->
+  <?php require('footer.php') ?>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="assets/js/jquery-3.1.1.js"></script>

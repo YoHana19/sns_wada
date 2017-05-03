@@ -652,5 +652,7 @@ function tateGaki($haiku) {
     };
   </script>
 
+  <!-- フッター -->
+  <?php require('footer.php') ?>
 </body>
 </html>
