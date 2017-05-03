@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
   <!-- 後々統一する -->
   <meta charset="utf-8">
   <title></title>

@@ -114,6 +114,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
                 <h4 class="media-heading"><?php echo $like_haikus_info[2]['nick_name'] ?></h4>
                 <p><?php echo $like_haiku_rank[2][1] ?> よし</p>
               </div>
+
             </div>
           </div>
         </div>

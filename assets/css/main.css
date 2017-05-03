@@ -19,9 +19,14 @@ h1 {
   font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
 }
 
+p {
+  line-height: 28px;
+}
+
 /* 全体のコンテンツ */
-.content {
-    padding-top: 80px;
+
+.whole_content {
+    padding-top: 120px;
 }
 
 /* 左のコンンテンツ */
