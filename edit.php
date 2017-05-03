@@ -132,16 +132,16 @@ function tateGaki($haiku) {
   <link rel="stylesheet" type="text/css" href="assets/css/user.css">
   <link rel="stylesheet" type="text/css" href="assets/css/edit.css">
 </head>
-<body>
 
-  <div class="container content" style="">
+<body background="assets/images/back.jpg">
+  <div class="container content">
     <div class="fb-profile">
       <div class="fb-image-lg" style="background-image: url(assets/images/<?php echo $login_member['back_picture_path']; ?>);  width: 100%; height: 450px;">
-        <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
+        <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']);?></span>
         <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']);?></span>
         <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']);?></span>
       </div>
-      <img align="left" class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example" style="width:300px; height:300px; margin-top:-200px; margin-left:100px;">
+      <img align="left" class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example" style="width:300px; height:300px; margin-top:-200px; margin-left:80px;">
       <div class="fb-profile-text">
         <h1 style="margin-top:10px;"><?php echo $login_member['nick_name']; ?></h1>
       </div>
