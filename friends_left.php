@@ -24,7 +24,7 @@ require('dbconnect.php');
     </div>
   </form>
 
-  <div class="friends-display">
+  <div class="friends-display" style="margin-top: 20px;">
     <!-- タイトル表示 -->
     <div class="friends-title">
       <span class="title">吾輩</span>

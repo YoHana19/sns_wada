@@ -13,7 +13,8 @@
 
   <!-- よし ランキング -->
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 " >
+    <div class="senter">
       <!-- よしランキング1位 -->
       <div class="title-ranking">
         <img src="../assets/images/yoshi.png" alt="">
@@ -28,30 +29,26 @@
       <div class="ranking-less2">
         <div class="ranking-2">
           <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="../assets/images/wada.jpg">
-            </a>
-              <div class="media-body">
-                <h4 class="media-heading">ユーザー名</h4>
-                <p>15 よし</p>
-              </div>
+            <img class="media-object" src="../assets/images/wada.jpg">
+            <div class="media-body">
+              <h4 class="media-heading">ユーザー名</h4>
+              <p>15 よし</p>
+            </div>
           </div>
         </div>
 
         <div class="ranking-3">
           <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="../assets/images/wada.jpg">
-            </a>
-              <div class="media-body">
-                <h4 class="media-heading">ユーザー名</h4>
-                  <p>3 よし</p>
-              </div>
+            <img class="media-object" src="../assets/images/wada.jpg">
+            <div class="media-body">
+              <h4 class="media-heading">ユーザー名</h4>
+              <p>3 よし</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
 
     <!--あし ランキング -->
     <div class="col-md-6">
@@ -69,21 +66,17 @@
       <div class="ranking-less2">
         <div class="ranking-2">
           <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="../assets/images/wada.jpg">
-            </a>
-              <div class="media-body">
-                <h4 class="media-heading">ユーザー名</h4>
-                <p>15 あし</p>
-              </div>
+            <img class="media-object" src="../assets/images/wada.jpg">
+            <div class="media-body">
+              <h4 class="media-heading">ユーザー名</h4>
+              <p>15 あし</p>
+            </div>
           </div>
         </div>
 
         <div class="ranking-3">
           <div class="media">
-            <a class="pull-left" href="#">
               <img class="media-object" src="../assets/images/wada.jpg">
-            </a>
               <div class="media-body">
                 <h4 class="media-heading">ユーザー名</h4>
                   <p>3 あし</p>

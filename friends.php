@@ -1,6 +1,9 @@
 <?php
 session_start();
 require('dbconnect.php');
+
+$_SESSION['login_member_id'] = 1;
+
 // ログインユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
 $data = array($_SESSION['login_member_id']);
@@ -66,7 +69,7 @@ $num_friends = count($friends);
       </div>
 
       <div class="col-md-8 right-content">
-        <?php require('assets/friends_ranking.php'); ?>
+        <?php require('friends_ranking.php'); ?>
       </div>
     </div>
   </div>
