@@ -52,6 +52,31 @@
   width: 180px;
 }
 
+.request {
+  font-size: 10px;
+  padding: 2px;
+  color :#FFFFFF;
+}
+
+.request:hover {
+  color :#FFFFFF;
+}
+
+.request:active {
+  color :#FFFFFF;
+}
+
+.request:focus {
+  color :#FFFFFF;
+}
+
+.request-admit {
+  background-color: #00a497;
+}
+
+.request-delete {
+  background-color: #ee827c;
+}
 
 /* 検索フォーム */
 .form-control,
@@ -68,7 +93,7 @@
   margin-right: 10px;
   background-color: #c8c2be;
   color: black;
-  border-color: gray;
+  border-color: #c8c2be;
   /*opacity: .9;*/
   border-radius: 5px;
   /*background: url('../images/header_sample.jpg');*/

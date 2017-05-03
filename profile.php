@@ -64,7 +64,7 @@ function tateGaki($haiku) {
   <!--プロフィール写真/ 一言-->
   <div class="container whole_content">
     <div class="fb-profile">
-      <div class="fb-image-lg" style="width: 100%; height: 400px;">
+      <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_user['back_picture_path']; ?>);">
         <span class="intro-text-3"><?php echo tateGaki($login_user['self_intro_3']); ?></span>
         <span class="intro-text-2"><?php echo tateGaki($login_user['self_intro_2']); ?></span>
         <span class="intro-text-1"><?php echo tateGaki($login_user['self_intro_1']); ?></span>

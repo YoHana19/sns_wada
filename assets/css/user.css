@@ -43,7 +43,7 @@ body
 .fb-image-profile
 {
     margin: -90px 10px 0px 50px;
-    z-index: 9;
+    z-index: 3;
     width: 20%;
     position: relative;
 }

@@ -35,16 +35,16 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <div id="requests" class="requests_display">
             <div class="well_3" style="padding: 0; background-color: #bce2e8;">
               <?php foreach ($requests as $request) { ?>
-                <div class="media" style="position: relative; margin-top: 3px; border-bottom: solid 1px #ffffff;">
+                <div class="media" style="position: relative; margin-top: 3px; border-bottom: solid 1px #ffffff; padding: 5px;">
                   <a class="pull-left">
                     <img class="media-object" src="assets/images/<?php echo $request['user_picture_path']; ?>" style="width: 30px; height: 30px; border-radius: 50%; margin: 0 0 4px 4px;">
                   </a>
                   <div class="media-body" style="padding-top: 6px;">
                     <span class="media-heading"><?php echo $request['nick_name'];?></span>
                   </div>
-                  <div id="<?php echo $request['friend_id'] . '_cont' ?>" class="request-button" style="text-align: right; padding-right: 5px;">
-                    <button type="button" id="<?php echo $request['friend_id'] . '_a' ?>" class="request rsequest-admit">許可</button>
-                    <button type="button" id="<?php echo $request['friend_id'] . '_r' ?>" class="request request-delete">削除</button>
+                  <div id="<?php echo $request['login_member_id'] . '_cont' ?>" class="request-button" style="text-align: right; padding-right: 5px;">
+                    <button type="button" id="<?php echo $request['login_member_id'] . '_a' ?>" class="request btn request-admit">許可</button>
+                    <button type="button" id="<?php echo $request['login_member_id'] . '_r' ?>" class="request btn request-delete">削除</button>
                   </div>
                 </div>
               <?php } ?>
@@ -124,7 +124,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
               <div class="form-group" style="margin-top: 15px; position: relative; padding-right: 0;">
                 <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
                 <img id="photo_img" src="assets/images/photo_submit.png" alt="参照" class="img-submit">
-                <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 15px">
+                <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 10px; width: 200px;">
               </div>
             </div>
 
