@@ -191,6 +191,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
 </head>
 <body class="background">
 <!-- <body> -->
@@ -287,53 +288,114 @@ function rankGet($array_ids) {                  // $array_idsは配列
 
 <!-- 俳人よしランキング1位 -->
         <div class="title-ranking">
-          <img src="assets/images/yoshi.png" width="80" height="45">
+          <img src="../assets/images/yoshi.png" width="80" height="45" >
         </div>
         <div class="kuranking-1">
-          <div class="photo"><img class="media-object picuture-position" src="assets/images/wada.jpg"></div>
-          <h1>たかさん</h1>
-          <div class="point">30 よし</div>
-        </div>
+            <!-- 句の詳細 -->
+          <div class="haiku">
+            <div class="carousel-info">
+              <div class="pull-left">
+                <div class="active item">
+                  <blockquote style="background: #d69090">
+                    <div class="haiku-text">
+                      <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                      <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                      <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                    </div>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+             <!-- 区の詳細ここまで -->
+          <a class="pull-left" href="#">
+          <div class="photo"><img class="media-object picuture-position" src="../assets/images/wada.jpg" style="border-radius: 50px;"></div>
+          </a>
+          <div class="name"><h1>たかさん</h1></div>
+            <h3>30 よし</h3>
+          </div>
   
         <!-- 俳人よしランキング2位以下 -->
-        <div class="ranking-less2">
-          <div class="kuranking-2">
-            <div class="media">
-              <a class="pull-left" href="#">
-              <img class="media-object" src="http://placekitten.com/110/110">
-              </a>
-              <div class="media-body2">
-                <h4 class="media-heading">ユーザー名</h4>
-                <p>15 よし</p>
+          <div class="ranking-less2">
+            <div class="kuranking-2">
+          
+            <!-- 句の詳細 -->
+              <div class="haiku">
+                <div class="carousel-info">
+                  <div class="pull-left">
+                    <div class="active item">
+                      <blockquote style="background: #d69090">
+                        <div class="haiku-text">
+                          <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                          <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                          <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                        </div>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             <!-- 区の詳細ここまで -->
+            
+              <div class="media2">
+                <a class="pull-left" href="#">
+                <img class="media-object" src="http://placekitten.com/110/110" style="border-radius: 50px;">
+                </a>
+                <div class="media-body2">
+                  <h4 class="media-heading">ユーザー名</h4>
+                  <h4>15 よし</h4>
+                </div>
               </div>
             </div>
-          </div>
   
           <div class="kuranking-3">
-            <div class="media">
+            
+            <!-- 句の詳細 -->
+            <div class="haiku">
+              <div class="carousel-info">
+                <div class="pull-left">
+                  <div class="active item">
+                    <blockquote style="background: #d69090">
+                      <div class="haiku-text">
+                        <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                        <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                        <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                      </div>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!-- 区の詳細ここまで -->
+
+            <div class="media2">
               <a class="pull-left" href="#">
-                <img class="media-object" src="http://placekitten.com/110/110">
+                <img class="media-object" src="http://placekitten.com/110/110" style="border-radius: 50px;">
               </a>
               <div class="media-body2">
                 <h4 class="media-heading">ユーザー名</h4>
-                <p>3 よし</p>
+                <h5>3 よし</h5>
               </div>
             </div>
           </div>
         </div>
-
       </div><!--col-md-6-->
+
+
+
+
+
 
     <!--あし ランキング -->
       <div class="col-md-6">
         <!-- あしランキングトップ画像 -->
         <div class="title-ranking">
-          <img src="assets/images/ashi.png" width="100" height="45">
+          <img src="../assets/images/ashi.png" width="100" height="45">
         </div>
         <div class="ranking-1">
           <img class="media-object picuture-position" src="http://placekitten.com/255/255">
-          <h1><?php echo $bad_haiku_info['nick_name']; ?></h1>
-          <div class="point">30 あし</div>
+          <h1>さいとうさん</h1>
+          <h3>30 あし</h3>
         </div>
   
         <!--あし ランキング2位以下 -->
@@ -342,68 +404,127 @@ function rankGet($array_ids) {                  // $array_idsは配列
             <div class="media">
               <img class="media-object" src="http://placekitten.com/110/110">
               <div class="media-body">
-                <h4 class="media-heading"><?php echo $bad_haiku_info['nick_name']; ?></h4>
-                <p>15 あし</p>
+                <h4>ユーザー名</h4>
+                <h4>15 あし</h4>
               </div>
             </div>
           </div>
-  
-            <div class="ranking-3">
-              <div class="media">
-                <img class="media-object" src="http://placekitten.com/110/110">
-                <div class="media-body">
-                  <h4 class="media-heading"><?php echo $bad_haiku_info['nick_name']; ?></h4>
-                  <p>3 あし</p>
-                </div>
-              </div>
-            </div>
-          </div>
-      
-        <!-- 句 -->
-      <div class="title-ranking2">
-        <h5> </h5>
-        <img src="assets/images/ashi.png" width="100" height="45">
-      </div>
-        <!-- あしランキングトップ画像 -->
-      <div class="title-ranking"></div>
-        <div class="kuranking-1">
-          <span class="intro-text-3">お<br>ね<br>ぇ<br>さ<br>ん</span>
-          <span class="intro-text-2">ト<br>レ<br>ン<br>デ<br>ィ<br>だ<br>ね</span>
-          <span class="intro-text-1">齋<br>藤<br>さ<br>ん</span>
-          <img class="media-object picuture-position" src="http://placekitten.com/255/255">
-          <h1>さいとうさん</h1>
-          <div class="point">30 あし
-          </div>
-        <!--あし ランキング2位以下 -->
-        <div class="ranking-less2">
-          <div class="kuranking-2">
+
+          <div class="ranking-3">
             <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="http://placekitten.com/110/110">
-              </a>
+              <img class="media-object" src="http://placekitten.com/110/110">
               <div class="media-body">
-                <h4 class="media-heading">ユーザー名</h4>
-                <p>15 あし</p>
-              </div>
-            </div>
-          </div>
-  
-          <div class="kuranking-3">
-            <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="http://placekitten.com/110/110">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading">ユーザー名</h4>
-                <p>3 あし</p>
+                <h4>ユーザー名</h4>
+                <h5>3 あし</h5>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      <!-- 句 -->
+        <div class="title-ranking2">
+          <h5> </h5>
+          <img src="../assets/images/ashi.png" width="100" height="45">
+        </div>
+          <!-- あしランキングトップ画像 -->
+        <div class="title-ranking"></div>
+          <div class="kuranking-1">
+           
+          <!-- 句の詳細 -->
+            <div class="haiku">
+              <div class="carousel-info">
+                <div class="pull-left">
+                  <div class="active item">
+                    <blockquote style="background: #d69090">
+                      <div class="haiku-text">
+                        <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                        <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                        <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                      </div>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!-- 区の詳細ここまで -->
+
+            <a class="pull-left" href="#"> 
+              <img class="media-object picuture-position" src="http://placekitten.com/255/255" style="border-radius: 50px;">
+            </a>
+            <h1 >さいとうさん</h1>
+            <h3>30 あし</h3>
+
+
+        <!-- 俳人あし
+        ランキング2位以下 -->
+          <div class="ranking-less2">
+            <div class="kuranking-2">
+          
+            <!-- 句の詳細 -->
+              <div class="haiku">
+                <div class="carousel-info">
+                  <div class="pull-left">
+                    <div class="active item">
+                      <blockquote style="background: #d69090">
+                        <div class="haiku-text">
+                          <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                          <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                          <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                        </div>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             <!-- 区の詳細ここまで -->
+            
+              <div class="media2">
+                <a class="pull-left" href="#">
+                <img class="media-object" src="http://placekitten.com/110/110" style="border-radius: 50px;">
+                </a>
+                <div class="media-body2">
+                  <h4 class="media-heading">ユーザー名</h4>
+                  <h4>15 あし</h4>
+                </div>
+              </div>
+            </div>
+  
+          <div class="kuranking-3">
+            
+            <!-- 句の詳細 -->
+            <div class="haiku">
+              <div class="carousel-info">
+                <div class="pull-left">
+                  <div class="active item">
+                    <blockquote style="background: #d69090">
+                      <div class="haiku-text">
+                        <h2 class="haiku-text-1">桜<br>か<br>な</h2>
+                        <h2 class="haiku-text-2">事<br>思<br>ひ<br>出<br>す</h2>
+                        <h2 class="haiku-text-3">さ<br>ま<br>ざ<br>ま<br>な</h2>
+                      </div>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!-- 区の詳細ここまで -->
+
+            <div class="media2">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="http://placekitten.com/110/110" style="border-radius: 50px;" >
+              </a>
+              <div class="media-body2">
+                <h4 class="media-heading">ユーザー名</h4>
+                <h5>3 あし</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!--col-md-6-->
     </div>
   </div><!--col-md-6-->
 </div>
+
+
 
 </body>
 </html>

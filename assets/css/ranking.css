@@ -80,6 +80,7 @@
 .ranking-less2 {
   margin-top: 60px;
   text-align: center; 
+  padding-top: 3px;
 
 }
 
@@ -97,6 +98,7 @@
 .ranking-2 img {
   width: 200px;
   height: 200px;
+  padding-top: 3px;
 }
 
 .media-heading {
@@ -116,21 +118,31 @@
 .ranking-3 img {
   width: 100px;
   height: 100px;
+  padding-top: 3px;
 }
 
 .kuranking-1 img {
   width: 100px;
   height: 100px;
+  padding-top: 3px;
+  margin-top: 20px;
+  margin-right: 38px;
 }
 
 .kuranking-2 img {
   width: 100px;
   height: 100px;
+  padding-top: 3px;
+  margin-top: 5px;
+  margin-right: 38px;
 }
 
 .kuranking-3 img {
   width: 100px;
   height: 100px;
+  padding-top: 3px;
+  margin-top: 5px;
+  margin-right: 38px;
 }
 
 
@@ -139,11 +151,19 @@
   font-size: 17px;
 }
 
+.media-body1 {
+  padding-right: 150px;
+}
 .media-body2 {
   padding-right: 150px;
 }
 
-
+.background {
+    padding: 190px 10px;
+    margin: 0 0 0 0px;
+    font-size: 0.5px;
+    border-left: 0px solid #eee;
+}
 
 /* 俳句の縦書き */
 .haiku-text {
@@ -168,4 +188,10 @@
 
 .haiku-text-3 {
     right: 0px;
+}
+
+.background {
+background-color: #d69090
+width="200" ;
+height="500" ;
 }
