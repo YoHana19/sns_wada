@@ -97,19 +97,19 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
               <!-- 上の句 -->
               <div class="form-group">
                 <label for="up_haiku" class="sr-only">Username</label>
-                <input type="text" class="form-control haiku" id="up_haiku" name="up_haiku" placeholder="壱行目（四〜六文字）">
+                <input type="text" class="form-control" id="up_haiku" name="up_haiku" placeholder="壱行目（四〜六文字）">
                 <p id="up_haiku_valid" class="haiku-input-err" style="display: none">四から六文字で入力してください</p>
               </div>
               <!-- 中の句 -->
               <div class="form-group">
                 <label for="md_haiku" class="sr-only">Username</label>
-                <input type="text" class="form-control haiku" id="md_haiku" name="md_haiku" placeholder="弐行目（六〜八文字）">
+                <input type="text" class="form-control" id="md_haiku" name="md_haiku" placeholder="弐行目（六〜八文字）">
                 <p id="md_haiku_valid" class="haiku-input-err" style="display: none">六から八文字で入力してください</p>
               </div>
               <!-- 下の句 -->
               <div class="form-group">
                 <label for="lw_haiku" class="sr-only">Username</label>
-                <input type="text" class="form-control haiku" id="lw_haiku" name="lw_haiku" placeholder="参行目（四〜六文字）">
+                <input type="text" class="form-control" id="lw_haiku" name="lw_haiku" placeholder="参行目（四〜六文字）">
                 <p id="lw_haiku_valid" class="haiku-input-err" style="display: none">四から六文字で入力してください</p>
               </div>
 
