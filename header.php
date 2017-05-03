@@ -1,6 +1,5 @@
 <?php
 require('dbconnect.php');
-$_SESSION['login_member_id'] = 1;
 
 // 友達リクエスト申請者の取得
 $sql = 'SELECT * FROM `friends` AS f LEFT JOIN `members` AS m ON f.login_member_id=m.member_id WHERE f.friend_member_id=? AND f.state=0 ORDER BY f.created';

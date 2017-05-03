@@ -73,14 +73,15 @@ function tateGaki($haiku) {
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="..assets/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
-    <!-- For Modal Window -->
-  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
   <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+
 </head>
 <body>
 
@@ -88,7 +89,7 @@ function tateGaki($haiku) {
   <?php require('header.php'); ?>
 
   <div class="container">
-    <div class="row content">
+    <div class="row whole_content">
 
       <!-- 左サイドバー -->
       <div class="col-md-3 left-content">
@@ -288,13 +289,10 @@ function tateGaki($haiku) {
   <script src="assets/js/jquery-3.1.1.js"></script>
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>
+
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>
   <script src="assets/js/comment.js"></script>
-  
-  <!-- jQuery (necessary for Modal Window) -->
-  <script src="assets/js/modal_window.js"></script>
-  <script src="assets/js/haiku_input.js"></script>
 
   <!-- 自動スクロール -->
   <script type="text/javascript">
