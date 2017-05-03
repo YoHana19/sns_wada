@@ -100,7 +100,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
         <div class="ranking-2">
           <div class="media">
             <img class="media-object" src="assets/images/<?php echo $like_haikus_info[1]['user_picture_path'] ?>">
-            <div class="media-body">
+            <div class="media-body rank-body">
               <h4 class="media-heading"><?php echo $like_haikus_info[1]['nick_name'] ?></h4>
               <p><?php echo $like_haiku_rank[1][1] ?> よし</p>
             </div>
@@ -110,7 +110,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
         <div class="ranking-3">
           <div class="media">
             <img class="media-object" src="assets/images/<?php echo $like_haikus_info[2]['user_picture_path'] ?>">
-            <div class="media-body">
+            <div class="media-body rank-body">
               <h4 class="media-heading"><?php echo $like_haikus_info[2]['nick_name'] ?></h4>
               <p><?php echo $like_haiku_rank[2][1] ?> よし</p>
             </div>
@@ -137,7 +137,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
         <div class="ranking-2">
           <div class="media">
             <img class="media-object" src="assets/images/<?php echo $dislike_haikus_info[1]['user_picture_path'] ?>">
-            <div class="media-body">
+            <div class="media-body rank-body">
               <h4 class="media-heading"><?php echo $dislike_haikus_info[1]['nick_name'] ?></h4>
               <p><?php echo $dislike_haiku_rank[1][1] ?> あし</p>
             </div>
@@ -147,7 +147,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
         <div class="ranking-3">
           <div class="media">
               <img class="media-object" src="assets/images/<?php echo $dislike_haikus_info[2]['user_picture_path'] ?>">
-              <div class="media-body">
+              <div class="media-body rank-body">
                 <h4 class="media-heading"><?php echo $dislike_haikus_info[2]['nick_name'] ?></h4>
                   <p><?php echo $dislike_haiku_rank[2][1] ?> あし</p>
               </div>

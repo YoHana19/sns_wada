@@ -34,7 +34,7 @@ require('dbconnect.php');
           <a class="pull-left left-photo" href="#">
             <img class="media-object" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
           </a>
-        <div class="media-body left-proph-simple">
+        <div class="media-body left-display" style="border-bottom: none;">
           <span class="media-heading left-nickname"><?php echo $login_member['nick_name'];?></span>
           <p class="left-intro"><?php echo $login_member['self_intro_1'];?>&nbsp;<?php echo $login_member['self_intro_2'];?>&nbsp;<?php echo $login_member['self_intro_3'];?></p>
         </div>
@@ -45,8 +45,8 @@ require('dbconnect.php');
   <div class="friends-display">
     <!-- タイトル表示 -->
     <div class="friends-title">
-      <span class="title">お仲間</span>
-      <span style="margin-left: 220px;"><?php echo $num_friends ?></span>
+      <span class="title">お仲間一覧</span>
+      <span style="margin-left: 220px; font-weight: 600;"><?php echo $num_friends ?></span>
     </div>
 
     <!-- 友達一覧 -->

@@ -39,9 +39,6 @@ $num_friends = count($friends);
 
 ?>
 
-
-</html>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -51,7 +48,6 @@ $num_friends = count($friends);
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
   <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
@@ -61,10 +57,8 @@ $num_friends = count($friends);
   <!-- For Modal Window -->
   <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
   <link rel="stylesheet" type="text/css" href="assets/css/header.css">
-
-  <link rel="stylesheet" type="text/css" href="assets/css/chat.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/ranking.css">
 </head>
-
 <body>
 
   <!-- ヘッダー -->
@@ -76,7 +70,7 @@ $num_friends = count($friends);
         <?php require('friends_left.php'); ?>
       </div>
 
-      <div class="col-md-8 right-content">
+      <div class="col-md-8 right-content" style="margin-top: 0;">
         <?php require('friends_ranking.php'); ?>
       </div>
     </div>

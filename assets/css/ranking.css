@@ -1,0 +1,190 @@
+.background {
+  background-image: url(../images/back.jpg);
+  padding-top: 80px;
+}
+
+.ranking-column {
+
+  padding-left: 321px;
+  padding-bottom: 50px;
+}
+
+.runking-title {
+  padding-top: 50px;
+  padding-bottom: 25px;
+  padding-left: 323px;
+}
+
+.ku-name {
+  padding-top: 50px;
+}
+
+/* ランキング タイトル*/
+.top-ranking {
+  position: relative;
+  height: 225px;
+}
+
+.rank-title {
+  position: absolute;
+  top: 80px;
+  left: 255px;
+  width: 700px;
+}
+
+.rank-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 270px;
+}
+
+.title-ranking {
+  margin: 0 0 50px 140px;
+  top: 80px;
+}
+
+.title-ranking2{
+  margin-top: 190px;
+  margin-right: 50px;
+  margin-left: 140px;
+}
+
+.name {
+  margin-left: 140px;
+}
+
+/* ランキング 1位 */
+.ranking-1 {
+  width: 100%;
+  text-align: center;
+}
+
+
+.ranking-1 img {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 6px;
+  margin: auto;
+}
+
+.ranking-1 p {
+  font-size: 15px;
+  margin: auto;
+}
+.media-body2 {
+  padding: 1px 0 10px 0;
+}
+/* ランキング 2位以下 */
+.ranking-less2 {
+  margin-top: 60px;
+  text-align: center; 
+  padding-top: 3px;
+
+}
+
+.ranking-less2 img {
+  border-radius: 6px;
+  margin: auto;
+}
+
+.rank-body {
+  padding-top: 10px;
+}
+
+/* ランキング 2位 */
+.ranking-2 {
+  margin-bottom: 50px;
+}
+
+.ranking-2 img {
+  width: 200px;
+  height: 200px;
+  padding-top: 3px;
+  margin: auto;
+}
+
+.ranking-2 p {
+  padding: 5px 0 0 0;
+}
+
+/* ランキング 3位 */
+.ranking-3 {
+  margin-bottom: 50px;
+}
+
+.ranking-3 img {
+  width: 100px;
+  height: 100px;
+  padding-top: 3px;
+}
+
+.kuranking-1 img {
+  width: 100px;
+  height: 100px;
+  padding-top: 3px;
+  margin-top: 20px;
+  margin-right: 38px;
+}
+
+.kuranking-2 img {
+  width: 100px;
+  height: 100px;
+  padding-top: 3px;
+  margin-top: 5px;
+  margin-right: 38px;
+}
+
+.kuranking-3 img {
+  width: 100px;
+  height: 100px;
+  padding-top: 3px;
+  margin-top: 5px;
+  margin-right: 38px;
+}
+
+.media-body1 {
+  padding-right: 150px;
+}
+.media-body2 {
+  padding-right: 150px;
+}
+
+.background {
+    padding: 190px 10px;
+    margin: 0 0 0 0px;
+    font-size: 0.5px;
+    border-left: 0px solid #eee;
+}
+
+/* 俳句の縦書き */
+.haiku-text {
+    width: 300px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.haiku-text h2 {
+    position: absolute;
+    top: 35px;
+}
+
+.haiku-text-1 {
+    left: 0;
+}
+
+.haiku-text-2 {
+    left: 135px;
+}
+
+.haiku-text-3 {
+    right: 0px;
+}
+
+.background {
+background-color: #d69090
+width="200" ;
+height="500" ;
+}
