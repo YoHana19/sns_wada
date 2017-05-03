@@ -40,7 +40,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
   <form action="friends.php" method="GET" accept-charset="utf-8" class="form-horizontal">
     <div id="custom-search-input">
       <div class="input-group">
-        <input type="text" name="search_word" class="search-query form-control" placeholder=" 友達検索" value="<?php echo $search_word ?>">
+        <input type="text" name="search_word" class="search-query form-control" placeholder=" 友達検索" value="">
         <span class="input-group-btn">
           <button class="btn btn-danger" type="submit">
             <span class="glyphicon glyphicon-search" style="color: #dcdddd"></span>
@@ -59,7 +59,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
     <!-- 友達一覧 -->
     <div class="well_3">
       <?php foreach ($rooms as $room) { ?>
-        <form action="chat.php" method="GET" accept-charset="utf-8">
+        <form action="chat.php" method="POST" accept-charset="utf-8">
           <button type="submit">
             
             <?php

@@ -5,7 +5,7 @@
 // 1番最初のモーダルウィンドウ呼び出し関数（引数：モーダルウィンドウ呼び出しボタンのid）
 function modalWindowOnFirst(button) {
   console.log('hoge1');
-  $("#" + button).click (
+  $("." + button).click (
   function() {
     console.log('hoge2');
     //キーボード操作などにより、オーバーレイが多重起動するのを防止する

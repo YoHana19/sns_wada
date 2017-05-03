@@ -81,44 +81,44 @@ function rankGet($array_ids) {                  // $array_idsは配列
     <img class="rank-img" src="assets/images/rank.png" alt="">
   </div>
 
-  <!-- よし ランキング -->
   <div class="row">
+    <!-- よし ランキング -->
     <div class="col-md-6 " >
-    <div class="senter">
-      <!-- よしランキング1位 -->
-      <div class="title-ranking">
-        <img src="assets/images/yoshi.png" alt="">
-      </div>
-      <div class="ranking-1">
-        <img class="media-object picuture-position" src="assets/images/<?php echo $like_haikus_info[0]['user_picture_path'] ?>">
-        <h1><?php echo $like_haikus_info[0]['nick_name'] ?></h1>
-        <p><?php echo $like_haiku_rank[0][1] ?> よし</p>
-      </div>
-
-      <!-- よしランキング2位以下 -->
-      <div class="ranking-less2">
-        <div class="ranking-2">
-          <div class="media">
-            <img class="media-object" src="assets/images/<?php echo $like_haikus_info[1]['user_picture_path'] ?>">
-            <div class="media-body rank-body">
-              <h4 class="media-heading"><?php echo $like_haikus_info[1]['nick_name'] ?></h4>
-              <p><?php echo $like_haiku_rank[1][1] ?> よし</p>
-            </div>
-          </div>
+      <div class="senter">
+        <!-- よしランキング1位 -->
+        <div class="title-ranking">
+          <img src="assets/images/yoshi.png" alt="">
+        </div>
+        <div class="ranking-1">
+          <img class="media-object picuture-position" src="assets/images/<?php echo $like_haikus_info[0]['user_picture_path'] ?>">
+          <h1><?php echo $like_haikus_info[0]['nick_name'] ?></h1>
+          <p><?php echo $like_haiku_rank[0][1] ?> よし</p>
         </div>
 
-        <div class="ranking-3">
-          <div class="media">
-            <img class="media-object" src="assets/images/<?php echo $like_haikus_info[2]['user_picture_path'] ?>">
-            <div class="media-body rank-body">
-              <h4 class="media-heading"><?php echo $like_haikus_info[2]['nick_name'] ?></h4>
-              <p><?php echo $like_haiku_rank[2][1] ?> よし</p>
+        <!-- よしランキング2位以下 -->
+        <div class="ranking-less2">
+          <div class="ranking-2">
+            <div class="media">
+              <img class="media-object" src="assets/images/<?php echo $like_haikus_info[1]['user_picture_path'] ?>">
+              <div class="media-body rank-body">
+                <h4 class="media-heading"><?php echo $like_haikus_info[1]['nick_name'] ?></h4>
+                <p><?php echo $like_haiku_rank[1][1] ?> よし</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ranking-3">
+            <div class="media">
+              <img class="media-object" src="assets/images/<?php echo $like_haikus_info[2]['user_picture_path'] ?>">
+              <div class="media-body rank-body">
+                <h4 class="media-heading"><?php echo $like_haikus_info[2]['nick_name'] ?></h4>
+                <p><?php echo $like_haiku_rank[2][1] ?> よし</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
     <!--あし ランキング -->
     <div class="col-md-6">
