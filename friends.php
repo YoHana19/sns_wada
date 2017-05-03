@@ -2,8 +2,6 @@
 session_start();
 require('dbconnect.php');
 
-$_SESSION['login_member_id'] = 1;
-
 // ログインユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
 $data = array($_SESSION['login_member_id']);
@@ -51,19 +49,29 @@ $num_friends = count($friends);
   <title></title>
   <!-- Bootstrap -->
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
+  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/friends.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
+  <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+
   <link rel="stylesheet" type="text/css" href="assets/css/chat.css">
 </head>
 
 <body>
 
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
+
   <div class="container">
-    <div class="row content">
+    <div class="row whole_content">
       <div class="col-md-3 left-content">
         <?php require('friends_left.php'); ?>
       </div>
@@ -73,6 +81,18 @@ $num_friends = count($friends);
       </div>
     </div>
   </div>
+
+  <!-- フッター -->
+  <?php require('footer.php') ?>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="assets/js/jquery-3.1.1.js"></script>
+  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/friend.js"></script>
+  <script src="assets/js/likes.js"></script>
+  <script src="assets/js/dislikes.js"></script>
+  <script src="assets/js/comment.js"></script>
 
 </body>
 </html>
