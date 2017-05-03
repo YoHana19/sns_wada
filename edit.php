@@ -134,7 +134,7 @@ function tateGaki($haiku) {
 </head>
 <body>
 
-  <div class="container content">
+  <div class="container content" style="">
     <div class="fb-profile">
       <div class="fb-image-lg" style="background-image: url(assets/images/<?php echo $login_member['back_picture_path']; ?>);  width: 100%; height: 450px;">
         <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
@@ -234,7 +234,7 @@ function tateGaki($haiku) {
               <?php endif; ?>
             </div>
 
-            <div class="form-group" style="padding-top:70px; padding-bottom:80px; padding-left:220px;">
+            <div class="form-group" style="padding-top:70px; padding-bottom:80px; padding-left:180px;">
               <label class="col-md-4 control-label" for="btn_continuar"></label>
               <div class="col-md-8">
                 <button id  ="btn_continuar" value="送信" class="btn btn-danger">保存</button>
