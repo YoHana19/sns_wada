@@ -143,7 +143,12 @@
   padding-right: 150px;
 }
 
-
+.background {
+    padding: 190px 10px;
+    margin: 0 0 0 0px;
+    font-size: 0.5px;
+    border-left: 0px solid #eee;
+}
 
 /* 俳句の縦書き */
 .haiku-text {
@@ -170,6 +175,10 @@
     right: 0px;
 }
 
-
+.background {
+background-color: #d69090
+width="200" ;
+height="500" ;
+}
 
 
