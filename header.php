@@ -157,7 +157,6 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <script src="assets/js/haiku_input.js"></script>
 
   <!-- jQuery (necessary for Modal Window) -->
-  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
   <script src="assets/js/modal_window.js"></script>
 
   <script>
