@@ -59,7 +59,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <!-- ランキングページ -->
           <li class="active click"><a href="ranking.php"><i class="fa fa-sort-numeric-asc fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
           <!-- ログアウト -->
-          <li id="logout" class=""><a href="logout.php" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a></li></a></li>
+          <li id="logout"><a href="logout.php"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a></li></a></li>
 
           <form class="navbar-form navbar-right search-form form-horizontal" role="search">
             <!-- 検索フォーム -->
