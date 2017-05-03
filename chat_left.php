@@ -59,8 +59,8 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
     <!-- 友達一覧 -->
     <div class="well_3">
       <?php foreach ($rooms as $room) { ?>
-        <form action="chat.php" method="POST" accept-charset="utf-8">
-          <button type="submit">
+        <form action="chat.php" method="GET" accept-charset="utf-8" style="margin-bottom: 0;">
+          <button type="submit" class="btn chat-friend-btn">
             
             <?php
               // 各チャットの最新の句を一件取得
@@ -75,8 +75,8 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
               <div class="pull-left left-photo" href="#">
                 <img class="media-object" src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
               </div>
-              <div class="media-body left-display">
-                <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
+              <div class="media-body left-display" style="border-bottom: none; text-align: left;">
+                <span class="media-heading left-nickname" style="text-align: left;"><?php echo $room['nick_name'];?></span>
                 <p class="left-intro"><?php echo $latest_chat['chat_1'];?>&nbsp;<?php echo $latest_chat['chat_2'];?>&nbsp;<?php echo $latest_chat['chat_3'];?></p>
               </div>
             </div>

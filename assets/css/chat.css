@@ -2,9 +2,6 @@
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
 /*==チャット一覧（左側）==*/
-.chat-list {
-  margin-top: 30px;
-}
 
 /* 検索フォーム */
 #custom-search-input {
@@ -75,10 +72,14 @@
   color: black;
 }
 
+.chat-friend-btn {
+  background-color: #fffffc;
+  border-bottom: solid 1px #dcdddd;
+}
+
 /*==個人チャット画面（右側）==*/
 
 .chat-private {
-  margin-top: 40px;
   margin-left: 70px;
 }
 

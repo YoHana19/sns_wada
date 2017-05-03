@@ -3,9 +3,9 @@
 // 
 
 // 1番最初のモーダルウィンドウ呼び出し関数（引数：モーダルウィンドウ呼び出しボタンのid）
-function modalWindowOnFirst(button) {
+function modalWindowOnFirst(button, content_in) {
   console.log('hoge1');
-  $("." + button).click (
+  $("#" + button).click (
   function() {
     console.log('hoge2');
     //キーボード操作などにより、オーバーレイが多重起動するのを防止する
@@ -14,7 +14,7 @@ function modalWindowOnFirst(button) {
     // if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する [上とどちらか選択]
 
     //[$modal-content_1]をフェードインさせる
-    windowFadeIn('modal-content_1')
+    windowFadeIn('' + content_in);
 
     //オーバーレイ用のHTMLコードを、[body]内の最後に生成する
     $("body").append('<div id="modal-overlay"></div>');
@@ -25,27 +25,27 @@ function modalWindowOnFirst(button) {
 }
 
 // 2回目以降のモーダルウィンドウ呼び出し関数（第１引数：次のモーダルウィンドウ呼び出しボタンのid、第２引数：遷移元のコンテンツのid、第３引数：遷移先のコンテンツのid）
-function modalWindowOn(button, content_finish, content_start){
+function modalWindowOn(button, content_out, content_in){
   console.log('hoge3');
   $("#" + button).unbind().click(function() {
     console.log('hoge4');
     //[#modal-content_1]をフェードアウトする
-    $("#" + content_finish).fadeOut("slow",function() {
+    $("#" + content_out).fadeOut("slow",function() {
 
       //[$modal-content_2]をフェードインさせる
-      windowFadeIn(content_start);
+      windowFadeIn(content_in);
 
     });
   });
 }
 
 // モーダルウィンドウの終了関数（第１引数：モーダルウィンドウ終了ボタンのid、第２引数：終了するコンテンツのid）
-function modalWindowOff(button, content_finish){
+function modalWindowOff(button, content_out){
   console.log('hoge5');
   $("#modal-overlay, #" + button).unbind().click(function() {
     console.log('hoge6');
     //[#modal-overlay]と[content_finish]をフェードアウトする
-    $("#modal-overlay, #" + content_finish).fadeOut("slow",function() {
+    $("#modal-overlay, #" + content_out).fadeOut("slow",function() {
       console.log('hoge7');
       //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
       $("#modal-overlay").remove();
