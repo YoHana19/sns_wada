@@ -37,8 +37,15 @@ $page = min($page, $max_page);
 $page = ceil($page);
 $start = ($page-1) * 5;
 
-$sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY h.created DESC LIMIT %d, 5', $start);
-// $sql = 'SELECT t.*, m.nick_name, m.picture_path FROM `tweets` t, `members` m WHERE t.member_id=m.member_id ORDER BY `created` DESC';
+// 検索の場合（無限スクロールは未実装）
+$search_word = '';
+if (isset($_POST['search_word']) && !empty($_POST['search_word'])) {
+  $search_word = $_POST['search_word'];
+  $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.haiku_1 LIKE "%%%s%%" OR h.haiku_2 LIKE "%%%s%%" OR h.haiku_3 LIKE "%%%s%%" OR m.nick_name LIKE "%%%s%%" ORDER BY h.created DESC' ,$search_word, $search_word, $search_word, $search_word);
+} else { // 通常の処理
+  $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY h.created DESC LIMIT %d, 5', $start);
+  // $sql = 'SELECT t.*, m.nick_name, m.picture_path FROM `tweets` t, `members` m WHERE t.member_id=m.member_id ORDER BY `created` DESC';
+}
 
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -73,15 +80,23 @@ function tateGaki($haiku) {
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
-  <link rel="stylesheet" type="text/css" href="..assets/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+
 </head>
 <body>
+
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
+
   <div class="container">
-    <div class="row content">
+    <div class="row whole_content">
 
       <!-- 左サイドバー -->
       <div class="col-md-3 left-content">
@@ -281,13 +296,10 @@ function tateGaki($haiku) {
   <script src="assets/js/jquery-3.1.1.js"></script>
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>
+
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>
   <script src="assets/js/comment.js"></script>
-  
-  <!-- jQuery (necessary for Modal Window) -->
-  <script src="assets/js/modal_window.js"></script>
-  <script src="assets/js/haiku_input.js"></script>
 
   <!-- 自動スクロール -->
   <script type="text/javascript">
@@ -640,5 +652,7 @@ function tateGaki($haiku) {
     };
   </script>
 
+  <!-- フッター -->
+  <?php require('footer.php') ?>
 </body>
 </html>
