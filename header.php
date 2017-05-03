@@ -61,13 +61,13 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <!-- ログアウト -->
           <li id="logout"><a href="logout.php"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a></li></a></li>
 
-          <form class="navbar-form navbar-right search-form form-horizontal" role="search">
+          <form action="timeline.php" method="POST" class="navbar-form navbar-right search-form form-horizontal" role="search">
             <!-- 検索フォーム -->
             <div id="custom-search-input">
               <div class="input-group">
-                <input type="text" class="search-query form-control" placeholder="search">
+                <input type="text" name="search_word" class="search-query form-control" placeholder="search">
                   <span class="input-group-btn">
-                    <button class="btn btn-danger" type="button">
+                    <button type="submit" class="btn btn-danger" type="button">
                       <span class="glyphicon glyphicon-search" style="color: #dcdddd"></span>
                     </button>
                   </span>
