@@ -1,3 +1,13 @@
+fieldset{
+  background-color:;
+}
+
+#btn_continuar{
+  color:white;
+  border-radius:25px;
+  width:150px
+}
+
 body
 {
     font-family: 'Open Sans', sans-serif;

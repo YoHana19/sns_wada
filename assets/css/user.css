@@ -11,7 +11,7 @@ body
 
 .fb-image-lg{
     z-index: 0;
-    background-image: url(../images/sakura_sample.jpg);
+    background-image: url(../images/no_img_back.jpg);
     background-size: cover;
     margin-bottom: 10px;
     position: relative;
@@ -36,12 +36,33 @@ body
     left: 783px;
 }
 
+.fb-profile {
+    position: relative;
+}
+
 .fb-image-profile
 {
     margin: -90px 10px 0px 50px;
     z-index: 9;
     width: 20%;
     position: relative;
+}
+
+/* 画像変更ボタン */
+.change-back-img {
+    position: absolute;
+    top: 405px;
+    right: 0;
+}
+
+.fb-profile-text {
+    position: relative;
+}
+
+.change-profile-img {
+    position: absolute;
+    top: 150px;
+    left: 270px;
 }
 
 /* ニックネーム */
