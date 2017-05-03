@@ -52,6 +52,31 @@
   width: 180px;
 }
 
+.request {
+  font-size: 10px;
+  padding: 2px;
+  color :#FFFFFF;
+}
+
+.request:hover {
+  color :#FFFFFF;
+}
+
+.request:active {
+  color :#FFFFFF;
+}
+
+.request:focus {
+  color :#FFFFFF;
+}
+
+.request-admit {
+  background-color: #00a497;
+}
+
+.request-delete {
+  background-color: #ee827c;
+}
 
 /* 検索フォーム */
 .form-control,

@@ -35,7 +35,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <div id="requests" class="requests_display">
             <div class="well_3" style="padding: 0; background-color: #bce2e8;">
               <?php foreach ($requests as $request) { ?>
-                <div class="media" style="position: relative; margin-top: 3px; border-bottom: solid 1px #ffffff;">
+                <div class="media" style="position: relative; margin-top: 3px; border-bottom: solid 1px #ffffff; padding: 5px;">
                   <a class="pull-left">
                     <img class="media-object" src="assets/images/<?php echo $request['user_picture_path']; ?>" style="width: 30px; height: 30px; border-radius: 50%; margin: 0 0 4px 4px;">
                   </a>
@@ -43,8 +43,8 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     <span class="media-heading"><?php echo $request['nick_name'];?></span>
                   </div>
                   <div id="<?php echo $request['login_member_id'] . '_cont' ?>" class="request-button" style="text-align: right; padding-right: 5px;">
-                    <button type="button" id="<?php echo $request['login_member_id'] . '_a' ?>" class="request rsequest-admit">許可</button>
-                    <button type="button" id="<?php echo $request['login_member_id'] . '_r' ?>" class="request request-delete">削除</button>
+                    <button type="button" id="<?php echo $request['login_member_id'] . '_a' ?>" class="request btn request-admit">許可</button>
+                    <button type="button" id="<?php echo $request['login_member_id'] . '_r' ?>" class="request btn request-delete">削除</button>
                   </div>
                 </div>
               <?php } ?>

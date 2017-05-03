@@ -52,7 +52,7 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
         }
 
         // スタイルの調整
-        $('#' + friend_id + '_cont').css('padding-right','0');
+        $('#' + friend_id + '_cont').css('font-size','10px');
         
 
       /**
