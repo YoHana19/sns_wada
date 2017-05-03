@@ -44,8 +44,12 @@
 }
 
 /* 友達リクエスト */
-.request_display {
-  /*display: none;*/
+.requests_display {
+  display: none;
+  position: fixed;
+  top: 77px;
+  left: 50%;
+  width: 180px;
 }
 
 

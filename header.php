@@ -1,7 +1,9 @@
 <?php
 require('dbconnect.php');
+$_SESSION['login_member_id'] = 1;
 
-$sql = 'SELECT * FROM `friends` AS f LEFT JOIN `members` AS m ON f.friend_member_id=m.member_id WHERE f.friend_member_id=? AND f.state=0 ORDER BY m.nick_name';
+// 友達リクエスト申請者の取得
+$sql = 'SELECT * FROM `friends` AS f LEFT JOIN `members` AS m ON f.login_member_id=m.member_id WHERE f.friend_member_id=? AND f.state=0 ORDER BY f.created';
 $data = array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
@@ -29,7 +31,26 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav navbar-right">
           <!-- 友達リクエスト -->
-          <li class="active click request_button"><a><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+          <li class="active click"><a id="request_button"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+          <!-- 友達リクエスト一覧 -->
+          <div id="requests" class="requests_display">
+            <div class="well_3" style="padding: 0; background-color: #bce2e8;">
+              <?php foreach ($requests as $request) { ?>
+                <div class="media" style="position: relative; margin-top: 3px; border-bottom: solid 1px #ffffff;">
+                  <a class="pull-left">
+                    <img class="media-object" src="assets/images/<?php echo $request['user_picture_path']; ?>" style="width: 30px; height: 30px; border-radius: 50%; margin: 0 0 4px 4px;">
+                  </a>
+                  <div class="media-body" style="padding-top: 6px;">
+                    <span class="media-heading"><?php echo $request['nick_name'];?></span>
+                  </div>
+                  <div id="<?php echo $request['friend_id'] . '_cont' ?>" class="request-button" style="text-align: right; padding-right: 5px;">
+                    <button type="button" id="<?php echo $request['friend_id'] . '_a' ?>" class="request rsequest-admit">許可</button>
+                    <button type="button" id="<?php echo $request['friend_id'] . '_r' ?>" class="request request-delete">削除</button>
+                  </div>
+                </div>
+              <?php } ?>
+            </div>
+          </div>
           <!-- プロフページ -->
           <li class="active click"><a href="profile.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></i><i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
           <!-- チャットページ -->
@@ -60,21 +81,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
     </div>
   </nav>
   
-  <!-- 友達リクエスト一覧 -->
-  <div id="requests" class="requests_display">
-    <div class="well_3">
-      <?php foreach ($rooms as $room) { ?>
-        <div class="media" style="position: relative; margin-top: 7px">
-          <a class="pull-left left-photo" href="#">
-            <img class="media-object" src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
-          </a>
-        <div class="media-body left-display">
-          <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
-          <p class="left-intro"><?php echo $login_member['self_intro_1'];?>&nbsp;<?php echo $login_member['self_intro_2'];?>&nbsp;<?php echo $login_member['self_intro_3'];?></p>
-        </div>
-      </div>
-    <?php } ?>
-  </div>
+
 
   <!-- LOGIN FORM -->
   <div id="modal-content_1" class="content">
@@ -144,13 +151,14 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script> -->
-
-  <!-- jQuery (necessary for Modal Window) -->
-  <script src="assets/js/modal_window.js"></script>
+  <!-- 友達リクエスト -->
+ <script src="assets/js/friend_requests.js"></script> 
 
   <!-- 俳句入力バリデーション -->
   <script src="assets/js/haiku_input.js"></script>
+
+  <!-- jQuery (necessary for Modal Window) -->
+  <script src="assets/js/modal_window.js"></script>
 
   <script>
     // 1番最初のモーダルウィンドウ呼び出し
