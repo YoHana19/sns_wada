@@ -235,6 +235,6 @@ function tateGaki($haiku) {
           </fieldset>
         </form>
       </div>
-  </div>
+   </div>
 </body>
 </html>
