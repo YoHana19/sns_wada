@@ -3,70 +3,70 @@ session_start();
 require('dbconnect.php');
 
 // 友達内ランキングよし(歌人)用sql文
-$sql = 'SELECT * FROM `likes` AS l LEFT JOIN `friends` AS f ON l.haiku_member_id=f.friend_member_id';
-$data = array(); //$dataには ? に入れる値を書く
+$sql = 'SELECT * FROM `likes` AS l LEFT JOIN `friends` AS f ON l.haiku_member_id=f.friend_member_id WHERE f.login_member_id=? AND f.state=1';
+$data = array($_SESSION['login_member_id']); //$dataには ? に入れる値を書く
 $stmt = $dbh->prepare($sql);
-$stmt->execute();
-$haiku_ids = array();
+$stmt->execute($data);
+$like_haiku_ids = array();
 while($like_haiku = $stmt->fetch(PDO::FETCH_ASSOC)) {
-  $haiku_ids[] = $like_haiku['haiku_id'];
+  $like_haiku_ids[] = $like_haiku['haiku_id'];
 }
 
-$haiku_rank = rankGet($haiku_ids);
+$like_haiku_rank = rankGet($like_haiku_ids);
 
 // プロフ画像、名前取得
-$haikus_info = array();
-foreach ($haiku_rank as $haiku) {
-  $sql = 'SELECT * FROM `friends` AS f LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE `haiku_id`=?';
-  $data = array($haiku[0]);
-  $stmt->execute($data);
+$like_haikus_info = array();
+foreach ($like_haiku_rank as $like_haiku) {
+  $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
+  $data = array($like_haiku[0]);
   $stmt = $dbh->prepare();
+  $stmt->execute($data);
 
   $record = $stmt->fetch(PDO::FETCH_ASSOC);
-  $haikus_info[] = $record;
+  $like_haikus_info[] = $record;
 }
 
-foreach ($haikus_info as $haiku_info) {
-  echo $haiku_info['nick_name'];
+foreach ($like_haikus_info as $like_haiku_info) {
+  echo $like_haiku_info['nick_name'];
   echo "<br>" . "<br>";
 }
 
-foreach ($haiku_rank as $haiku) { //(良し数)
-  echo $haiku[1] . '<br>';
+foreach ($like_haiku_rank as $like_haiku) { //(良し数)
+  echo $like_haiku[1] . '<br>';
 }
 
 
-// よしランキング歌人用sql文
-$sql = 'SELECT * FROM `likes`';
+// 友達内ランキングあし(歌人)用sql文
+$sql = 'SELECT * FROM `dislikes` AS l LEFT JOIN `friends` AS f ON l.haiku_member_id=f.friend_member_id WHERE f.login_member_id=? AND f.state=1';
+$data = array($_SESSION['login_member_id']); //$dataには ? に入れる値を書く
 $stmt = $dbh->prepare($sql);
-$stmt->execute();
-
-$member_ids = array();
-while($like_member = $stmt->fetch(PDO::FETCH_ASSOC)) {
-  $member_ids[] = $like_member['haiku_member_id'];
+$stmt->execute($data);
+$dislike_haiku_ids = array();
+while($dislike_haiku = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  $dislike_haiku_ids[] = $dislike_haiku['haiku_id'];
 }
 
-$member_rank = rankGet($member_ids);
+$dislike_haiku_rank = rankGet($dislike_haiku_ids);
 
 // プロフ画像、名前取得
-$members_info = array();
-foreach ($member_rank as $member) {
+$dislike_haikus_info = array();
+foreach ($dislike_haiku_rank as $dislike_haiku) {
   $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-  $data = array($member[0]);
-  $stmt = $dbh->prepare($sql);
+  $data = array($dislike_haiku[0]);
+  $stmt = $dbh->prepare();
   $stmt->execute($data);
-  $member_record = $stmt->fetch(PDO::FETCH_ASSOC);
-  $members_info[] = $member_record;
+
+  $record = $stmt->fetch(PDO::FETCH_ASSOC);
+  $dislike_haikus_info[] = $record;
 }
 
-foreach ($members_info as $member_info) {
-  echo $member_info['nick_name'];
-  echo '<br>' . '<br>';
+foreach ($dislike_haikus_info as $dislike_haiku_info) {
+  echo $dislike_haiku_info['nick_name'];
+  echo "<br>" . "<br>";
 }
 
-foreach ($member_rank as $member) { //(良し数)
-  echo $member[1];
-  echo '<br>';
+foreach ($dislike_haiku_rank as $dislike_haiku) { //(良し数)
+  echo $dislike_haiku[1] . '<br>';
 }
 
 function rankGet($array_ids) {                  // $array_idsは配列
@@ -86,12 +86,3 @@ function rankGet($array_ids) {                  // $array_idsは配列
 // ランキング上位3名のユーザー名、プロフィール画像取得
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
-<body>
-
-</body>
-</html>
