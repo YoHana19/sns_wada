@@ -157,14 +157,14 @@ foreach ($bad_member_rank as $bad_member) { //(良し数)
 
 
 // 関数を使った処理
-function rankGet($array_ids) {              // $array_idsは配列
+function rankGet($array_ids) {                  // $array_idsは配列
   $pure_ids = array_count_values($array_ids);   // 重複する値の数を数得て、その値とその数をペアにした連想配列を作る
   arsort($pure_ids);                            // 連想配列の値をもとに大きい順に並び変える
   $array_ranks = array();                       // ランキング上位3つのidを入れるからの配列を作る
   for ($i=0; $i < 3; $i++) {                    // 3位とってくるので3回繰り返す
     $rank_id = key($pure_ids);                  // 連想配列のポインタのあるキーを取ってくる（○位を取ってくる）
-    $value_num = $pure_ids["$rank_id"]; // よし・あし数取得
-    $array_rank = array($rank_id, $value_num); // 配列にいれる
+    $value_num = $pure_ids["$rank_id"];         // よし・あし数取得
+    $array_rank = array($rank_id, $value_num);  // 配列にいれる
     $array_ranks[] = $array_rank;               // 取得したidを配列に入れる
     next($pure_ids);                            // 隣のポインタに移す
   }
