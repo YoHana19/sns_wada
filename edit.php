@@ -2,14 +2,13 @@
 session_start();
 require('dbconnect.php');
 
-$_SESSION['login_member_id'] = 1;
-
 $sql = 'SELECT * FROM `members`';
 $data = array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$_SESSION['login_member_id'] = 1; //ログインユーザーによって変更させる機能をつける
 $errors = array();
 
 if (!empty($_POST)) {
@@ -85,13 +84,7 @@ if (empty($errors)) {
     $back_picture_name = date('YmdHis') . $back_picture_path;
     move_uploaded_file($_FILES['user_picture_path']['tmp_name'] , 'assets/images/' . $user_picture_name);
     move_uploaded_file($_FILES['back_picture_path']['tmp_name'] , 'assets/images/' . $back_picture_name);
-    // $_SESSION[''] = $_POST;
-    // $_SESSION['nick_name'] = $_POST['nick_name'];
-    // $_SESSION['user_picture_path'] =$user_picture_name;
-    // $_SESSION['back_picture_path'] =$back_picture_name;
-    // $_SESSION['self_intro_1'] = $self_intro_1;
-    // $_SESSION['self_intro_2'] = $self_intro_2;
-    // $_SESSION['self_intro_3'] = $self_intro_3;
+
     $_SESSION['nick_name'] = $_POST['nick_name'];
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['user_picture_path'] = $user_picture_name;
@@ -100,8 +93,6 @@ if (empty($errors)) {
     $_SESSION['self_intro_2'] = $_POST['self_intro_2'];
     $_SESSION['self_intro_3'] = $_POST['self_intro_3'];
 
-
-    // $_POST['errors'] = $errors;
     header('Location:edit-update.php');
     exit();
   }
@@ -143,7 +134,7 @@ function tateGaki($haiku) {
       </div>
       <img align="left" class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example" style="width:300px; height:300px; margin-top:-200px; margin-left:80px;">
       <div class="fb-profile-text">
-        <h1 style="margin-top:10px;"><?php echo $login_member['nick_name']; ?></h1>
+        <h1><?php echo $login_member['nick_name']; ?></h1>
       </div>
     </div>
   </div>
