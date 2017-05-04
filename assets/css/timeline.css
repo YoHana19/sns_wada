@@ -29,14 +29,13 @@
     height: 230px;
     border-radius: 30px ;
     font-size: 60px;
-
     background-image: url(../images/sakura_sample.jpg); background-size: cover;
 }
 
 
 /* 俳句一覧 */
 .haiku {
-    margin-top: 40px;
+    margin-top: 27px;
     padding: 20px;
     background-color: #fffffc;
 

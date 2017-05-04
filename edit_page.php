@@ -2,7 +2,9 @@
 session_start();
 require('dbconnect.php');
 
-$sql = 'SELECT * FROM `members` WHERE `member_id`=?';
+$_SESSION['login_member_id'] = 1;
+
+$sql = 'SELECT * FROM `members`';
 $data = array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
@@ -11,6 +13,7 @@ $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 $errors = array();
 
 if (!empty($_POST)) {
+  echo $_POST['email'];
 
   if ($_POST['nick_name'] == "") {
     $errors['nick_name'] = 'blank';
@@ -41,13 +44,13 @@ if (!empty($_POST)) {
 
   $user_picture_path = $_FILES['user_picture_path']['name'];
   if (!empty($user_picture_path)) {
+    echo $user_picture_path;
     $ext = substr($user_picture_path , -3);
     $ext = strtolower($ext);
     if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif' && $ext !='jpg') {
       $errors['user_picture_path'] = 'type';
     }
-  }
-
+}
 
   $back_picture_path = $_FILES['back_picture_path']['name'];
   if (!empty($back_picture_path)) {
@@ -60,29 +63,35 @@ if (!empty($_POST)) {
   }
 
     if(empty($errors)){
-      try {
-          $sql = 'SELECT COUNT(*) AS `cnt` FROM `members` WHERE `email` =?';
-          $data =array($_POST['email']);
-          $stmt = $dbh->prepare($sql);
-          $stmt->execute($data);
-          $record = $stmt->fetch(PDO::FETCH_ASSOC);
-          var_dump($record);
-          if($record['cnt']>0){
+      try{
+           $sql = 'SELECT COUNT(*) AS `cnt` FROM `members` WHERE `email` =?';
+           $data =array($_POST['email']);
+           $stmt = $dbh->prepare($sql);
+           $stmt->execute($data);
+           $record = $stmt->fetch(PDO::FETCH_ASSOC);
+           var_dump($record);
+           if($record['cnt']>0){
             if ($login_member['email'] != $_POST['email']) {
               $errors['email'] = 'duplicate';
-            }
-          }
-      } catch(PDOException $e) {
-        echo 'SQL文実行時エラー:' . $e->message();
+           }
+}
+      }catch(PDOException $e){
+          echo 'SQL文実行時エラー:' . $e->message();
       }
     }
 
-  if (empty($errors)) {
+if (empty($errors)) {
     $user_picture_name = date('YmdHis') . $user_picture_path;
     $back_picture_name = date('YmdHis') . $back_picture_path;
     move_uploaded_file($_FILES['user_picture_path']['tmp_name'] , 'assets/images/' . $user_picture_name);
     move_uploaded_file($_FILES['back_picture_path']['tmp_name'] , 'assets/images/' . $back_picture_name);
-
+    // $_SESSION[''] = $_POST;
+    // $_SESSION['nick_name'] = $_POST['nick_name'];
+    // $_SESSION['user_picture_path'] =$user_picture_name;
+    // $_SESSION['back_picture_path'] =$back_picture_name;
+    // $_SESSION['self_intro_1'] = $self_intro_1;
+    // $_SESSION['self_intro_2'] = $self_intro_2;
+    // $_SESSION['self_intro_3'] = $self_intro_3;
     $_SESSION['nick_name'] = $_POST['nick_name'];
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['user_picture_path'] = $user_picture_name;
@@ -91,6 +100,8 @@ if (!empty($_POST)) {
     $_SESSION['self_intro_2'] = $_POST['self_intro_2'];
     $_SESSION['self_intro_3'] = $_POST['self_intro_3'];
 
+
+    // $_POST['errors'] = $errors;
     header('Location:edit-update.php');
     exit();
   }
@@ -113,41 +124,33 @@ function tateGaki($haiku) {
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
-  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="../maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <link rel="stylesheet" type="text/css" href="assets/css/user.css">
-  <!-- For Modal Window -->
-  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
   <link rel="stylesheet" type="text/css" href="assets/css/edit.css">
 </head>
+<body>
 
-  <!-- ヘッダー -->
-  <?php require('header.php'); ?>
-
-  <!--プロフィール写真/ 一言-->
-  <div class="container whole_content">
+  <div class="container content">
     <div class="fb-profile">
-      <div class="fb-image-lg" style="width: 100%; height: 400px;">
-        <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
-        <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
+      <div class="fb-image-lg" style="background-image: url(assets/images/<?php echo $login_member['back_picture_path']; ?>);  width: 100%; height: 450px;">
         <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
+        <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']);?></span>
+        <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']);?></span>
       </div>
-      <img align="left" class="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
+      <img align="left" class ="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example" style="width:300px; height:300px; margin-top:-200px; margin-left:100px;">
       <div class="fb-profile-text">
-        <h1><?php echo $login_member['nick_name']; ?></h1>
+        <h1 style="margin-top:10px;"><?php echo $login_member['nick_name']; ?></h1>
       </div>
     </div>
   </div>
 
-  <div class="container">
+  <div class="container content">
       <div class="row">
-        <form method="POST" action="edit.php" enctype="multipart/form-data" class="form-horizontal">
+        <form method="POST" action="edit_page.php" enctype="multipart/form-data" class="form-horizontal">
           <fieldset>
 
             <div class="form-group" style="padding-top:80px; padding-bottom:10px;">
@@ -176,7 +179,7 @@ function tateGaki($haiku) {
             <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
               <label class="col-md-4 control-label" for="UID">メールアドレス(確認用)</label>
               <div class="col-md-4">
-                <input id="UID" name="email_check" placeholder="" class="form-control input-md" type="email" required="">
+                <input id="UID" name="email_check" placeholder="" class="form-control input-md" type="email" required="" value="<?php echo $login_member['email']; ?>">
                 <?php if(isset($errors['email']) && $errors['email'] && $errors['email'] == 'not_match'): ?>
                   <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを正しく入力してください</p>
                 <?php endif; ?>
@@ -231,7 +234,7 @@ function tateGaki($haiku) {
               <?php endif; ?>
             </div>
 
-            <div class="form-group" style="padding-top:70px; padding-bottom:80px; padding-left:180px;">
+            <div class="form-group" style="padding-top:70px; padding-bottom:80px; padding-left:220px;">
               <label class="col-md-4 control-label" for="btn_continuar"></label>
               <div class="col-md-8">
                 <button id  ="btn_continuar" value="送信" class="btn btn-danger">保存</button>
@@ -241,8 +244,6 @@ function tateGaki($haiku) {
           </fieldset>
         </form>
       </div>
-   </div>
-<!-- フッター -->
-<?php require('footer.php'); ?>
+  </div>
 </body>
 </html>

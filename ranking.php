@@ -147,6 +147,7 @@ foreach ($bad_haiku_rank as $bad_haiku) { //(悪し数)
 // var_dump($bad_haiku[1]);
 
 // あしランキング歌人用sql文
+
 $sql = 'SELECT * FROM `dislikes`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -170,6 +171,7 @@ foreach ($bad_member_rank as $bad_member) {
 }
 
 foreach ($bad_members_info as $bad_member_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
+
   // echo $bad_member_info['nick_name'];
   // echo '<br>' . '<br>';
 }
@@ -213,6 +215,7 @@ function tateGaki($haiku) {
 <head>
   <meta charset="utf-8">
   <title></title>
+<<<<<<< HEAD
   <link rel="stylesheet" type="text/css" href="assets/css/ranking.css">
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">

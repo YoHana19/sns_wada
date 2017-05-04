@@ -1,0 +1,259 @@
+/*font Awesome http://fontawesome.io*/
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+
+/*==チャット一覧（左側）==*/
+
+/* 検索フォーム */
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+ 
+/*    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+         IE7-8 doesn't have border-radius, so don't indent the padding 
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }*/
+ 
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:#D9230F;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+
+/* チャット一覧表示 */
+.chat-room {
+  margin-top: 30px;
+}
+
+.chat-photo {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+}
+
+.chat-body {
+  border-bottom: solid 1px #dcdddd;
+  position: relative;
+  left: 80px;
+  padding-top: 7px
+}
+
+.chat-nickname {
+  font-size: 14px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+
+.chat-intro {
+  font-size: 7px;
+  color: black;
+}
+
+.chat-friend-btn {
+  background-color: #fffffc;
+  border-bottom: solid 1px #dcdddd;
+}
+
+/*==個人チャット画面（右側）==*/
+
+.chat-private {
+  margin-left: 70px;
+}
+
+.chat-name {
+  font-size: 15px;
+  color: #b3ada0;
+  margin: 10px 0 6px;
+}
+
+/*Comment List styles*/
+.outer {
+  display: table;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.page-header {
+  background-color: #d0576b;
+  border-radius: 3px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding-bottom: 0;
+}
+
+.page-header h2 {
+  color: #fff;
+  margin: 7px 0px;
+}
+
+.comment-list .row {
+  margin-bottom: 0px;
+}
+.comment-list .panel .panel-heading {
+  padding: 4px 15px;
+  position: absolute;
+  border:none;
+  /*Panel-heading border radius*/
+  border-top-right-radius:0px;
+  top: 1px;
+}
+.comment-list .panel .panel-heading.right {
+  border-right-width: 0px;
+  /*Panel-heading border radius*/
+  border-top-left-radius:0px;
+  right: 16px;
+}
+.comment-list .panel .panel-heading .panel-body {
+  padding-top: 6px;
+}
+.comment-list figcaption {
+  /*For wrapping text in thumbnail*/
+  word-wrap: break-word;
+}
+
+.panel {
+  background-color: #fffffc;
+  border-color: #fffffc;
+  border-radius: 15px;
+  width: 300px;
+  height: 250px;
+}
+
+.panel-body {
+  width: 95%;
+  height: 95%;
+  position: relative;
+}
+
+.comment-date {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #b3ada0;
+}
+
+/* 右側と左側で吹き出しの位置を調整する */
+.user-left {
+  margin-right: auto;
+}
+
+.user-right {
+  margin-left: auto;
+}
+
+/* 俳句の縦書き */
+.haiku-text {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.haiku-text p {
+    position: absolute;
+    top: 0;
+    font-size: 20px;
+    color: #b3ada0;
+}
+
+.haiku-text-1 {
+    left: 15px;
+}
+
+.haiku-text-2 {
+    left: 117px;
+}
+
+.haiku-text-3 {
+    right: 15px;
+}
+
+/* 俳句入力欄 */
+.btn-glyphicon { 
+  padding:8px; background:#ffffff; margin-right:4px;
+}
+
+.icon-btn { 
+  width: 120px;
+  height: 40px;
+  padding: 1px 15px 3px 2px; border-radius:50px;
+  position: fixed;
+  right: 40px;
+  bottom: 30px;
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 768px) {
+  .comment-list .arrow:after, .comment-list .arrow:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+  .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
+    border-left: 0;
+  }
+  /*****Left Arrow*****/
+  /*Outline effect style*/
+  .comment-list .panel.arrow.left:before {
+    left: 0px;
+    top: 50px;
+    /*Use boarder color of panel*/
+    border-right-color: inherit;
+    border-width: 16px;
+  }
+  /*Background color effect*/
+  .comment-list .panel.arrow.left:after {
+    left: 1px;
+    top: 50px;
+    /*Change for different outline color*/
+    border-right-color: #fffffc;
+    border-width: 15px;
+  }
+  /*****Right Arrow*****/
+  /*Outline effect style*/
+  .comment-list .panel.arrow.right:before {
+    right: -16px;
+    top: 50px;
+    /*Use boarder color of panel*/
+    border-left-color: inherit;
+    border-width: 16px;
+  }
+  /*Background color effect*/
+  .comment-list .panel.arrow.right:after {
+    right: -14px;
+    top: 50px;
+    /*Change for different outline color*/
+    border-left-color: #fffffc;
+    border-width: 15px;
+  }
+}
+.comment-list .comment-post {
+  margin-top: 6px;
+}

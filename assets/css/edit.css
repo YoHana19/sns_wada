@@ -1,3 +1,13 @@
+fieldset{
+  background-color:;
+}
+
+#btn_continuar{
+  color:white;
+  border-radius:25px;
+  width:150px
+}
+
 body
 {
     font-family: 'Open Sans', sans-serif;
@@ -14,7 +24,7 @@ body
 .fb-image-profile
 {
     margin: -90px 10px 0px 50px;
-    z-index: 9;
+    z-index: 2;
     width: 20%; 
 }
 

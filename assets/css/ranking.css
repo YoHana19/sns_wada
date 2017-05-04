@@ -1,4 +1,3 @@
-
 .background {
   background-image: url(../images/back.jpg);
   padding-top: 80px;
@@ -67,6 +66,10 @@
   height: 300px;
   margin: 0 auto;
   border-radius: 6px;
+<<<<<<< HEAD
+=======
+  margin: auto;
+>>>>>>> master
 }
 
 .ranking-1 p {
@@ -89,6 +92,9 @@
   margin: auto;
 }
 
+.rank-body {
+  padding-top: 10px;
+}
 
 /* ランキング 2位 */
 .ranking-2 {
@@ -191,9 +197,9 @@
 }
 
 .background {
-background-color: #d69090
-width="200" ;
-height="500" ;
+  background-color: #d69090
+  width: 200px;
+  height: 500px;
 }
 
 .src{

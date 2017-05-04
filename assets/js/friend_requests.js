@@ -2,22 +2,22 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
 {
 
   // クリックしたらコメント欄表示
-  $(document).on('click', '.request_button', function() {
-    console.log('hoge1')
+  $(document).on('click', '#request_button', function() {
     $("#requests").slideToggle();
-    console.log('hoge2')
   });
 
   // 各リクエストがクリックされた時の処理
-  $('.button_request').on('click', function() {
+  $('.request').on('click', function() {
       var friend_id = $(this).attr('id');
       console.log(friend_id)
       var array = friend_id.match(/[0-9]+\.?[0-9]*/g);
       var f_id = array[0];
       console.log(f_id)
       if (friend_id.slice(-1) == 'a') {
+        console.log('hoge1');
         var state = 'admit';
       } else {
+        console.log('hoge2');
         var state = 'reject';
       }
       var data = {state : state,
@@ -44,11 +44,15 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
         $('#' + friend_id + '_a').remove();
         $('#' + friend_id + '_r').remove();
 
+        // メッセージの表示
         if (task_data['state'] == 'admit') {
-          $('#' + friend_id + '_cont').append('<p>友達リクエストを許可しました。</p>');
+          $('#' + friend_id + '_cont').append('<span>友達申請を許可しました。</span>');
         } else {
-          $('#' + friend_id + '_cont').append('<p>友達リクエストを削除しました。</p>');
+          $('#' + friend_id + '_cont').append('<span>友達申請を削除しました。</span>');
         }
+
+        // スタイルの調整
+        $('#' + friend_id + '_cont').css('font-size','10px');
         
 
       /**

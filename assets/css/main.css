@@ -25,12 +25,11 @@ p {
 
 /* 全体のコンテンツ */
 
-.content {
-    padding-top: 80px;
+.whole_content {
+    padding-top: 120px;
 }
 
 /* 左のコンンテンツ */
-
 .left-content {}
 
 /* 個人プロフ */

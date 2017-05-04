@@ -1,0 +1,105 @@
+/* 左側 */
+.left-proph-simple {
+  border-bottom: none;
+  position: relative;
+  left: 80px;
+  padding-top: 7px;
+}
+
+/* ランキング タイトル*/
+.top-ranking {
+  position: relative;
+  height: 225px;
+}
+
+.rank-title {
+  position: absolute;
+  top: 80px;
+  left: 255px;
+  width: 700px;
+}
+
+.rank-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 270px;
+}
+
+.title-ranking {
+  margin: 0 0 50px 140px;
+}
+
+.title-ranking img {
+  height: 60px;
+}
+
+/* ランキング 1位 */
+.ranking-1 {
+  width: 100%;
+  text-align: center;
+}
+
+.ranking-1 img {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+
+.ranking-1 p {
+  font-size: 15px;
+  margin: auto;
+}
+
+/* ランキング 2位以下 */
+.ranking-less2 {
+  margin-top: 60px;
+  text-align: center;
+
+}
+
+.ranking-less2 img {
+  border-radius: 6px;
+  margin: auto;
+}
+
+/* ランキング 2位 */
+.ranking-2 {
+  margin-bottom: 50px;
+}
+
+.ranking-2 img {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.ranking-2 .media-heading {
+  padding: 60px 0 0 0;
+  font-size: 20px;
+}
+
+.ranking-2 p {
+  padding: 30px 0 0 0;
+}
+
+/* ランキング 3位 */
+.ranking-3 {
+  margin-bottom: 50px;
+}
+
+.ranking-3 img {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.ranking-3 .media-heading {
+  padding: 25px 0 0 0;
+  font-size: 17px;
+}
+
+.ranking-3 p {
+  padding: 10px 0 0 0;
+}

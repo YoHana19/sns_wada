@@ -66,21 +66,29 @@ function tateGaki($haiku) {
   <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <link rel="stylesheet" type="text/css" href="assets/css/user.css">
+  <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
 </head>
 <body>
 
-<!--プロフィール写真/ 一言-->
-  <div class="container content">
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
+
+  <!--プロフィール写真/ 一言-->
+  <div class="container whole_content">
     <div class="fb-profile">
-      <div class="fb-image-lg" style="width: 100%; height: 400px;">
+      <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $user_info['back_picture_path'] ?>);">
         <span class="intro-text-3"><?php echo tateGaki($user_info['self_intro_3']); ?></span>
         <span class="intro-text-2"><?php echo tateGaki($user_info['self_intro_2']); ?></span>
         <span class="intro-text-1"><?php echo tateGaki($user_info['self_intro_1']); ?></span>
       </div>
-      <img align="left" class="fb-image-profile thumbnail" src="assets/images/wada.jpg" alt="Profile image example"/>
+      <img align="left" class="fb-image-profile thumbnail" src="assets/images/<?php echo $user_info['user_picture_path'] ?>" alt="Profile image example"/>
       <div class="fb-profile-text">
         <h1><?php echo $user_info['nick_name'] ?></h1>
 
@@ -103,7 +111,7 @@ function tateGaki($haiku) {
 
 
 
-  <div class="container content">
+  <div class="container">
       <div class="row">
 
         <div class="col-md-3 left-content">
@@ -288,6 +296,9 @@ function tateGaki($haiku) {
         </div>
       </div>
   </div>
+
+  <!-- フッター -->
+  <?php require('footer.php') ?>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="assets/js/jquery-3.1.1.js"></script>
