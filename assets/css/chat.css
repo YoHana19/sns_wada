@@ -174,7 +174,7 @@
 
 .haiku-text p {
     position: absolute;
-    top: 25px;
+    top: 0;
     font-size: 20px;
     color: #b3ada0;
 }

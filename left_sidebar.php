@@ -42,7 +42,6 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
   }
   $rooms[] = $room;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -88,6 +87,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
           </div>
       <?php } ?>
     </div>
+
   </div>
 </body>
 </html>
