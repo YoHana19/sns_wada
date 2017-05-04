@@ -40,7 +40,7 @@ foreach ($haiku_rank as $haiku) {
 // foreach ($haikus_info as $haiku_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
   // echo tateGaki($haiku_info['nick_name']);
   // echo '<br>';
-  // echo $haiku_info['haiku_1'];
+  // echo $haiku_info['haiku_3'];
   // echo '<br>';
   // echo $haiku_info['haiku_2'];
   // echo '<br>';
@@ -339,9 +339,9 @@ function tateGaki($haiku) {
                     <div class="active item">
                       <blockquote style="background: #d69090">
                         <div class="haiku-text">
-                          <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[0]['haiku_1']); ?></h2>
+                          <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[0]['haiku_3']); ?></h2>
                           <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[0]['haiku_2']); ?></h2>
-                          <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[0]['haiku_3']); ?></h2>
+                          <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[0]['haiku_1']); ?></h2>
                         </div>
                       </blockquote>
                     </div>
@@ -369,9 +369,9 @@ function tateGaki($haiku) {
                       <div class="active item">
                         <blockquote style="background: #d69090">
                           <div class="haiku-text">
-                            <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[1]['haiku_1']); ?></h2>
+                            <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[1]['haiku_3']); ?></h2>
                             <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[1]['haiku_2']); ?></h2>
-                            <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[1]['haiku_3']); ?></h2>
+                            <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[1]['haiku_1']); ?></h2>
                           </div>
                         </blockquote>
                       </div>
@@ -400,9 +400,9 @@ function tateGaki($haiku) {
                       <div class="active item">
                         <blockquote style="background: #d69090">
                           <div class="haiku-text">
-                           <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[2]['haiku_1']); ?></h2>
+                           <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[2]['haiku_3']); ?></h2>
                            <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[2]['haiku_2']); ?></h2>
-                           <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[2]['haiku_3']); ?></h2>
+                           <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[2]['haiku_1']); ?></h2>
                           </div>
                         </blockquote>
                       </div>
@@ -482,9 +482,9 @@ function tateGaki($haiku) {
                     <div class="active item">
                       <blockquote style="background: #d69090">
                         <div class="haiku-text">
-                          <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[0]['haiku_1']); ?></h2>
+                          <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[0]['haiku_3']); ?></h2>
                           <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[0]['haiku_2']); ?></h2>
-                          <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[0]['haiku_3']); ?></h2>
+                          <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[0]['haiku_1']); ?></h2>
                         </div>
                       </blockquote>
                     </div>
@@ -511,9 +511,9 @@ function tateGaki($haiku) {
                       <div class="active item">
                           <blockquote style="background: #d69090">
                             <div class="haiku-text">
-                              <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[1]['haiku_1']); ?></h2>
+                              <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[1]['haiku_3']); ?></h2>
                               <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[1]['haiku_2']); ?></h2>
-                              <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[1]['haiku_3']); ?></h2>
+                              <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[1]['haiku_1']); ?></h2>
                             </div>
                           </blockquote>
                         </div>
@@ -542,9 +542,9 @@ function tateGaki($haiku) {
                       <div class="active item">
                         <blockquote style="background: #d69090">
                           <div class="haiku-text">
-                            <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[2]['haiku_1']); ?></h2>
+                            <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[2]['haiku_3']); ?></h2>
                             <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[2]['haiku_2']); ?></h2>
-                            <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[2]['haiku_3']); ?></h2>
+                            <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[2]['haiku_1']); ?></h2>
                           </div>
                         </blockquote>
                       </div>
