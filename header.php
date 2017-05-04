@@ -151,7 +151,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <script src="assets/js/bootstrap.js"></script>
 
   <!-- 友達リクエスト -->
- <script src="assets/js/friend_requests.js"></script> 
+  <script src="assets/js/friend_requests.js"></script> 
 
   <!-- 俳句入力バリデーション -->
   <script src="assets/js/haiku_input.js"></script>
@@ -161,7 +161,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
   <script>
     // 1番最初のモーダルウィンドウ呼び出し
-    modalWindowOnFirst('modal-open');
+    modalWindowOnFirst('modal-open', 'modal-content_1');
 
     // 2番目のモーダルウィンドウ呼び出し
     // modalWindowOn('modal-check', 'modal-content_1', 'modal-content_2');

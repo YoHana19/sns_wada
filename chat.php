@@ -2,16 +2,13 @@
 session_start();
 require('dbconnect.php');
 
-// ログインユーザー（仮）
-$_SESSION['login_member_id'] = 1;
-
 // 入れ物用意
 $friend_id = '';
 $room_id = '';
 
 // 友達選択された時→チャット表示
-if (isset($_POST['friend_id'])) {
-  $friend_id = $_POST['friend_id'];
+if (isset($_GET['friend_id'])) {
+  $friend_id = $_GET['friend_id'];
 
   // チャット相手の名前取得
   $sql = 'SELECT `nick_name` FROM `members` WHERE `member_id`=?';
@@ -58,7 +55,6 @@ function tateGaki($haiku) {
 <head>
   <meta charset="utf-8">
   <title></title>
-<!-- Bootstrap -->
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -70,15 +66,17 @@ function tateGaki($haiku) {
   <link rel="stylesheet" type="text/css" href="assets/css/user.css">
   <!-- For Modal Window -->
   <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
   <link rel="stylesheet" type="text/css" href="assets/css/ranking.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
   <link rel="stylesheet" type="text/css" href="assets/css/chat.css">
-
 </head>
 <body>
 
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
+
   <div class="container">
-    <div class="row">
+    <div class="row whole_content">
       <!-- チャット一覧 -->
       <div class="col-md-3 chat-list">
         <?php require('chat_left.php'); ?>
@@ -88,7 +86,7 @@ function tateGaki($haiku) {
       <div class="col-md-8 chat-private">
 
         <!-- チャット相手が選択された時 -->
-        <?php if (isset($_POST['friend_id'])) : ?>
+        <?php if (isset($_GET['friend_id'])) { ?>
           <div class="outer">
             <div class="page-header">
               <h2><?php echo $chat_name['nick_name'] ?></h2>
@@ -99,7 +97,7 @@ function tateGaki($haiku) {
 
             <?php foreach ($chats as $chat) { ?>
 
-              <?php if ($chat['sender_id'] == $_SESSION['login_member_id']): ?>
+              <?php if ($chat['sender_id'] == $_SESSION['login_member_id']){ ?>
 
                 <!-- ログインユーザー -->
                 <article class="row">
@@ -125,7 +123,7 @@ function tateGaki($haiku) {
                   </div>
                 </article>
 
-              <?php else: ?>
+              <?php } else { ?>
 
                 <!-- チャット相手 -->
                 <article class="row">
@@ -150,15 +148,15 @@ function tateGaki($haiku) {
                     </div>
                   </div>
                 </article>
-              <?php endif; ?>
+              <?php } ?>
 
             <?php } ?> <!-- 繰り返し文終了 -->
 
             <!-- 句入力ボタン -->
-            <button type="submit" id="modal-open" class="btn icon-btn btn-info" style="background-color: #d0576b; border-color: #d0576b;"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info" style="color: #d0576b"></span> 詠む</button>
+            <button type="submit" id="modal-open-chat" class="btn icon-btn btn-info" style="background-color: #d0576b; border-color: #d0576b;"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info" style="color: #d0576b"></span> 詠む</button>
 
             <!-- 句入力フォーム -->
-            <div id="modal-content_1" class="content">
+            <div id="chat-modal-content_1" class="content">
               <form action="send_haiku.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
                 <!-- 句入力 -->
                 <input type="text" class="form-control haiku" id="up_haiku" name="up_haiku" placeholder="１行目（四〜六文字）"><br>
@@ -203,13 +201,16 @@ function tateGaki($haiku) {
             </div>
 
           </section>
-        <?php else: ?>
+        <?php } else { ?>
           <!-- チャット相手非選択時 -->
           <?php require('friends_ranking.php'); ?> 
-        <?php endif; ?>
+        <?php } ?>
       </div>
     </div>
   </div>
+
+  <!-- フッター -->
+  <?php require('footer.php') ?>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="assets/js/jquery-3.1.1.js"></script>
@@ -222,13 +223,13 @@ function tateGaki($haiku) {
 
   <script>
     // 1番最初のモーダルウィンドウ呼び出し
-    modalWindowOnFirst('modal-open');
+    modalWindowOnFirst('modal-open-chat', 'chat-modal-content_1');
 
     // 2番目のモーダルウィンドウ呼び出し
     // modalWindowOn('modal-check', 'modal-content_1', 'modal-content_2');
 
     // モーダルウィンドウの終了
-    modalWindowOff('modal-close', 'modal-content_1');
+    modalWindowOff('modal-close', 'chat-modal-content_1');
 
     //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
     $(window).resize(centeringModalSyncer);
