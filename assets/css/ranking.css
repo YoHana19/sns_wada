@@ -45,7 +45,7 @@
 }
 
 .title-ranking2{
-  margin-top: 190px;
+  margin-top: 178px;
   margin-right: 50px;
   margin-left: 140px;
 }
@@ -207,4 +207,8 @@
    height: auto;*/
    width: auto;
    max-height: 300px;
+}
+
+.media2 {
+  margin: 20px 0 50px 0;
 }
