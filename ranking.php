@@ -280,7 +280,7 @@ function tateGaki($haiku) {
       <div class="col-md-6">
         <!-- 歌人よしランキング1位 -->
         <div class="title-ranking">
-          <img src="assets/images/yoshi.png" width="80" height="45">
+          <img src="assets/images/yoshi_rank.png" width="80" height="45">
         </div>
           <div class="ranking-1">
             <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $members_info[0]['user_picture_path']; ?>"></div>
@@ -418,7 +418,7 @@ function tateGaki($haiku) {
 
         <!-- あし ランキング1位 -->
         <div class="title-ranking">
-          <img src="assets/images/ashi.png" width="100" height="45">
+          <img src="assets/images/ashi_rank.png" width="100" height="45">
         </div>
         <div class="ranking-1">
           <img class="media-object picuture-position" src="assets/images/<?php echo $bad_members_info[0]['user_picture_path']; ?>">
