@@ -68,13 +68,6 @@ function rankGet($array_ids) {                  // $array_idsは配列
 
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title></title>
-</head>
-<body>
   <!-- ランキングタイトル -->
   <div class="top-ranking">
     <img class="rank-title" src="assets/images/rank-title.png" alt="">
@@ -157,5 +150,3 @@ function rankGet($array_ids) {                  // $array_idsは配列
       </div>
     </div>
   </div>
-</body>
-</html>

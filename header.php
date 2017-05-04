@@ -14,13 +14,6 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title></title>
-</head>
-<body>
   <nav class="navbar navbar-webmaster" style="width:'auto'; height: 80px">
     <div class=""></div>
     <div class="header-bk">
@@ -172,6 +165,3 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
     //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
     $(window).resize(centeringModalSyncer);
   </script>
-
-</body>
-</html>

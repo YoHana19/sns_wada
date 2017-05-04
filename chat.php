@@ -24,7 +24,6 @@ if (isset($_GET['friend_id'])) {
   $stmt->execute($data);
   $record = $stmt->fetch(PDO::FETCH_ASSOC);
   $room_id = $record['room_id'];
-  echo $room_id;
 
   // チャットの取得
   $sql = 'SELECT c.*, m.nick_name, m.user_picture_path FROM `chats` AS c LEFT JOIN `members` AS m ON c.sender_id=m.member_id WHERE c.room_id=? ORDER BY c.created DESC';
