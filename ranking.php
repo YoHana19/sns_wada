@@ -15,6 +15,7 @@ while($like_haiku = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $haiku_ids[] = $like_haiku['haiku_id'];
 }       // ↑ここで配列化 []を使うと、[1]-> [1,2]-> [1,2,3]...のように新しい数を配列の最後尾にいれる
 
+// var_dump($haiku_ids);
 $haiku_rank = rankGet($haiku_ids);
 
 // 句、プロフ画像、名前取得
@@ -27,6 +28,10 @@ foreach ($haiku_rank as $haiku) {
   $record = $stmt->fetch(PDO::FETCH_ASSOC);
   $haikus_info[] = $record;
 }
+
+echo '<pre>';
+var_dump($haikus_info);
+echo '</pre>';
 
 foreach ($haikus_info as $haiku_info) { // foreachで取り出した$haikus_infoの要素名を$haiku_infoとし、echoで出力(ユーザー名, 句)
   echo $haiku_info['nick_name'];
@@ -164,7 +169,7 @@ function rankGet($array_ids) {                  // $array_idsは配列
   for ($i=0; $i < 3; $i++) {                    // 3位とってくるので3回繰り返す
     $rank_id = key($pure_ids);                  // 連想配列のポインタのあるキーを取ってくる（○位を取ってくる）
     $value_num = $pure_ids["$rank_id"];         // よし・あし数取得
-    $array_rank = array($rank_id, $value_num);  // 配列にいれる
+    $array_rank = array($rank_id, $value_num); // 配列にいれる
     $array_ranks[] = $array_rank;               // 取得したidを配列に入れる
     next($pure_ids);                            // 隣のポインタに移す
   }
