@@ -53,7 +53,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 <body>
 
 <!-- タイムラインページだったら -->
-  <?php if($file_name == 'timeline.php'): ?>
+  <?php if($file_name == 'timeline.php' || $file_name == 'ranking.php'): ?>
 
       <!-- 簡易個人プロフ -->
       <div class="left-proph">
