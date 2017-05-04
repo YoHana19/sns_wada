@@ -28,13 +28,6 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title></title>
-</head>
-<body>
   
   <!-- 検索フォーム -->
   <form action="friends.php" method="GET" accept-charset="utf-8" class="form-horizontal">
@@ -87,6 +80,3 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
       <?php } ?>
     </div>
   </div>
-
-</body>
-</html>

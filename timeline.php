@@ -125,6 +125,7 @@ function tateGaki($haiku) {
             <?php $haiku_id = $post['haiku_id'] ?>
             <?php $nick_name = $post['nick_name'] ?>
             <?php $user_picture_path = $post['user_picture_path'] ?>
+            <?php $back_img = $post['back_img'] ?>
             <?php $haiku_1 = $post['haiku_1'] ?>
             <?php $haiku_2 = $post['haiku_2'] ?>
             <?php $haiku_3 = $post['haiku_3'] ?>
@@ -167,7 +168,11 @@ function tateGaki($haiku) {
                 <p><?php echo $created ?></p>
               </div>
               <div class="active item">
+              <?php if (!empty($back_img)) : ?>
+                <blockquote style="background-image: url(assets/images/<?php echo $back_img ?>); background-size: cover;">
+              <?php else: ?>
                 <blockquote style="background:#fff0f5">
+              <?php endif; ?>
                   <div class="haiku-text">
                     <h2 class="haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
                     <h2 class="haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
