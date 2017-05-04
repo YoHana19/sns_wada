@@ -215,7 +215,6 @@ function tateGaki($haiku) {
 <head>
   <meta charset="utf-8">
   <title></title>
-<<<<<<< HEAD
   <link rel="stylesheet" type="text/css" href="assets/css/ranking.css">
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
