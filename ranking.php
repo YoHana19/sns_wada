@@ -162,7 +162,7 @@ foreach ($bad_member_rank as $bad_member) { //(良し数)
 
 
 // 関数を使った処理
-function rankGet($array_ids) {              // $array_idsは配列
+function rankGet($array_ids) {                  // $array_idsは配列
   $pure_ids = array_count_values($array_ids);   // 重複する値の数を数得て、その値とその数をペアにした連想配列を作る
   arsort($pure_ids);                            // 連想配列の値をもとに大きい順に並び変える
   $array_ranks = array();                       // ランキング上位3つのidを入れるからの配列を作る
