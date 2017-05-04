@@ -161,7 +161,7 @@
 .background {
     padding: 190px 10px;
     margin: 0 0 0 0px;
-    font-size: 0.5px;
+    font-size: 24px;
     border-left: 0px solid #eee;
 }
 
@@ -174,8 +174,8 @@
 }
 
 .haiku-text h2 {
-    position: absolute;
-    top: 35px;
+    /*position: absolute;*/
+    /*top: 35px;*/
 }
 
 .haiku-text-1 {
@@ -194,4 +194,11 @@
 background-color: #d69090
 width="200" ;
 height="500" ;
+}
+
+.src{
+   /*max-width: 300px;
+   height: auto;*/
+   width: auto;
+   max-height: 300px;
 }

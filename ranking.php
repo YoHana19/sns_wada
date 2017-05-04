@@ -283,36 +283,38 @@ function tateGaki($haiku) {
           <div class="ranking-1">
             <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $members_info[0]['user_picture_path']; ?>"></div>
             <h1><?php echo $members_info[0]['nick_name']; ?></h1>
-            <div class="point"><?php echo $member_rank[0][1] ?>よし</div>
+            <h3><?php echo $member_rank[0][1] ?> よし</h3>
           </div>
         
-        <!-- 俳人よしランキング2位以下 -->
+        <!-- 歌人よしランキング2位 -->
         <div class="ranking-less2">
           <div class="ranking-2">
             <div class="media">
               <img class="media-object" src="assets/images/<?php echo $members_info[1]['user_picture_path']; ?>">
               <div class="media-body">
                 <h4 class="media-heading"><?php echo $members_info[1]['nick_name']; ?></h4>
-                <p><?php echo $member_rank[1][1] ?>よし</p>
+                <h4><?php echo $member_rank[1][1] ?> よし</h4>
               </div>
             </div>
           </div>
-  
+
+        <!-- 歌人よしランキング3位 -->
           <div class="ranking-3">
             <div class="media">
               <img class="media-object" src="assets/images/<?php echo $members_info[2]['user_picture_path']; ?>">
               <div class="media-body">
                 <h4 class="media-heading"><?php echo $members_info[2]['nick_name']; ?></h4>
-                <p><?php echo $member_rank[2][1] ?>よし</p>
+                <h5><?php echo $member_rank[2][1] ?> よし</h5>
               </div>
             </div>
           </div>
         </div>
-              <!-- 句 -->
+
+        <!-- 句 -->
         <div class="ku-name"><h5><img src="assets/images/ku.png" width="80" height="60"></h5></div>
         <h3></h3>
 
-<!-- 俳人よしランキング1位 -->
+      <!-- 歌人よし 句 ランキング1位 -->
         <div class="title-ranking">
           <img src="assets/images/yoshi.png" width="80" height="45" >
         </div>
@@ -334,6 +336,7 @@ function tateGaki($haiku) {
             </div>
           </div>
              <!-- 区の詳細ここまで -->
+
           <a class="pull-left" href="#">
           <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $haikus_info[0]['user_picture_path']; ?>" style="border-radius: 50px;"></div>
           </a>
@@ -341,7 +344,7 @@ function tateGaki($haiku) {
             <h3><?php echo $haiku_rank[0][1] ?> よし</h3>
           </div>
   
-        <!-- 俳人よしランキング2位以下 -->
+        <!-- 歌人よし 句 ランキング2位 -->
           <div class="ranking-less2">
             <div class="kuranking-2">
           
@@ -373,7 +376,8 @@ function tateGaki($haiku) {
                 </div>
               </div>
             </div>
-  
+
+        <!-- 歌人よし 句 ランキング3位 -->
           <div class="kuranking-3">
             
             <!-- 句の詳細 -->
@@ -407,9 +411,10 @@ function tateGaki($haiku) {
         </div>
       </div><!--col-md-6-->
 
-    <!--あし ランキング -->
+      <!--あし ランキング -->
       <div class="col-md-6">
-        <!-- あしランキングトップ画像 -->
+
+        <!-- あし ランキング1位 -->
         <div class="title-ranking">
           <img src="assets/images/ashi.png" width="100" height="45">
         </div>
@@ -419,7 +424,7 @@ function tateGaki($haiku) {
           <h3><?php echo $bad_member_rank[0][1]; ?> あし</h3>
         </div>
   
-        <!--あし ランキング2位以下 -->
+        <!-- あし ランキング2位 -->
         <div class="ranking-less2">
           <div class="ranking-2">
             <div class="media">
@@ -431,6 +436,7 @@ function tateGaki($haiku) {
             </div>
           </div>
 
+        <!-- あし ランキング3位 -->
           <div class="ranking-3">
             <div class="media">
               <img class="media-object" src="assets/images/<?php echo $bad_members_info[2]['user_picture_path']; ?>">
@@ -441,12 +447,14 @@ function tateGaki($haiku) {
             </div>
           </div>
         </div>
+
       <!-- 句 -->
         <div class="title-ranking2">
           <h5> </h5>
           <img src="assets/images/ashi.png" width="100" height="45">
         </div>
-          <!-- あしランキングトップ画像 -->
+
+      <!-- 歌人あし 句 ランキング1位 -->
         <div class="title-ranking"></div>
           <div class="kuranking-1">
            
@@ -475,8 +483,7 @@ function tateGaki($haiku) {
             <h3><?php echo $bad_haiku_rank[0][1] ?> あし</h3>
 
 
-        <!-- 俳人あし
-        ランキング2位以下 -->
+        <!-- 歌人あし 句 ランキング2位 -->
           <div class="ranking-less2">
             <div class="kuranking-2">
           
@@ -508,7 +515,8 @@ function tateGaki($haiku) {
                 </div>
               </div>
             </div>
-  
+
+        <!-- 歌人あし 句 ランキング3位 -->
           <div class="kuranking-3">
             
             <!-- 句の詳細 -->
