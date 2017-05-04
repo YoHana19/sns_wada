@@ -215,347 +215,371 @@ function tateGaki($haiku) {
 <head>
   <meta charset="utf-8">
   <title></title>
+  <!-- for Bootstrap -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+
   <link rel="stylesheet" type="text/css" href="assets/css/ranking.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
 </head>
-<body class="background">
-<!-- <body> -->
- <!--  <?php foreach ($haikus_info as $haiku_info) : ?> -->
-  <!--   <a href="profile.php"><?php echo $haiku_info['nick_name']; ?></a><br>
-    <a href="profile.php"><?php echo $member_info['nick_name']; ?></a><br>
-    <a href="profile.php"><?php echo $bad_haiku_info['nick_name']; ?></a><br>
-    <a href="profile.php"><?php echo $bad_member_info['nick_name']; ?></a><br> -->
-  <!-- <?php endforeach; ?> -->
-  <?php echo '<br>'; ?>
-  <!-- <?php foreach ($haikus_info as $haiku_info): ?> -->
-   <!--  <img src="assets/images/<?php echo $haikus_info['user_picture_path']; ?>" width="100" height="100">
-    <img src="assets/images/<?php echo $members_info['user_picture_path']; ?>" width="100" height="100">
-    <img src="assets/images/<?php echo $bad_haikus_info['user_picture_path']; ?>" width="100" height="100">
-    <img src="assets/images/<?php echo $bad_members_info['user_picture_path']; ?>" width="100" height="100"> -->
-  <!-- <?php endforeach; ?> -->
-  <!--  背景 -->
+<body>
+
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
+
+
+
 
 <!-- 自分情報(左上のやつ) -->
-<div class="container">
-  <div class="row">
-    <div class="col-md-3"><br><br>
-  </div>
+  <div class="container">
+    <div class="row whole_content">
 
-  <div class="col-md-9">
+      <!-- 左サイドバー -->
+      <div class="col-md-3 left-content">
+        <?php require('left_sidebar.php'); ?>
+      </div>
 
-    <div class="ranking-column">
-    <h4><img src="assets/images/column.png" width="200" height="60">
-    </h4>
-    </div>
+      <!-- 本コンテンツ -->
+      <div class="col-md-8 right-content">
 
-  <!-- コラム/ランキング -->
-    <div class="col-md-4 col-md-push-4">
-      <img class="img-responsive img-circle" src="https://farm1.staticflickr.com/1/2759520_6dea8b9007.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
-    </div>
-
-    <div class="col-md-4 col-md-pull-4 ">
-      <img class="img-responsive img-circle" src="https://farm2.staticflickr.com/1109/809710325_4289dc484e.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
-    </div>
-
-    <div class="col-md-4">
-      <img class="img-responsive img-circle" src="https://farm3.staticflickr.com/2353/2216602404_679d01cd4b.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr"><br><br>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-offset-3 col-md-9">
-      <div class="runking-title">
-        <img src="assets/images/rank-title.png" width="500" height="80">
-    </div>
-    </div>
-  </div>
-
-<!-- ランキング -->
-<div class="col-md-offset-3 col-md-9 yosi-ranking"> 
-  <!-- 歌人 -->
-  <h5><img src="assets/images/kajin.png" width="120" height="70"></h5>
-  <!-- よし ランキング -->
-      <div class="col-md-6">
-        <!-- 歌人よしランキング1位 -->
-        <div class="title-ranking">
-          <img src="assets/images/yoshi_rank.png" width="80" height="45">
+        <!-- コラム/ランキング -->
+        <div class="ranking-column">
+          <h4><img src="assets/images/column.png" width="200" height="60"></h4>
         </div>
-          <div class="ranking-1">
-            <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $members_info[0]['user_picture_path']; ?>"></div>
-            <h1><?php echo $members_info[0]['nick_name']; ?></h1>
-            <h3><?php echo $member_rank[0][1] ?> よし</h3>
-          </div>
-        
-        <!-- 歌人よしランキング2位 -->
-        <div class="ranking-less2">
-          <div class="ranking-2">
-            <div class="media">
-              <img class="media-object" src="assets/images/<?php echo $members_info[1]['user_picture_path']; ?>">
-              <div class="media-body">
-                <h4 class="media-heading"><?php echo $members_info[1]['nick_name']; ?></h4>
-                <h4><?php echo $member_rank[1][1] ?> よし</h4>
-              </div>
+
+        <!-- コラムコンテンツ1 -->
+        <div class="col-md-4 col-md-push-4">
+          <img class="img-responsive img-circle" src="assets/images/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
+        </div>
+
+        <!-- コラムコンテンツ2 -->
+        <div class="col-md-4 col-md-pull-4 ">
+          <img class="img-responsive img-circle" src="assets/images/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
+        </div>
+
+        <!-- コラムコンテンツ3 -->
+        <div class="col-md-4">
+          <img class="img-responsive img-circle" src="assets/images/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
+        </div>
+
+        <!-- ランキング -->
+        <!-- タイトル -->
+        <img src="assets/images/rank-title.png" style="width: 500px; height:80px; margin-top: 50px; margin-left: 290px;">
+   
+
+        <!-- ランキングコンテンツスタート -->
+        <div class="yosi-ranking"> 
+          <!-- 歌人タイトル -->
+          <h5><img src="assets/images/kajin.png" width="120" height="70"></h5>
+          <!-- よし ランキング -->
+          <div class="col-md-6">
+
+            <!-- 歌人 -->
+
+            <!-- 歌人よし1位 -->
+            <div class="title-ranking">
+              <img src="assets/images/yoshi_rank.png" width="80" height="45">
             </div>
-          </div>
-
-        <!-- 歌人よしランキング3位 -->
-          <div class="ranking-3">
-            <div class="media">
-              <img class="media-object" src="assets/images/<?php echo $members_info[2]['user_picture_path']; ?>">
-              <div class="media-body">
-                <h4 class="media-heading"><?php echo $members_info[2]['nick_name']; ?></h4>
-                <h5><?php echo $member_rank[2][1] ?> よし</h5>
+            <div class="ranking-1">
+              <div class="photo">
+                <img class="media-object picuture-position" src="assets/images/<?php echo $members_info[0]['user_picture_path']; ?>">
               </div>
+              <h1><?php echo $members_info[0]['nick_name']; ?></h1>
+              <h3><?php echo $member_rank[0][1] ?> よし</h3>
             </div>
-          </div>
-        </div>
-
-        <!-- 句 -->
-        <div class="ku-name"><h5><img src="assets/images/ku.png" width="80" height="60"></h5></div>
-        <h3></h3>
-
-      <!-- 歌人よし 句 ランキング1位 -->
-        <div class="title-ranking">
-          <img src="assets/images/yoshi.png" width="80" height="45" >
-        </div>
-        <div class="kuranking-1">
-            <!-- 句の詳細 -->
-          <div class="haiku">
-            <div class="carousel-info">
-              <div class="pull-left">
-                <div class="active item">
-                  <blockquote style="background: #d69090">
-                    <div class="haiku-text">
-                      <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[0]['haiku_1']); ?>
-                      <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[0]['haiku_2']); ?>
-                      <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[0]['haiku_3']); ?>
-                    </div>
-                  </blockquote>
+              
+            <!-- 歌人よし2位以下 -->
+            <div class="ranking-less2">
+              <!-- 歌人よし2位 -->
+              <div class="ranking-2">
+                <div class="media">
+                  <img class="media-object" src="assets/images/<?php echo $members_info[1]['user_picture_path']; ?>">
+                  <div class="media-body">
+                    <h4 class="media-heading"><?php echo $members_info[1]['nick_name']; ?></h4>
+                    <h4><?php echo $member_rank[1][1] ?> よし</h4>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-             <!-- 区の詳細ここまで -->
 
-          <a class="pull-left" href="#">
-          <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $haikus_info[0]['user_picture_path']; ?>" style="border-radius: 50px;"></div>
-          </a>
-          <div class="name"><h1><?php echo $haikus_info[0]['nick_name']; ?></h1></div>
-            <h3><?php echo $haiku_rank[0][1] ?> よし</h3>
-          </div>
-  
-        <!-- 歌人よし 句 ランキング2位 -->
-          <div class="ranking-less2">
-            <div class="kuranking-2">
-          
-            <!-- 句の詳細 -->
+              <!-- 歌人よし3位 -->
+              <div class="ranking-3">
+                <div class="media">
+                  <img class="media-object" src="assets/images/<?php echo $members_info[2]['user_picture_path']; ?>">
+                  <div class="media-body">
+                    <h4 class="media-heading"><?php echo $members_info[2]['nick_name']; ?></h4>
+                    <h5><?php echo $member_rank[2][1] ?> よし</h5>
+                  </div>
+                </div>
+              </div>
+            </div><!-- 歌人よし2位以下終了 -->
+
+            <!-- 句 -->
+
+            <!-- 句タイトル -->
+            <div class="ku-name"><h5><img src="assets/images/ku.png" width="80" height="60"></h5></div>
+
+            <!-- 句よしタイトル -->
+            <div class="title-ranking">
+              <img src="assets/images/yoshi_rank.png" width="80" height="45" >
+            </div>
+            <!-- 句よし1位 -->
+            <div class="kuranking-1">
+              <!-- 句の内容 -->
               <div class="haiku">
                 <div class="carousel-info">
                   <div class="pull-left">
                     <div class="active item">
                       <blockquote style="background: #d69090">
                         <div class="haiku-text">
-                          <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[1]['haiku_1']); ?>
-                          <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[1]['haiku_2']); ?>
-                          <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[1]['haiku_3']); ?>
+                          <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[0]['haiku_1']); ?></h2>
+                          <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[0]['haiku_2']); ?></h2>
+                          <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[0]['haiku_3']); ?></h2>
                         </div>
                       </blockquote>
                     </div>
                   </div>
                 </div>
-              </div>
-             <!-- 区の詳細ここまで -->
-            
-              <div class="media2">
-                <a class="pull-left" href="#">
-                <img class="media-object" src="assets/images/<?php echo $haikus_info[1]['user_picture_path']; ?>" style="border-radius: 50px;">
-                </a>
-                <div class="media-body2">
-                  <h4 class="media-heading"><?php echo $haikus_info[1]['nick_name']; ?></h4>
-                  <h4><?php echo $haiku_rank[1][1] ?> よし</h4>
-                </div>
-              </div>
-            </div>
+              </div><!-- 句の内容終了 -->
 
-        <!-- 歌人よし 句 ランキング3位 -->
-          <div class="kuranking-3">
-            
-            <!-- 句の詳細 -->
-            <div class="haiku">
-              <div class="carousel-info">
-                <div class="pull-left">
-                  <div class="active item">
-                    <blockquote style="background: #d69090">
-                      <div class="haiku-text">
-                       <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[2]['haiku_1']); ?>
-                       <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[2]['haiku_2']); ?>
-                       <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[2]['haiku_3']); ?>
-                      </div>
-                    </blockquote>
-                  </div>
-                </div>
-              </div>
-            </div>
-             <!-- 区の詳細ここまで -->
-
-            <div class="media2">
               <a class="pull-left" href="#">
-                <img class="media-object" src="assets/images/<?php echo $haikus_info[2]['user_picture_path']; ?>" style="border-radius: 50px;">
+                <div class="photo"><img class="media-object picuture-position" src="assets/images/<?php echo $haikus_info[0]['user_picture_path']; ?>" style="border-radius: 50px;"></div>
               </a>
-              <div class="media-body2">
-                <h4 class="media-heading"><?php echo $haikus_info[2]['nick_name']; ?></h4>
-                <h5><?php echo $haiku_rank[2][1] ?> よし</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div><!--col-md-6-->
+              <div class="name"><h1><?php echo $haikus_info[0]['nick_name']; ?></h1></div>
+              <h3><?php echo $haiku_rank[0][1] ?> よし</h3>
+            </div><!-- 句よし1位終了 -->
+          
+            <!-- 句よしランキング2位以下 -->
+            <div class="ranking-less2">
 
-      <!--あし ランキング -->
-      <div class="col-md-6">
-
-        <!-- あし ランキング1位 -->
-        <div class="title-ranking">
-          <img src="assets/images/ashi_rank.png" width="100" height="45">
-        </div>
-        <div class="ranking-1">
-          <img class="media-object picuture-position" src="assets/images/<?php echo $bad_members_info[0]['user_picture_path']; ?>">
-          <h1><?php echo $bad_members_info[0]['nick_name']; ?></h1>
-          <h3><?php echo $bad_member_rank[0][1]; ?> あし</h3>
-        </div>
-  
-        <!-- あし ランキング2位 -->
-        <div class="ranking-less2">
-          <div class="ranking-2">
-            <div class="media">
-              <img class="media-object" src="assets/images/<?php echo $bad_members_info[1]['user_picture_path']; ?>">
-              <div class="media-body">
-                <h4><?php echo $bad_members_info[1]['nick_name']; ?></h4>
-                <h4><?php echo $bad_member_rank[1][1]; ?> あし</h4>
-              </div>
-            </div>
-          </div>
-
-        <!-- あし ランキング3位 -->
-          <div class="ranking-3">
-            <div class="media">
-              <img class="media-object" src="assets/images/<?php echo $bad_members_info[2]['user_picture_path']; ?>">
-              <div class="media-body">
-                <h4><?php echo $bad_members_info[2]['nick_name']; ?></h4>
-                <h5><?php echo $bad_member_rank[2][1] ?> あし</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      <!-- 句 -->
-        <div class="title-ranking2">
-          <h5> </h5>
-          <img src="assets/images/ashi.png" width="100" height="45">
-        </div>
-
-      <!-- 歌人あし 句 ランキング1位 -->
-        <div class="title-ranking"></div>
-          <div class="kuranking-1">
-           
-          <!-- 句の詳細 -->
-            <div class="haiku">
-              <div class="carousel-info">
-                <div class="pull-left">
-                  <div class="active item">
-                    <blockquote style="background: #d69090">
-                      <div class="haiku-text">
-                        <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[0]['haiku_1']); ?>
-                        <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[0]['haiku_2']); ?>
-                        <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[0]['haiku_3']); ?>
+              <!-- 句よし2位 -->
+              <div class="kuranking-2">
+              
+                <!-- 句の詳細 -->
+                <div class="haiku">
+                  <div class="carousel-info">
+                    <div class="pull-left">
+                      <div class="active item">
+                        <blockquote style="background: #d69090">
+                          <div class="haiku-text">
+                            <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[1]['haiku_1']); ?></h2>
+                            <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[1]['haiku_2']); ?></h2>
+                            <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[1]['haiku_3']); ?></h2>
+                          </div>
+                        </blockquote>
                       </div>
-                    </blockquote>
+                    </div>
+                  </div>
+                </div><!-- 句の詳細ここまで -->
+                
+                <div class="media2">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="assets/images/<?php echo $haikus_info[1]['user_picture_path']; ?>" style="border-radius: 50px;">
+                  </a>
+                  <div class="media-body2">
+                    <h4 class="media-heading"><?php echo $haikus_info[1]['nick_name']; ?></h4>
+                    <h4><?php echo $haiku_rank[1][1] ?> よし</h4>
+                  </div>
+                </div>
+              </div><!-- 句よし2位終了 -->
+
+              <!-- 句よし3位 -->
+              <div class="kuranking-3">
+                
+                <!-- 句の詳細 -->
+                <div class="haiku">
+                  <div class="carousel-info">
+                    <div class="pull-left">
+                      <div class="active item">
+                        <blockquote style="background: #d69090">
+                          <div class="haiku-text">
+                           <h2 class="haiku-text-1"><?php echo tateGaki($haikus_info[2]['haiku_1']); ?></h2>
+                           <h2 class="haiku-text-2"><?php echo tateGaki($haikus_info[2]['haiku_2']); ?></h2>
+                           <h2 class="haiku-text-3"><?php echo tateGaki($haikus_info[2]['haiku_3']); ?></h2>
+                          </div>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- 句の詳細ここまで -->
+
+                <div class="media2">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="assets/images/<?php echo $haikus_info[2]['user_picture_path']; ?>" style="border-radius: 50px;">
+                  </a>
+                  <div class="media-body2">
+                    <h4 class="media-heading"><?php echo $haikus_info[2]['nick_name']; ?></h4>
+                    <h5><?php echo $haiku_rank[2][1] ?> よし</h5>
+                  </div>
+                </div>
+              </div><!-- 句よし3位終了 -->
+              
+            </div><!-- 句よしランキング2位以下 -->
+          </div><!-- よし ランキング終了 -->
+
+          <!--あし ランキング -->
+          <div class="col-md-6">
+
+            <!-- あし歌人1位 -->
+            <div class="title-ranking">
+              <img src="assets/images/ashi_rank.png" width="100" height="45">
+            </div>
+            <div class="ranking-1">
+              <img class="media-object picuture-position" src="assets/images/<?php echo $bad_members_info[0]['user_picture_path']; ?>">
+              <h1><?php echo $bad_members_info[0]['nick_name']; ?></h1>
+              <h3><?php echo $bad_member_rank[0][1]; ?> あし</h3>
+            </div>
+          
+            <!-- あし歌人2位以下 -->
+            <div class="ranking-less2">
+
+              <!-- あし歌人2位 -->
+              <div class="ranking-2">
+                <div class="media">
+                  <img class="media-object" src="assets/images/<?php echo $bad_members_info[1]['user_picture_path']; ?>">
+                  <div class="media-body">
+                    <h4><?php echo $bad_members_info[1]['nick_name']; ?></h4>
+                    <h4><?php echo $bad_member_rank[1][1]; ?> あし</h4>
                   </div>
                 </div>
               </div>
+
+              <!-- あし歌人3位 -->
+              <div class="ranking-3">
+                <div class="media">
+                  <img class="media-object" src="assets/images/<?php echo $bad_members_info[2]['user_picture_path']; ?>">
+                  <div class="media-body">
+                    <h4><?php echo $bad_members_info[2]['nick_name']; ?></h4>
+                    <h5><?php echo $bad_member_rank[2][1] ?> あし</h5>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- あし歌人2位以下終了 -->
+
+            <!-- 句あしタイトル -->
+            <div class="title-ranking2">
+              <h5> </h5>
+              <img src="assets/images/ashi_rank.png" width="100" height="45">
             </div>
-             <!-- 区の詳細ここまで -->
 
-            <a class="pull-left" href="#"> 
-              <img class="media-object picuture-position" src="assets/images/<?php echo $bad_haikus_info[0]['user_picture_path']; ?>" style="border-radius: 50px;">
-            </a>
-            <h1 ><?php echo $bad_haikus_info[0]['nick_name']; ?></h1>
-            <h3><?php echo $bad_haiku_rank[0][1] ?> あし</h3>
-
-
-        <!-- 歌人あし 句 ランキング2位 -->
-          <div class="ranking-less2">
-            <div class="kuranking-2">
-          
-            <!-- 句の詳細 -->
+            <!-- 句あし -->
+            <div class="title-ranking"></div>
+            <!-- 句あし1位 -->
+            <div class="kuranking-1">
+             
+              <!-- 句の詳細 -->
               <div class="haiku">
                 <div class="carousel-info">
                   <div class="pull-left">
                     <div class="active item">
                       <blockquote style="background: #d69090">
                         <div class="haiku-text">
-                          <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[1]['haiku_1']); ?>
-                          <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[1]['haiku_2']); ?>
-                          <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[1]['haiku_3']); ?>
+                          <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[0]['haiku_1']); ?></h2>
+                          <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[0]['haiku_2']); ?></h2>
+                          <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[0]['haiku_3']); ?></h2>
                         </div>
                       </blockquote>
                     </div>
                   </div>
                 </div>
-              </div>
-             <!-- 区の詳細ここまで -->
-            
-              <div class="media2">
-                <a class="pull-left" href="#">
-                <img class="media-object" src="assets/images/<?php echo $bad_haikus_info[1]['user_picture_path']; ?>" style="border-radius: 50px;">
-                </a>
-                <div class="media-body2">
-                  <h4 class="media-heading"><?php echo $bad_haikus_info[1]['nick_name']; ?></h4>
-                  <h4><?php echo $bad_haiku_rank[1][1] ?> あし</h4>
-                </div>
-              </div>
-            </div>
+              </div><!-- 区の詳細ここまで -->
 
-        <!-- 歌人あし 句 ランキング3位 -->
-          <div class="kuranking-3">
-            
-            <!-- 句の詳細 -->
-            <div class="haiku">
-              <div class="carousel-info">
-                <div class="pull-left">
-                  <div class="active item">
-                    <blockquote style="background: #d69090">
-                      <div class="haiku-text">
-                        <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[2]['haiku_1']); ?>
-                        <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[2]['haiku_2']); ?>
-                        <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[2]['haiku_3']); ?>
+              <a class="pull-left" href="#"> 
+                <img class="media-object picuture-position" src="assets/images/<?php echo $bad_haikus_info[0]['user_picture_path']; ?>" style="border-radius: 50px;">
+              </a>
+              <h1 ><?php echo $bad_haikus_info[0]['nick_name']; ?></h1>
+              <h3><?php echo $bad_haiku_rank[0][1] ?> あし</h3>
+            </div><!-- 句あし1位終了 -->
+
+            <!-- 句あし2位以下 -->
+            <div class="ranking-less2">
+              <!-- 句あし2位 -->
+              <div class="kuranking-2">
+              
+                <!-- 句の詳細 -->
+                <div class="haiku">
+                  <div class="carousel-info">
+                    <div class="pull-left">
+                      <div class="active item">
+                          <blockquote style="background: #d69090">
+                            <div class="haiku-text">
+                              <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[1]['haiku_1']); ?></h2>
+                              <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[1]['haiku_2']); ?></h2>
+                              <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[1]['haiku_3']); ?></h2>
+                            </div>
+                          </blockquote>
+                        </div>
                       </div>
-                    </blockquote>
+                    </div>
+                  </div><!-- 句の詳細ここまで -->
+                
+                  <div class="media2">
+                    <a class="pull-left" href="#">
+                    <img class="media-object" src="assets/images/<?php echo $bad_haikus_info[1]['user_picture_path']; ?>" style="border-radius: 50px;">
+                    </a>
+                    <div class="media-body2">
+                      <h4 class="media-heading"><?php echo $bad_haikus_info[1]['nick_name']; ?></h4>
+                      <h4><?php echo $bad_haiku_rank[1][1] ?> あし</h4>
+                    </div>
+                  </div>
+              </div><!-- 句あし2位終了 -->
+
+              <!-- 句あし3位 -->
+              <div class="kuranking-3">
+                
+                <!-- 句の詳細 -->
+                <div class="haiku">
+                  <div class="carousel-info">
+                    <div class="pull-left">
+                      <div class="active item">
+                        <blockquote style="background: #d69090">
+                          <div class="haiku-text">
+                            <h2 class="haiku-text-1"><?php echo tateGaki($bad_haikus_info[2]['haiku_1']); ?></h2>
+                            <h2 class="haiku-text-2"><?php echo tateGaki($bad_haikus_info[2]['haiku_2']); ?></h2>
+                            <h2 class="haiku-text-3"><?php echo tateGaki($bad_haikus_info[2]['haiku_3']); ?></h2>
+                          </div>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- 句の詳細ここまで -->
+
+                <div class="media2">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="assets/images/<?php echo $bad_haikus_info[2]['user_picture_path']; ?>" style="border-radius: 50px;" >
+                  </a>
+                  <div class="media-body2">
+                    <h4 class="media-heading"><?php echo $bad_haikus_info[2]['nick_name']; ?></h4>
+                    <h5><?php echo $bad_haiku_rank[2][1] ?> あし</h5>
                   </div>
                 </div>
-              </div>
-            </div>
-             <!-- 区の詳細ここまで -->
-
-            <div class="media2">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="assets/images/<?php echo $bad_haikus_info[2]['user_picture_path']; ?>" style="border-radius: 50px;" >
-              </a>
-              <div class="media-body2">
-                <h4 class="media-heading"><?php echo $bad_haikus_info[2]['nick_name']; ?></h4>
-                <h5><?php echo $bad_haiku_rank[2][1] ?> あし</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div><!--col-md-6-->
+              </div><!-- 句あし3位終了 -->
+            </div><!-- 句あし2位以下終了 -->
+          </div><!-- あしランキング終了 -->
+        </div><!-- ランキングコンテンツ終了 -->
+      </div><!-- 本コンテンツ終了 -->
     </div>
-  </div><!--col-md-6-->
-</div>
+  </div>
 
+  <!-- フッター -->
+  <?php require('footer.php') ?>
 
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="assets/js/jquery-3.1.1.js"></script>
+  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/friend.js"></script>
+  <script src="assets/js/likes.js"></script>
+  <script src="assets/js/dislikes.js"></script>
+  <script src="assets/js/comment.js"></script>
 
 </body>
 </html>
