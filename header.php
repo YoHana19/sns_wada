@@ -62,12 +62,16 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <!-- 検索フォーム -->
           <div>
             <div class="input-group">
-              <input type="text" name="search_word" class="search-query form-control" placeholder="search">
-                <span class="input-group-btn">
-                  <button type="submit" class="btn btn-danger">
-                    <span class="glyphicon glyphicon-search" style="color: #dcdddd"></span>
-                  </button>
-                </span>
+              <?php if (isset($search_word)): ?>
+                <input type="text" name="search_word" class="search-query form-control" placeholder="search" value="<?php echo $search_word ?>">
+              <?php else: ?>
+                <input type="text" name="search_word" class="search-query form-control" placeholder="search">
+              <?php endif; ?>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-danger">
+                  <span class="glyphicon glyphicon-search" style="color: #dcdddd"></span>
+                </button>
+              </span>
             </div>
             <!-- 詠むボタン -->
             <?php if ($file_name != 'chat.php'): ?>

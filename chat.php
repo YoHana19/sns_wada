@@ -99,7 +99,11 @@ function tateGaki($haiku) {
                 <article class="row">
                   <div class="col-md-10 col-sm-10">
                     <p class="chat-name" style="text-align: right;"><?php echo $chat['nick_name']; ?></p>
-                    <div class="panel panel-default arrow right user-right">
+                    <?php if (!empty($chat['back_img'])): ?>
+                      <div class="panel panel-default arrow right user-right" style="background: url(assets/images/<?php echo $chat['back_img']; ?>)">
+                    <?php else: ?>
+                      <div class="panel panel-default arrow right user-right">
+                    <?php endif; ?>
                       <div class="panel-body">
                         <header class="text-right">
                           <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i><?php echo $chat['created']; ?></time>

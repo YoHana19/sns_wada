@@ -20,7 +20,15 @@ if ($page == '') {
 $page = max($page, 1);
 
 // データの件数から最大ページ数を計算する
-$sql = 'SELECT count(*) AS `cnt` FROM `haikus`';
+// 検索の場合
+if (isset($_POST['search_word']) && !empty($_POST['search_word'])) {
+  $search_word = $_POST['search_word'];
+  $sql = sprintf('SELECT count(*) AS `cnt` FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.haiku_1 LIKE "%%%s%%" OR h.haiku_2 LIKE "%%%s%%" OR h.haiku_3 LIKE "%%%s%%" OR m.nick_name LIKE "%%%s%%" ORDER BY h.created DESC' ,$search_word, $search_word, $search_word, $search_word);
+// 通常の処理
+} else {
+  $sql = 'SELECT count(*) AS `cnt` FROM `haikus`';
+}
+
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $record = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -42,7 +50,7 @@ $start = ($page-1) * 5;
 $search_word = '';
 if (isset($_POST['search_word']) && !empty($_POST['search_word'])) {
   $search_word = $_POST['search_word'];
-  $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.haiku_1 LIKE "%%%s%%" OR h.haiku_2 LIKE "%%%s%%" OR h.haiku_3 LIKE "%%%s%%" OR m.nick_name LIKE "%%%s%%" ORDER BY h.created DESC' ,$search_word, $search_word, $search_word, $search_word);
+  $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.haiku_1 LIKE "%%%s%%" OR h.haiku_2 LIKE "%%%s%%" OR h.haiku_3 LIKE "%%%s%%" OR m.nick_name LIKE "%%%s%%" ORDER BY h.created DESC LIMIT %d, 5', $search_word, $search_word, $search_word, $search_word, $start);
 } else { // 通常の処理
   $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY h.created DESC LIMIT %d, 5', $start);
   // $sql = 'SELECT t.*, m.nick_name, m.picture_path FROM `tweets` t, `members` m WHERE t.member_id=m.member_id ORDER BY `created` DESC';
@@ -319,7 +327,14 @@ function tateGaki($haiku) {
         if ($(document).height() - win.height() == win.scrollTop()) {
           $('#loading').show();
 
-          var data = {max_page : <?php echo $max_page; ?>};
+          var search_word = "<?php echo $search_word ?>";
+          console.log(search_word);
+          if (search_word == '') {
+            console.log('hoge01');
+            var data = {max_page : <?php echo $max_page; ?>};
+          } else {
+            var data = {max_page : <?php echo $max_page; ?>, search_word : search_word};
+          };
 
           $.ajax({
             type: "POST",
@@ -329,9 +344,9 @@ function tateGaki($haiku) {
           }).done(function(data) {
             var task_data = JSON.parse(data);
             var posts = task_data['posts'];
-            var page = task_data['last_page'];
+            var last_page = task_data['last_page'];
             
-            if (page == 0) { // 最後の投稿ではない
+            if (last_page == 0) { // 最後の投稿ではない
 
               // 繰り返し文
               posts.forEach(function(post) {

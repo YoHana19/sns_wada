@@ -10,33 +10,57 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// ログインユーザーの友達の情報取得
-// 友達検索の場合
-$search_word = '';
-if (isset($_GET['search_word']) && !empty($_GET['search_word'])) {
+// ログインユーザーの友達idの情報取得
+$sql = 'SELECT `login_member_id`, `friend_member_id` FROM `friends` WHERE (`login_member_id`=? OR `friend_member_id`=?) AND `state`=1';
+$data = array($_SESSION['login_member_id'], $_SESSION['login_member_id']);
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
+
+$friends_id = array();
+while ($friend_id = $stmt->fetch(PDO::FETCH_ASSOC)){
+  $friends_id[] = $friend_id;
+}
+
+$friends_name = array();
+$search_word_f = '';
+foreach ($friends_id as $friend_id) {
+  // 友達のニックネーム取得
+  // 友達検索の場合
+  if (isset($_GET['search_word']) && !empty($_GET['search_word'])) {
     // 検索の場合の処理
-    $sql = 'SELECT * FROM `friends` AS f LEFT JOIN `members` AS m ON f.friend_member_id=m.member_id WHERE f.login_member_id=? AND m.nick_name LIKE ? ORDER BY m.nick_name';
-    $word = '%' . $_GET['search_word'] . '%';
-    $data = array($_SESSION['login_member_id'], $word);
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute($data);
-    $search_word = $_GET['search_word'];
+    if ($friend_id['login_member_id'] == $_SESSION['login_member_id']) {
+      $sql = 'SELECT `nick_name` FROM `members` WHERE `member_id`=? AND `nick_name` LIKE ?';
+      $word = '%' . $_GET['search_word'] . '%';
+      $data = array($friend_id['friend_member_id'], $word);
+    } else {
+      $sql = 'SELECT `nick_name` FROM `members` WHERE `member_id`=? AND `nick_name` LIKE ?';
+      $word = '%' . $_GET['search_word'] . '%';
+      $data = array($friend_id['login_member_id'], $word);
+    }
+    $search_word_f = $_GET['search_word'];
 
-} else {
-    // 通常の処理
-    $sql = 'SELECT * FROM `friends` AS f LEFT JOIN `members` AS m ON f.friend_member_id=m.member_id WHERE f.login_member_id=? ORDER BY m.nick_name';
-    $data = array($_SESSION['login_member_id']);
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute($data);
+  // 通常の処理
+  } else {
+    if ($friend_id['login_member_id'] == $_SESSION['login_member_id']) {
+      $sql = 'SELECT `nick_name` FROM `members` WHERE `member_id`=?';
+      $data = array($friend_id['friend_member_id']);
+    } else {
+      $sql = 'SELECT `nick_name` FROM `members` WHERE `member_id`=?';
+      $data = array($friend_id['login_member_id']);
+    }
+  }
+  $stmt = $dbh->prepare($sql);
+  $stmt->execute($data);
+  if ($friend_name = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $friends_name[] = $friend_name['nick_name'];
+  }
 }
 
-$friends = array();
-while ($friend = $stmt->fetch(PDO::FETCH_ASSOC)){
-  $friends[] = $friend;
-}
+// 名前順にソート
+sort($friends_name);
 
 // 友達数カウント
-$num_friends = count($friends);
+$num_friends = count($friends_name);
 
 ?>
 

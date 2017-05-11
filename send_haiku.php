@@ -27,10 +27,13 @@ if (isset($_SESSION['login_member_id'])) {
     $bozu_point += 1;
   }
 
+  $picture_name = '';
   // 画像アップロード処理
-  $picture_name = date('YmdHis') . $_FILES['photo_file']['name'];
-  // 20170308152500hogehoge.jpg←画像ファイル名作成
-  move_uploaded_file($_FILES['photo_file']['tmp_name'], 'assets/images/' . $picture_name);
+  if (isset($_FILES['photo_file']['name']) && !empty($_FILES['photo_file']['name'])) {
+    $picture_name = date('YmdHis') . $_FILES['photo_file']['name'];
+    // 20170308152500hogehoge.jpg←画像ファイル名作成
+    move_uploaded_file($_FILES['photo_file']['tmp_name'], 'assets/images/' . $picture_name);
+  }
 
   if ($_POST['page'] == 'chat') { // チャット
 
