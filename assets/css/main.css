@@ -1,3 +1,207 @@
+/**/
+/*== 全ページ適用 ==*/
+/**/
+
+/*== header ==*/
+
+nav.navbar-webmaster ul.navbar-nav a {
+    border-width: 2px 0 0 0;
+}
+nav.navbar-webmaster ul.navbar-nav a:hover,
+nav.navbar-webmaster ul.navbar-nav a:visited,
+nav.navbar-webmaster ul.navbar-nav a:focus,
+nav.navbar-webmaster ul.navbar-nav a:hover {opacity: .9; }
+nav.navbar-webmaster li.divider { background: #ccc; }
+nav.navbar-webmaster button.navbar-toggle { background:  #1b242c; border-radius: 2px; }
+nav.navbar-webmaster button.navbar-toggle:hover { background: #999; }
+nav.navbar-webmaster button.navbar-toggle > span.icon-bar { background: #fff; }
+nav.navbar-webmaster ul.dropdown-menu { border: 0; background: #fff; border-radius: 4px; margin: 4px 0; box-shadow: 0 0 4px 0 #ccc; }
+nav.navbar-webmaster ul.dropdown-menu > li > a { color: #444; }
+nav.navbar-webmaster ul.dropdown-menu > li > a:hover { background: #f14444; color: #fff; }
+nav.navbar-webmaster span.badge { background: #f14444; font-weight: normal; font-size: 11px; margin: 0 4px; }
+nav.navbar-webmaster span.badge.new { background: rgba(255, 0, 0, 0.8); color: #fff; }
+
+/* Linksのエフェクト */
+a {
+    color: #ffffff;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a:hover,
+a:focus {
+    color: white;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:before,
+a:after {
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+/* Bootstrap Modifications */
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin:  1em 0;
+    padding: 0;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;  
+    width: 100%;
+
+    font-weight: 800;
+    font-size: 11px;
+    padding-top: 0px;
+    background: url('../images/header_sample.jpg');
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color: #74cfae;
+}
+
+.navbar-header {
+    padding: 10px;
+}
+
+.navbar-brand {
+    font-size: 40px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 0px;
+    margin-left: 30px;
+}
+
+.navbar-bran span {
+    position: absolute;
+    top: 10px;
+}
+
+.navbar-nav {
+    margin-top: 15px;
+}
+
+.btn-theme {
+    background-color: #74cfae;
+    border-color: transparent;
+}
+
+.lead {
+    letter-spacing: 1px;
+}
+
+/* 友達リクエスト */
+.requests-display {
+    display: none;
+    width: 180px;
+}
+
+.request {
+    font-size: 10px;
+    padding: 2px;
+    color :#FFFFFF;
+}
+
+.request:hover {
+    color :#FFFFFF;
+}
+
+.request:active {
+    color :#FFFFFF;
+}
+
+.request:focus {
+    color :#FFFFFF;
+}
+
+.request-admit {
+    background-color: #00a497;
+}
+
+.request-delete {
+    background-color: #ee827c;
+}
+
+/* 検索フォーム */
+.form-control,
+.form-control:active {
+    padding: 6px 13px;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.btn-danger {
+    margin-right: 10px;
+    background-color: #c8c2be;
+    color: black;
+    border-color: #c8c2be;
+    border-radius: 5px;
+}
+
+.btn-danger:hover {
+    background-color: black;
+    border-color: gray;
+}
+
+.btn-danger:focus {
+    background-color: black;
+    border-color: gray;
+}
+
+.btn-danger:active:focus {
+    background-color: black;
+    border-color: gray;
+}
+
+/* 詠むボタン */
+.haiku-input {
+    margin-right: 15px;
+    color: white;
+    background-color: gray;
+    border-color: gray;
+    border-radius: 5px;
+}
+
+.haiku-input:visited {
+    background-color: black;
+    border-color: gray;
+}
+
+.haiku-input:hover {
+    background-color: black;
+    border-color: gray;
+}
+
+.haiku-input:focus {
+    background-color: black;
+    border-color: gray;
+}
+
+.haiku-input:active:focus {
+    background-color: black;
+    border-color: gray;
+}
+
+
+/*== コンテンツ全体 ==*/
+
 @media (min-width: 1200px) {
   .container {
     width: 1210px;
@@ -6,85 +210,146 @@
 
 @media (min-width: 1350px) {
   .container {
-    width: 90%;
+      width: 90%;
   }
 }
 
 body {
-  font-family: 'Hiragino Maru Gothic ProN', 'YuGothic';
-  background-image: url(../images/back.jpg);
+    font-family: 'Hiragino Maru Gothic ProN', 'YuGothic';
+    background-image: url(../images/back.jpg);
 }
 
-h1 {
-  font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
-}
+/*h1 {
+    font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
+}*/
 
 p {
-  line-height: 28px;
+    line-height: 28px;
 }
 
-/* 全体のコンテンツ */
-
-.whole_content {
+.whole-content {
     padding-top: 120px;
 }
 
-/* 左のコンンテンツ */
-.left-content {}
+/*== コンンテンツ左 ==*/
 
-/* 個人プロフ */
-.left-proph {
-  position: relative;
+/* 簡易個人プロフィール */
+/* プロフィール画像 */
+.left-profile img {
+    width: 130px;
 }
 
-.left-proph h3 {
-  padding-left: 15px;
+/* プロフィール名前 */
+.left-profile h3 {
+    padding-left: 15px;
 }
 
-.left-proph span {
-  position: absolute;
-  top: 15px;
+/* 自己紹介句 */
+.left-profile {
+    position: relative;
+}
+
+.left-profile span {
+    position: absolute;
+    top: 15px;
 }
 
 .intro-text-1 {
-  left: 160px;
+    left: 160px;
 }
 
 .intro-text-2 {
-  left: 200px;
+    left: 200px;
 }
 
 .intro-text-3 {
-  left: 240px;
+    left: 240px;
 }
 
 /* 友達・チャット一覧表示 */
-.left-display {
-  border-bottom: solid 1px #dcdddd;
-  position: relative;
-  left: 80px;
-  padding-top: 7px
+/* タイトル */
+.friends-display {
+  margin-top: 60px;
+}
+
+.friends-title {
+    margin-bottom: 10px;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* button調整 */
+.btn-custom {
+  background-color: #fffffc;
+  padding: 0;
+}
+
+/* 友達・チャット一覧 */
+.left-wrap {
+    min-height: 20px;
+    padding: 2px;
+    background-color: #fffffc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* アイコン画像 */
+.left-photo {
+    position: absolute;
+    top: 4px;
+    left: 7px;
+}
+
+.left-photo img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+/* 名前等 */
+.left-text-info {
+    border-bottom: solid 1px #dcdddd;
+    position: relative;
+    left: 80px;
+    padding-top: 7px;
+    text-align: left;
 }
 
 .left-nickname {
-  font-size: 14px;
-  margin-top: 3px;
-  margin-bottom: 10px;
+    font-size: 14px;
+    margin-top: 3px;
+    margin-bottom: 10px;
 }
 
 .left-intro {
-  font-size: 7px;
-  margin-bottom: 10px;
-  color: black;
+    font-size: 7px;
+    margin-bottom: 10px;
+    color: black;
 }
 
-.left-photo {
-  position: absolute;
-  top: 4px;
-  left: 7px;
-}
-
-/* 右のコンテンツ */
+/*== コンテンツ右 ==*/
 .right-content {
-  margin-left: 70px;
+    margin-left: 70px;
+}
+
+/*== Footer ==*/
+
+.footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  margin-top: 30px;
+  text-align: center;
+  color: white;
+  background-image: url(../images/header_sample.jpg);
+}
+
+.footer-1 {
+  padding-top: 10px
 }

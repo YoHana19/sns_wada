@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('dbconnect.php');
+require('function.php');
 
 // 入れ物用意
 $friend_id = '';
@@ -54,19 +55,15 @@ function tateGaki($haiku) {
 <head>
   <meta charset="utf-8">
   <title></title>
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
+  <!-- for Bootstrap -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
   <!-- For Modal Window -->
-  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
+  <!-- 全ページ共通 -->
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- 各ページ -->
   <link rel="stylesheet" type="text/css" href="assets/css/ranking.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
   <link rel="stylesheet" type="text/css" href="assets/css/chat.css">
 </head>
 <body>
@@ -75,7 +72,7 @@ function tateGaki($haiku) {
   <?php require('header.php'); ?>
 
   <div class="container">
-    <div class="row whole_content">
+    <div class="row whole-content">
       <!-- チャット一覧 -->
       <div class="col-md-3 chat-list">
         <?php require('chat_left.php'); ?>
@@ -152,53 +149,72 @@ function tateGaki($haiku) {
             <?php } ?> <!-- 繰り返し文終了 -->
 
             <!-- 句入力ボタン -->
-            <button type="submit" id="modal-open-chat" class="btn icon-btn btn-info" style="background-color: #d0576b; border-color: #d0576b;"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info" style="color: #d0576b"></span> 詠む</button>
+            <button type="submit" id="modal-open" class="btn icon-btn btn-info" style="background-color: #d0576b; border-color: #d0576b; font-size: 14px;"><span class="glyphicon btn-glyphicon fa fa-pencil-square img-circle text-info" style="color: #d0576b"></span> 詠む</button>
 
-            <!-- 句入力フォーム -->
-            <div id="chat-modal-content_1" class="content">
-              <form action="send_haiku.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
-                <!-- 句入力 -->
-                <input type="text" class="form-control haiku" id="up_haiku" name="up_haiku" placeholder="１行目（四〜六文字）"><br>
-                <p id="up_haiku_valid" style="display: none">四から六文字で入力してください</p>
-                
-                <input type="text" class="form-control haiku" id="md_haiku" name="md_haiku" placeholder="２行目（四〜六文字）"><br>
-                <p id="md_haiku_valid" style="display: none">六から八文字で入力してください</p>
-                
-                <input type="text" class="form-control haiku" id="lw_haiku" name="lw_haiku" placeholder="３行目（四〜六文字）"><br>
-                <p id="lw_haiku_valid" style="display: none">四から六文字で入力してください</p>
-
-                <!-- 一言説明 -->
-                <input type="text" class="form-control" id="short_comment" name="short_comment" placeholder="一言説明（二十文字以下）" style="display: none;"><br>
-                <p id="short_comment_valid" style="display: none">二十文字以内で入力してください</p>
-
-
-                <!-- 写真挿入 -->
-                <div>
-                  <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
-                  <img id="photo_img" src="assets/images/photo_submit.png" alt="参照" width="30px" height="30px">
-                  <input id="photo_display" type="text" name="photo_display" value="" size="50">
+            <!-- LOGIN FORM -->
+            <div id="modal-content_1" class="haiku-mw-content">
+              <div class="text-center"">
+                <div class="logo">
+                  <img src="assets/images/yomu.png">
                 </div>
+                <!-- Main Form -->
+                <div class="login-form-1">
+                  <form action="send_haiku.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+                    <div class="login-form-main-message"></div>
+                    <div class="main-login-form">
+                      <div class="login-group">
+                        <!-- 上の句 -->
+                        <div class="form-group">
+                          <label for="up_haiku" class="sr-only">Username</label>
+                          <input type="text" class="form-control" id="up_haiku" name="up_haiku" placeholder="壱行目（四〜六文字）">
+                          <p id="up_haiku_valid" class="haiku-input-err" style="display: none">四から六文字で入力してください</p>
+                        </div>
+                        <!-- 中の句 -->
+                        <div class="form-group">
+                          <label for="md_haiku" class="sr-only">Username</label>
+                          <input type="text" class="form-control" id="md_haiku" name="md_haiku" placeholder="弐行目（六〜八文字）">
+                          <p id="md_haiku_valid" class="haiku-input-err" style="display: none">六から八文字で入力してください</p>
+                        </div>
+                        <!-- 下の句 -->
+                        <div class="form-group">
+                          <label for="lw_haiku" class="sr-only">Username</label>
+                          <input type="text" class="form-control" id="lw_haiku" name="lw_haiku" placeholder="参行目（四〜六文字）">
+                          <p id="lw_haiku_valid" class="haiku-input-err" style="display: none">四から六文字で入力してください</p>
+                        </div>
 
-                <!-- 詠むボタン -->
-                <div id="yomu">
-                  <button type="button" id="yomu_pre" class="btn btn-info" style="background-color: #c8c2c6; border-color: #c8c2c6;">詠む</button>
-                  <input id="yomu_ready" type="submit" class="btn btn-info" value="詠む" style="background-color: #00a381; display: none;">
+                        <!-- 画像送信 -->
+                        <div class="form-group" style="margin-top: 15px; position: relative; padding-right: 0;">
+                          <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
+                          <img id="photo_img" src="assets/images/photo_submit.png" alt="参照" class="img-submit">
+                          <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 10px; width: 200px;">
+                        </div>
+                      </div>
+
+                      <!-- 詠むボタン -->
+                      <div id="yomu-chat">
+                        <button type="button" id="yomu_pre" class="login-button" style="font-size: 16px;">詠</button>
+                        <input id="yomu_ready" type="button" onclick="submit();" class="login-button" value="詠" style="font-size: 16px; background-color: #f8b862; color: #ffffff; display: none;">
+                      </div>
+                    </div>
+
+                    <!-- チャット相手のid -->
+                    <input type="hidden" name="friend_id" value="<?php echo $friend_id ?>">
+
+                    <!-- ルームのid -->
+                    <input type="hidden" name="room" value="<?php echo $room_id ?>">
+
+                    <!-- タイムライン or チャット 判別 -->
+                    <input type="hidden" name="page" value="chat">
+                  </form>
                 </div>
+                <!-- end:Main Form -->
 
                 <!-- 戻るボタン -->
-                <button type="button" id="modal-close" class="btn btn-info" style="background-color: #c8c2c6; border-color: #c8c2c6;">戻る</button>
-
-                <!-- チャット相手のid -->
-                <input type="hidden" name="friend_id" value="<?php echo $friend_id ?>">
-
-                <!-- ルームのid -->
-                <input type="hidden" name="room" value="<?php echo $room_id ?>">
-
-                <!-- タイムライン or チャット 判別 -->
-                <input type="hidden" name="page" value="chat">
-              </form>
+                <div style="text-align: right;">
+                  <button type="button" id="modal-close" class="btn btn-info input-back">戻る</button>
+                </div>
+              </div>
             </div>
-
           </section>
         <?php } else { ?>
           <!-- チャット相手非選択時 -->
@@ -222,13 +238,13 @@ function tateGaki($haiku) {
 
   <script>
     // 1番最初のモーダルウィンドウ呼び出し
-    modalWindowOnFirst('modal-open-chat', 'chat-modal-content_1');
+    modalWindowOnFirst('modal-open', 'modal-content_1');
 
     // 2番目のモーダルウィンドウ呼び出し
     // modalWindowOn('modal-check', 'modal-content_1', 'modal-content_2');
 
     // モーダルウィンドウの終了
-    modalWindowOff('modal-close', 'chat-modal-content_1');
+    modalWindowOff('modal-close', 'modal-content_1');
 
     //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
     $(window).resize(centeringModalSyncer);

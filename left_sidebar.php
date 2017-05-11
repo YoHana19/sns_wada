@@ -1,6 +1,5 @@
 <?php 
 require('dbconnect.php');
-require('function.php');
 
 // ページ名の取得
 $file_name = getFileNameFromUri();
@@ -44,52 +43,90 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title></title>
-</head>
-<body>
 
-<!-- タイムラインページだったら -->
-  <?php if($file_name == 'timeline.php' || $file_name == 'ranking.php'): ?>
+<!-- ** -->
+<!-- htmlコンテンツ -->
+<!-- ** -->
 
-      <!-- 簡易個人プロフ -->
-      <div class="left-proph">
-        <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>" id="photo">
-        <h3><?php echo $login_member['nick_name'];?></h3>
-        <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
-        <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
-        <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
-      </div>
-      <div class="clearfix"></div>
+<!-- タイムラインページorランキングページだったら -->
+<?php if($file_name == 'timeline.php' || $file_name == 'ranking.php'): ?>
 
-  <?php endif; ?>
+  <!-- 簡易個人プロフ -->
+  <div class="left-profile">
+    <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>">
+    <h3><?php echo $login_member['nick_name'];?></h3>
+    <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
+    <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
+    <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
+  </div>
+  <div class="clearfix"></div>
 
-  <div class="friends-display">
-    <!-- タイトル表示 -->
-    <div class="friends-title">
-      <span class="title">お仲間</span>
-    </div>
+<?php endif; ?>
 
-    <!-- 直近連絡とった友達順に10件表示 -->
-    <div class="well_3">
-      <?php foreach ($rooms as $room) { ?>
+<div class="friends-display">
+  <!-- タイトル表示 -->
+  <div class="friends-title">
+    <span class="title">お仲間</span>
+  </div>
+
+  <!-- 直近連絡とった友達順に10件表示 -->
+  <div class="left-wrap">
+    <?php foreach ($rooms as $room) { ?>
+
+      <!-- 他人ページだったら -->
+      <?php if($file_name == 'user.php'): ?>
+        <div class="media" style="position: relative; margin-top: 7px">
+          <a class="pull-left left-photo" href="user.php?user_id=<?php echo $room['member_id'] ?>">
+            <img src="assets/images/<?php echo $room['user_picture_path']; ?>">
+          </a>
+          <div class="media-body left-text-info">
+            <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
+            <p class="left-intro"><?php echo $room['self_intro_1'];?>&nbsp;<?php echo $room['self_intro_2'];?>&nbsp;<?php echo $room['self_intro_3'];?></p>
+          </div>
+        </div>
+
+      <?php else: ?>
+        <button type="button" class="btn btn-custom call-mw">
           <div class="media" style="position: relative; margin-top: 7px">
-            <a class="pull-left left-photo" href="user.php?user_id=<?php echo $room['member_id']; ?>">
-              <img class="media-object" src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 55px; height: 55px; border-radius: 50%">
+            <a class="pull-left left-photo">
+              <img src="assets/images/<?php echo $room['user_picture_path']; ?>">
             </a>
-            <div class="media-body left-display">
+            <div class="media-body left-text-info">
               <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
               <p class="left-intro"><?php echo $room['self_intro_1'];?>&nbsp;<?php echo $room['self_intro_2'];?>&nbsp;<?php echo $room['self_intro_3'];?></p>
             </div>
           </div>
-      <?php } ?>
-    </div>
+        </button>
 
+        <!-- ユーザーページ or チャット選択MW -->
+        <?php $content_id = $room['member_id'] . '_mw_pb' ?>
+        <?php $btn_cl_id = $room['member_id'] . '_mw_cl_btn' ?>
+        <div id="<?php echo $content_id ?>" class="pb-mw-content">
+          <img src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 100px; height: 100px;">
+          <a href="user.php?user_id=<?php echo $room['member_id']; ?>">個人ページへ</a>
+          <a href="chat.php?friend_id=<?php echo $room['member_id']; ?>">チャットへ</a>
+          <button type="button" id="<?php echo $btn_cl_id ?>">戻る</button>
+        </div>
+        <script>
+          var content_id = "<?php echo $content_id; ?>"
+          var btn_cl_id = "<?php echo $btn_cl_id; ?>"
+          // 1番最初のモーダルウィンドウ呼び出し
+          modalWindowOnFirstClass('call-mw', content_id);
+
+          // 2番目のモーダルウィンドウ呼び出し
+          // modalWindowOnClass('modal-check', 'modal-content_1', 'modal-content_2');
+
+          // モーダルウィンドウの終了
+          modalWindowOff(btn_cl_id, content_id);
+
+          //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
+          $(window).resize(centeringModalSyncer);
+        </script>
+
+      <?php endif; ?>
+    <?php } ?>
   </div>
-</body>
-</html>
+
+</div>
 
 

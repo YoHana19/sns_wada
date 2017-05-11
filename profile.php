@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('dbconnect.php');
+require('function.php');
 
 // 該当ユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
@@ -42,19 +43,17 @@ function tateGaki($haiku) {
 <head>
   <meta charset="utf-8">
   <title></title>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
+  <!-- for Bootstrap -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
   <!-- For Modal Window -->
-  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
+  <!-- 全ページ共通 -->
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- 各ページ -->
+  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
 </head>
 <body>
 
@@ -62,7 +61,7 @@ function tateGaki($haiku) {
   <?php require('header.php'); ?>
 
   <!--プロフィール写真/ 一言-->
-  <div class="container whole_content">
+  <div class="container whole-content">
     <div class="fb-profile">
       <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_user['back_picture_path']; ?>);">
         <span class="intro-text-3"><?php echo tateGaki($login_user['self_intro_3']); ?></span>
@@ -129,21 +128,21 @@ function tateGaki($haiku) {
               ?>
 
               <!-- 投稿 -->
-              <div class="haiku">
-                <div class="carousel-info">
+              <div class="post-haiku">
+                <div class="poster-info">
                   <img alt="" src="assets/images/<?php echo $user_picture_path ?>" class="pull-left">
                   <div class="pull-left">
-                    <span class="haiku-name"><?php echo $nick_name ?></span>
-                    <span calss="haiku-comment"><?php echo $post['short_comment'] ?></span>
+                    <span class="post-haiku-name"><?php echo $nick_name ?></span>
+                    <span calss="post-haiku-comment"><?php echo $post['short_comment'] ?></span>
                   </div>
                   <p><?php echo $created ?></p>
                 </div>
                 <div class="active item">
                   <blockquote style="background:#fff0f5">
-                    <div class="haiku-text">
-                      <h2 class="haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
-                      <h2 class="haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
-                      <h2 class="haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
+                    <div class="post-haiku-text">
+                      <h2 class="post-haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
+                      <h2 class="post-haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
+                      <h2 class="post-haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
                     </div>
                   </blockquote>
                 </div>
@@ -176,14 +175,14 @@ function tateGaki($haiku) {
                   <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
                 </div>
 
-                <div class="icons">
+                <div class="post-icons">
                   <!-- コメント -->
                     <!-- コメントボタン -->
                     <button id="<?php echo $comment_id ?>" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button>
 
                     <!-- コメント欄 -->
-                    <div id="<?php echo $comment_id . '_content' ?>" class="comment" style="display: none; margin-top: 20px;">
-                      <div class="msg row">
+                    <div id="<?php echo $comment_id . '_content' ?>" class="post-comment" style="display: none; margin-top: 20px;">
+                      <div class="comment-msg row">
                         <div class="form-group">
                           <!-- ログインユーザーの写真 -->
                           <div class="col-sm-1">
@@ -205,7 +204,7 @@ function tateGaki($haiku) {
                       </div>
 
                       <!-- コメントの内容 -->
-                      <div id="<?php echo $haiku_id . '_cont' ?>" class="msg">
+                      <div id="<?php echo $haiku_id . '_cont' ?>" class="comment-msg">
                         <?php if(!empty($comments)): ?>
                       
                           <?php foreach ($comments as $comment) { ?>
@@ -244,9 +243,6 @@ function tateGaki($haiku) {
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>
   <script src="assets/js/comment.js"></script>
-  
-  <!-- jQuery (necessary for Modal Window) -->
-  <script src="assets/js/modal_window.js"></script>
-  <script src="assets/js/haiku_input.js"></script>
+
 </body>
 </html>

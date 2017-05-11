@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('dbconnect.php');
+require('function.php');
 
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
 $data = array($_SESSION['login_member_id']);
@@ -116,24 +117,22 @@ function tateGaki($haiku) {
   <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
   <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <link rel="stylesheet" type="text/css" href="assets/css/user.css">
   <!-- For Modal Window -->
   <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/edit.css">
+  <!-- <link rel="stylesheet" type="text/css" href="assets/css/edit.css"> -->
 </head>
+<body>
 
   <!-- ヘッダー -->
   <?php require('header.php'); ?>
 
   <!--プロフィール写真/ 一言-->
-  <div class="container whole_content">
+  <div class="container whole-content">
     <div class="fb-profile">
-      <div class="fb-image-lg" style="width: 100%; height: 400px;">
+      <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_member['back_picture_path'] ?>);">
         <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
         <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
         <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
@@ -234,15 +233,15 @@ function tateGaki($haiku) {
             <div class="form-group" style="padding-top:70px; padding-bottom:80px; padding-left:180px;">
               <label class="col-md-4 control-label" for="btn_continuar"></label>
               <div class="col-md-8">
-                <button id  ="btn_continuar" value="送信" class="btn btn-danger">保存</button>
+                <button id="btn_continuar" value="送信" class="btn btn-danger">保存</button>
               </div>
             </div>
 
           </fieldset>
         </form>
       </div>
-   </div>
-<!-- フッター -->
-<?php require('footer.php'); ?>
+  </div>
+  <!-- フッター -->
+  <?php require('footer.php'); ?>
 </body>
 </html>

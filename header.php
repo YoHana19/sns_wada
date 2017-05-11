@@ -1,6 +1,9 @@
 <?php
 require('dbconnect.php');
 
+// ページ名の取得
+$file_name = getFileNameFromUri();
+
 // 友達リクエスト申請者の取得
 $sql = 'SELECT * FROM `friends` AS f LEFT JOIN `members` AS m ON f.login_member_id=m.member_id WHERE f.friend_member_id=? AND f.state=0 ORDER BY f.created';
 $data = array($_SESSION['login_member_id']);
@@ -14,19 +17,19 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
 
 
-  <nav class="navbar navbar-webmaster" style="width:'auto'; height: 80px">
-    <div class=""></div>
-    <div class="header-bk">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="timeline.php">和だ</a>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar">
-        <ul class="nav navbar-nav navbar-right">
-          <!-- 友達リクエスト -->
-          <li class="active click"><a id="request_button"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+<nav class="navbar navbar-webmaster" style="width:'auto'; height: 80px">
+  <div class="header-bk">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="timeline.php">和だ</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <!-- 友達リクエスト -->
+        <li class="active click">
+          <a id="request_button" style="text-align: center;"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a>
           <!-- 友達リクエスト一覧 -->
-          <div id="requests" class="requests_display">
-            <div class="well_3" style="padding: 0; background-color: #bce2e8;">
+          <div id="requests" class="requests-display">
+            <div class="left-wrap" style="padding: 0; background-color: #bce2e8;">
               <?php foreach ($requests as $request) { ?>
                 <div class="media" style="position: relative; margin-top: 3px; border-bottom: solid 1px #ffffff; padding: 5px;">
                   <a class="pull-left">
@@ -43,41 +46,45 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
               <?php } ?>
             </div>
           </div>
-          <!-- プロフページ -->
-          <li class="active click"><a href="profile.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></i><i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
-          <!-- チャットページ -->
-          <li class="active click"><a href="chat.php"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></i><span class="sr-only">(current)</span></a></li>
-          <!-- 友達一覧ページ -->
-          <li class="active click"><a href="friends.php"><i class="fa fa-users fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
-          <!-- ランキングページ -->
-          <li class="active click"><a href="ranking.php"><i class="fa fa-sort-numeric-asc fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
-          <!-- ログアウト -->
-          <li id="logout"><a href="logout.php"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a></li></a></li>
+        </li>
+        <!-- プロフページ -->
+        <li class="active click"><a href="profile.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i><i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+        <!-- チャットページ -->
+        <li class="active click"><a href="chat.php"><i class="fa fa-comments fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+        <!-- 友達一覧ページ -->
+        <li class="active click"><a href="friends.php"><i class="fa fa-users fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+        <!-- ランキングページ -->
+        <li class="active click"><a href="ranking.php"><i class="fa fa-sort-numeric-asc fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
+        <!-- ログアウト -->
+        <li id="logout"><a href="logout.php"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a></li>
 
-          <form action="timeline.php" method="POST" class="navbar-form navbar-right search-form form-horizontal" role="search">
-            <!-- 検索フォーム -->
-            <div id="custom-search-input">
-              <div class="input-group">
-                <input type="text" name="search_word" class="search-query form-control" placeholder="search">
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-danger" type="button">
-                      <span class="glyphicon glyphicon-search" style="color: #dcdddd"></span>
-                    </button>
-                  </span>
-              </div>
-              <input type="button" id="modal-open" class="btn btn-info haiku-input" value="詠む">
+        <form action="timeline.php" method="POST" class="navbar-form navbar-right search-form form-horizontal" role="search">
+          <!-- 検索フォーム -->
+          <div>
+            <div class="input-group">
+              <input type="text" name="search_word" class="search-query form-control" placeholder="search">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-search" style="color: #dcdddd"></span>
+                  </button>
+                </span>
             </div>
-          </form>
-        </ul>
-      </div>
+            <!-- 詠むボタン -->
+            <?php if ($file_name != 'chat.php'): ?>
+              <input type="button" id="modal-open" class="btn btn-info haiku-input" value="詠む">
+            <?php endif; ?>
+          </div>
+        </form>
+      </ul>
     </div>
-  </nav>
-  
+  </div>
+</nav>
 
 
+<?php if ($file_name != 'chat.php'): ?>
   <!-- LOGIN FORM -->
-  <div id="modal-content_1" class="content">
-    <div class="text-center"">
+  <div id="modal-content_1" class="haiku-mw-content">
+    <div class="text-center">
       <div class="logo">
         <img src="assets/images/yomu.png">
       </div>
@@ -124,7 +131,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
             <!-- 詠むボタン -->
             <div id="yomu">
               <button type="button" id="yomu_pre" class="login-button" style="font-size: 16px;">詠</button>
-              <input id="yomu_ready" type="submit" class="login-button" value="詠" style="font-size: 16px; background-color: #f8b862; color: #ffffff; display: none;">
+              <input id="yomu_ready" type="button" onclick="submit();" class="login-button" value="詠" style="font-size: 16px; background-color: #f8b862; color: #ffffff; display: none;">
             </div>
           </div>
         </form>
@@ -137,15 +144,17 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
       </div>
     </div>
   </div>
+<?php endif; ?>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="assets/js/jquery-3.1.1.js"></script>
-  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
-  <script src="assets/js/bootstrap.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/js/jquery-3.1.1.js"></script>
+<script src="assets/js/jquery-migrate-1.4.1.js"></script>
+<script src="assets/js/bootstrap.js"></script>
 
-  <!-- 友達リクエスト -->
-  <script src="assets/js/friend_requests.js"></script> 
+<!-- 友達リクエスト -->
+<script src="assets/js/friend_requests.js"></script> 
 
+<?php if ($file_name != 'chat.php'): ?>
   <!-- 俳句入力バリデーション -->
   <script src="assets/js/haiku_input.js"></script>
 
@@ -165,3 +174,4 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
     //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
     $(window).resize(centeringModalSyncer);
   </script>
+<?php endif; ?>

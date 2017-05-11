@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('dbconnect.php');
+require('function.php');
 
 // ログインユーザーの情報取得
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
@@ -44,19 +45,14 @@ $num_friends = count($friends);
 <head>
   <meta charset="utf-8">
   <title></title>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
+  <!-- for Bootstrap -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
   <!-- For Modal Window -->
-  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
+  <!-- 全ページ共通 -->
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- 各ページ -->
   <link rel="stylesheet" type="text/css" href="assets/css/ranking.css">
 </head>
 <body>
@@ -65,7 +61,7 @@ $num_friends = count($friends);
   <?php require('header.php'); ?>
 
   <div class="container">
-    <div class="row whole_content">
+    <div class="row whole-content">
       <div class="col-md-3 left-content">
         <?php require('friends_left.php'); ?>
       </div>

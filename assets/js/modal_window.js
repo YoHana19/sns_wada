@@ -2,6 +2,7 @@
 // 関数定義
 // 
 
+// idで呼び出しVer
 // 1番最初のモーダルウィンドウ呼び出し関数（引数：モーダルウィンドウ呼び出しボタンのid）
 function modalWindowOnFirst(button, content_in) {
   console.log('hoge1');
@@ -55,17 +56,73 @@ function modalWindowOff(button, content_out){
   });
 }
 
+// classで呼び出しVer
+// 1番最初のモーダルウィンドウ呼び出し関数（引数：モーダルウィンドウ呼び出しボタンのid）
+function modalWindowOnFirstClass(button, content_in) {
+  console.log('hoge1');
+  $("." + button).click (
+  function() {
+    console.log('hoge2');
+    //キーボード操作などにより、オーバーレイが多重起動するのを防止する
+    $(this).blur() ;  //ボタンからフォーカスを外す
+    if($("#modal-overlay")[0]) return false ;   //新しくモーダルウィンドウを起動しない [下とどちらか選択]
+    // if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する [上とどちらか選択]
+
+    //[$modal-content_1]をフェードインさせる
+    windowFadeIn('' + content_in);
+
+    //オーバーレイ用のHTMLコードを、[body]内の最後に生成する
+    $("body").append('<div id="modal-overlay"></div>');
+
+    //[$modal-overlay]をフェードインさせる
+    $("#modal-overlay").fadeIn("slow");
+  });
+}
+
+// 2回目以降のモーダルウィンドウ呼び出し関数（第１引数：次のモーダルウィンドウ呼び出しボタンのid、第２引数：遷移元のコンテンツのid、第３引数：遷移先のコンテンツのid）
+function modalWindowOnClass(button, content_out, content_in){
+  console.log('hoge3');
+  $("." + button).unbind().click(function() {
+    console.log('hoge4');
+    //[#modal-content_1]をフェードアウトする
+    $("#" + content_out).fadeOut("slow",function() {
+
+      //[$modal-content_2]をフェードインさせる
+      windowFadeIn(content_in);
+
+    });
+  });
+}
+
+// モーダルウィンドウの終了関数（第１引数：モーダルウィンドウ終了ボタンのid、第２引数：終了するコンテンツのid）
+function modalWindowOffClass(button, content_out){
+  console.log('hoge5');
+  $("#modal-overlay, ." + button).unbind().click(function() {
+    console.log('hoge6');
+    console.log(content_out);
+    //[#modal-overlay]と[content_finish]をフェードアウトする
+    $("#modal-overlay, #" + content_out).fadeOut("slow",function() {
+      console.log('hoge7');
+      console.log(content_out);
+      //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
+      $("#modal-overlay").remove();
+  
+    });
+
+  });
+}
+
 // モーダルウィンドウをフェードインする関数
 function windowFadeIn(content) {
   //[cont]をフェードインさせる
   $("#" + content).fadeIn("slow");
   
   // [content]をセンタリング
-  centeringModalSyncer();
+  centeringModalSyncer(content);
 }
 
 //センタリングをする関数
-function centeringModalSyncer(){
+function centeringModalSyncer(content){
 
   //画面(ウィンドウ)の幅を取得し、変数[w]に格納
   var w = $(window).width();
@@ -74,10 +131,12 @@ function centeringModalSyncer(){
   var h = $(window).height();
 
   //コンテンツ(.content)の幅を取得し、変数[cw]に格納
-  var cw = $(".content").outerWidth(true);
+  var cw = $("#" + content).outerWidth(true);
+  console.log(cw);
 
   //コンテンツ(.content)の高さを取得し、変数[ch]に格納
-  var ch = $(".content").outerHeight(true);
+  var ch = $("#" + content).outerHeight(true);
+  console.log(ch);
 
   //コンテンツ(.content)を真ん中に配置するのに、左端から何ピクセル離せばいいか？を計算して、変数[pxleft]に格納
   var pxleft = ((w - cw)/2);
@@ -86,10 +145,10 @@ function centeringModalSyncer(){
   var pxtop = ((h - ch)/2);
 
   //[.content]のCSSに[left]の値(pxleft)を設定
-  $(".content").css({"left": pxleft + "px"});
+  $("#" + content).css({"left": pxleft + "px"});
 
   //[.content]のCSSに[top]の値(pxtop)を設定
-  $(".content").css({"top": pxtop + "px"});
+  $("#" + content).css({"top": pxtop + "px"});
 
 }
 

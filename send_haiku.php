@@ -33,21 +33,62 @@ if (isset($_SESSION['login_member_id'])) {
   move_uploaded_file($_FILES['photo_file']['tmp_name'], 'assets/images/' . $picture_name);
 
   if ($_POST['page'] == 'chat') { // チャット
-  
-    // 送られてきた俳句をDBに追加
-    $sql = 'INSERT INTO `chats` set `chat_id`=NULL,
-                                    `sender_id`=?,
-                                    `reciever_id`=?,
-                                    `room_id`=?,
-                                    `chat_1`=?,
-                                    `chat_2`=?,
-                                    `chat_3`=?,
-                                    `back_img`=?,
-                                    `created`=NOW()
-                                    ';
-    $data = array($_SESSION['login_member_id'],$_POST['friend_id'],$_POST['room'],$_POST['up_haiku'],$_POST['md_haiku'],$_POST['lw_haiku'],$picture_name);
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute($data);
+
+    // 初チャットの判定
+    if (!empty($_POST['room'])) { // チャット済み
+      // 最新チャットroomの更新
+      $sql = 'UPDATE `rooms` SET `modified`=NOW() WHERE `room_id`=?';
+      $data = array($_POST['room']);
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+
+      // 送られてきた俳句をDBに追加
+      $sql = 'INSERT INTO `chats` set `chat_id`=NULL,
+                                      `sender_id`=?,
+                                      `reciever_id`=?,
+                                      `room_id`=?,
+                                      `chat_1`=?,
+                                      `chat_2`=?,
+                                      `chat_3`=?,
+                                      `back_img`=?,
+                                      `created`=NOW()
+                                      ';
+      $data = array($_SESSION['login_member_id'],$_POST['friend_id'],$_POST['room'],$_POST['up_haiku'],$_POST['md_haiku'],$_POST['lw_haiku'],$picture_name);
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+
+    } else { // 初チャット
+      $sql = 'INSERT INTO `rooms` set `room_id`=NULL,
+                                      `member_id_1`=?,
+                                      `member_id_2`=?,
+                                      `created`=NOW()
+                                       ';
+      $data = array($_SESSION['login_member_id'],$_POST['friend_id']);
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+
+      // room_idの取得
+      $sql = 'SELECT `room_id` FROM `rooms` WHERE `member_id_1`=? AND `member_id_2`=?';
+      $data = array($_SESSION['login_member_id'],$_POST['friend_id']);
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+      $room = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      // 送られてきた俳句をDBに追加
+      $sql = 'INSERT INTO `chats` set `chat_id`=NULL,
+                                      `sender_id`=?,
+                                      `reciever_id`=?,
+                                      `room_id`=?,
+                                      `chat_1`=?,
+                                      `chat_2`=?,
+                                      `chat_3`=?,
+                                      `back_img`=?,
+                                      `created`=NOW()
+                                      ';
+      $data = array($_SESSION['login_member_id'],$_POST['friend_id'],$room['room_id'],$_POST['up_haiku'],$_POST['md_haiku'],$_POST['lw_haiku'],$picture_name);
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+    }
 
     // 坊主ポイントDB登録
     $sql = 'UPDATE `members` SET `bozu_points`=? WHERE `member_id`=?';

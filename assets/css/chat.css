@@ -1,80 +1,9 @@
-/*font Awesome http://fontawesome.io*/
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
-
 /*==チャット一覧（左側）==*/
 
-/* 検索フォーム */
-#custom-search-input {
-        margin:0;
-        margin-top: 10px;
-        padding: 0;
-    }
- 
-/*    #custom-search-input .search-query {
-        padding-right: 3px;
-        padding-right: 4px \9;
-        padding-left: 3px;
-        padding-left: 4px \9;
-         IE7-8 doesn't have border-radius, so don't indent the padding 
- 
-        margin-bottom: 0;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-    }*/
- 
-    #custom-search-input button {
-        border: 0;
-        background: none;
-        /** belows styles are working good */
-        padding: 2px 5px;
-        margin-top: 2px;
-        position: relative;
-        left: -28px;
-        /* IE7-8 doesn't have border-radius, so don't indent the padding */
-        margin-bottom: 0;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        color:#D9230F;
-    }
- 
-    .search-query:focus + button {
-        z-index: 3;   
-    }
-
-/* チャット一覧表示 */
-.chat-room {
-  margin-top: 30px;
-}
-
-.chat-photo {
-  position: absolute;
-  top: 4px;
-  left: 7px;
-}
-
-.chat-body {
-  border-bottom: solid 1px #dcdddd;
-  position: relative;
-  left: 80px;
-  padding-top: 7px
-}
-
-.chat-nickname {
-  font-size: 14px;
-  margin-top: 3px;
-  margin-bottom: 10px;
-}
-
-.chat-intro {
-  font-size: 7px;
-  color: black;
-}
-
+/* チャットルームの調整 */
 .chat-friend-btn {
   background-color: #fffffc;
-  border-bottom: solid 1px #dcdddd;
+  padding: 0;
 }
 
 /*==個人チャット画面（右側）==*/
@@ -203,7 +132,7 @@
   padding: 1px 15px 3px 2px; border-radius:50px;
   position: fixed;
   right: 40px;
-  bottom: 30px;
+  bottom: 60px;
 }
 
 /* Portrait tablets and medium desktops */

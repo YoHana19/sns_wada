@@ -1,19 +1,17 @@
-/* 右側のコンテンツ */
-.right-content {
-    margin-top: 70px;
-}
+/**/
+/*== 個人ページ ==*/
+/**/
 
-/* Content */
-body
-{
-    font-family: 'Open Sans', sans-serif;
-}
-
+/* バック画像 */
 .fb-image-lg{
     z-index: 0;
-    background-image: url(../images/no_img_back.jpg);
     background-size: cover;
     margin-bottom: 10px;
+    position: relative;
+}
+
+/* 自己紹介句 */
+.fb-profile {
     position: relative;
 }
 
@@ -36,72 +34,54 @@ body
     left: 783px;
 }
 
-.fb-profile {
-    position: relative;
-}
-
-.fb-image-profile
-{
+/* アイコン画像 */
+.fb-image-profile {
     margin: -90px 10px 0px 50px;
     z-index: 3;
     width: 20%;
     position: relative;
 }
 
-/* 画像変更ボタン */
-.change-back-img {
-    position: absolute;
-    top: 405px;
-    right: 0;
-}
-
-.fb-profile-text {
-    position: relative;
-}
-
-.change-profile-img {
-    position: absolute;
-    top: 150px;
-    left: 270px;
-}
-
 /* ニックネーム */
-.fb-profile-text h1{
+.fb-profile-text h1 {
     font-weight: 700;
     font-size: 45px;
     margin: 30px 0 0 380px;
 }
 
+/* プロフィール編集ボタン */
 .navbar-fixed {
     margin: 40px 0 0 383px;
 }
 
-@media (max-width:768px)
-{
+/* 投稿句配置調整 */
+.right-content {
+    margin-top: 75px;
+}
+
+/* レスポンシブ対応（未完） */
+@media (max-width:768px) {
     
-.fb-profile-text h1{
-    font-weight: 700;
-    font-size: 25px;
+    .fb-profile-text h1 {
+        font-weight: 700;
+        font-size: 25px;
+        padding-top:10px;
+    }
+
+    .fb-image-profile {
+        margin: -45px 10px 0px 25px;
+        z-index: 9;
+        width: 20%; 
+    }
 }
 
-.fb-image-profile
-{
-    margin: -45px 10px 0px 25px;
-    z-index: 9;
-    width: 20%; 
-}
-}
+/**/
+/*== 編集ページ ==*/
+/**/
 
-.button
-{
-    color: #ffff;
-    font-size: 16px;
-    font-weight: 300;
-    margin: -45px 10px 0px 25px;
-    width: 100px;
-    z-index: 9;
-    position: relative;
-}
-.content {
-    padding-top: 30px;
+/* 保存ボタン */
+#btn_continuar {
+    color: white;
+    border-radius: 25px;
+    width: 150px;
 }
