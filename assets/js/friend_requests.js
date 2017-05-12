@@ -1,7 +1,7 @@
 $(document).ready(function() // HTMLが全て読み込まれたあと実行
 {
 
-  // クリックしたらコメント欄表示
+  // クリックしたら友達リクエスト欄表示
   $(document).on('click', '#request_button', function() {
     $("#requests").slideToggle();
   });

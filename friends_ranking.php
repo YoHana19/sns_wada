@@ -2,13 +2,23 @@
 require('dbconnect.php');
 
 // 友達内ランキングよし(歌人)用sql文
+// friendsテーブルのlogin_member_idがログインしているユーザーのidと一致する場合
 $sql = 'SELECT * FROM `likes` AS l LEFT JOIN `friends` AS f ON l.haiku_member_id=f.friend_member_id WHERE f.login_member_id=? AND f.state=1';
 $data = array($_SESSION['login_member_id']); //$dataには ? に入れる値を書く
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $like_haiku_ids = array();
-while($like_haiku = $stmt->fetch(PDO::FETCH_ASSOC)) {
-  $like_haiku_ids[] = $like_haiku['haiku_member_id'];
+while($like_haiku_1 = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  $like_haiku_ids[] = $like_haiku_1['haiku_member_id'];
+}
+
+// friendsテーブルのfriend_member_idがログインしているユーザーのidと一致する場合
+$sql = 'SELECT * FROM `likes` AS l LEFT JOIN `friends` AS f ON l.haiku_member_id=f.login_member_id WHERE f.friend_member_id=? AND f.state=1';
+$data = array($_SESSION['login_member_id']); //$dataには ? に入れる値を書く
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
+while($like_haiku_2 = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  $like_haiku_ids[] = $like_haiku_2['haiku_member_id'];
 }
 
 $like_haiku_rank = rankGet($like_haiku_ids);
@@ -26,13 +36,23 @@ foreach ($like_haiku_rank as $like_haiku) {
 }
 
 // 友達内ランキングあし(歌人)用sql文
-$sql = 'SELECT * FROM `dislikes` AS l LEFT JOIN `friends` AS f ON l.haiku_member_id=f.friend_member_id WHERE f.login_member_id=? AND f.state=1';
+// friendsテーブルのlogin_member_idがログインしているユーザーのidと一致する場合
+$sql = 'SELECT * FROM `dislikes` AS d LEFT JOIN `friends` AS f ON d.haiku_member_id=f.friend_member_id WHERE f.login_member_id=? AND f.state=1';
 $data = array($_SESSION['login_member_id']); //$dataには ? に入れる値を書く
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $dislike_haiku_ids = array();
-while($dislike_haiku = $stmt->fetch(PDO::FETCH_ASSOC)) {
-  $dislike_haiku_ids[] = $dislike_haiku['haiku_member_id'];
+while($dislike_haiku_1 = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  $dislike_haiku_ids[] = $dislike_haiku_1['haiku_member_id'];
+}
+
+// friendsテーブルのfriend_member_idがログインしているユーザーのidと一致する場合
+$sql = 'SELECT * FROM `dislikes` AS d LEFT JOIN `friends` AS f ON d.haiku_member_id=f.login_member_id WHERE f.friend_member_id=? AND f.state=1';
+$data = array($_SESSION['login_member_id']); //$dataには ? に入れる値を書く
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
+while($dislike_haiku_2 = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  $dislike_haiku_ids[] = $dislike_haiku_2['haiku_member_id'];
 }
 
 $dislike_haiku_rank = rankGet($dislike_haiku_ids);

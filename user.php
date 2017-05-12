@@ -33,13 +33,17 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 
 // 友達stateの判定
-$sql = 'SELECT * FROM `friends` WHERE `login_member_id`=? AND `friend_member_id`=?';
-$data = array($_SESSION['login_member_id'],$_REQUEST['user_id']);
+$sql = 'SELECT * FROM `friends` WHERE `login_member_id`=? AND `friend_member_id`=? OR `login_member_id`=? AND `friend_member_id`=?';
+$data = array($_SESSION['login_member_id'],$_REQUEST['user_id'],$_REQUEST['user_id'],$_SESSION['login_member_id']);
 $friend_stmt = $dbh->prepare($sql);
 $friend_stmt->execute($data);
 if ($friend_state = $friend_stmt->fetch(PDO::FETCH_ASSOC)) {
   if ($friend_state['state'] == 0) {
-    $state = 'request'; // 友達申請中
+    if ($friend_state['friend_member_id'] == $_SESSION['login_member_id']) {
+      $state = 'r_request'; // 友達申請され中
+    } else {
+      $state = 'request'; // 友達申請中
+    }
   } else {
     $state = 'friend'; // 既に友達
   } 
@@ -100,6 +104,9 @@ function tateGaki($haiku) {
           <?php elseif($state == 'request'): ?>
             <!-- 既に申請済み -->
             <button type="button" id="<?php echo $user_info['member_id'] ?>" class="btn btn-primary btn-color-likes">友達リクエスト中</button>
+          <?php elseif($state == 'r_request'): ?>
+            <!-- 既に申請されている -->
+            <button type="button" id="<?php echo $user_info['member_id'] ?>" class="btn btn-primary btn-color-likes">友達リクエストされています</button>
           <?php else: ?>
             <!-- まだ申請していない -->
             <button type="button" id="<?php echo $user_info['member_id'] ?>" class="friend btn btn-primary btn-color-un">+ 友達申請</button>
