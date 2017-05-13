@@ -63,9 +63,9 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <div>
             <div class="input-group">
               <?php if (isset($search_word)): ?>
-                <input type="text" name="search_word" class="search-query form-control" placeholder="search" value="<?php echo $search_word ?>">
+                <input type="text" name="search_word" class="search-query form-control" placeholder="あなぐる" value="<?php echo $search_word ?>">
               <?php else: ?>
-                <input type="text" name="search_word" class="search-query form-control" placeholder="search">
+                <input type="text" name="search_word" class="search-query form-control" placeholder="あなぐる">
               <?php endif; ?>
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-danger">

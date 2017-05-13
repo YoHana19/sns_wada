@@ -1,21 +1,43 @@
 $(document).ready(function() { // HTMLが全て読み込まれたあと実行
-  $('#edit-back-img').hover(
-    function(){
+
+  // 背景画像にマウスオーバー時
+  editImageMsg('edit-back-img', 'fb-image-lg', 'edit-back-img-msg', 'modal-overlay-back-img');
+
+  // プロフ画像にマウスオーバー時
+  editImageMsg('edit-profile-img', 'fb-image-profile', 'edit-profile-img-msg', 'modal-overlay-profile-img');
+
+});
+
+
+// 
+// 関数定義
+//
+
+// マウスオーバーで画像編集表示
+function editImageMsg(obj, parent_obj, content, overlay) {
+  $("#" + obj).hover(
+    function(){ // マウスオーバーした時
       console.log('hoge001');
-      //オーバーレイ用のHTMLコードを、[<div class="fb-image-lg">]内の最後に生成する
-      $(".fb-image-lg").append('<div id="modal-overlay-back-img"></div>');
-      console.log('hoge002');
-      //[$modal-overlay]をフェードインさせる
-      $("#modal-overlay-back-img").fadeIn("slow");
+      $(this).blur() ;  //ボタンからフォーカスを外す
+      if($("#" + overlay)[0]) return false ;
+
+      //[#content]をフェードインさせる
+      $("#" + content).fadeIn("slow");
+
+      // オーバーレイ用のHTMLコードを、[<div class="fb-image-lg">]内の最後に生成する
+      $("." + parent_obj).append('<div id="' +  overlay + '"></div>');
+      //[#content]をフェードインさせる
+      $("#" + overlay).fadeIn("slow");
+
     },
-    function(){
+    function(){ // マウスアウトした時
       console.log('hoge003');
-      //オーバーレイ用のHTMLコードを、[<div class="fb-image-lg">]内のから取り除く
-      $("#modal-overlay-back-img").fadeOut("slow",function() {
+      //オーバーレイ、画像編集メッセージ用のHTMLコードを、[<div class="fb-image-lg">]内のから取り除く
+      $("#" + overlay + ", #" + content).fadeOut("slow",function() {
         console.log('hoge7');
         //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
-        $("modal-overlay-back-img").remove();
+        $("#" + overlay).remove();
       });
     }
   );
-});
+}

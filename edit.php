@@ -3,29 +3,66 @@ session_start();
 require('dbconnect.php');
 require('function.php');
 
+// 画像変更時の処理
+if (!empty($_FILES)) {
+  $picture_name = '';
+  // 背景画像
+  if (isset($_FILES['back-img-file']['name']) && !empty($_FILES['back-img-file']['name'])) {
+    // 画像アップロード処理
+    $picture_name = date('YmdHis') . $_FILES['back-img-file']['name'];
+    // 20170308152500hogehoge.jpg←画像ファイル名作成
+    move_uploaded_file($_FILES['back-img-file']['tmp_name'], 'assets/images/' . $picture_name);
+
+    // DBの更新
+    $sql = 'UPDATE `members` SET `back_picture_path`=? WHERE `member_id`=?';
+    $data = array($_FILES['back-img-file']['name'], $_SESSION['login_member_id']);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+  }
+
+  // プロフ画像
+  if (isset($_FILES['profile-img-file']['name']) && !empty($_FILES['profile-img-file']['name'])) {
+    // 画像アップロード処理
+    $picture_name = date('YmdHis') . $_FILES['profile-img-file']['name'];
+    // 20170308152500hogehoge.jpg←画像ファイル名作成
+    move_uploaded_file($_FILES['profile-img-file']['tmp_name'], 'assets/images/' . $picture_name);
+
+    // DBの更新
+    $sql = 'UPDATE `members` SET `user_picture_path`=? WHERE `member_id`=?';
+    $data = array($_FILES['profile-img-file']['name'], $_SESSION['login_member_id']);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+  }
+}
+
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
 $data = array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
+// 各種バリデーション
 $errors = array();
 
 if (!empty($_POST)) {
-
+  // ニックネーム空チェック
   if ($_POST['nick_name'] == "") {
     $errors['nick_name'] = 'blank';
   }
 
+  // メアド空チェック
   if ($_POST['email'] == "") {
     $errors['email'] = 'blank';
   } else {
+    // メアド確認用と一致チェック
     if ($_POST['email_check'] != $_POST['email']) {
       $errors['email'] = 'not_match';
     }
   }
 
-  if (!empty($_POST['self_intro_1']) && !empty($_POST['self_intro_2']) && !empty($_POST['self_intro_3'])) {
+  // 自己紹介句の文字数チェック
+  if (!empty($_POST['self_intro_1']) || !empty($_POST['self_intro_2']) || !empty($_POST['self_intro_3'])) {
 
     if (mb_strlen($_POST['self_intro_1']) < 4 || mb_strlen($_POST['self_intro_1']) > 6){
       $errors ['self_intro_1'] = 'length';
@@ -40,54 +77,29 @@ if (!empty($_POST)) {
     }
   }
 
-  $user_picture_path = $_FILES['user_picture_path']['name'];
-  if (!empty($user_picture_path)) {
-    $ext = substr($user_picture_path , -3);
-    $ext = strtolower($ext);
-    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif' && $ext !='jpg') {
-      $errors['user_picture_path'] = 'type';
-    }
-  }
 
-
-  $back_picture_path = $_FILES['back_picture_path']['name'];
-  if (!empty($back_picture_path)) {
-    echo $back_picture_path;
-    $ext = substr($back_picture_path , -3);
-    $ext = strtolower($ext);
-    if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif' && $ext !='jpg') {
-      $errors['back_picture_path'] = 'type';
-    }
-  }
-
-    if(empty($errors)){
-      try {
-          $sql = 'SELECT COUNT(*) AS `cnt` FROM `members` WHERE `email` =?';
-          $data =array($_POST['email']);
-          $stmt = $dbh->prepare($sql);
-          $stmt->execute($data);
-          $record = $stmt->fetch(PDO::FETCH_ASSOC);
-          var_dump($record);
-          if($record['cnt']>0){
-            if ($login_member['email'] != $_POST['email']) {
-              $errors['email'] = 'duplicate';
-            }
-          }
-      } catch(PDOException $e) {
-        echo 'SQL文実行時エラー:' . $e->message();
+  if(empty($errors)){
+    try {
+      // メアド重複チェック
+      $sql = 'SELECT COUNT(*) AS `cnt` FROM `members` WHERE `email` =?';
+      $data =array($_POST['email']);
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+      $record = $stmt->fetch(PDO::FETCH_ASSOC);
+      if($record['cnt']>0){
+        if ($login_member['email'] != $_POST['email']) {
+          $errors['email'] = 'duplicate';
+        }
       }
+    } catch(PDOException $e) {
+      echo 'SQL文実行時エラー:' . $e->message();
     }
+  }
 
   if (empty($errors)) {
-    $user_picture_name = date('YmdHis') . $user_picture_path;
-    $back_picture_name = date('YmdHis') . $back_picture_path;
-    move_uploaded_file($_FILES['user_picture_path']['tmp_name'] , 'assets/images/' . $user_picture_name);
-    move_uploaded_file($_FILES['back_picture_path']['tmp_name'] , 'assets/images/' . $back_picture_name);
 
     $_SESSION['nick_name'] = $_POST['nick_name'];
     $_SESSION['email'] = $_POST['email'];
-    $_SESSION['user_picture_path'] = $user_picture_name;
-    $_SESSION['back_picture_path'] = $back_picture_name;
     $_SESSION['self_intro_1'] = $_POST['self_intro_1'];
     $_SESSION['self_intro_2'] = $_POST['self_intro_2'];
     $_SESSION['self_intro_3'] = $_POST['self_intro_3'];
@@ -132,17 +144,27 @@ function tateGaki($haiku) {
 
   <!--プロフィール写真/ 一言-->
   <div class="container whole-content">
-    <div class="fb-profile">
-      <div id="edit-back-img" class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_member['back_picture_path'] ?>);">
-        <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
-        <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
-        <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
+    <form method="POST" action="edit.php" enctype="multipart/form-data">
+      <div class="fb-profile">
+        <input type="file" id="back-img-file" name="back-img-file" style="display:none;" onchange="$('#back-img-submit').click();" accept="image/*">
+        <input type="submit" id="back-img-submit" style="display: none;">
+        <div id="edit-back-img" class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_member['back_picture_path'] ?>);" onclick="$('#back-img-file').click();">
+          <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
+          <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
+          <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
+          <img src="assets/images/edit_msg.png" id="edit-back-img-msg">
+        </div>
+        <div id="edit-profile-img" align="left" class="fb-image-profile thumbnail" onclick="$('#profile-img-file').click();">
+          <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
+          <img src="assets/images/edit_msg.png" id="edit-profile-img-msg">
+        </div>
+        <input type="file" id="profile-img-file" name="profile-img-file" style="display:none;" onchange="$('#profile-img-submit').click();" accept="image/*">
+        <input type="submit" id="profile-img-submit" style="display: none;">
+        <div class="fb-profile-text-ed">
+          <h1><?php echo $login_member['nick_name']; ?></h1>
+        </div>
       </div>
-      <img id="edit-profile-img" align="left" class="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
-      <div class="fb-profile-text">
-        <h1><?php echo $login_member['nick_name']; ?></h1>
-      </div>
-    </div>
+    </form>
   </div>
 
   <div class="container">
@@ -177,7 +199,7 @@ function tateGaki($haiku) {
               <label class="col-md-4 control-label" for="UID">メールアドレス(確認用)</label>
               <div class="col-md-4">
                 <input id="UID" name="email_check" placeholder="" class="form-control input-md" type="email" required="">
-                <?php if(isset($errors['email']) && $errors['email'] && $errors['email'] == 'not_match'): ?>
+                <?php if(isset($errors['email']) && $errors['email'] == 'not_match'): ?>
                   <p style="color:red; font-size:10px; margin-top:2px; ">メールアドレスを正しく入力してください</p>
                 <?php endif; ?>
               </div>
@@ -211,24 +233,6 @@ function tateGaki($haiku) {
                   <p style="color:red; font-size:10px; margin-top:2px;">文字数は4文字以上6文字以下で設定してください</p>
                 <?php endif; ?>
               </div>
-            </div>
-
-            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
-              <label class="col-md-4 control-label">アイコン画像</label>
-              <input type="file" name="user_picture_path" required="" style="margin-left:480px;">
-            <div class="fb-profile-text">
-              <?php if(isset($errors['user_picture_path']) && $errors['user_picture_path'] == 'type') : ?>
-                <p style="color:red; font-size:10px; margin-top:2px; margin-left:300px  ">アイコン画像は「.gif」,「.jpg」,「.png」, 「.jpeg」の画像を指定してください</p>
-              <?php endif; ?>
-            </div>
-
-            <div class="form-group" style="padding-top:20px; padding-bottom:10px;">
-              <label class="col-md-4 control-label">背景画像</label>
-              <input type="file" name="back_picture_path" required="" style="margin-left:495px;">
-            <div class="fb-profile-text">
-              <?php if(isset($errors['back_picture_path']) && $errors['back_picture_path'] == 'type'): ?>
-                <p style="color:red; font-size:10px; margin-top:2px; margin-left:300px ">背景画像は「.gif」,「.jpg」,「.png」,「.jpeg」の画像を指定してください</p>
-              <?php endif; ?>
             </div>
 
             <div class="form-group" style="padding-top:70px; padding-bottom:80px; padding-left:180px;">
