@@ -3,14 +3,14 @@ session_start();
 require('dbconnect.php');
 
 if ($_POST['state'] == 'admit') {
-  $sql = 'UPDATE `friends` SET `state`=1 WHERE `friend_id`=?';
-  $data = array($_POST['friend_id']);
+  $sql = 'UPDATE `friends` SET `state`=1 WHERE (`login_member_id`=? AND `friend_member_id`=?) OR (`login_member_id`=? AND `friend_member_id`=?) ';
+  $data = array($_SESSION['login_member_id'],$_POST['friend_id'],$_POST['friend_id'],$_SESSION['login_member_id']);
   $stmt = $dbh->prepare($sql);
   $stmt->execute($data);
   $state = 'admit';
 } else {
-  $sql = 'DELETE FROM `friends` WHERE `friend_id`=?';
-  $data = array($_POST['friend_id']);
+  $sql = 'DELETE FROM `friends` WHERE `login_member_id`=? AND `friend_member_id`=?';
+  $data = array($_POST['friend_id'],$_SESSION['login_member_id']);
   $friend_stmt = $dbh->prepare($sql);
   $friend_stmt->execute($data);
   $state = 'reject';

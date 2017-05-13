@@ -91,12 +91,49 @@ $(function() {
   });
 });
 
-// 詠むボタン
+// 詠むボタン（タイムライン）
 $(function(){
   $('#yomu')
     .mouseover(function(){
       // 俳句、一言説明の文字数チェック
-      if (checkNumLetters('#up_haiku') && checkNumLettersMd('#md_haiku') && checkNumLetters('#lw_haiku') && countNumLetters('#short_comment') < 31) {
+      if (checkNumLetters('#up_haiku') && checkNumLettersMd('#md_haiku') && checkNumLetters('#lw_haiku') && countNumLetters('#short_comment') < 21) {
+        console.log('hoge100');
+        // 画像のチェック
+        var file_name = getFileName('photo_file');
+        if (file_name == '') { // 画像選択されてない
+          console.log('hoge101');
+          // バリデーションクリア
+          $('#yomu_pre').css('display','none');
+          $('#yomu_ready').css('display','');
+        } else { // 画像選択されてる→画像形式のチェック
+          console.log('hoge102');
+          if (checkPhotoFile(file_name)) {
+            console.log('hoge103');
+            // バリデーションクリア
+            $('#yomu_pre').css('display','none');
+            $('#yomu_ready').css('display','');
+          } else {
+            console.log('hoge104');
+            // バリデーションアウト
+            $('#yomu_pre').css('display','');
+            $('#yomu_ready').css('display','none');
+          }
+        }
+      } else {
+        console.log('hoge105');
+        // バリデーションアウト
+        $('#yomu_pre').css('display','');
+        $('#yomu_ready').css('display','none');
+      }
+    })
+});
+
+// 詠むボタン（チャット）
+$(function(){
+  $('#yomu-chat')
+    .mouseover(function(){
+      // 俳句、一言説明の文字数チェック
+      if (checkNumLetters('#up_haiku') && checkNumLettersMd('#md_haiku') && checkNumLetters('#lw_haiku')) {
         console.log('hoge100');
         // 画像のチェック
         var file_name = getFileName('photo_file');

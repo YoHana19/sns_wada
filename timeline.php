@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('dbconnect.php');
+require('function.php');
 
 $_SESSION['page'] = 1;
 
@@ -19,7 +20,15 @@ if ($page == '') {
 $page = max($page, 1);
 
 // データの件数から最大ページ数を計算する
-$sql = 'SELECT count(*) AS `cnt` FROM `haikus`';
+// 検索の場合
+if (isset($_POST['search_word']) && !empty($_POST['search_word'])) {
+  $search_word = $_POST['search_word'];
+  $sql = sprintf('SELECT count(*) AS `cnt` FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.haiku_1 LIKE "%%%s%%" OR h.haiku_2 LIKE "%%%s%%" OR h.haiku_3 LIKE "%%%s%%" OR m.nick_name LIKE "%%%s%%" ORDER BY h.created DESC' ,$search_word, $search_word, $search_word, $search_word);
+// 通常の処理
+} else {
+  $sql = 'SELECT count(*) AS `cnt` FROM `haikus`';
+}
+
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $record = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -37,8 +46,15 @@ $page = min($page, $max_page);
 $page = ceil($page);
 $start = ($page-1) * 5;
 
-$sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY h.created DESC LIMIT %d, 5', $start);
-// $sql = 'SELECT t.*, m.nick_name, m.picture_path FROM `tweets` t, `members` m WHERE t.member_id=m.member_id ORDER BY `created` DESC';
+// 検索の場合（無限スクロールは未実装）
+$search_word = '';
+if (isset($_POST['search_word']) && !empty($_POST['search_word'])) {
+  $search_word = $_POST['search_word'];
+  $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.haiku_1 LIKE "%%%s%%" OR h.haiku_2 LIKE "%%%s%%" OR h.haiku_3 LIKE "%%%s%%" OR m.nick_name LIKE "%%%s%%" ORDER BY h.created DESC LIMIT %d, 5', $search_word, $search_word, $search_word, $search_word, $start);
+} else { // 通常の処理
+  $sql = sprintf('SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id ORDER BY h.created DESC LIMIT %d, 5', $start);
+  // $sql = 'SELECT t.*, m.nick_name, m.picture_path FROM `tweets` t, `members` m WHERE t.member_id=m.member_id ORDER BY `created` DESC';
+}
 
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -71,32 +87,38 @@ function tateGaki($haiku) {
   <!-- for Bootstrap -->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/header.css">
-  <link rel="stylesheet" type="text/css" href="..assets/css/footer.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/left_sideber.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
+  <!-- For Modal Window -->
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
+  <!-- 全ページ共通 -->
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- 各ページ -->
+  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+
+
 </head>
 <body>
+
+  <!-- ヘッダー -->
+  <?php require('header.php'); ?>
+
   <div class="container">
-    <div class="row content">
+    <div class="row whole-content">
 
       <!-- 左サイドバー -->
       <div class="col-md-3 left-content">
         <?php require('left_sidebar.php'); ?>
       </div>
 
-      <!-- 本コンテンツ -->
+      <!-- 本コンテンツ（右側） -->
       <div class="col-md-8 right-content">
       
         <!-- 今日の季語 -->
-        <div class="season_title">
+        <div class="sw-title">
           <h4>今日の季語</h4>
         </div>
-        <div class="outer">
-          <div class="season_word">さくら</div>
+        <div class="sw-outer">
+          <div class="sw-word">さくら</div>
         </div>
 
         <!-- 句一覧 -->
@@ -110,6 +132,7 @@ function tateGaki($haiku) {
             <?php $haiku_id = $post['haiku_id'] ?>
             <?php $nick_name = $post['nick_name'] ?>
             <?php $user_picture_path = $post['user_picture_path'] ?>
+            <?php $back_img = $post['back_img'] ?>
             <?php $haiku_1 = $post['haiku_1'] ?>
             <?php $haiku_2 = $post['haiku_2'] ?>
             <?php $haiku_3 = $post['haiku_3'] ?>
@@ -140,23 +163,27 @@ function tateGaki($haiku) {
             ?>
 
             <!-- 投稿 -->
-            <div class="haiku">
-              <div class="carousel-info">
+            <div class="post-haiku">
+              <div class="poster-info">
                 <a href="user.php?user_id=<?php echo $member_id ?>">
                   <img alt="" src="assets/images/<?php echo $user_picture_path ?>" class="pull-left">
                 </a>
                 <div class="pull-left">
-                  <span class="haiku-name"><?php echo $nick_name ?></span>
-                  <span calss="haiku-comment"><?php echo $post['short_comment'] ?></span>
+                  <span class="post-haiku-name"><?php echo $nick_name ?></span>
+                  <span calss="post-haiku-comment"><?php echo $post['short_comment'] ?></span>
                 </div>
                 <p><?php echo $created ?></p>
               </div>
-              <div class="active item">
+              <div>
+              <?php if (!empty($back_img)) : ?>
+                <blockquote style="background-image: url(assets/images/<?php echo $back_img ?>); background-size: cover;">
+              <?php else: ?>
                 <blockquote style="background:#fff0f5">
-                  <div class="haiku-text">
-                    <h2 class="haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
-                    <h2 class="haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
-                    <h2 class="haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
+              <?php endif; ?>
+                  <div class="post-haiku-text">
+                    <h2 class="post-haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
+                    <h2 class="post-haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
+                    <h2 class="post-haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
                   </div>
                 </blockquote>
               </div>
@@ -191,17 +218,20 @@ function tateGaki($haiku) {
                 $count_ashi = $count_stmt->fetch(PDO::FETCH_ASSOC);
               ?>
 
+              <!-- よし・あし・コメント数の表示 -->
               <div style="text-align: right;">
                 <div style="float: left">
                   <i id="<?php echo $num_like ?>" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;<?php echo $count_yoshi['total']; ?>人</i>
                   <i id="<?php echo $num_dislike ?>" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;<?php echo $count_ashi['total']; ?>人</i>
                   <i id="<?php echo $num_com_id ?>" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;<?php echo $num_comment; ?>件</i>
                 </div>
+                <!-- SNS共有アイコン -->
                 <i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i>
                 <i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i>
               </div>
 
-              <div class="icons">
+              <!-- よし・あし・コメントボタンの表示 -->
+              <div class="post-icons">
                 <!-- よし -->
                 <?php if($is_like = $is_like_stmt->fetch(PDO::FETCH_ASSOC)): ?>
                   <!-- よしデータが存在する（削除ボタン表示） -->
@@ -226,8 +256,8 @@ function tateGaki($haiku) {
                   <button id="<?php echo $comment_id ?>" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button>
 
                   <!-- コメント欄 -->
-                  <div id="<?php echo $comment_id . '_content' ?>" class="comment" style="display: none; margin-top: 20px;">
-                    <div class="msg row">
+                  <div id="<?php echo $comment_id . '_content' ?>" class="post-comment">
+                    <div class="comment-msg row">
                       <div class="form-group">
                         <!-- ログインユーザーの写真 -->
                         <div class="col-sm-1">
@@ -249,7 +279,7 @@ function tateGaki($haiku) {
                     </div>
 
                     <!-- コメントの内容 -->
-                    <div id="<?php echo $haiku_id . '_cont' ?>" class="msg">
+                    <div id="<?php echo $haiku_id . '_cont' ?>" class="comment-msg">
                       <?php if(!empty($comments)): ?>
                     
                         <?php foreach ($comments as $comment) { ?>
@@ -281,13 +311,10 @@ function tateGaki($haiku) {
   <script src="assets/js/jquery-3.1.1.js"></script>
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>
+
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>
   <script src="assets/js/comment.js"></script>
-  
-  <!-- jQuery (necessary for Modal Window) -->
-  <script src="assets/js/modal_window.js"></script>
-  <script src="assets/js/haiku_input.js"></script>
 
   <!-- 自動スクロール -->
   <script type="text/javascript">
@@ -300,7 +327,14 @@ function tateGaki($haiku) {
         if ($(document).height() - win.height() == win.scrollTop()) {
           $('#loading').show();
 
-          var data = {max_page : <?php echo $max_page; ?>};
+          var search_word = "<?php echo $search_word ?>";
+          console.log(search_word);
+          if (search_word == '') {
+            console.log('hoge01');
+            var data = {max_page : <?php echo $max_page; ?>};
+          } else {
+            var data = {max_page : <?php echo $max_page; ?>, search_word : search_word};
+          };
 
           $.ajax({
             type: "POST",
@@ -310,9 +344,9 @@ function tateGaki($haiku) {
           }).done(function(data) {
             var task_data = JSON.parse(data);
             var posts = task_data['posts'];
-            var page = task_data['last_page'];
+            var last_page = task_data['last_page'];
             
-            if (page == 0) { // 最後の投稿ではない
+            if (last_page == 0) { // 最後の投稿ではない
 
               // 繰り返し文
               posts.forEach(function(post) {
@@ -337,7 +371,7 @@ function tateGaki($haiku) {
                 // htmlへの追加
 
                 // 投稿句の表示
-                $('#posts').append('<div id="' + haiku_id + '_whole" class="haiku"><div class="carousel-info"><a href="user.php?user_id=' + member_id + '"><img alt="" src="assets/images/' + user_picture_path + '" class="pull-left"></a><div class="pull-left"><span class="haiku-name">' + nick_name + '</span><span calss="haiku-comment">' + post['short_comment'] + '</span></div><p>' + created + '</p></div><div class="active item"><blockquote style="background:#fff0f5"><div class="haiku-text"><h2 class="haiku-text-1">' + haiku_1 + '<h2 class="haiku-text-2">' + haiku_2 + '</h2><h2 class="haiku-text-3">' + haiku_3 + '</h2></div></blockquote></div><div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i id="' + num_dislike + '" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;' + post['dislike_total'] + '人</i><i id="' + num_com_id + '" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;' + post['num_comment'] + '件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9"></i></div>');
+                $('#posts').append('<div id="' + haiku_id + '_whole" class="post-haiku"><div class="poster-info"><a href="user.php?user_id=' + member_id + '"><img alt="" src="assets/images/' + user_picture_path + '" class="pull-left"></a><div class="pull-left"><span class="post-haiku-name">' + nick_name + '</span><span calss="post-haiku-comment">' + post['short_comment'] + '</span></div><p>' + created + '</p></div><div class="active item"><blockquote style="background:#fff0f5"><div class="post-haiku-text"><h2 class="post-haiku-text-1">' + haiku_3 + '<h2 class="post-haiku-text-2">' + haiku_2 + '</h2><h2 class="post-haiku-text-3">' + haiku_1 + '</h2></div></blockquote></div><div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i id="' + num_dislike + '" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;' + post['dislike_total'] + '人</i><i id="' + num_com_id + '" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;' + post['num_comment'] + '件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9; margin-left: 5px;"></i></div>');
 
                 console.log('hoge1');
 
@@ -397,7 +431,7 @@ function tateGaki($haiku) {
                   });
                 } else {
                   $('#' + haiku_id + '_whole')
-                  .append('<div id="' + haiku_id + '_icons" class="icons"><button type="button" id="' + haiku_id + '_like" class="like btn icon-btn btn-primary btn-color-un"><span id="' + haiku_id + '_icon_like" class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-un"></span>よし</button>')
+                  .append('<div id="' + haiku_id + '_icons" class="post-icons"><button type="button" id="' + haiku_id + '_like" class="like btn icon-btn btn-primary btn-color-un"><span id="' + haiku_id + '_icon_like" class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-un"></span>よし</button>')
                   .on('click', '#' + haiku_id + '_like', function() { // よし機能
                   var h_id = $(this).attr('id'); // クリックされたタグのhaiku_idの値を取得
                   var array = h_id.match(/[0-9]+\.?[0-9]*/g);
@@ -530,7 +564,7 @@ function tateGaki($haiku) {
                 var login_user_picture = task_data['login_user_picture'];
                  
                 $('#' + haiku_id + '_icons')
-                .append('<button id="' + comment_id + '" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button><div id="' + comment_id + '_content" class="comment" style="display: none; margin-top: 20px;"><div class="msg row"><div class="form-group"><div class="col-sm-1"><img src="assets/images/' + login_user_picture + '" width="45" height="45"></div><div class="col-sm-11"><input type="text" class="comment_content form-control comment-input" id="' + comment_id + '_input" placeholder="例： コメント"></div></div></div><div id="' + haiku_id + '_cont" class="msg"></div></div>')
+                .append('<button id="' + comment_id + '" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button><div id="' + comment_id + '_content" class="post-comment"><div class="comment-msg row"><div class="form-group"><div class="col-sm-1"><img src="assets/images/' + login_user_picture + '" width="45" height="45"></div><div class="col-sm-11"><input type="text" class="comment_content form-control comment-input" id="' + comment_id + '_input" placeholder="例： コメント"></div></div></div><div id="' + haiku_id + '_cont" class="comment-msg"></div></div>')
                 
                 // .on('click', '#' + comment_id, function() { // コメント欄の表示
                 //   console.log('hoge11')
@@ -640,5 +674,7 @@ function tateGaki($haiku) {
     };
   </script>
 
+  <!-- フッター -->
+  <?php require('footer.php') ?>
 </body>
 </html>

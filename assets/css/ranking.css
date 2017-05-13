@@ -1,0 +1,340 @@
+/*== コラム ==*/
+.ranking-column {
+
+  padding-left: 302px;
+  padding-bottom: 50px;
+}
+
+/**/
+/*== ランキング ==*/
+/**/
+
+/*== タイトル ==*/
+/* 友達内 */
+.f-rank-title-wrap {
+  position: relative;
+  height: 225px;
+}
+
+.f-rank-title-1 {
+  position: absolute;
+  top: 30px;
+  left: 170px;
+  width: 200px;
+}
+
+.f-rank-title-2 {
+  position: absolute;
+  top: 110px;
+  left: 255px;
+  width: 400px;
+}
+
+.f-rank-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 270px;
+}
+
+/* ランキングページ */
+.rank-title {
+    width: 350px;
+    height:80px;
+    margin-top: 50px;
+    margin-left: 250px;
+}
+
+/* 歌人・句 */
+.genre-title {
+    margin: 20px 0;
+    width: 120px;
+    height: 70px;
+}
+
+/* よし・あし */
+.title-ranking {
+    margin: 20px 0 50px 150px;
+}
+
+/*== 歌人ランキング ==*/
+.ranking {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.ranking img {
+  margin: 0 auto;
+  border-radius: 6px;
+  margin: auto;
+}
+
+.ranking h4 {
+  padding: 5px 0 0 0;
+}
+
+.ranking p {
+  margin: auto;
+}
+
+/* 1位 */
+.ranking-1 img {
+  width: 300px;
+  height: 300px;
+}
+
+.ranking-1 p {
+  font-size: 20px;
+}
+
+/* 2位 */
+.ranking-2 img {
+  width: 200px;
+  height: 200px;
+}
+
+.ranking-2 h4 {
+  font-size: 25px;
+}
+
+.ranking-2 p {
+  font-size: 16px;
+}
+
+/* 3位 */
+.ranking-3 img {
+  width: 100px;
+  height: 100px;
+}
+
+.ranking-3 p {
+  font-size: 13px;
+}
+
+/*== 句ランキング ==*/
+.ku-ranking {
+    position: relative;
+    border-radius: 6px;
+    background-color: #fffffc;
+    margin: auto;
+}
+
+/* 1位 */
+.ku-rank-wrap-1 {
+    width: 300px;
+    margin: auto;
+}
+
+.ku-ranking-1 {
+    width: 300px;
+    height: 300px;
+}
+
+.ku-ranking-1 p {
+    position: absolute;
+    top: 30px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.ku-ranking-1 p.haiku-text-1 {
+    left: 15px;
+}
+
+.ku-ranking-1 p.haiku-text-2 {
+    left: 140px;
+}
+
+.ku-ranking-1 p.haiku-text-3 {
+    right: 15px;
+}
+
+/* 2位 */
+.ku-rank-wrap-2 {
+    width: 200px;
+    margin: auto;
+}
+
+.ku-ranking-2 {
+    width: 200px;
+    height: 200px;
+}
+
+.ku-ranking-2 p {
+    position: absolute;
+    top: 5px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.ku-ranking-2 p.haiku-text-1 {
+    left: 15px;
+}
+
+.ku-ranking-2 p.haiku-text-2 {
+    left: 95px;
+}
+
+.ku-ranking-2 p.haiku-text-3 {
+    right: 15px;
+}
+
+/* 3位 */
+.ku-rank-wrap-3 {
+    width: 120px;
+    margin: auto;
+}
+
+.ku-ranking-3 {
+    width: 100px;
+    height: 100px;
+}
+
+.ku-ranking-3 p {
+    position: absolute;
+    top: 2px;
+    font-size: 12px;
+    font-weight: 200;
+    line-height: 14px;
+}
+
+.ku-ranking-3 p.haiku-text-1 {
+    left: 5px;
+}
+
+.ku-ranking-3 p.haiku-text-2 {
+    left: 45px;
+}
+
+.ku-ranking-3 p.haiku-text-3 {
+    right: 5px;
+}
+
+/* 作成者情報 */
+.auth-ranking {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.auth-ranking img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* 1位 */
+.auth-ranking-1 span {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+/* 2位 */
+.auth-ranking-2 img {
+    width: 40px;
+    height: 40px;
+}
+
+.auth-ranking-2 span {
+    font-size: 16px;
+    margin-left: 18px;
+}
+
+/* 3位 */
+.auth-ranking-3 {
+    margin-left: -10px;
+    margin-right: -20px;
+}
+
+.auth-ranking-3 img {
+    width: 30px;
+    height: 30px;
+}
+
+.auth-ranking-3 span {
+    font-size: 13px;
+    margin-left: 15px;
+}
+
+.ku-ranking-1 img {
+  width: 100px;
+  height: 100px;
+  padding-top: 3px;
+  margin-top: 20px;
+  margin-right: 38px;
+}
+
+.kuranking-2 img {
+  width: 100px;
+  height: 100px;
+  padding-top: 3px;
+  margin-top: 5px;
+  margin-right: 38px;
+}
+
+.kuranking-3 img {
+  width: 100px;
+  height: 100px;
+  padding-top: 3px;
+  margin-top: 5px;
+  margin-right: 38px;
+}
+
+
+
+
+.media-body1 {
+  padding-right: 150px;
+}
+.media-body2 {
+  padding-right: 150px;
+}
+
+.background {
+    padding: 190px 10px;
+    margin: 0 0 0 0px;
+    font-size: 24px;
+    border-left: 0px solid #eee;
+}
+
+/* 俳句の縦書き */
+.haiku-text {
+    width: 300px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.haiku-text h2 {
+    /*position: absolute;*/
+    /*top: 35px;*/
+}
+
+.haiku-text-1 {
+    left: 0;
+}
+
+.haiku-text-2 {
+    left: 135px;
+}
+
+.haiku-text-3 {
+    right: 0px;
+}
+
+.background {
+  background-color: #d69090
+  width: 200px;
+  height: 500px;
+}
+
+.src{
+   /*max-width: 300px;
+   height: auto;*/
+   width: auto;
+   max-height: 300px;
+}
+
+.media2 {
+  margin: 20px 0 50px 0;
+}
