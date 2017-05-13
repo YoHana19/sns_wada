@@ -72,9 +72,10 @@ foreach ($dislike_haiku_rank as $dislike_haiku) {
 
 function rankGet($array_ids) {                  // $array_idsは配列
   $pure_ids = array_count_values($array_ids);   // 重複する値の数を数得て、その値とその数をペアにした連想配列を作る
+  $num_value = count($pure_ids);                // 連想配列の要素数を取得
   arsort($pure_ids);                            // 連想配列の値をもとに大きい順に並び変える
   $array_ranks = array();                       // ランキング上位3つのidを入れるからの配列を作る
-  for ($i=0; $i < 3; $i++) {                    // 3位とってくるので3回繰り返す
+  for ($i=0; $i < $num_value; $i++) {           // 要素数だけ繰り返す（要素数分順位が出る）
     $rank_id = key($pure_ids);                  // 連想配列のポインタのあるキーを取ってくる（○位を取ってくる）
     $value_num = $pure_ids["$rank_id"];         // よし・あし数取得
     $array_rank = array($rank_id, $value_num);  // 配列にいれる
@@ -110,24 +111,31 @@ function rankGet($array_ids) {                  // $array_idsは配列
     </div>
 
     <!-- よしランキング1位 -->
-    <div class="ranking ranking-1">
-      <img class="media-object" src="assets/images/<?php echo $like_haikus_info[0]['user_picture_path'] ?>">
-      <h1><?php echo $like_haikus_info[0]['nick_name'] ?></h1>
-      <p><?php echo $like_haiku_rank[0][1] ?> よし</p>
-    </div>
+    <?php if(isset($like_haikus_info[0])): ?>
+      <div class="ranking ranking-1">
+        <img class="media-object" src="assets/images/<?php echo $like_haikus_info[0]['user_picture_path'] ?>">
+        <a href="user.php?user_id=<?php echo $like_haikus_info[0]['member_id'] ?>" style="color: black;"><h1><?php echo $like_haikus_info[0]['nick_name'] ?></h1></a>
+        <p><?php echo $like_haiku_rank[0][1] ?> よし</p>
+      </div>
+    <?php endif; ?>
 
     <!-- よしランキング2位 -->
-    <div class="ranking ranking-2">
-      <img class="media-object" src="assets/images/<?php echo $like_haikus_info[1]['user_picture_path'] ?>">
-      <h4><?php echo $like_haikus_info[1]['nick_name'] ?></h4>
-      <p><?php echo $like_haiku_rank[1][1] ?> よし</p>
-    </div>
+    <?php if(isset($like_haikus_info[1])): ?>
+      <div class="ranking ranking-2">
+        <img class="media-object" src="assets/images/<?php echo $like_haikus_info[1]['user_picture_path'] ?>">
+        <a href="user.php?user_id=<?php echo $like_haikus_info[1]['member_id'] ?>" style="color: black;"><h4><?php echo $like_haikus_info[1]['nick_name'] ?></h4></a>
+        <p><?php echo $like_haiku_rank[1][1] ?> よし</p>
+      </div>
+    <?php endif; ?>
 
-    <div class="ranking ranking-3">
-      <img class="media-object" src="assets/images/<?php echo $like_haikus_info[2]['user_picture_path'] ?>">
-      <h4><?php echo $like_haikus_info[2]['nick_name'] ?></h4>
-      <p><?php echo $like_haiku_rank[2][1] ?> よし</p>
-    </div>
+    <!-- よしランキング2位 -->
+    <?php if(isset($like_haikus_info[2])): ?>
+      <div class="ranking ranking-3">
+        <img class="media-object" src="assets/images/<?php echo $like_haikus_info[2]['user_picture_path'] ?>">
+        <a href="user.php?user_id=<?php echo $like_haikus_info[2]['member_id'] ?>" style="color: black;"><h4><?php echo $like_haikus_info[2]['nick_name'] ?></h4></a>
+        <p><?php echo $like_haiku_rank[2][1] ?> よし</p>
+      </div>
+    <?php endif; ?>
 
   </div>
 
@@ -141,26 +149,31 @@ function rankGet($array_ids) {                  // $array_idsは配列
     </div>
 
     <!--あしランキング1位 -->
-    <div class="ranking ranking-1">
-      <img class="media-object" src="assets/images/<?php echo $dislike_haikus_info[0]['user_picture_path'] ?>">
-      <h1><?php echo $dislike_haikus_info[0]['nick_name'] ?></h1>
-      <p><?php echo $dislike_haiku_rank[0][1] ?> あし</p>
-    </div>
+    <?php if(isset($dislike_haikus_info[0])): ?>
+      <div class="ranking ranking-1">
+        <img class="media-object" src="assets/images/<?php echo $dislike_haikus_info[0]['user_picture_path'] ?>">
+        <a href="user.php?user_id=<?php echo $dislike_haikus_info[0]['member_id'] ?>" style="color: black;"><h1><?php echo $dislike_haikus_info[0]['nick_name'] ?></h1></a>
+        <p><?php echo $dislike_haiku_rank[0][1] ?> あし</p>
+      </div>
+    <?php endif; ?>
 
     <!--あしランキング2位 -->
-    <div class="ranking ranking-2">
-      <img class="media-object" src="assets/images/<?php echo $dislike_haikus_info[1]['user_picture_path'] ?>">
-      <h4><?php echo $dislike_haikus_info[1]['nick_name'] ?></h4>
-      <p><?php echo $dislike_haiku_rank[1][1] ?> あし</p>
-    </div>
-    
+    <?php if(isset($dislike_haikus_info[1])): ?>
+      <div class="ranking ranking-2">
+        <img class="media-object" src="assets/images/<?php echo $dislike_haikus_info[1]['user_picture_path'] ?>">
+        <a href="user.php?user_id=<?php echo $dislike_haikus_info[1]['member_id'] ?>" style="color: black;"><h4><?php echo $dislike_haikus_info[1]['nick_name'] ?></h4></a>
+        <p><?php echo $dislike_haiku_rank[1][1] ?> あし</p>
+      </div>
+    <?php endif; ?>
     
     <!--あしランキング3位 -->
-    <div class="ranking ranking-3">
-      <img class="media-object" src="assets/images/<?php echo $dislike_haikus_info[2]['user_picture_path'] ?>">      
-      <h4><?php echo $dislike_haikus_info[2]['nick_name'] ?></h4>
-      <p><?php echo $dislike_haiku_rank[2][1] ?> あし</p>
-    </div>
+    <?php if(isset($dislike_haikus_info[2])): ?>
+      <div class="ranking ranking-3">
+        <img class="media-object" src="assets/images/<?php echo $dislike_haikus_info[2]['user_picture_path'] ?>">      
+        <a href="user.php?user_id=<?php echo $dislike_haikus_info[2]['member_id'] ?>" style="color: black;"><h4><?php echo $dislike_haikus_info[2]['nick_name'] ?></h4></a>
+        <p><?php echo $dislike_haiku_rank[2][1] ?> あし</p>
+      </div>
+    <?php endif; ?>
 
   </div>
 
