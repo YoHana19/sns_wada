@@ -172,7 +172,7 @@ function tateGaki($haiku) {
                   <span class="post-haiku-name"><?php echo $nick_name ?></span>
                   <span calss="post-haiku-comment"><?php echo $post['short_comment'] ?></span>
                 </div>
-                <p><?php echo $created ?></p>
+                <p><?php japaneseDate($created) ?>日 <?php japaneseClock($created) ?>の刻</p>
               </div>
               <div>
               <?php if (!empty($back_img)) : ?>
