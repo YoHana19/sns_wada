@@ -92,7 +92,7 @@ if (!empty($_POST)) {
     $_SESSION['self_intro_2'] = $_POST['self_intro_2'];
     $_SESSION['self_intro_3'] = $_POST['self_intro_3'];
 
-    header('Location:edit-update.php');
+    header('Location:edit_update.php');
     exit();
   }
 }
@@ -113,16 +113,17 @@ function tateGaki($haiku) {
 <head>
   <meta charset="utf-8">
   <title></title>
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
+  <!-- for Bootstrap -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
   <!-- For Modal Window -->
-  <link rel="stylesheet" type="text/css" href="assets/css/modal_window.css">
-  <!-- <link rel="stylesheet" type="text/css" href="assets/css/edit.css"> -->
+  <link rel="stylesheet" type="text/css" href="assets/css/mw_haiku_input.css">
+  <!-- 全ページ共通 -->
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- 各ページ -->
+  <link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
 </head>
 <body>
 
@@ -132,12 +133,12 @@ function tateGaki($haiku) {
   <!--プロフィール写真/ 一言-->
   <div class="container whole-content">
     <div class="fb-profile">
-      <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_member['back_picture_path'] ?>);">
+      <div id="edit-back-img" class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_member['back_picture_path'] ?>);">
         <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
         <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
         <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
       </div>
-      <img align="left" class="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
+      <img id="edit-profile-img" align="left" class="fb-image-profile thumbnail" src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
       <div class="fb-profile-text">
         <h1><?php echo $login_member['nick_name']; ?></h1>
       </div>
@@ -243,5 +244,15 @@ function tateGaki($haiku) {
   </div>
   <!-- フッター -->
   <?php require('footer.php'); ?>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="assets/js/jquery-3.1.1.js"></script>
+  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/friend.js"></script>
+  <script src="assets/js/likes.js"></script>
+  <script src="assets/js/dislikes.js"></script>
+  <script src="assets/js/comment.js"></script>
+  <script src="assets/js/edit_profile_images.js"></script>
 </body>
 </html>
