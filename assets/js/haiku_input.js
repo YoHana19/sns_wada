@@ -6,16 +6,17 @@ $(function(){
       $(this).mouseout(function(){
         var input_id = $(this).attr('id');
         var valid_id = input_id + '_valid';
-        if (checkNumLetters(this)) {
-          // 文字数OK
-          console.log('hoge21');
-          $('#' + valid_id).css('display','none');
-        } else {
-          // 文字数ダメ
-          console.log('hoge22');
-          $('#' + valid_id).css('display','');
-        }
-        
+        $.when(
+          checkNumLetters('#' + input_id)
+        ).done(function(check) {
+          if (check == 1) {
+            // 文字数OK
+            $('#' + valid_id).css('display','none');
+          } else {
+            // 文字数ダメ
+            $('#' + valid_id).css('display','');
+          }
+        })
       })
     })  
 });
@@ -27,18 +28,19 @@ $(function(){
       $(this).mouseout(function(){
         var input_id = $(this).attr('id');
         var valid_id = input_id + '_valid';
-        if (checkNumLettersMd(this)) {
-          // 文字数OK
-          console.log('hoge21');
-          $('#' + valid_id).css('display','none');
-        } else {
-          // 文字数ダメ
-          console.log('hoge22');
-          $('#' + valid_id).css('display','');
-        }
-        
+        $.when(
+          checkNumLettersMd('#' + input_id)
+        ).done(function(check) {
+          if (check == 1) {
+            // 文字数OK
+            $('#' + valid_id).css('display','none');
+          } else {
+            // 文字数ダメ
+            $('#' + valid_id).css('display','');
+          }
+        })
       })
-    })
+    })  
 });
 
 // 下の句
@@ -48,18 +50,19 @@ $(function(){
       $(this).mouseout(function(){
         var input_id = $(this).attr('id');
         var valid_id = input_id + '_valid';
-        if (checkNumLetters(this)) {
-          // 文字数OK
-          console.log('hoge21');
-          $('#' + valid_id).css('display','none');
-        } else {
-          // 文字数ダメ
-          console.log('hoge22');
-          $('#' + valid_id).css('display','');
-        }
-        
+        $.when(
+          checkNumLetters('#' + input_id)
+        ).done(function(check) {
+          if (check == 1) {
+            // 文字数OK
+            $('#' + valid_id).css('display','none');
+          } else {
+            // 文字数ダメ
+            $('#' + valid_id).css('display','');
+          }
+        })
       })
-    })
+    })  
 });
 
 // 一言説明
@@ -70,7 +73,7 @@ $(function(){
         var input_id = $(this).attr('id');
         var valid_id = input_id + '_valid';
         var num_letters = countNumLetters(this);
-        if (num_letters < 31) {
+        if (num_letters < 21) {
           // 文字数OK
           console.log('hoge21');
           $('#' + valid_id).css('display','none');
@@ -96,35 +99,41 @@ $(function(){
   $('#yomu')
     .mouseover(function(){
       // 俳句、一言説明の文字数チェック
-      if (checkNumLetters('#up_haiku') && checkNumLettersMd('#md_haiku') && checkNumLetters('#lw_haiku') && countNumLetters('#short_comment') < 21) {
-        console.log('hoge100');
-        // 画像のチェック
-        var file_name = getFileName('photo_file');
-        if (file_name == '') { // 画像選択されてない
-          console.log('hoge101');
-          // バリデーションクリア
-          $('#yomu_pre').css('display','none');
-          $('#yomu_ready').css('display','');
-        } else { // 画像選択されてる→画像形式のチェック
-          console.log('hoge102');
-          if (checkPhotoFile(file_name)) {
-            console.log('hoge103');
+      $.when(
+          checkNumLetters('#up_haiku'),
+          checkNumLetters('#md_haiku'),
+          checkNumLetters('#lw_haiku')
+      ).done(function(check_up, check_md, check_lw) {
+        if (check_up == 1 && check_md == 1 && check_lw == 1 && countNumLetters('#short_comment') < 21) {
+          console.log('hoge100');
+          // 画像のチェック
+          var file_name = getFileName('photo_file');
+          if (file_name == '') { // 画像選択されてない
+            console.log('hoge101');
             // バリデーションクリア
             $('#yomu_pre').css('display','none');
             $('#yomu_ready').css('display','');
-          } else {
-            console.log('hoge104');
-            // バリデーションアウト
-            $('#yomu_pre').css('display','');
-            $('#yomu_ready').css('display','none');
+          } else { // 画像選択されてる→画像形式のチェック
+            console.log('hoge102');
+            if (checkPhotoFile(file_name)) {
+              console.log('hoge103');
+              // バリデーションクリア
+              $('#yomu_pre').css('display','none');
+              $('#yomu_ready').css('display','');
+            } else {
+              console.log('hoge104');
+              // バリデーションアウト
+              $('#yomu_pre').css('display','');
+              $('#yomu_ready').css('display','none');
+            }
           }
+        } else {
+          console.log('hoge105');
+          // バリデーションアウト
+          $('#yomu_pre').css('display','');
+          $('#yomu_ready').css('display','none');
         }
-      } else {
-        console.log('hoge105');
-        // バリデーションアウト
-        $('#yomu_pre').css('display','');
-        $('#yomu_ready').css('display','none');
-      }
+      })
     })
 });
 
@@ -133,35 +142,41 @@ $(function(){
   $('#yomu-chat')
     .mouseover(function(){
       // 俳句、一言説明の文字数チェック
-      if (checkNumLetters('#up_haiku') && checkNumLettersMd('#md_haiku') && checkNumLetters('#lw_haiku')) {
-        console.log('hoge100');
-        // 画像のチェック
-        var file_name = getFileName('photo_file');
-        if (file_name == '') { // 画像選択されてない
-          console.log('hoge101');
-          // バリデーションクリア
-          $('#yomu_pre').css('display','none');
-          $('#yomu_ready').css('display','');
-        } else { // 画像選択されてる→画像形式のチェック
-          console.log('hoge102');
-          if (checkPhotoFile(file_name)) {
-            console.log('hoge103');
+      $.when(
+          checkNumLetters('#up_haiku'),
+          checkNumLetters('#md_haiku'),
+          checkNumLetters('#lw_haiku')
+      ).done(function(check_up, check_md, check_lw) {
+        if (check_up == 1 && check_md == 1 && check_lw == 1) {
+          console.log('hoge100');
+          // 画像のチェック
+          var file_name = getFileName('photo_file');
+          if (file_name == '') { // 画像選択されてない
+            console.log('hoge101');
             // バリデーションクリア
             $('#yomu_pre').css('display','none');
             $('#yomu_ready').css('display','');
-          } else {
-            console.log('hoge104');
-            // バリデーションアウト
-            $('#yomu_pre').css('display','');
-            $('#yomu_ready').css('display','none');
+          } else { // 画像選択されてる→画像形式のチェック
+            console.log('hoge102');
+            if (checkPhotoFile(file_name)) {
+              console.log('hoge103');
+              // バリデーションクリア
+              $('#yomu_pre').css('display','none');
+              $('#yomu_ready').css('display','');
+            } else {
+              console.log('hoge104');
+              // バリデーションアウト
+              $('#yomu_pre').css('display','');
+              $('#yomu_ready').css('display','none');
+            }
           }
+        } else {
+          console.log('hoge105');
+          // バリデーションアウト
+          $('#yomu_pre').css('display','');
+          $('#yomu_ready').css('display','none');
         }
-      } else {
-        console.log('hoge105');
-        // バリデーションアウト
-        $('#yomu_pre').css('display','');
-        $('#yomu_ready').css('display','none');
-      }
+      })
     })
 });
 
@@ -171,35 +186,82 @@ $(function(){
 
 // 文字数カウント
 function countNumLetters(obj) {
-  console.log('hoge10');
+
   var letters = $(obj).val();
   var num_letters = letters.length;
-  console.log(num_letters);
   return num_letters;
 }
 
+// ひらがな化
+function kanaKa(obj) {
+  var defer = $.Deferred();
+
+  // 入力された文字列の取得
+  var letters = $(obj).val();
+
+  // 漢字をひらがな化するためapiの利用処理
+  var data = {sentence : letters};
+
+  $.ajax({
+    type: "POST",
+    url: "hiragana_ka.php",
+    data: data,
+
+  }).done(function(data) {
+    var task_data = JSON.parse(data);
+    var kana = task_data['sentence'];
+    
+    // 文字数取得
+    var num_letters = kana.length;
+
+    defer.resolve(num_letters);
+
+  }).fail(function(data) {
+    alert('error!!!' + data);
+  });
+
+  return defer.promise(this);
+}
+
+
 // 文字数チェック（上の句・下の句）
 function checkNumLetters(obj) {
-  var num_letters = countNumLetters(obj);
-  if (num_letters > 3 && num_letters < 7) {
-    console.log('hoge11');
-    return true;
-  } else {
-    console.log('hoge12');
-    return false;
-  }
+  var defer = $.Deferred();
+
+  $.when(
+    kanaKa(obj)
+  ).done(function(num_letters) {
+
+    if (num_letters > 3 && num_letters < 7) {
+      var check = 1;
+    } else {
+      var check = 0;
+    }
+
+    defer.resolve(check);
+  });
+
+  return defer.promise(this);
 }
 
 // 文字数チェック（中の句）
 function checkNumLettersMd(obj) {
-  var num_letters = countNumLetters(obj);
-  if (num_letters > 5 && num_letters < 9) {
-    console.log('hoge13');
-    return true;
-  } else {
-    console.log('hoge14');
-    return false;
-  }
+  var defer = $.Deferred();
+
+  $.when(
+    kanaKa(obj)
+  ).done(function(num_letters) {
+
+    if (num_letters > 5 && num_letters < 9) {
+      var check = 1;
+    } else {
+      var check = 0;
+    }
+
+    defer.resolve(check);
+  });
+
+  return defer.promise(this);
 }
 
 // 画像の表示
