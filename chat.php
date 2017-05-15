@@ -106,7 +106,7 @@ function tateGaki($haiku) {
                     <?php endif; ?>
                       <div class="panel-body">
                         <header class="text-right">
-                          <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i><?php echo $chat['created']; ?></time>
+                          <time class="comment-date" datetime="16-12-2014 01:05"><?php japaneseClock($chat['created']); ?>の刻</time>
                         </header>
                         <div class="haiku-text">
                           <p class="haiku-text-1"><?php echo tateGaki($chat['chat_3']); ?></p>
@@ -116,7 +116,7 @@ function tateGaki($haiku) {
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-2 col-sm-2 hidden-xs">
+                  <div class="col-md-2 col-sm-2 hidden-xs" style="margin-top: 25px">
                     <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
                       <img class="img-responsive" src="assets/images/<?php echo $chat['user_picture_path']; ?>" style="border-radius: 50%;">
                     </figure>
@@ -127,7 +127,7 @@ function tateGaki($haiku) {
 
                 <!-- チャット相手 -->
                 <article class="row">
-                  <div class="col-md-2 col-sm-2 hidden-xs">
+                  <div class="col-md-2 col-sm-2 hidden-xs" style="margin-top: 25px">
                     <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
                       <img class="img-responsive" src="assets/images/<?php echo $chat['user_picture_path']; ?>" style="border-radius: 50%;">
                      </figure>
@@ -137,7 +137,9 @@ function tateGaki($haiku) {
                     <div class="panel panel-default arrow left user-left">
                       <div class="panel-body">
                         <header class="text-left">
-                          <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i><?php echo $chat['created']; ?></time>
+                          <time class="comment-date" datetime="16-12-2014 01:05"><?php japaneseClock($chat['created']); ?>の刻</time>
+                          
+                          
                         </header>
                         <div class="haiku-text">
                           <p class="haiku-text-1"><?php echo tateGaki($chat['chat_3']); ?></p>
@@ -257,3 +259,4 @@ function tateGaki($haiku) {
   </script>
 </body>
 </html>
+

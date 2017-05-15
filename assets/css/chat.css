@@ -14,7 +14,7 @@
 
 .chat-name {
   font-size: 15px;
-  color: #b3ada0;
+  color: #555;
   margin: 10px 0 6px;
 }
 
@@ -66,8 +66,6 @@
 
 .panel {
   background-color: #fffffc;
-  border-color: #fffffc;
-  border-radius: 15px;
   width: 300px;
   height: 250px;
 }
@@ -82,7 +80,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  color: #b3ada0;
+  color: #d0576b;
 }
 
 /* 右側と左側で吹き出しの位置を調整する */
@@ -92,6 +90,7 @@
 
 .user-right {
   margin-left: auto;
+  background-color: #f6b894;
 }
 
 /* 俳句の縦書き */
@@ -106,7 +105,7 @@
     position: absolute;
     top: 0;
     font-size: 20px;
-    color: #b3ada0;
+    color: #555;
 }
 
 .haiku-text-1 {
@@ -176,10 +175,10 @@
   }
   /*Background color effect*/
   .comment-list .panel.arrow.right:after {
-    right: -14px;
+    right: -12px;
     top: 50px;
     /*Change for different outline color*/
-    border-left-color: #fffffc;
+    border-left-color: #f6b894;
     border-width: 15px;
   }
 }
