@@ -116,7 +116,7 @@ function tateGaki($haiku) {
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-2 col-sm-2 hidden-xs">
+                  <div class="col-md-2 col-sm-2 hidden-xs" style="margin-top: 25px">
                     <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
                       <img class="img-responsive" src="assets/images/<?php echo $chat['user_picture_path']; ?>" style="border-radius: 50%;">
                     </figure>
@@ -127,7 +127,7 @@ function tateGaki($haiku) {
 
                 <!-- チャット相手 -->
                 <article class="row">
-                  <div class="col-md-2 col-sm-2 hidden-xs">
+                  <div class="col-md-2 col-sm-2 hidden-xs" style="margin-top: 25px">
                     <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
                       <img class="img-responsive" src="assets/images/<?php echo $chat['user_picture_path']; ?>" style="border-radius: 50%;">
                      </figure>
