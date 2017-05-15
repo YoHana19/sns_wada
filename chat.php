@@ -106,7 +106,7 @@ function tateGaki($haiku) {
                     <?php endif; ?>
                       <div class="panel-body">
                         <header class="text-right">
-                          <time class="comment-date" datetime="16-12-2014 01:05"><?php japaneseClock($chat['created']); ?>の刻</time>
+                          <time class="comment-date" datetime="16-12-2014 01:05"><?php echo japaneseClock($chat['created']); ?>の刻</time>
                         </header>
                         <div class="haiku-text">
                           <p class="haiku-text-1"><?php echo tateGaki($chat['chat_3']); ?></p>
@@ -137,7 +137,7 @@ function tateGaki($haiku) {
                     <div class="panel panel-default arrow left user-left">
                       <div class="panel-body">
                         <header class="text-left">
-                          <time class="comment-date" datetime="16-12-2014 01:05"><?php japaneseClock($chat['created']); ?>の刻</time>
+                          <time class="comment-date" datetime="16-12-2014 01:05"><?php echo japaneseClock($chat['created']); ?>の刻</time>
                           
                           
                         </header>

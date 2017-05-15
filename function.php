@@ -116,7 +116,7 @@ function japaneseClock($time) {
     $j_images['亥'] = array('image' => 'i');
   }
 
-  echo $j_hour;
+  return $j_hour;
 }
 
 function etoImage($time) {
@@ -369,8 +369,8 @@ function japaneseDate($day) {
       break;
   }
 
-  echo $j_month;
-  echo ' ' . $j_date;
+  $f_date = $j_month . ' ' . $j_date;
+  return $f_date;
 }
 
 ?>

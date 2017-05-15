@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('dbconnect.php');
+require('function.php');
 
 // ログインユーザーの写真
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
@@ -111,6 +112,10 @@ foreach ($posts as $post) {
   $count_stmt->execute($data);
   $count_dislike = $count_stmt->fetch(PDO::FETCH_ASSOC);
 
+  // 干支表示
+  $created_date = japaneseDate($post['created']);
+  $created_clock = japaneseClock($post['created']);
+
   // $postに各情報を連結
   $post += array('login_flag' => $login_flag,
                  'comments' => $comments,
@@ -118,7 +123,9 @@ foreach ($posts as $post) {
                  'state_like' => $state_like,
                  'state_dislike' => $state_dislike,
                  'like_total' => $count_like['total'],
-                 'dislike_total' => $count_dislike['total']
+                 'dislike_total' => $count_dislike['total'],
+                 'created_date' => $created_date,
+                 'created_clock' => $created_clock
                  );
 
   // $postsの更新
