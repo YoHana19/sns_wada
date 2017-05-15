@@ -219,10 +219,6 @@ body {
     background-image: url(../images/back.jpg);
 }
 
-/*h1 {
-    font-family: 'YuGothic', 'Hiragino Maru Gothic ProN';
-}*/
-
 p {
     line-height: 28px;
 }
@@ -289,6 +285,7 @@ p {
 
 /* 友達・チャット一覧 */
 .left-wrap {
+    width: 288px;
     min-height: 20px;
     padding: 2px;
     background-color: #fffffc;
@@ -334,6 +331,7 @@ p {
 /*== コンテンツ右 ==*/
 .right-content {
     margin-left: 70px;
+    float: right;
 }
 
 /*== Footer ==*/

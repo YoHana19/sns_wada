@@ -74,12 +74,12 @@ function tateGaki($haiku) {
   <div class="container">
     <div class="row whole-content">
       <!-- チャット一覧 -->
-      <div class="col-md-3 chat-list">
+      <div class="col-md-3 left-content">
         <?php require('chat_left.php'); ?>
       </div>
 
       <!-- 個人チャット画面 -->
-      <div class="col-md-8 chat-private">
+      <div class="col-md-8 right-content">
 
         <!-- チャット相手が選択された時 -->
         <?php if (isset($_GET['friend_id'])) { ?>
@@ -239,6 +239,8 @@ function tateGaki($haiku) {
   <script src="assets/js/modal_window.js"></script>
   <!-- 俳句入力 -->
   <script src="assets/js/haiku_input.js"></script>
+  <!-- スクロール固定 -->
+  <script src="assets/js/scroll_fix.js"></script>
 
   <script>
     // 1番最初のモーダルウィンドウ呼び出し

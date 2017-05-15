@@ -243,6 +243,8 @@ function tateGaki($haiku) {
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>
   <script src="assets/js/comment.js"></script>
+  <!-- スクロール固定 -->
+  <script src="assets/js/scroll_fix.js"></script>
 
 </body>
 </html>
