@@ -101,6 +101,11 @@ $num_friends = count($friends_name);
 </head>
 <body>
 
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="assets/js/jquery-3.1.1.js"></script>
+  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+
   <!-- ヘッダー -->
   <?php require('header.php'); ?>
 
@@ -119,10 +124,6 @@ $num_friends = count($friends_name);
   <!-- フッター -->
   <?php require('footer.php') ?>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="assets/js/jquery-3.1.1.js"></script>
-  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
-  <script src="assets/js/bootstrap.js"></script>
   <script src="assets/js/friend.js"></script>
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>

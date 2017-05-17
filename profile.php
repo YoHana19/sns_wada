@@ -46,15 +46,6 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
   // 配列名の後に[]をつけると最後の段を指定する]
 }
 
-// 縦書きにする関数
-function tateGaki($haiku) {
-  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
-  $v_haiku = '';
-  foreach ($matches as $letter) {
-    $v_haiku .= $letter . "<br>";
-  }
-  return rtrim($v_haiku, "<br>");
-}
 ?>
 
 
@@ -77,6 +68,11 @@ function tateGaki($haiku) {
 </head>
 <body>
 
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="assets/js/jquery-3.1.1.js"></script>
+  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  
   <!-- ヘッダー -->
   <?php require('header.php'); ?>
 
@@ -256,10 +252,6 @@ function tateGaki($haiku) {
   <!-- フッター -->
   <?php require('footer.php') ?>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="assets/js/jquery-3.1.1.js"></script>
-  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
-  <script src="assets/js/bootstrap.js"></script>
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>
   <script src="assets/js/comment.js"></script>

@@ -88,15 +88,6 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
   // 配列名の後に[]をつけると最後の段を指定する]
 }
 
-// 縦書きにする関数
-function tateGaki($haiku) {
-  $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
-  $v_haiku = '';
-  foreach ($matches as $letter) {
-    $v_haiku .= $letter . "<br>";
-  }
-  return rtrim($v_haiku, "<br>");
-}
 ?>
 
 <!DOCTYPE html>
@@ -118,6 +109,11 @@ function tateGaki($haiku) {
 
 </head>
 <body>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="assets/js/jquery-3.1.1.js"></script>
+  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
 
   <!-- ヘッダー -->
   <?php require('header.php'); ?>
@@ -195,17 +191,27 @@ function tateGaki($haiku) {
                 <p><?php echo japaneseDate($created) ?>日 <?php echo japaneseClock($created) ?>の刻</p>
               </div>
               <div>
-              <?php if (!empty($back_img)) : ?>
-                <blockquote style="background-image: url(assets/images/users/<?php echo $back_img ?>); background-size: cover;">
-              <?php else: ?>
-                <blockquote style="background:#fff0f5">
-              <?php endif; ?>
-                  <div class="post-haiku-text">
-                    <h2 class="post-haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
-                    <h2 class="post-haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
-                    <h2 class="post-haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
-                  </div>
-                </blockquote>
+                <!-- 背景画像ある場合 -->
+                <?php if (!empty($back_img)) : ?>
+                  <blockquote style="background-image: url(assets/images/users/<?php echo $back_img ?>); background-size: cover;">
+                    <div class="layerTransparent">
+                      <div class="post-haiku-text" style="padding-top: 15px; color: #524e4d;">
+                        <h2 class="post-haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
+                        <h2 class="post-haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
+                        <h2 class="post-haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
+                      </div>
+                    </div>
+                  </blockquote>
+                <!-- 背景画像ない場合 -->
+                <?php else: ?>
+                  <blockquote style="background:#fff0f5">
+                    <div class="post-haiku-text">
+                      <h2 class="post-haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
+                      <h2 class="post-haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
+                      <h2 class="post-haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
+                    </div>
+                  </blockquote>
+                <?php endif; ?>
               </div>
 
               <?php
@@ -326,11 +332,6 @@ function tateGaki($haiku) {
       </div> <!-- col-md-8(右コンテンツ)終了タグ -->
     </div>
   </div>
-
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="assets/js/jquery-3.1.1.js"></script>
-  <script src="assets/js/jquery-migrate-1.4.1.js"></script>
-  <script src="assets/js/bootstrap.js"></script>
 
   <script src="assets/js/likes.js"></script>
   <script src="assets/js/dislikes.js"></script>

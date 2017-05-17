@@ -53,6 +53,13 @@
     position: relative;
 }
 
+/* 背景画像透過用 */
+.layerTransparent{
+    background-color: rgba(255,255,255,0.5);
+    height: 300px;
+    margin: -15px;
+}
+
 /* 投稿者情報 */
 .post-haiku .poster-info img {
     border: 1px solid #f5f5f5;
@@ -107,6 +114,7 @@
 
 .post-haiku-text h2 {
     position: absolute;
+    font-weight: 900;
 }
 
 .post-haiku-text-1 {

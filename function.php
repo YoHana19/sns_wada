@@ -1,4 +1,5 @@
 <?php
+// ファイル名取得関数
 function getFileNameFromUri() {
   $uri_arr = explode('/', $_SERVER['REQUEST_URI']);
   $last = end($uri_arr);
@@ -8,6 +9,33 @@ function getFileNameFromUri() {
 }
 
 // 上記関数を基に引数に与えられたファイル名と$file_nameが一致するかどうかを判定しtrue or falseをreturnする関数isFileName()を作成しfooter.phpで実行する。
+
+
+// 縦書きにする関数
+function tateGaki($haiku) {
+ $matches = preg_split("//u", $haiku, -1, PREG_SPLIT_NO_EMPTY);
+ $v_haiku = '';
+ foreach ($matches as $letter) {
+   $v_haiku .= $letter . "<br>";
+ }
+ return rtrim($v_haiku, "<br>");
+}
+
+// ランキングを取得する関数
+function rankGet($array_ids) {                  // $array_idsは配列
+  $pure_ids = array_count_values($array_ids);   // 重複する値の数を数得て、その値とその数をペアにした連想配列を作る
+  $num_value = count($pure_ids);                // 連想配列の要素数を取得
+  arsort($pure_ids);                            // 連想配列の値をもとに大きい順に並び変える
+  $array_ranks = array();                       // ランキング上位3つのidを入れるからの配列を作る
+  for ($i=0; $i < $num_value; $i++) {           // 要素数だけ繰り返す（要素数分順位が出る）
+    $rank_id = key($pure_ids);                  // 連想配列のポインタのあるキーを取ってくる（○位を取ってくる）
+    $value_num = $pure_ids["$rank_id"];         // よし・あし数取得
+    $array_rank = array($rank_id, $value_num);  // 配列にいれる
+    $array_ranks[] = $array_rank;               // 取得したidを配列に入れる
+    next($pure_ids);                            // 隣のポインタに移す
+  }
+  return $array_ranks;
+}
 
 // 時刻を日本式に変換する関数
 
