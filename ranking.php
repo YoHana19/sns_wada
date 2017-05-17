@@ -2,6 +2,27 @@
 session_start();
 require('dbconnect.php');
 require('function.php');
+
+// ログイン判定プログラム
+// ①$_SESSION['login_member_id']が存在している
+// ②最後のアクション（ページの読み込みから）から1時間以内である
+// Unixタイムスタンプとして取得します。Unixタイムスタンプとは1970年1月1日 00:00:00 GMTからの経過秒数です。PHP内部での日付や時刻の処理はUnixタイムスタンプで行われます。
+if (isset($_SESSION['login_member_id']) && $_SESSION['time'] + 3600 > time()) {
+  // ログインしている
+  $_SESSION['time'] = time();
+
+  $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
+  $data = array($_SESSION['login_member_id']);
+  $stmt = $dbh->prepare($sql);
+  $stmt->execute($data);
+
+  $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
+} else {
+  // ログインしていない
+  header('Location: index.php');
+  exit();
+}
+
 // ランキングよし・あし、俳人・句それぞれのランキング上位3件を取ってくる
 
 // よしランキング句用sql文

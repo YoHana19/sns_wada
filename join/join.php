@@ -65,15 +65,6 @@ if (!empty($_POST)) {
 } // if (!empty($_POST))の終わり
 ?>
 
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>

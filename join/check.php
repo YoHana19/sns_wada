@@ -4,7 +4,7 @@ require('../dbconnect.php');
 
 // join.phpを正しく通ってこなかった場合、強制的にindex.phpに遷移
 if (!isset($_SESSION['join'])) {
-  header('Location: index.php');
+  header('Location: ../index.php');
   exit();
 }
 
@@ -23,10 +23,14 @@ if (!empty($_POST)) {
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
+    // ログイン画面自動通過用の変数用意
+    $url = 'thanks.php?email=' . $email . '&password=' . $_SESSION['join']['password'];
+
     // $_SESSIONの情報を削除  
     unset($_SESSION['join']);
-    // thanks.phpに遷移}
-    header('Location: thanks.php');
+
+    // thanks.phpに遷移
+    header('Location: ' . $url);
     exit();
 
   }catch(PDOExeption $e){

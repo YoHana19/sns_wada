@@ -20,6 +20,9 @@ require('dbconnect.php');
     $stmt->execute($data);
     header('Location:profile.php');
     exit();
+  } else {
+    header('Location:profile.php');
+    exit();
   }
 
  ?>
