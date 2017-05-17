@@ -166,7 +166,7 @@ function tateGaki($haiku) {
             <div class="post-haiku">
               <div class="poster-info">
                 <a href="user.php?user_id=<?php echo $member_id ?>">
-                  <img alt="" src="assets/images/<?php echo $user_picture_path ?>" class="pull-left">
+                  <img alt="" src="assets/images/users/<?php echo $user_picture_path ?>" class="pull-left">
                 </a>
                 <div class="pull-left">
                   <span class="post-haiku-name"><?php echo $nick_name ?></span>
@@ -176,7 +176,7 @@ function tateGaki($haiku) {
               </div>
               <div>
               <?php if (!empty($back_img)) : ?>
-                <blockquote style="background-image: url(assets/images/<?php echo $back_img ?>); background-size: cover;">
+                <blockquote style="background-image: url(assets/images/users/<?php echo $back_img ?>); background-size: cover;">
               <?php else: ?>
                 <blockquote style="background:#fff0f5">
               <?php endif; ?>
@@ -268,7 +268,7 @@ function tateGaki($haiku) {
                             $stmt->execute($data);
                             $login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
                           ?>
-                          <img src="assets/images/<?php echo $login_user_picture['user_picture_path'] ?>" width="45" height="45">
+                          <img src="assets/images/users/<?php echo $login_user_picture['user_picture_path'] ?>" width="45" height="45">
                         </div>
 
                         <!-- コメント入力フォーム -->
@@ -285,7 +285,7 @@ function tateGaki($haiku) {
                         <?php foreach ($comments as $comment) { ?>
                           <div class="row">
                             <div class="col-sm-1">
-                              <img src="assets/images/<?php echo $comment['user_picture_path'] ?>" width="45" height="45">
+                              <img src="assets/images/users/<?php echo $comment['user_picture_path'] ?>" width="45" height="45">
                             </div>
                             <div class="col-sm-11">
                               <p><span class="name"><a href="user.php?user_id=<?php echo $comment['member_id'] ?>"><?php echo $comment['nick_name'] ?></a></span><?php echo $comment['comment'] ?></p>
@@ -374,7 +374,7 @@ function tateGaki($haiku) {
                 // htmlへの追加
 
                 // 投稿句の表示
-                $('#posts').append('<div id="' + haiku_id + '_whole" class="post-haiku"><div class="poster-info"><a href="user.php?user_id=' + member_id + '"><img alt="" src="assets/images/' + user_picture_path + '" class="pull-left"></a><div class="pull-left"><span class="post-haiku-name">' + nick_name + '</span><span calss="post-haiku-comment">' + post['short_comment'] + '</span></div><p>' + created_date + '日 ' + created_clock + 'の刻</p></div><div class="active item"><blockquote style="background:#fff0f5"><div class="post-haiku-text"><h2 class="post-haiku-text-1">' + haiku_3 + '<h2 class="post-haiku-text-2">' + haiku_2 + '</h2><h2 class="post-haiku-text-3">' + haiku_1 + '</h2></div></blockquote></div><div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i id="' + num_dislike + '" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;' + post['dislike_total'] + '人</i><i id="' + num_com_id + '" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;' + post['num_comment'] + '件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9; margin-left: 5px;"></i></div>');
+                $('#posts').append('<div id="' + haiku_id + '_whole" class="post-haiku"><div class="poster-info"><a href="user.php?user_id=' + member_id + '"><img alt="" src="assets/images/users/' + user_picture_path + '" class="pull-left"></a><div class="pull-left"><span class="post-haiku-name">' + nick_name + '</span><span calss="post-haiku-comment">' + post['short_comment'] + '</span></div><p>' + created_date + '日 ' + created_clock + 'の刻</p></div><div class="active item"><blockquote style="background:#fff0f5"><div class="post-haiku-text"><h2 class="post-haiku-text-1">' + haiku_3 + '<h2 class="post-haiku-text-2">' + haiku_2 + '</h2><h2 class="post-haiku-text-3">' + haiku_1 + '</h2></div></blockquote></div><div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i id="' + num_dislike + '" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;' + post['dislike_total'] + '人</i><i id="' + num_com_id + '" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;' + post['num_comment'] + '件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9; margin-left: 5px;"></i></div>');
 
                 console.log('hoge1');
 
@@ -567,7 +567,7 @@ function tateGaki($haiku) {
                 var login_user_picture = task_data['login_user_picture'];
                  
                 $('#' + haiku_id + '_icons')
-                .append('<button id="' + comment_id + '" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button><div id="' + comment_id + '_content" class="post-comment"><div class="comment-msg row"><div class="form-group"><div class="col-sm-1"><img src="assets/images/' + login_user_picture + '" width="45" height="45"></div><div class="col-sm-11"><input type="text" class="comment_content form-control comment-input" id="' + comment_id + '_input" placeholder="例： コメント"></div></div></div><div id="' + haiku_id + '_cont" class="comment-msg"></div></div>')
+                .append('<button id="' + comment_id + '" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button><div id="' + comment_id + '_content" class="post-comment"><div class="comment-msg row"><div class="form-group"><div class="col-sm-1"><img src="assets/images/users/' + login_user_picture + '" width="45" height="45"></div><div class="col-sm-11"><input type="text" class="comment_content form-control comment-input" id="' + comment_id + '_input" placeholder="例： コメント"></div></div></div><div id="' + haiku_id + '_cont" class="comment-msg"></div></div>')
                 
                 // .on('click', '#' + comment_id, function() { // コメント欄の表示
                 //   console.log('hoge11')
@@ -616,7 +616,7 @@ function tateGaki($haiku) {
                       console.log(num_com_modified);
 
                       // 新規コメントの追加
-                      $('#' + haiku_id).prepend('<div class="row"><div class="col-sm-1"><img src="assets/images/' + task_data['user_picture_path'] + '" width="45" height="45"></div><div class="col-sm-11"><p><span class="name"><a href="user.php?user_id=' + task_data['member_id'] + '">' + task_data['nick_name'] + '</a></span>' + task_data['comment'] + '</p></div></div>');
+                      $('#' + haiku_id).prepend('<div class="row"><div class="col-sm-1"><img src="assets/images/users/' + task_data['user_picture_path'] + '" width="45" height="45"></div><div class="col-sm-11"><p><span class="name"><a href="user.php?user_id=' + task_data['member_id'] + '">' + task_data['nick_name'] + '</a></span>' + task_data['comment'] + '</p></div></div>');
 
                       // コメント件数書き換え
                       num_comment_tag.innerHTML = '&thinsp;' + num_com_modified + '件';
@@ -639,7 +639,7 @@ function tateGaki($haiku) {
                   comments.forEach(function(comment) {
                     $('#' + haiku_id + '_cont')
 
-                    .append('<div class="row"><div class="col-sm-1"><img src="assets/images/' + comment['user_picture_path'] + '" width="45" height="45"></div><div class="col-sm-11"><p><span class="name"><a href="user.php?user_id=' + comment['member_id'] + '">' + comment['nick_name'] + '</a></span>' + comment['comment'] + '</p></div></div>')
+                    .append('<div class="row"><div class="col-sm-1"><img src="assets/images/users/' + comment['user_picture_path'] + '" width="45" height="45"></div><div class="col-sm-11"><p><span class="name"><a href="user.php?user_id=' + comment['member_id'] + '">' + comment['nick_name'] + '</a></span>' + comment['comment'] + '</p></div></div>')
 
                     .on('click', 'a', function() {
                       location.href = 'user.php?user_id=' + comment['member_id'];
@@ -653,18 +653,23 @@ function tateGaki($haiku) {
                 
               }); // 大きいforeachの終了
 
+              $('#loading').hide();
+
             } else { // 最後の投稿が済んだら
               $('#posts').append('');
             }
 
-            $('#loading').hide();
+            // 左サイドバー固定関数
+            fixedSidebar.run();
             
           }).fail(function(data) {
             alert('error!!!' + data);
           });
-        }
+          console.log('hugahuga');
+        } // End of the document reached? if文の終了タグ
       });
     });
+
 
     // 縦書きにする関数
     function tateGaki(haiku) {

@@ -38,47 +38,37 @@ video {
 }
 
 #second-top{
-  background-image: url(../../assets/images/mt-fuji.jpg);
+  background-image: url(../../assets/images/source/mt-fuji.jpg);
   background-size: cover;
   z-index: 1;
 }
 
 #third-top {
-  background-image: url(../../assets/images/kitadake.jpg);
+  background-image: url(../../assets/images/source/kitadake.jpg);
   background-size: cover;
   z-index: 1;
 }
 
-
-/*.second-top{
-  background-color: #fef4f4;
-}*/
 
 #transparent-background{
   height: 50px;
 }
 
 
-/*#third-top {
-  background-image: url(../assets/images/japanese-umbrellas.jpg);
-  background-size: cover;
-  height: auto;
-}*/
-
 #fourth-top {
-  background-image: url(../../assets/images/wada-vince.jpg);
+  background-image: url(../../assets/images/source/wada-vince.jpg);
   background-size: cover;
   height: auto;
 }
 
 #fifth-top {
-  background-image: url(../../assets/images/thumb_DSCF1581_1024.jpg);
+  background-image: url(../../assets/images/source/thumb_DSCF1581_1024.jpg);
   background-size: cover;
   height: auto;
 }
 
 #sixth-top {
-  background-image: url(../../assets/images/thumb_DSCF1578_1024.jpg);
+  background-image: url(../../assets/images/source/thumb_DSCF1578_1024.jpg);
   background-size: cover;
   height: auto;
 }

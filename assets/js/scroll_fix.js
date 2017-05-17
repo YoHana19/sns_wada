@@ -36,14 +36,14 @@ var fixedSidebar = (function() {
         }
         // ウィンドウに固定レイヤーが収まらない
         else {
-        // スクロール上限
-        main_scroll = main_top + main.outerHeight(true) - $(window).height();
-        // 開始位置：ナビのBOTTOMがウィンドウに表示されたら
-        fixed_start = (navi.offset().top + navi.outerHeight(true)) - $(window).height() - parseInt(navi.css('margin-top'));
-        // 終了時のTOP基準値
-        fixpx_end_top = main_scroll - (navi.outerHeight(true) - $(window).height());
-        }
-        $(window).off('scroll', _onScroll).on('scroll', _onScroll);
+          // スクロール上限
+          main_scroll = main_top + main.outerHeight(true) - $(window).height();
+          // 開始位置：ナビのBOTTOMがウィンドウに表示されたら
+          fixed_start = (navi.offset().top + navi.outerHeight(true)) - $(window).height() - parseInt(navi.css('margin-top'));
+          // 終了時のTOP基準値
+          fixpx_end_top = main_scroll - (navi.outerHeight(true) - $(window).height());
+          }
+          $(window).off('scroll', _onScroll).on('scroll', _onScroll);
       } else {
         $(window).off('scroll', _onScroll);
       }

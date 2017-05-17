@@ -22,6 +22,11 @@ function modalWindowOnFirst(button, content_in) {
 
     //[$modal-overlay]をフェードインさせる
     $("#modal-overlay").fadeIn("slow");
+
+    // ウィンドウをリサイズした時のセンタリング
+    $(window).resize(function() {
+      centeringModalSyncer(content_in);
+    });
   });
 }
 
@@ -56,9 +61,9 @@ function modalWindowOff(button, content_out){
   });
 }
 
-// classで呼び出しVer
+// 個人orチャット画面遷移分岐MW
 // 1番最初のモーダルウィンドウ呼び出し関数（引数：モーダルウィンドウ呼び出しボタンのid）
-function modalWindowOnFirstClass(button, content_in) {
+function modalWindowOnFirstPb(button) {
   console.log('hoge1');
   $("." + button).click (
   function() {
@@ -68,6 +73,12 @@ function modalWindowOnFirstClass(button, content_in) {
     if($("#modal-overlay")[0]) return false ;   //新しくモーダルウィンドウを起動しない [下とどちらか選択]
     // if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する [上とどちらか選択]
 
+    var id = $(this).attr('id'); // クリックされたタグのidの値を取得
+    var array = id.match(/[0-9]+\.?[0-9]*/g);
+    var content_id = array[0];
+    console.log(content_id);
+    var content_in = content_id + '_mw_pb'
+
     //[$modal-content_1]をフェードインさせる
     windowFadeIn('' + content_in);
 
@@ -76,38 +87,28 @@ function modalWindowOnFirstClass(button, content_in) {
 
     //[$modal-overlay]をフェードインさせる
     $("#modal-overlay").fadeIn("slow");
-  });
-}
 
-// 2回目以降のモーダルウィンドウ呼び出し関数（第１引数：次のモーダルウィンドウ呼び出しボタンのid、第２引数：遷移元のコンテンツのid、第３引数：遷移先のコンテンツのid）
-function modalWindowOnClass(button, content_out, content_in){
-  console.log('hoge3');
-  $("." + button).unbind().click(function() {
-    console.log('hoge4');
-    //[#modal-content_1]をフェードアウトする
-    $("#" + content_out).fadeOut("slow",function() {
+    $(".modal-overlay-left-bar").fadeIn("slow");
 
-      //[$modal-content_2]をフェードインさせる
-      windowFadeIn(content_in);
-
+    // ウィンドウをリサイズした時のセンタリング
+    $(window).resize(function() {
+      centeringModalSyncer(content_in);
     });
   });
 }
 
 // モーダルウィンドウの終了関数（第１引数：モーダルウィンドウ終了ボタンのid、第２引数：終了するコンテンツのid）
-function modalWindowOffClass(button, content_out){
+function modalWindowOffPb(button, content_out){
   console.log('hoge5');
-  $("#modal-overlay, ." + button).unbind().click(function() {
+  $("#modal-overlay, #" + button).unbind().click(function() {
     console.log('hoge6');
-    console.log(content_out);
     //[#modal-overlay]と[content_finish]をフェードアウトする
     $("#modal-overlay, #" + content_out).fadeOut("slow",function() {
       console.log('hoge7');
-      console.log(content_out);
       //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
       $("#modal-overlay").remove();
-  
     });
+    $(".modal-overlay-left-bar").fadeOut("slow");
 
   });
 }
@@ -132,11 +133,9 @@ function centeringModalSyncer(content){
 
   //コンテンツ(.content)の幅を取得し、変数[cw]に格納
   var cw = $("#" + content).outerWidth(true);
-  console.log(cw);
 
   //コンテンツ(.content)の高さを取得し、変数[ch]に格納
   var ch = $("#" + content).outerHeight(true);
-  console.log(ch);
 
   //コンテンツ(.content)を真ん中に配置するのに、左端から何ピクセル離せばいいか？を計算して、変数[pxleft]に格納
   var pxleft = ((w - cw)/2);
@@ -151,4 +150,5 @@ function centeringModalSyncer(content){
   $("#" + content).css({"top": pxtop + "px"});
 
 }
+
 

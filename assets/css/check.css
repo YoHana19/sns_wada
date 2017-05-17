@@ -8,13 +8,9 @@ h2 {
 }
 
 .check {
-  background-image: url(../images/Go-Toba.jpg);
+  background-image: url(../images/source/Go-Toba.jpg);
   background-size: cover; 
-<<<<<<< HEAD
-  height: 680px;
-=======
   height: 780px;
->>>>>>> 4f031365253d3c93184d582d1062d9fc4213687b
 }
 
 .check_contents {

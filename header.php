@@ -29,11 +29,11 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <a id="request_button" style="text-align: center;"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="sr-only">(current)</span></a>
           <!-- 友達リクエスト一覧 -->
           <div id="requests" class="requests-display">
-            <div class="left-wrap" style="padding: 0; background-color: #bce2e8;">
+            <div class="left-wrap" style="padding: 0; background-color: #bce2e8; width: auto;" >
               <?php foreach ($requests as $request) { ?>
                 <div class="media" style="position: relative; margin-top: 3px; border-bottom: solid 1px #ffffff; padding: 5px;">
                   <a class="pull-left">
-                    <img class="media-object" src="assets/images/<?php echo $request['user_picture_path']; ?>" style="width: 30px; height: 30px; border-radius: 50%; margin: 0 0 4px 4px;">
+                    <img class="media-object" src="assets/images/users/<?php echo $request['user_picture_path']; ?>" style="width: 30px; height: 30px; border-radius: 50%; margin: 0 0 4px 4px;">
                   </a>
                   <div class="media-body" style="padding-top: 6px;">
                     <span class="media-heading"><?php echo $request['nick_name'];?></span>
@@ -90,7 +90,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <div id="modal-content_1" class="haiku-mw-content">
     <div class="text-center">
       <div class="logo">
-        <img src="assets/images/yomu.png">
+        <img src="assets/images/source/yomu.png">
       </div>
       <!-- Main Form -->
       <div class="login-form-1">
@@ -127,7 +127,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
               <!-- 画像送信 -->
               <div class="form-group" style="margin-top: 15px; position: relative; padding-right: 0;">
                 <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
-                <img id="photo_img" src="assets/images/photo_submit.png" alt="参照" class="img-submit">
+                <img id="photo_img" src="assets/images/source/photo_submit.png" alt="参照" class="img-submit">
                 <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 10px; width: 200px;">
               </div>
             </div>
@@ -174,8 +174,5 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
     // モーダルウィンドウの終了
     modalWindowOff('modal-close', 'modal-content_1');
-
-    //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
-    $(window).resize(centeringModalSyncer);
   </script>
 <?php endif; ?>

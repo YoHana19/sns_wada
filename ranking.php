@@ -164,33 +164,33 @@ function tateGaki($haiku) {
 
         <!-- コラム/ランキング -->
         <div class="ranking-column">
-          <h4><img src="assets/images/column.png" width="200" height="60"></h4>
+          <h4><img src="assets/images/source/column.png" width="200" height="60"></h4>
         </div>
 
         <!-- コラムコンテンツ1 -->
         <div class="col-md-4 col-md-push-4">
-          <img class="img-responsive img-circle" src="assets/images/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
+          <img class="img-responsive img-circle" src="assets/images/source/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
         </div>
 
         <!-- コラムコンテンツ2 -->
         <div class="col-md-4 col-md-pull-4 ">
-          <img class="img-responsive img-circle" src="assets/images/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
+          <img class="img-responsive img-circle" src="assets/images/source/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
         </div>
 
         <!-- コラムコンテンツ3 -->
         <div class="col-md-4">
-          <img class="img-responsive img-circle" src="assets/images/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
+          <img class="img-responsive img-circle" src="assets/images/source/japanese-umbrellas.jpg" alt="Greece-1173 - Temple of Athena by Dennis Jarvis, on Flickr">
         </div>
 
         <!-- ランキング -->
         <!-- タイトル -->
-        <img class="rank-title" src="assets/images/rank_title_2.png">
+        <img class="rank-title" src="assets/images/source/rank_title_2.png">
 
         <!-- 歌人 -->
         <div class="row">
           <div> 
             <!-- 歌人タイトル -->
-            <img class="genre-title" src="assets/images/kajin.png">
+            <img class="genre-title" src="assets/images/source/kajin.png">
           </div>
 
           <!-- よしランキング -->
@@ -198,26 +198,26 @@ function tateGaki($haiku) {
 
             <!-- よしタイトル -->
             <div class="title-ranking">
-              <img src="assets/images/yoshi.png">
+              <img src="assets/images/source/yoshi.png">
             </div>
 
             <!-- 歌人よし1位 -->
             <div class="ranking ranking-1">
-              <img class="media-object" src="assets/images/<?php echo $members_info[0]['user_picture_path']; ?>">
+              <img class="media-object" src="assets/images/users/<?php echo $members_info[0]['user_picture_path']; ?>">
               <a href="user.php?user_id=<?php echo $members_info[0]['member_id'] ?>" style="color: black;"><h1><?php echo $members_info[0]['nick_name']; ?></h1></a>
               <p><?php echo $member_rank[0][1] ?> よし</p>
             </div>
               
             <!-- 歌人よし2位 -->
             <div class="ranking ranking-2">
-              <img class="media-object" src="assets/images/<?php echo $members_info[1]['user_picture_path']; ?>">
+              <img class="media-object" src="assets/images/users/<?php echo $members_info[1]['user_picture_path']; ?>">
               <a href="user.php?user_id=<?php echo $members_info[1]['member_id'] ?>" style="color: black;"><h4><?php echo $members_info[1]['nick_name']; ?></h4></a>
               <p><?php echo $member_rank[1][1] ?> よし</p>
             </div>
 
             <!-- 歌人よし3位 -->
             <div class="ranking ranking-3">
-              <img class="media-object" src="assets/images/<?php echo $members_info[2]['user_picture_path']; ?>">
+              <img class="media-object" src="assets/images/users/<?php echo $members_info[2]['user_picture_path']; ?>">
               <a href="user.php?user_id=<?php echo $members_info[2]['member_id'] ?>" style="color: black;"><h4><?php echo $members_info[2]['nick_name']; ?></h4></a>
               <p><?php echo $member_rank[2][1] ?> よし</p>
             </div>
@@ -229,26 +229,26 @@ function tateGaki($haiku) {
               
             <!-- あしタイトル -->
             <div class="title-ranking">
-              <img src="assets/images/ashi.png">
+              <img src="assets/images/source/ashi.png">
             </div>
 
             <!-- あし歌人1位 -->
             <div class="ranking ranking-1">
-              <img class="media-object" src="assets/images/<?php echo $bad_members_info[0]['user_picture_path']; ?>">
+              <img class="media-object" src="assets/images/users/<?php echo $bad_members_info[0]['user_picture_path']; ?>">
               <a href="user.php?user_id=<?php echo $bad_members_info[0]['member_id'] ?>" style="color: black;"><h1><?php echo $bad_members_info[0]['nick_name']; ?></h1></a>
               <p><?php echo $bad_member_rank[0][1]; ?> あし</p>
             </div>
 
             <!-- あし歌人2位 -->
             <div class="ranking ranking-2">
-              <img src="assets/images/<?php echo $bad_members_info[1]['user_picture_path']; ?>">
+              <img src="assets/images/users/<?php echo $bad_members_info[1]['user_picture_path']; ?>">
               <a href="user.php?user_id=<?php echo $bad_members_info[1]['member_id'] ?>" style="color: black;"><h4><?php echo $bad_members_info[1]['nick_name']; ?></h4></a>
               <p><?php echo $bad_member_rank[1][1]; ?> あし</p>
             </div>
 
             <!-- あし歌人3位 -->
             <div class="ranking ranking-3">
-              <img src="assets/images/<?php echo $bad_members_info[2]['user_picture_path']; ?>">
+              <img src="assets/images/users/<?php echo $bad_members_info[2]['user_picture_path']; ?>">
               <a href="user.php?user_id=<?php echo $bad_members_info[2]['member_id'] ?>" style="color: black;"><h4><?php echo $bad_members_info[2]['nick_name']; ?></h4></a>
               <p><?php echo $bad_member_rank[2][1] ?> あし</p>
             </div>
@@ -262,7 +262,7 @@ function tateGaki($haiku) {
         <div class="row">
           <div>
             <!-- 句タイトル -->
-            <img class="genre-title" src="assets/images/ku.png">
+            <img class="genre-title" src="assets/images/source/ku.png">
           </div>
 
           <!-- よしランキング -->
@@ -270,7 +270,7 @@ function tateGaki($haiku) {
 
             <!-- よしタイトル -->
             <div class="title-ranking">
-              <img src="assets/images/yoshi.png">
+              <img src="assets/images/source/yoshi.png">
             </div>
 
             <!-- 句よし1位 -->
@@ -286,7 +286,7 @@ function tateGaki($haiku) {
                 <!-- 作者情報 -->
                 <div class="auth-ranking auth-ranking-1">
                   <a href="user.php?user_id=<?php echo $haikus_info[0]['member_id'] ?>">
-                    <img src="assets/images/<?php echo $haikus_info[0]['user_picture_path']; ?>">
+                    <img src="assets/images/users/<?php echo $haikus_info[0]['user_picture_path']; ?>">
                   </a>
                   <span class="media-heading"><?php echo $haikus_info[0]['nick_name']; ?></span>
                   <span style="font-size: 14px;"><?php echo $haiku_rank[0][1] ?> よし</span>
@@ -307,7 +307,7 @@ function tateGaki($haiku) {
                 <!-- 作者情報 -->
                 <div class="auth-ranking auth-ranking-2">
                   <a href="user.php?user_id=<?php echo $haikus_info[1]['member_id'] ?>">
-                    <img src="assets/images/<?php echo $haikus_info[1]['user_picture_path']; ?>">
+                    <img src="assets/images/users/<?php echo $haikus_info[1]['user_picture_path']; ?>">
                   </a>
                   <span class="media-heading"><?php echo $haikus_info[1]['nick_name']; ?></span>
                   <span style="font-size: 12px;"><?php echo $haiku_rank[1][1] ?> よし</span>
@@ -328,7 +328,7 @@ function tateGaki($haiku) {
                 <!-- 作者情報 -->
                 <div class="auth-ranking auth-ranking-3">
                   <a href="user.php?user_id=<?php echo $haikus_info[2]['member_id'] ?>">
-                    <img src="assets/images/<?php echo $haikus_info[2]['user_picture_path']; ?>">
+                    <img src="assets/images/users/<?php echo $haikus_info[2]['user_picture_path']; ?>">
                   </a>
                   <span class="media-heading"><?php echo $haikus_info[2]['nick_name']; ?></span>
                   <span style="font-size: 11px;"><?php echo $haiku_rank[2][1] ?> よし</span>
@@ -343,7 +343,7 @@ function tateGaki($haiku) {
 
             <!-- あしタイトル -->
             <div class="title-ranking">
-              <img src="assets/images/ashi.png">
+              <img src="assets/images/source/ashi.png">
             </div>
 
             <!-- 句あし1位 -->
@@ -359,7 +359,7 @@ function tateGaki($haiku) {
                 <!-- 作者情報 -->
                 <div class="auth-ranking auth-ranking-1">
                   <a href="user.php?user_id=<?php echo $bad_haikus_info[0]['member_id'] ?>">
-                    <img src="assets/images/<?php echo $bad_haikus_info[0]['user_picture_path']; ?>">
+                    <img src="assets/images/users/<?php echo $bad_haikus_info[0]['user_picture_path']; ?>">
                   </a>
                   <span class="media-heading"><?php echo $bad_haikus_info[0]['nick_name']; ?></span>
                   <span style="font-size: 14px;"><?php echo $bad_haiku_rank[0][1] ?> あし</span>
@@ -380,7 +380,7 @@ function tateGaki($haiku) {
                 <!-- 作者情報 -->
                 <div class="auth-ranking auth-ranking-2">
                   <a href="user.php?user_id=<?php echo $bad_haikus_info[1]['member_id'] ?>">
-                    <img src="assets/images/<?php echo $bad_haikus_info[1]['user_picture_path']; ?>">
+                    <img src="assets/images/users/<?php echo $bad_haikus_info[1]['user_picture_path']; ?>">
                   </a>
                   <span class="media-heading"><?php echo $bad_haikus_info[1]['nick_name']; ?></span>
                   <span style="font-size: 12px;"><?php echo $bad_haiku_rank[1][1] ?> あし</span>
@@ -401,7 +401,7 @@ function tateGaki($haiku) {
                 <!-- 作者情報 -->
                 <div class="auth-ranking auth-ranking-3">
                   <a href="user.php?user_id=<?php echo $bad_haikus_info[2]['member_id'] ?>">
-                    <img src="assets/images/<?php echo $bad_haikus_info[2]['user_picture_path']; ?>">
+                    <img src="assets/images/users/<?php echo $bad_haikus_info[2]['user_picture_path']; ?>">
                   </a>
                   <span class="media-heading"><?php echo $bad_haikus_info[2]['nick_name']; ?></span>
                   <span style="font-size: 11px;"><?php echo $bad_haiku_rank[2][1] ?> あし</span>

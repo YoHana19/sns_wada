@@ -100,7 +100,7 @@ function tateGaki($haiku) {
                   <div class="col-md-10 col-sm-10">
                     <p class="chat-name" style="text-align: right;"><?php echo $chat['nick_name']; ?></p>
                     <?php if (!empty($chat['back_img'])): ?>
-                      <div class="panel panel-default arrow right user-right" style="background: url(assets/images/<?php echo $chat['back_img']; ?>)">
+                      <div class="panel panel-default arrow right user-right" style="background: url(assets/images/users/<?php echo $chat['back_img']; ?>)">
                     <?php else: ?>
                       <div class="panel panel-default arrow right user-right">
                     <?php endif; ?>
@@ -118,7 +118,7 @@ function tateGaki($haiku) {
                   </div>
                   <div class="col-md-2 col-sm-2 hidden-xs" style="margin-top: 25px">
                     <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
-                      <img class="img-responsive" src="assets/images/<?php echo $chat['user_picture_path']; ?>" style="border-radius: 50%;">
+                      <img class="img-responsive" src="assets/images/users/<?php echo $chat['user_picture_path']; ?>" style="border-radius: 50%;">
                     </figure>
                   </div>
                 </article>
@@ -129,7 +129,7 @@ function tateGaki($haiku) {
                 <article class="row">
                   <div class="col-md-2 col-sm-2 hidden-xs" style="margin-top: 25px">
                     <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
-                      <img class="img-responsive" src="assets/images/<?php echo $chat['user_picture_path']; ?>" style="border-radius: 50%;">
+                      <img class="img-responsive" src="assets/images/users/<?php echo $chat['user_picture_path']; ?>" style="border-radius: 50%;">
                      </figure>
                   </div>
                   <div class="col-md-10 col-sm-10">
@@ -161,7 +161,7 @@ function tateGaki($haiku) {
             <div id="modal-content_1" class="haiku-mw-content">
               <div class="text-center"">
                 <div class="logo">
-                  <img src="assets/images/yomu.png">
+                  <img src="assets/images/source/yomu.png">
                 </div>
                 <!-- Main Form -->
                 <div class="login-form-1">
@@ -191,7 +191,7 @@ function tateGaki($haiku) {
                         <!-- 画像送信 -->
                         <div class="form-group" style="margin-top: 15px; position: relative; padding-right: 0;">
                           <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
-                          <img id="photo_img" src="assets/images/photo_submit.png" alt="参照" class="img-submit">
+                          <img id="photo_img" src="assets/images/source/photo_submit.png" alt="参照" class="img-submit">
                           <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 10px; width: 200px;">
                         </div>
                       </div>
@@ -253,9 +253,6 @@ function tateGaki($haiku) {
 
     // モーダルウィンドウの終了
     modalWindowOff('modal-close', 'modal-content_1');
-
-    //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
-    $(window).resize(centeringModalSyncer);
   </script>
 </body>
 </html>

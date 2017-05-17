@@ -1,6 +1,6 @@
 .login-background {
   /* 画像ファイルの指定 */
-  background-image: url(../../assets/images/japanese-umbrellas.jpg);
+  background-image: url(../../assets/images/source/japanese-umbrellas.jpg);
    
   /* 画像を常に天地左右の中央に配置 */
   background-position: center center;

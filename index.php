@@ -34,8 +34,8 @@
     </div>
   </div>
 </div>
-  <video src="assets/images/sakura.mp4" autoplay loop style="width: 100%;">
-    <img src="assets/images/sakura.jpg" alt="Placeholder">
+  <video src="assets/images/source/sakura.mp4" autoplay loop style="width: 100%;">
+    <img src="assets/images/source/sakura.jpg" alt="Placeholder">
   </video>
 </div>
 <div id="second-top" style="width: 100%; margin-top: 150px;">
@@ -46,7 +46,7 @@
         <h2 style="font-family: serif; text-align: center; font-size: 50px;">和だ。</h2>
       </div>
       <div class="col-md-4 chat-image" style="  padding-right: 30px;">
-        <img src="assets/images/chat.png" alt="" style="width: 100%; padding-bottom: 50px;">
+        <img src="assets/images/source/chat.png" alt="" style="width: 100%; padding-bottom: 50px;">
       </div>
       <div class="col-md-8" style="padding-top: 50px; padding-left: 80px;">
         <h3 style="font-family: serif; padding-top: 30px; font-size: 40px;">五七五によるチャット機能で<br>あなたの日本語力が試される！</h3>
@@ -67,7 +67,7 @@
         <p style="padding-top: 30px; font-size: 20px;">「和だ。」ではタイムラインへの投稿も五七五に制限されています。<br><br>しかし、制限されているのは文字数だけです。<br>あなたの創造性次第でその可能性は無限大に広がります。<br><br>日常の些細な出来事を五七五にしていかに表現するか。<br><br>少し考えてみるだけでも<br>あなたのつまらない日常の小さな楽しみとなること間違いなしです。</p>
       </div>
       <div class="col-md-5 chat-image" style="margin-top: 80px;">
-        <img src="assets/images/chat.png" alt="" style="width: 100%; padding-bottom: 50px;">
+        <img src="assets/images/source/chat.png" alt="" style="width: 100%; padding-bottom: 50px;">
       </div>
     </div>
   </div>

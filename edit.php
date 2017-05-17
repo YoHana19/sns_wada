@@ -11,11 +11,11 @@ if (!empty($_FILES)) {
     // 画像アップロード処理
     $picture_name = date('YmdHis') . $_FILES['back-img-file']['name'];
     // 20170308152500hogehoge.jpg←画像ファイル名作成
-    move_uploaded_file($_FILES['back-img-file']['tmp_name'], 'assets/images/' . $picture_name);
+    move_uploaded_file($_FILES['back-img-file']['tmp_name'], 'assets/images/users/' . $picture_name);
 
     // DBの更新
     $sql = 'UPDATE `members` SET `back_picture_path`=? WHERE `member_id`=?';
-    $data = array($_FILES['back-img-file']['name'], $_SESSION['login_member_id']);
+    $data = array($picture_name, $_SESSION['login_member_id']);
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
   }
@@ -25,11 +25,11 @@ if (!empty($_FILES)) {
     // 画像アップロード処理
     $picture_name = date('YmdHis') . $_FILES['profile-img-file']['name'];
     // 20170308152500hogehoge.jpg←画像ファイル名作成
-    move_uploaded_file($_FILES['profile-img-file']['tmp_name'], 'assets/images/' . $picture_name);
+    move_uploaded_file($_FILES['profile-img-file']['tmp_name'], 'assets/images/users/' . $picture_name);
 
     // DBの更新
     $sql = 'UPDATE `members` SET `user_picture_path`=? WHERE `member_id`=?';
-    $data = array($_FILES['profile-img-file']['name'], $_SESSION['login_member_id']);
+    $data = array($picture_name, $_SESSION['login_member_id']);
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
   }
@@ -148,15 +148,15 @@ function tateGaki($haiku) {
       <div class="fb-profile">
         <input type="file" id="back-img-file" name="back-img-file" style="display:none;" onchange="$('#back-img-submit').click();" accept="image/*">
         <input type="submit" id="back-img-submit" style="display: none;">
-        <div id="edit-back-img" class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_member['back_picture_path'] ?>);" onclick="$('#back-img-file').click();">
+        <div id="edit-back-img" class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/users/<?php echo $login_member['back_picture_path'] ?>);" onclick="$('#back-img-file').click();">
           <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
           <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
           <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
-          <img src="assets/images/edit_msg.png" id="edit-back-img-msg">
+          <img src="assets/images/source/edit_msg.png" id="edit-back-img-msg">
         </div>
         <div id="edit-profile-img" align="left" class="fb-image-profile thumbnail" onclick="$('#profile-img-file').click();">
-          <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
-          <img src="assets/images/edit_msg.png" id="edit-profile-img-msg">
+          <img src="assets/images/users/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
+          <img src="assets/images/source/edit_msg.png" id="edit-profile-img-msg">
         </div>
         <input type="file" id="profile-img-file" name="profile-img-file" style="display:none;" onchange="$('#profile-img-submit').click();" accept="image/*">
         <input type="submit" id="profile-img-submit" style="display: none;">

@@ -53,7 +53,11 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 
   <!-- 簡易個人プロフ -->
   <div class="left-profile">
-    <img src="assets/images/<?php echo $login_member['user_picture_path']; ?>">
+    <div style="position: relative; display:inline-block;">
+      <img src="assets/images/users/<?php echo $login_member['user_picture_path']; ?>">
+      <!-- 分岐MW表示時のoverlay -->
+      <div class="modal-overlay-left-bar"></div>
+    </div>
     <h3><?php echo $login_member['nick_name'];?></h3>
     <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
     <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
@@ -77,7 +81,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
       <?php if($file_name == 'user.php'): ?>
         <div class="media" style="position: relative; margin-top: 7px">
           <a class="pull-left left-photo" href="user.php?user_id=<?php echo $room['member_id'] ?>">
-            <img src="assets/images/<?php echo $room['user_picture_path']; ?>">
+            <img src="assets/images/users/<?php echo $room['user_picture_path']; ?>">
           </a>
           <div class="media-body left-text-info">
             <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
@@ -86,10 +90,11 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
         </div>
 
       <?php else: ?>
-        <button type="button" class="btn btn-custom call-mw">
+        <?php $btn_id = $room['member_id'] . '_btn_pb' ?>
+        <button type="button" id="<?php echo $btn_id ?>" class="btn btn-custom call-mw">
           <div class="media" style="position: relative; margin-top: 7px">
             <a class="pull-left left-photo">
-              <img src="assets/images/<?php echo $room['user_picture_path']; ?>">
+              <img src="assets/images/users/<?php echo $room['user_picture_path']; ?>">
             </a>
             <div class="media-body left-text-info">
               <span class="media-heading left-nickname"><?php echo $room['nick_name'];?></span>
@@ -102,7 +107,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
         <?php $content_id = $room['member_id'] . '_mw_pb' ?>
         <?php $btn_cl_id = $room['member_id'] . '_mw_cl_btn' ?>
         <div id="<?php echo $content_id ?>" class="pb-mw-content">
-          <img src="assets/images/<?php echo $room['user_picture_path']; ?>" style="width: 100px; height: 100px;">
+          <img src="assets/images/users/<?php echo $room['user_picture_path']; ?>" style="width: 100px; height: 100px;">
           <a href="user.php?user_id=<?php echo $room['member_id']; ?>">個人ページへ</a>
           <a href="chat.php?friend_id=<?php echo $room['member_id']; ?>">チャットへ</a>
           <button type="button" id="<?php echo $btn_cl_id ?>">戻る</button>
@@ -111,20 +116,20 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
           var content_id = "<?php echo $content_id; ?>"
           var btn_cl_id = "<?php echo $btn_cl_id; ?>"
           // 1番最初のモーダルウィンドウ呼び出し
-          modalWindowOnFirstClass('call-mw', content_id);
+          modalWindowOnFirstPb('call-mw');
 
           // 2番目のモーダルウィンドウ呼び出し
           // modalWindowOnClass('modal-check', 'modal-content_1', 'modal-content_2');
 
           // モーダルウィンドウの終了
-          modalWindowOff(btn_cl_id, content_id);
-
-          //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
-          $(window).resize(centeringModalSyncer);
+          modalWindowOffPb(btn_cl_id, content_id);
         </script>
 
       <?php endif; ?>
     <?php } ?>
+
+    <!-- 分岐MW表示時のoverlay -->
+    <div class="modal-overlay-left-bar"></div>
   </div>
 
 </div>

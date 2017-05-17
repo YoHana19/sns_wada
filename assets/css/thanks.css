@@ -1,10 +1,10 @@
 .login-background {
-  background-image: url(../images/japanese-umbrellas.jpg);
+  background-image: url(../images/source/japanese-umbrellas.jpg);
   background-size: cover;
 }
 
 .virgin-login {
-  background-image: url(../images/login.jpg);
+  background-image: url(../images/source/login.jpg);
   background-size: cover;
   height: 800px;
 }

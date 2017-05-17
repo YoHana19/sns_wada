@@ -63,12 +63,12 @@ function tateGaki($haiku) {
   <!--プロフィール写真/ 一言-->
   <div class="container whole-content">
     <div class="fb-profile">
-      <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/<?php echo $login_user['back_picture_path']; ?>);">
+      <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/users/<?php echo $login_user['back_picture_path']; ?>);">
         <span class="intro-text-3"><?php echo tateGaki($login_user['self_intro_3']); ?></span>
         <span class="intro-text-2"><?php echo tateGaki($login_user['self_intro_2']); ?></span>
         <span class="intro-text-1"><?php echo tateGaki($login_user['self_intro_1']); ?></span>
       </div>
-      <img align="left" class="fb-image-profile thumbnail" src="assets/images/<?php echo $login_user['user_picture_path']; ?>" alt="Profile image example">
+      <img align="left" class="fb-image-profile thumbnail" src="assets/images/users/<?php echo $login_user['user_picture_path']; ?>" alt="Profile image example">
       <div class="fb-profile-text">
         <h1><?php echo $login_user['nick_name']; ?></h1>
         <div class="navbar-fixed">
@@ -130,7 +130,7 @@ function tateGaki($haiku) {
               <!-- 投稿 -->
               <div class="post-haiku">
                 <div class="poster-info">
-                  <img alt="" src="assets/images/<?php echo $user_picture_path ?>" class="pull-left">
+                  <img alt="" src="assets/images/users/<?php echo $user_picture_path ?>" class="pull-left">
                   <div class="pull-left">
                     <span class="post-haiku-name"><?php echo $nick_name ?></span>
                     <span calss="post-haiku-comment"><?php echo $post['short_comment'] ?></span>
@@ -193,7 +193,7 @@ function tateGaki($haiku) {
                               $stmt->execute($data);
                               $login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
-                            <img src="assets/images/<?php echo $login_user_picture['user_picture_path'] ?>" width="45" height="45">
+                            <img src="assets/images/users/<?php echo $login_user_picture['user_picture_path'] ?>" width="45" height="45">
                           </div>
 
                           <!-- コメント入力フォーム -->
@@ -210,7 +210,7 @@ function tateGaki($haiku) {
                           <?php foreach ($comments as $comment) { ?>
                             <div class="row">
                               <div class="col-sm-1">
-                                <img src="assets/images/<?php echo $comment['user_picture_path'] ?>" width="45" height="45">
+                                <img src="assets/images/users/<?php echo $comment['user_picture_path'] ?>" width="45" height="45">
                               </div>
                               <div class="col-sm-11">
                                 <p><span class="name"><a href="user.php?user_id=<?php echo $comment['member_id'] ?>"><?php echo $comment['nick_name'] ?></a></span><?php echo $comment['comment'] ?></p>

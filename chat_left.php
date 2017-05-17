@@ -70,7 +70,7 @@ while ($record = $room_stmt->fetch(PDO::FETCH_ASSOC)) {
 
           <div class="media" style="position: relative; margin-top: 7px">
             <div class="pull-left left-photo">
-              <img class="media-object" src="assets/images/<?php echo $room['user_picture_path']; ?>">
+              <img class="media-object" src="assets/images/users/<?php echo $room['user_picture_path']; ?>">
             </div>
             <div class="media-body left-text-info" style="text-align: left;">
               <span class="media-heading left-nickname" style="text-align: left; font-size: 14px;"><?php echo $room['nick_name'];?></span>
