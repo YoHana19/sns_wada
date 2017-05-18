@@ -389,7 +389,7 @@ foreach ($bad_member_rank as $bad_member) {
             <?php endif; ?>
 
             <!-- 句あし2位 -->
-            <?php if(isset($haikus_info[1])): ?>
+            <?php if(isset($bad_haikus_info[1])): ?>
               <div class="ranking">
                 <div class="ku-rank-wrap-2">
                   <!-- 句の内容 -->
@@ -412,7 +412,7 @@ foreach ($bad_member_rank as $bad_member) {
             <?php endif; ?>
 
             <!-- 句あし3位 -->
-            <?php if(isset($haikus_info[2])): ?>
+            <?php if(isset($bad_haikus_info[2])): ?>
               <div class="ranking">
                 <div class="ku-rank-wrap-3">
                   <!-- 句の内容 -->
