@@ -1,4 +1,30 @@
 <?php
+
+// ログイン判定プログラム
+// ①$_SESSION['login_member_id']が存在している
+// ②最後のアクション（ページの読み込みから）から1時間以内である
+// Unixタイムスタンプとして取得します。Unixタイムスタンプとは1970年1月1日 00:00:00 GMTからの経過秒数です。PHP内部での日付や時刻の処理はUnixタイムスタンプで行われます。
+function loginJudge() {
+  if (isset($_SESSION['login_member_id']) && $_SESSION['time'] + 60*60*24 > time()) {
+    require('dbconnect.php');
+    // ログインしている
+    $_SESSION['time'] = time();
+
+    $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
+    $data = array($_SESSION['login_member_id']);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+    $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $login_member;
+
+  } else {
+    // ログインしていない
+    header('Location: index.php');
+    exit();
+  }
+}
+
 // ファイル名取得関数
 function getFileNameFromUri() {
   $uri_arr = explode('/', $_SERVER['REQUEST_URI']);
@@ -10,6 +36,38 @@ function getFileNameFromUri() {
 
 // 上記関数を基に引数に与えられたファイル名と$file_nameが一致するかどうかを判定しtrue or falseをreturnする関数isFileName()を作成しfooter.phpで実行する。
 
+/*
+ * ルビ振りAPIへのリクエストサンプル（GET）
+ */
+function hiraganaKa($sentence) {
+  $api = 'http://jlp.yahooapis.jp/FuriganaService/V1/furigana';
+  $appid = 'dj0zaiZpPURNeTFtMlVTbjUybSZzPWNvbnN1bWVyc2VjcmV0Jng9ZjQ-';
+  $params = array(
+      'sentence' => $sentence
+  );
+   
+  $ch = curl_init($api.'?'.http_build_query($params));
+  curl_setopt_array($ch, array(
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_USERAGENT      => "Yahoo AppID: $appid"
+  ));
+   
+  $result = curl_exec($ch);
+  curl_close($ch);
+
+  $xml = simplexml_load_string($result);
+  $furigana = '';
+  foreach ($xml->Result->WordList as $WordList) {
+      foreach ($WordList->Word as $Word) {
+          if (isset($Word->Furigana)) {
+              $furigana .= (string)$Word->Furigana;
+          } else {
+              $furigana .= (string)$Word->Surface;
+          }
+      }
+  }
+  return $furigana;
+}
 
 // 縦書きにする関数
 function tateGaki($haiku) {

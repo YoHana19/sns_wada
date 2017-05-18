@@ -3,32 +3,8 @@ session_start();
 require('dbconnect.php');
 require('function.php');
 
-// ログイン判定プログラム
-// ①$_SESSION['login_member_id']が存在している
-// ②最後のアクション（ページの読み込みから）から1時間以内である
-// Unixタイムスタンプとして取得します。Unixタイムスタンプとは1970年1月1日 00:00:00 GMTからの経過秒数です。PHP内部での日付や時刻の処理はUnixタイムスタンプで行われます。
-if (isset($_SESSION['login_member_id']) && $_SESSION['time'] + 3600 > time()) {
-  // ログインしている
-  $_SESSION['time'] = time();
-
-  $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-  $data = array($_SESSION['login_member_id']);
-  $stmt = $dbh->prepare($sql);
-  $stmt->execute($data);
-
-  $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-  // ログインしていない
-  header('Location: index.php');
-  exit();
-}
-
-// ログインユーザーの情報取得
-$sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-$data = array($_SESSION['login_member_id']);
-$stmt = $dbh->prepare($sql);
-$stmt->execute($data);
-$login_member = $stmt->fetch(PDO::FETCH_ASSOC);
+// ログイン判定&ログインユーザー情報取得
+$login_member = loginJudge();
 
 // ログインユーザーの友達idの情報取得
 $sql = 'SELECT `login_member_id`, `friend_member_id` FROM `friends` WHERE (`login_member_id`=? OR `friend_member_id`=?) AND `state`=1';

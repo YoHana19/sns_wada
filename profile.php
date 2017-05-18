@@ -3,35 +3,10 @@ session_start();
 require('dbconnect.php');
 require('function.php');
 
-// ログイン判定プログラム
-// ①$_SESSION['login_member_id']が存在している
-// ②最後のアクション（ページの読み込みから）から1時間以内である
-// Unixタイムスタンプとして取得します。Unixタイムスタンプとは1970年1月1日 00:00:00 GMTからの経過秒数です。PHP内部での日付や時刻の処理はUnixタイムスタンプで行われます。
-if (isset($_SESSION['login_member_id']) && $_SESSION['time'] + 3600 > time()) {
-  // ログインしている
-  $_SESSION['time'] = time();
-
-  $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-  $data = array($_SESSION['login_member_id']);
-  $stmt = $dbh->prepare($sql);
-  $stmt->execute($data);
-
-  $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-  // ログインしていない
-  header('Location: index.php');
-  exit();
-}
-
-// 該当ユーザーの情報取得
-$sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-$data = array($_SESSION['login_member_id']);
-$stmt = $dbh->prepare($sql);
-$stmt->execute($data);
-$login_user = $stmt->fetch(PDO::FETCH_ASSOC);
+// ログイン判定&ログインユーザー情報取得
+$login_member = loginJudge();
 
 // 自分の作った全句を時系列で表示
-
 $sql = 'SELECT h.*, m.nick_name, m.user_picture_path FROM `haikus` AS h LEFT JOIN `members` AS m ON h.member_id=m.member_id WHERE h.member_id=? ORDER BY created DESC';
 $data = array($_SESSION['login_member_id']);
 $stmt = $dbh->prepare($sql);
@@ -79,14 +54,14 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <!--プロフィール写真/ 一言-->
   <div class="container whole-content">
     <div class="fb-profile">
-      <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/users/<?php echo $login_user['back_picture_path']; ?>);">
-        <span class="intro-text-3"><?php echo tateGaki($login_user['self_intro_3']); ?></span>
-        <span class="intro-text-2"><?php echo tateGaki($login_user['self_intro_2']); ?></span>
-        <span class="intro-text-1"><?php echo tateGaki($login_user['self_intro_1']); ?></span>
+      <div class="fb-image-lg" style="width: 100%; height: 400px; background-image: url(assets/images/users/<?php echo $login_member['back_picture_path']; ?>);">
+        <span class="intro-text-3"><?php echo tateGaki($login_member['self_intro_3']); ?></span>
+        <span class="intro-text-2"><?php echo tateGaki($login_member['self_intro_2']); ?></span>
+        <span class="intro-text-1"><?php echo tateGaki($login_member['self_intro_1']); ?></span>
       </div>
-      <img align="left" class="fb-image-profile thumbnail" src="assets/images/users/<?php echo $login_user['user_picture_path']; ?>" alt="Profile image example">
+      <img align="left" class="fb-image-profile thumbnail" src="assets/images/users/<?php echo $login_member['user_picture_path']; ?>" alt="Profile image example">
       <div class="fb-profile-text">
-        <h1><?php echo $login_user['nick_name']; ?></h1>
+        <h1><?php echo $login_member['nick_name']; ?></h1>
         <div class="navbar-fixed">
           <input type="button" onclick="location.href='edit.php'" value="プロフィール編集">
         </div>
@@ -207,9 +182,9 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                               $data = array($_SESSION['login_member_id']);
                               $stmt = $dbh->prepare($sql);
                               $stmt->execute($data);
-                              $login_user_picture = $stmt->fetch(PDO::FETCH_ASSOC);
+                              $login_member_picture = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
-                            <img src="assets/images/users/<?php echo $login_user_picture['user_picture_path'] ?>" width="45" height="45">
+                            <img src="assets/images/users/<?php echo $login_member_picture['user_picture_path'] ?>" width="45" height="45">
                           </div>
 
                           <!-- コメント入力フォーム -->

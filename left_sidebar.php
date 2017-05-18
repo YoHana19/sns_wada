@@ -4,13 +4,6 @@ require('dbconnect.php');
 // ページ名の取得
 $file_name = getFileNameFromUri();
 
-// ログインユーザー情報の取得
-$sql = 'SELECT * FROM  `members` WHERE `member_id`=?';
-$data =array($_SESSION['login_member_id']);
-$stmt = $dbh->prepare($sql);
-$stmt->execute($data);
-$login_member = $stmt->fetch(PDO::FETCH_ASSOC);
-
 if ($file_name == 'user.php') {
   $key_id = $_REQUEST['user_id'];
 } else {

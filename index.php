@@ -34,9 +34,7 @@
     </div>
   </div>
 </div>
-  <video src="assets/images/source/sakura.mp4" autoplay loop style="width: 100%;">
-    <img src="assets/images/source/sakura.jpg" alt="Placeholder">
-  </video>
+  <video src="assets/images/source/sakura.mp4" autoplay loop style="width: 100%;"></video>
 </div>
 <div id="second-top" style="width: 100%; margin-top: 150px;">
   <div class="container">

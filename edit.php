@@ -3,26 +3,6 @@ session_start();
 require('dbconnect.php');
 require('function.php');
 
-// ログイン判定プログラム
-// ①$_SESSION['login_member_id']が存在している
-// ②最後のアクション（ページの読み込みから）から1時間以内である
-// Unixタイムスタンプとして取得します。Unixタイムスタンプとは1970年1月1日 00:00:00 GMTからの経過秒数です。PHP内部での日付や時刻の処理はUnixタイムスタンプで行われます。
-if (isset($_SESSION['login_member_id']) && $_SESSION['time'] + 3600 > time()) {
-  // ログインしている
-  $_SESSION['time'] = time();
-
-  $sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-  $data = array($_SESSION['login_member_id']);
-  $stmt = $dbh->prepare($sql);
-  $stmt->execute($data);
-
-  $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-  // ログインしていない
-  header('Location: index.php');
-  exit();
-}
-
 // 画像変更時の処理
 if (!empty($_FILES)) {
   $picture_name = '';
@@ -55,12 +35,8 @@ if (!empty($_FILES)) {
   }
 }
 
-$sql = 'SELECT * FROM `members` WHERE `member_id`=?';
-$data = array($_SESSION['login_member_id']);
-$stmt = $dbh->prepare($sql);
-$stmt->execute($data);
-$login_member = $stmt->fetch(PDO::FETCH_ASSOC);
-
+// ログイン判定&ログインユーザー情報取得
+$login_member = loginJudge();
 
 // 各種バリデーション
 $errors = array();
@@ -83,16 +59,19 @@ if (!empty($_POST)) {
 
   // 自己紹介句の文字数チェック
   if (!empty($_POST['self_intro_1']) || !empty($_POST['self_intro_2']) || !empty($_POST['self_intro_3'])) {
+    $self_intro_1 = hiraganaKa($_POST['self_intro_1']);
+    $self_intro_2 = hiraganaKa($_POST['self_intro_2']);
+    $self_intro_3 = hiraganaKa($_POST['self_intro_3']);
 
-    if (mb_strlen($_POST['self_intro_1']) < 4 || mb_strlen($_POST['self_intro_1']) > 6){
+    if (mb_strlen($self_intro_1) < 4 || mb_strlen($self_intro_1) > 6){
       $errors ['self_intro_1'] = 'length';
     }
 
-    if (mb_strlen($_POST['self_intro_2']) < 6 || mb_strlen($_POST['self_intro_2']) > 8){
+    if (mb_strlen($self_intro_2) < 6 || mb_strlen($self_intro_2) > 8){
       $errors['self_intro_2'] = 'length';
     }
 
-    if (mb_strlen($_POST['self_intro_3']) < 4 || mb_strlen($_POST['self_intro_3']) > 6){
+    if (mb_strlen($self_intro_3) < 4 || mb_strlen($self_intro_3) > 6){
       $errors['self_intro_3'] = 'length';
     }
   }
