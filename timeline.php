@@ -167,6 +167,13 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <a href="user.php?user_id=<?php echo $member_id ?>">
                   <img alt="" src="assets/images/users/<?php echo $user_picture_path ?>" class="pull-left">
                 </a>
+                <!-- 削除ボタンの設置 -->
+                <?php if($_SESSION['login_member_id'] == $member_id): ?>
+                  <form action="delete.php" method="GET" accept-charset="utf-8">
+                    <button type="submit" class="trash-icon"><i class="fa fa-trash"></i></button>
+                    <input type="hidden" name="haiku_id" value="<?php echo $haiku_id ?>">
+                  </form>
+                <?php endif; ?>
                 <div class="pull-left">
                   <span class="post-haiku-name"><?php echo $nick_name ?></span>
                   <span calss="post-haiku-comment"><?php echo $post['short_comment'] ?></span>
@@ -258,7 +265,6 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   <!-- いいね！データが存在しない（いいねボタン表示） -->
                   <button type="button" id="<?php echo $haiku_id . '_dislike' ?>" class="dislike btn icon-btn btn-primary btn-color-un"><span id="<?php echo $haiku_id . '_icon_dislike' ?>" class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-un"></span>あし</button>
                 <?php endif; ?>
-                <!-- <a class="btn icon-btn btn-color-dislike" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike"></span>あし</a> -->
 
                 <!-- コメント -->
                   <!-- コメントボタン -->
@@ -379,7 +385,15 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // htmlへの追加
 
                 // 投稿句の表示
-                $('#posts').append('<div id="' + haiku_id + '_whole" class="post-haiku"><div class="poster-info"><a href="user.php?user_id=' + member_id + '"><img alt="" src="assets/images/users/' + user_picture_path + '" class="pull-left"></a><div class="pull-left"><span class="post-haiku-name">' + nick_name + '</span><span calss="post-haiku-comment">' + post['short_comment'] + '</span></div><p>' + created_date + '日 ' + created_clock + 'の刻</p></div></div>');
+                $('#posts').append('<div id="' + haiku_id + '_whole" class="post-haiku"><div id="' + haiku_id + '_for_dl" class="poster-info"><a href="user.php?user_id=' + member_id + '"><img alt="" src="assets/images/users/' + user_picture_path + '" class="pull-left"></a><div class="pull-left"><span class="post-haiku-name">' + nick_name + '</span><span calss="post-haiku-comment">' + post['short_comment'] + '</span></div><p>' + created_date + '日 ' + created_clock + 'の刻</p></div></div>');
+
+                // 削除ボタンの設置
+                var login_flag = post['login_flag'];
+                console.log('login_flag' + login_flag);
+                if (login_flag == 1) {
+                  $('#' + haiku_id + '_for_dl')
+                  .append('<form action="delete.php" method="GET" accept-charset="utf-8"><button type="submit" class="trash-icon"><i class="fa fa-trash"></i></button><input type="hidden" name="haiku_id" value="' + haiku_id + '"></form>');
+                }
 
                 // 背景画像ない場合
                 if (back_img == '') {
@@ -396,14 +410,6 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 .append('<div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i id="' + num_dislike + '" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;' + post['dislike_total'] + '人</i><i id="' + num_com_id + '" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;' + post['num_comment'] + '件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9; margin-left: 5px;"></i></div>');
 
                 console.log('hoge1');
-
-                // // 削除ボタンの設置
-                // var login_flag = post['login_flag'];
-                // console.log('login_flag' + login_flag);
-                // if (login_flag == 1) {
-                //   $('#posts').append('[<a href="delete.php?haiku_id=' + haiku_id + '" style="color: #F33;">削除</a>]');
-                // }
-
 
                 // よし・あし処理
                 // よし
