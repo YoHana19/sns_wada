@@ -1,7 +1,7 @@
 <?php
 session_start();
-require('dbconnect.php');
-require('function.php');
+require('../dbconnect.php');
+require('../function.php');
 
 // ログインユーザーの写真
 $sql = 'SELECT * FROM `members` WHERE `member_id`=?';

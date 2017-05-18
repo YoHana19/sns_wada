@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 
 // // 友達リクエストを取り消す処理を入れる場合
 // // 友達申請済みかどうかの判定処理

@@ -361,7 +361,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
           $.ajax({
             type: "POST",
-            url: 'get_post.php',
+            url: 'send/get_post.php',
             data: data,
 
           }).done(function(data) {
@@ -438,7 +438,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     
                     $.ajax({
                         type: "POST",
-                        url: "send_like.php",
+                        url: "send/send_like.php",
                         data: data,
                     
                     }).done(function(data) {
@@ -479,7 +479,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   
                   $.ajax({
                       type: "POST",
-                      url: "send_like.php",
+                      url: "send/send_like.php",
                       data: data,
                   
                   }).done(function(data) {
@@ -525,7 +525,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     
                     $.ajax({
                         type: "POST",
-                        url: "send_dislike.php",
+                        url: "send/send_dislike.php",
                         data: data,
                     
                     }).done(function(data) {
@@ -566,7 +566,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   
                   $.ajax({
                       type: "POST",
-                      url: "send_dislike.php",
+                      url: "send/send_dislike.php",
                       data: data,
                   
                   }).done(function(data) {
@@ -629,7 +629,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                     $.ajax({
                       type: "POST",
-                      url: "send_comment.php",
+                      url: "send/send_comment.php",
                       data: data,
                     /**
                      * Ajax通信が成功した場合に呼び出されるメソッド

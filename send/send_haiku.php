@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 // var_dump($_FILES['photo_file']['name']);
 
 // ログインチェック
@@ -32,7 +32,7 @@ if (isset($_SESSION['login_member_id'])) {
   if (isset($_FILES['photo_file']['name']) && !empty($_FILES['photo_file']['name'])) {
     $picture_name = date('YmdHis') . $_FILES['photo_file']['name'];
     // 20170308152500hogehoge.jpg←画像ファイル名作成
-    move_uploaded_file($_FILES['photo_file']['tmp_name'], 'assets/images/users/' . $picture_name);
+    move_uploaded_file($_FILES['photo_file']['tmp_name'], '../assets/images/users/' . $picture_name);
   }
 
   if ($_POST['page'] == 'chat') { // チャット
@@ -99,7 +99,7 @@ if (isset($_SESSION['login_member_id'])) {
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
-    $url = 'chat.php?friend_id=' . $_POST['friend_id'];
+    $url = '../chat.php?friend_id=' . $_POST['friend_id'];
 
     header('Location: ' . $url);
   
@@ -125,7 +125,7 @@ if (isset($_SESSION['login_member_id'])) {
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
-    header('Location: timeline.php');
+    header('Location: ../timeline.php');
   }
 }
 exit();

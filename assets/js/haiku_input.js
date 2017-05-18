@@ -204,7 +204,7 @@ function kanaKa(obj) {
 
   $.ajax({
     type: "POST",
-    url: "hiragana_ka.php",
+    url: "send/hiragana_ka.php",
     data: data,
 
   }).done(function(data) {
@@ -264,7 +264,7 @@ function checkNumLettersMd(obj) {
   return defer.promise(this);
 }
 
-// 画像の表示
+// 画像名の表示
 function changePhotoFile() {
   var file_name = getFileName('photo_file');
   console.log(file_name);

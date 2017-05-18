@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 
 if ($_POST['state'] == 'admit') {
   $sql = 'UPDATE `friends` SET `state`=1 WHERE (`login_member_id`=? AND `friend_member_id`=?) OR (`login_member_id`=? AND `friend_member_id`=?) ';

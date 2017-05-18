@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 
 // コメントをDBに挿入
 $sql = 'INSERT INTO `comments` set `comment_id`=NULL,

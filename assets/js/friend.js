@@ -18,7 +18,7 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
      */
     $.ajax({
         type: "POST",
-        url: "send_friend.php",
+        url: "send/send_friend.php",
         data: data,
     /**
      * Ajax通信が成功した場合に呼び出されるメソッド

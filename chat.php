@@ -195,7 +195,7 @@ if (isset($_GET['friend_id'])) {
                 </div>
                 <!-- Main Form -->
                 <div class="login-form-1">
-                  <form action="send_haiku.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+                  <form action="send/send_haiku.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
                     <div class="login-form-main-message"></div>
                     <div class="main-login-form">
                       <div class="login-group">

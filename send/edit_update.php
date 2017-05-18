@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 
   if (empty($_SESSION['errors'])) {
     $sql = 'UPDATE  `members` SET `nick_name`=?,
@@ -18,10 +18,10 @@ require('dbconnect.php');
                  );
     $stmt=$dbh->prepare($sql);
     $stmt->execute($data);
-    header('Location:profile.php');
+    header('Location: ../profile.php');
     exit();
   } else {
-    header('Location:profile.php');
+    header('Location: ../profile.php');
     exit();
   }
 

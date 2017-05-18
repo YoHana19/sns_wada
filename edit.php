@@ -124,7 +124,7 @@ if (!empty($_POST)) {
     $_SESSION['self_intro_2'] = $_POST['self_intro_2'];
     $_SESSION['self_intro_3'] = $_POST['self_intro_3'];
 
-    header('Location:edit_update.php');
+    header('Location: send/edit_update.php');
     exit();
   }
 }

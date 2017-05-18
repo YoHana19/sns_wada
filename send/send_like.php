@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 
 // ajaxでPOST送信したデータは、送信先で$_POSTとして受け取れる
 // $_POST['task_id'] = 1;
@@ -13,7 +13,7 @@ $id_stmt->execute($data);
 $haiku_member_id = $id_stmt->fetch(PDO::FETCH_ASSOC);
 
 // いいね！済みかどうかの判定処理
-$sql = 'SELECT * FROM `dislikes` WHERE `member_id`=? AND `haiku_id`=?';
+$sql = 'SELECT * FROM `likes` WHERE `member_id`=? AND `haiku_id`=?';
 $data = array($_SESSION['login_member_id'],$_POST['haiku_id']);
 $is_like_stmt = $dbh->prepare($sql);
 $is_like_stmt->execute($data);
@@ -21,27 +21,27 @@ $is_like_stmt->execute($data);
 if ($is_like = $is_like_stmt->fetch(PDO::FETCH_ASSOC)) {
     // いいねデータが存在する
     // いいねを取り消す処理
-    $sql = 'DELETE FROM `dislikes` WHERE `member_id`=? AND `haiku_id`=?';
+    $sql = 'DELETE FROM `likes` WHERE `member_id`=? AND `haiku_id`=?';
     $data = array($_SESSION['login_member_id'],$_POST['haiku_id']);
     $like_stmt = $dbh->prepare($sql);
     $like_stmt->execute($data);
-    $state = 'undislike';
+    $state = 'unlike';
 
 } else {
     // いいねデータが存在しない
     // いいねを追加する処理
-    $sql = 'INSERT INTO `dislikes` set `member_id`=?,
-                                       `haiku_id`=?,
-                                       `haiku_member_id`=?
-                                       ';
+    $sql = 'INSERT INTO `likes` set `member_id`=?,
+                                    `haiku_id`=?,
+                                    `haiku_member_id`=?
+                                    ';
     $data = array($_SESSION['login_member_id'],$_POST['haiku_id'],$haiku_member_id['id']);
     $like_stmt = $dbh->prepare($sql);
     $like_stmt->execute($data);
-    $state = 'dislike';
+    $state = 'like';
 }
 
 // いいね！数カウント処理
-$sql = 'SELECT count(*) AS total FROM `dislikes` WHERE `haiku_id`=?';
+$sql = 'SELECT count(*) AS total FROM `likes` WHERE `haiku_id`=?';
 $data = array($_POST['haiku_id']);
 $count_stmt = $dbh->prepare($sql);
 $count_stmt->execute($data);
@@ -50,7 +50,7 @@ $count = $count_stmt->fetch(PDO::FETCH_ASSOC);
 // 画面の表示を切り替えるためのデータを作成
 $data = array('id' => $_POST['haiku_id'],
               'state' => $state,
-              'dislike_cnt' => $count['total']
+              'like_cnt' => $count['total']
              );
 
 header("Content-type: text/plain; charset=UTF-8");
