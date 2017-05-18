@@ -126,7 +126,7 @@ while ($request = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
               <!-- 画像送信 -->
               <div class="form-group" style="margin-top: 15px; position: relative; padding-right: 0;">
-                <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
+                <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();" accept="image/*">
                 <img id="photo_img" src="assets/images/source/photo_submit.png" alt="参照" class="img-submit">
                 <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 10px; width: 200px;">
               </div>

@@ -114,22 +114,37 @@ if (isset($_GET['friend_id'])) {
                 <article class="row">
                   <div class="col-md-10 col-sm-10">
                     <p class="chat-name" style="text-align: right;"><?php echo $chat['nick_name']; ?></p>
+                    <!-- 背景画像がある場合 -->
                     <?php if (!empty($chat['back_img'])): ?>
                       <div class="panel panel-default arrow right user-right" style="background: url(assets/images/users/<?php echo $chat['back_img']; ?>)">
-                    <?php else: ?>
-                      <div class="panel panel-default arrow right user-right">
-                    <?php endif; ?>
-                      <div class="panel-body">
-                        <header class="text-right">
-                          <time class="comment-date" datetime="16-12-2014 01:05"><?php echo japaneseClock($chat['created']); ?>の刻</time>
-                        </header>
-                        <div class="haiku-text">
-                          <p class="haiku-text-1"><?php echo tateGaki($chat['chat_3']); ?></p>
-                          <p class="haiku-text-2"><?php echo tateGaki($chat['chat_2']); ?></p>
-                          <p class="haiku-text-3"><?php echo tateGaki($chat['chat_1']); ?></p>
+                        <div class="layerTransparent-chat">
+                          <div class="panel-body">
+                            <header class="text-right">
+                              <time class="comment-date" datetime="16-12-2014 01:05"><?php echo japaneseClock($chat['created']); ?>の刻</time>
+                            </header>
+                            <div class="haiku-text">
+                              <p class="haiku-text-1" style="color: #524e4d;"><?php echo tateGaki($chat['chat_3']); ?></p>
+                              <p class="haiku-text-2" style="color: #524e4d;"><?php echo tateGaki($chat['chat_2']); ?></p>
+                              <p class="haiku-text-3" style="color: #524e4d;"><?php echo tateGaki($chat['chat_1']); ?></p>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    <!-- 背景画像がない場合 -->
+                    <?php else: ?>
+                      <div class="panel panel-default arrow right user-right">
+                        <div class="panel-body">
+                          <header class="text-right">
+                            <time class="comment-date" datetime="16-12-2014 01:05"><?php echo japaneseClock($chat['created']); ?>の刻</time>
+                          </header>
+                          <div class="haiku-text">
+                            <p class="haiku-text-1"><?php echo tateGaki($chat['chat_3']); ?></p>
+                            <p class="haiku-text-2"><?php echo tateGaki($chat['chat_2']); ?></p>
+                            <p class="haiku-text-3"><?php echo tateGaki($chat['chat_1']); ?></p>
+                          </div>
+                        </div>
+                      </div>
+                    <?php endif; ?>
                   </div>
                   <div class="col-md-2 col-sm-2 hidden-xs" style="margin-top: 25px">
                     <figure class="thumbnail" style="border-radius: 50%; background-color: #fffffc;">
@@ -205,7 +220,7 @@ if (isset($_GET['friend_id'])) {
 
                         <!-- 画像送信 -->
                         <div class="form-group" style="margin-top: 15px; position: relative; padding-right: 0;">
-                          <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();">
+                          <input type="file" id="photo_file" name="photo_file" style="display:none;" onchange="changePhotoFile();" accept="image/*">
                           <img id="photo_img" src="assets/images/source/photo_submit.png" alt="参照" class="img-submit">
                           <input id="photo_display" type="text" name="photo_display" value="" size="25" style="margin-left: 10px; width: 200px;">
                         </div>

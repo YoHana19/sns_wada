@@ -68,6 +68,13 @@
   background-color: #fffffc;
   width: 300px;
   height: 250px;
+  border: none;
+}
+
+/* 背景画像透過用 */
+.layerTransparent-chat{
+    background-color: rgba(255,255,255,0.5);
+    height: 250px;
 }
 
 .panel-body {
@@ -109,11 +116,11 @@
 }
 
 .haiku-text-1 {
-    left: 15px;
+    left: 23px;
 }
 
 .haiku-text-2 {
-    left: 117px;
+    left: 123px;
 }
 
 .haiku-text-3 {
@@ -136,7 +143,7 @@
 
 /* Portrait tablets and medium desktops */
 @media (min-width: 768px) {
-  .comment-list .arrow:after, .comment-list .arrow:before {
+  .comment-list .arrow:after {
     content: "";
     position: absolute;
     width: 0;
@@ -144,42 +151,43 @@
     border-style: solid;
     border-color: transparent;
   }
+
   .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
     border-left: 0;
   }
   /*****Left Arrow*****/
   /*Outline effect style*/
-  .comment-list .panel.arrow.left:before {
+/*  .comment-list .panel.arrow.left:before {
     left: 0px;
     top: 50px;
-    /*Use boarder color of panel*/
+    Use boarder color of panel
     border-right-color: inherit;
     border-width: 16px;
-  }
+  }*/
   /*Background color effect*/
   .comment-list .panel.arrow.left:after {
-    left: 1px;
+    left: 2px;
     top: 50px;
     /*Change for different outline color*/
     border-right-color: #fffffc;
-    border-width: 15px;
+    border-width: 13px;
   }
   /*****Right Arrow*****/
   /*Outline effect style*/
-  .comment-list .panel.arrow.right:before {
+/*  .comment-list .panel.arrow.right:before {
     right: -16px;
     top: 50px;
-    /*Use boarder color of panel*/
+    Use boarder color of panel
     border-left-color: inherit;
     border-width: 16px;
-  }
+  }*/
   /*Background color effect*/
   .comment-list .panel.arrow.right:after {
-    right: -12px;
+    right: -11px;
     top: 50px;
     /*Change for different outline color*/
     border-left-color: #f6b894;
-    border-width: 15px;
+    border-width: 13px;
   }
 }
 .comment-list .comment-post {

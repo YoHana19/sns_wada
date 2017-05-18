@@ -23,6 +23,9 @@ function modalWindowOnFirst(button, content_in) {
     //[$modal-overlay]をフェードインさせる
     $("#modal-overlay").fadeIn("slow");
 
+    // 左サイドバーの調整
+    $(".left-content").css({zIndex : '0'});
+
     // ウィンドウをリサイズした時のセンタリング
     $(window).resize(function() {
       centeringModalSyncer(content_in);
@@ -55,10 +58,10 @@ function modalWindowOff(button, content_out){
       console.log('hoge7');
       //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
       $("#modal-overlay").remove();
-  
     });
-
   });
+  // 左サイドバーの調整
+  $(".left-content").css({zIndex : '5'});
 }
 
 // 個人orチャット画面遷移分岐MW

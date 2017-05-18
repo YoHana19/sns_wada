@@ -18,7 +18,7 @@ require('dbconnect.php');
       </span>
     </div>
     <!-- 分岐MW表示時のoverlay -->
-    <div class="modal-overlay-left-bar"></div>
+    <div class="modal-overlay-left-bar" style="width: 96.5%;"></div>
   </div>
 </form>
 
