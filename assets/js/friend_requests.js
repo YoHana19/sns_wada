@@ -9,15 +9,12 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
   // 各リクエストがクリックされた時の処理
   $('.request').on('click', function() {
       var friend_id = $(this).attr('id');
-      console.log(friend_id)
       var array = friend_id.match(/[0-9]+\.?[0-9]*/g);
       var f_id = array[0];
-      console.log(f_id)
+
       if (friend_id.slice(-1) == 'a') {
-        console.log('hoge1');
         var state = 'admit';
       } else {
-        console.log('hoge2');
         var state = 'reject';
       }
       var data = {state : state,
@@ -38,7 +35,6 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
         // jsonデータをJSの配列にパース（変換）する
         var task_data = JSON.parse(data);
         friend_id = task_data['id'];
-        console.log(friend_id)
 
         // 処理済みリクエストの削除
         $('#' + friend_id + '_a').remove();

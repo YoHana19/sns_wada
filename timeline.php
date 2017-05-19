@@ -340,9 +340,8 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
           $('#loading').show();
 
           var search_word = "<?php echo $search_word ?>";
-          console.log(search_word);
           if (search_word == '') {
-            console.log('hoge01');
+            
             var data = {max_page : <?php echo $max_page; ?>};
           } else {
             var data = {max_page : <?php echo $max_page; ?>, search_word : search_word};
@@ -379,9 +378,6 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 var comment_id = 'com_id_' + haiku_id;
                 var num_com_id = 'num_comment_' + haiku_id;
 
-                console.log(comment_id);
-                console.log(post);
-
                 // htmlへの追加
 
                 // 投稿句の表示
@@ -389,7 +385,6 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 // 削除ボタンの設置
                 var login_flag = post['login_flag'];
-                console.log('login_flag' + login_flag);
                 if (login_flag == 1) {
                   $('#' + haiku_id + '_for_dl')
                   .append('<form action="delete.php" method="GET" accept-charset="utf-8"><button type="submit" class="trash-icon"><i class="fa fa-trash"></i></button><input type="hidden" name="haiku_id" value="' + haiku_id + '"></form>');
@@ -409,8 +404,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $('#' + haiku_id + '_whole')
                 .append('<div style="text-align: right;"><div style="float: left"><i id="' + num_like + '" class="glyphicon glyphicon-thumbs-up icon-margin">&thinsp;' + post['like_total'] + '人</i><i id="' + num_dislike + '" class="glyphicon glyphicon-thumbs-down icon-margin">&thinsp;' + post['dislike_total'] + '人</i><i id="' + num_com_id + '" class="fa fa-commenting-o icon-margin" aria-hidden="true">&thinsp;' + post['num_comment'] + '件</i></div><i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="color: #3b5998"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #00a1e9; margin-left: 5px;"></i></div>');
 
-                console.log('hoge1');
-
+                
                 // よし・あし処理
                 // よし
                 var state_like = post['state_like'];
@@ -422,8 +416,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     var h_id = $(this).attr('id'); // クリックされたタグのhaiku_idの値を取得
                     var array = h_id.match(/[0-9]+\.?[0-9]*/g);
                     var haiku_id = array[0];
-                    console.log('hoge2');
-                    var data = {haiku_id : haiku_id}; 
+                                        var data = {haiku_id : haiku_id}; 
                     
                     $.ajax({
                         type: "POST",
@@ -435,23 +428,20 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                       var task_data = JSON.parse(data);
                       var input_tag = document.getElementById(task_data['id'] + '_like');
                       var input_icon = document.getElementById(task_data['id'] + '_icon_like');
-                      console.log(task_data['state']);
+                      
                       if (task_data['state'] == 'unlike') {
                         // いいねボタンの表示
-                        console.log('ok');
-                        input_tag.className = "like btn icon-btn btn-primary btn-color-un";
+                                             input_tag.className = "like btn icon-btn btn-primary btn-color-un";
                         input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-un";
                       } else {
                         // いいね取り消しボタンの表示
-                        console.log('unok');
-                        input_tag.className = "like btn icon-btn btn-primary btn-color-like";
+                                               input_tag.className = "like btn icon-btn btn-primary btn-color-like";
                         input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like";
                       }
                       
                       // いいね数の表示
                       var num_like = 'num_like_' + task_data['id'];
-                      console.log(num_like)
-                      document.getElementById(num_like).innerHTML = '&thinsp;' + task_data['like_cnt'] + '人';
+                                            document.getElementById(num_like).innerHTML = '&thinsp;' + task_data['like_cnt'] + '人';
                     
                     }).fail(function(data) {
                       alert('error!!!' + data);
@@ -476,23 +466,20 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     var task_data = JSON.parse(data);
                     var input_tag = document.getElementById(task_data['id'] + '_like');
                     var input_icon = document.getElementById(task_data['id'] + '_icon_like');
-                    console.log(task_data['state']);
+                    
                     if (task_data['state'] == 'unlike') {
                       // いいねボタンの表示
-                      console.log('ok');
-                      input_tag.className = "like btn icon-btn btn-primary btn-color-un";
+                                         input_tag.className = "like btn icon-btn btn-primary btn-color-un";
                       input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-un";
                     } else {
                       // いいね取り消しボタンの表示
-                      console.log('unok');
-                      input_tag.className = "like btn icon-btn btn-primary btn-color-like";
+                                           input_tag.className = "like btn icon-btn btn-primary btn-color-like";
                       input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-color-like";
                     }
                     
                     // いいね数の表示
                     var num_like = 'num_like_' + task_data['id'];
-                    console.log(num_like)
-                    document.getElementById(num_like).innerHTML = '&thinsp;' + task_data['like_cnt'] + '人';
+                                        document.getElementById(num_like).innerHTML = '&thinsp;' + task_data['like_cnt'] + '人';
                   
                   }).fail(function(data) {
                     alert('error!!!' + data);
@@ -522,22 +509,20 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                       var task_data = JSON.parse(data);
                       var input_tag = document.getElementById(task_data['id'] + '_dislike');
                       var input_icon = document.getElementById(task_data['id'] + '_icon_dislike');
-                      console.log(task_data['state']);
+                      
                       if (task_data['state'] == 'undislike') {
                         // いいねボタンの表示
-                        console.log('ok');
-                        input_tag.className = "dislike btn icon-btn btn-primary btn-color-un";
+                                             input_tag.className = "dislike btn icon-btn btn-primary btn-color-un";
                         input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-un";
                       } else {
                         // いいね取り消しボタンの表示
-                        console.log('unok');
-                        input_tag.className = "dislike btn icon-btn btn-primary btn-color-dislike";
+                                               input_tag.className = "dislike btn icon-btn btn-primary btn-color-dislike";
                         input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike";
                       }
                       
                       // いいね数の表示
                       var num_dislike = 'num_dislike_' + task_data['id'];
-                      console.log(num_dislike)
+                      
                       document.getElementById(num_dislike).innerHTML = '&thinsp;' + task_data['dislike_cnt'] + '人';
                     
                     }).fail(function(data) {
@@ -563,22 +548,20 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     var task_data = JSON.parse(data);
                     var input_tag = document.getElementById(task_data['id'] + '_dislike');
                     var input_icon = document.getElementById(task_data['id'] + '_icon_dislike');
-                    console.log(task_data['state']);
+                    
                     if (task_data['state'] == 'undislike') {
                       // いいねボタンの表示
-                      console.log('ok');
-                      input_tag.className = "dislike btn icon-btn btn-primary btn-color-un";
+                                         input_tag.className = "dislike btn icon-btn btn-primary btn-color-un";
                       input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-un";
                     } else {
                       // いいね取り消しボタンの表示
-                      console.log('unok');
-                      input_tag.className = "dislike btn icon-btn btn-primary btn-color-dislike";
+                                           input_tag.className = "dislike btn icon-btn btn-primary btn-color-dislike";
                       input_icon.className = "glyphicon btn-glyphicon glyphicon-thumbs-down img-circle text-color-dislike";
                     }
                     
                     // いいね数の表示
                     var num_dislike = 'num_dislike_' + task_data['id'];
-                    console.log(num_dislike)
+                    
                     document.getElementById(num_dislike).innerHTML = '&thinsp;' + task_data['dislike_cnt'] + '人';
                   
                   }).fail(function(data) {
@@ -593,27 +576,15 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                  
                 $('#' + haiku_id + '_icons')
                 .append('<button id="' + comment_id + '" class="btn icon-btn btn-color-comment comment_button" href="#"><span class="fa btn-glyphicon fa-commenting-o img-circle text-color-comment"></span>コメントする</button><div id="' + comment_id + '_content" class="post-comment"><div class="comment-msg row"><div class="form-group"><div class="col-sm-1"><img src="assets/images/users/' + login_user_picture + '" width="45" height="45"></div><div class="col-sm-11"><input type="text" class="comment_content form-control comment-input" id="' + comment_id + '_input" placeholder="例： コメント"></div></div></div><div id="' + haiku_id + '_cont" class="comment-msg"></div></div>')
-                
-                // .on('click', '#' + comment_id, function() { // コメント欄の表示
-                //   console.log('hoge11')
-                //   var haiku_id = $(this).attr('id'); // クリックされたコメントボタンidの取得
-                //   var com_id = haiku_id + '_content'
-                //   console.log(com_id)
-                //   $("#" + com_id).slideToggle();
-                //   console.log('hoge12')
-                // })
 
                 .on('keypress' , '#' + comment_id + '_input', function (e) {  // コメントの送信
                   if (e.which == 13) {
                     // ここに処理を記述
                     var haiku_id = $(this).attr('id');
-                    console.log(haiku_id)
-                    var array = haiku_id.match(/[0-9]+\.?[0-9]*/g);
+                                        var array = haiku_id.match(/[0-9]+\.?[0-9]*/g);
                     var h_id = array[0];
-                    console.log(h_id)
-                    var comment = $(this).attr('value');
-                    console.log(comment);
-                    var data = {comment : comment,
+                                    var comment = $(this).attr('value');
+                                        var data = {comment : comment,
                                 haiku_id: h_id};
 
                     $.ajax({
@@ -631,14 +602,12 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                       // jsonデータをJSの配列にパース（変換）する
                       var task_data = JSON.parse(data);
                       haiku_id = task_data['id'] + '_cont'
-                      console.log(haiku_id);
+                      
                       var num_comment_tag = document.getElementById('num_comment_' + task_data['id']);
                       var num_c = num_comment_tag.textContent;
-                      console.log(num_c);
-                      var array = num_c.match(/[0-9]+\.?[0-9]*/g);
+                                          var array = num_c.match(/[0-9]+\.?[0-9]*/g);
                       var num_com = array[0];
                       var num_com_modified = parseInt(num_com) + 1;
-                      console.log(num_com_modified);
 
                       // 新規コメントの追加
                       $('#' + haiku_id).prepend('<div class="row"><div class="col-sm-1"><img src="assets/images/users/' + task_data['user_picture_path'] + '" width="45" height="45"></div><div class="col-sm-11"><p><span class="name"><a href="user.php?user_id=' + task_data['member_id'] + '">' + task_data['nick_name'] + '</a></span>' + task_data['comment'] + '</p></div></div>');
@@ -655,8 +624,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   }
                 });
 
-                console.log('hoge3');
-                console.log(comments);
+                                
 
                 // コメントがあるかチェック
                 if (comments.length > 0) {
@@ -674,8 +642,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 $('#posts')
                 .append('</div></div></div></div>');
-                console.log('hoge5');
-                
+                                
               }); // 大きいforeachの終了
 
               $('#loading').hide();
@@ -690,7 +657,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
           }).fail(function(data) {
             alert('error!!!' + data);
           });
-          console.log('hugahuga');
+          
         } // End of the document reached? if文の終了タグ
       });
     });

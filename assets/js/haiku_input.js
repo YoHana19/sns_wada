@@ -75,11 +75,9 @@ $(function(){
         var num_letters = countNumLetters(this);
         if (num_letters < 21) {
           // 文字数OK
-          console.log('hoge21');
           $('#' + valid_id).css('display','none');
         } else {
           // 文字数ダメ
-          console.log('hoge22');
           $('#' + valid_id).css('display','');
         }
       })
@@ -105,30 +103,24 @@ $(function(){
           checkNumLetters('#lw_haiku')
       ).done(function(check_up, check_md, check_lw) {
         if (check_up == 1 && check_md == 1 && check_lw == 1 && countNumLetters('#short_comment') < 21) {
-          console.log('hoge100');
           // 画像のチェック
           var file_name = getFileName('photo_file');
           if (file_name == '') { // 画像選択されてない
-            console.log('hoge101');
             // バリデーションクリア
             $('#yomu_pre').css('display','none');
             $('#yomu_ready').css('display','');
           } else { // 画像選択されてる→画像形式のチェック
-            console.log('hoge102');
             if (checkPhotoFile(file_name)) {
-              console.log('hoge103');
               // バリデーションクリア
               $('#yomu_pre').css('display','none');
               $('#yomu_ready').css('display','');
             } else {
-              console.log('hoge104');
               // バリデーションアウト
               $('#yomu_pre').css('display','');
               $('#yomu_ready').css('display','none');
             }
           }
         } else {
-          console.log('hoge105');
           // バリデーションアウト
           $('#yomu_pre').css('display','');
           $('#yomu_ready').css('display','none');
@@ -148,30 +140,24 @@ $(function(){
           checkNumLetters('#lw_haiku')
       ).done(function(check_up, check_md, check_lw) {
         if (check_up == 1 && check_md == 1 && check_lw == 1) {
-          console.log('hoge100');
           // 画像のチェック
           var file_name = getFileName('photo_file');
           if (file_name == '') { // 画像選択されてない
-            console.log('hoge101');
             // バリデーションクリア
             $('#yomu_pre').css('display','none');
             $('#yomu_ready').css('display','');
           } else { // 画像選択されてる→画像形式のチェック
-            console.log('hoge102');
             if (checkPhotoFile(file_name)) {
-              console.log('hoge103');
               // バリデーションクリア
               $('#yomu_pre').css('display','none');
               $('#yomu_ready').css('display','');
             } else {
-              console.log('hoge104');
               // バリデーションアウト
               $('#yomu_pre').css('display','');
               $('#yomu_ready').css('display','none');
             }
           }
         } else {
-          console.log('hoge105');
           // バリデーションアウト
           $('#yomu_pre').css('display','');
           $('#yomu_ready').css('display','none');
@@ -267,7 +253,6 @@ function checkNumLettersMd(obj) {
 // 画像名の表示
 function changePhotoFile() {
   var file_name = getFileName('photo_file');
-  console.log(file_name);
   if (checkPhotoFile(file_name)) { 
     document.getElementById("photo_display").value = file_name;
   } else if (file_name == '') {

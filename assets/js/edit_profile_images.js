@@ -17,7 +17,6 @@ $(document).ready(function() { // HTMLが全て読み込まれたあと実行
 function editImageMsg(obj, parent_obj, content, overlay) {
   $("#" + obj).hover(
     function(){ // マウスオーバーした時
-      console.log('hoge001');
       $(this).blur() ;  //ボタンからフォーカスを外す
       if($("#" + overlay)[0]) return false ;
 
@@ -31,10 +30,8 @@ function editImageMsg(obj, parent_obj, content, overlay) {
 
     },
     function(){ // マウスアウトした時
-      console.log('hoge003');
       //オーバーレイ、画像編集メッセージ用のHTMLコードを、[<div class="fb-image-lg">]内のから取り除く
       $("#" + overlay + ", #" + content).fadeOut("slow",function() {
-        console.log('hoge7');
         //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
         $("#" + overlay).remove();
       });

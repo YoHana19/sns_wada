@@ -78,12 +78,26 @@ require('dbconnect.php');
       <!-- ユーザーページ or チャット選択MW -->
       <?php $content_id = $friend_info['member_id'] . '_mw_pb' ?>
       <?php $btn_cl_id = $friend_info['member_id'] . '_mw_cl_btn' ?>
-      <div id="<?php echo $content_id ?>" class="pb-mw-content">
-        <img src="assets/images/users/<?php echo $friend_info['user_picture_path']; ?>" style="width: 100px; height: 100px;">
-        <a href="user.php?user_id=<?php echo $friend_info['member_id']; ?>">個人ページへ</a>
-        <a href="chat.php?friend_id=<?php echo $friend_info['member_id']; ?>">チャットへ</a>
-        <button type="button" id="<?php echo $btn_cl_id ?>">戻る</button>
+      <div id="<?php echo $content_id ?>" class="container pb-mw-content">
+        <div class="row pb-name-box">
+          <div class="pb-link-page"><?php echo $friend_info['nick_name']; ?></div>
+        </div>
+        <div class="row">
+          <img src="assets/images/users/<?php echo $friend_info['user_picture_path']; ?>" style="width: 100%; height: 270px;">
+        </div>
+        <div class="row">
+          <div class="col-md-6 pb-link-box" style="border-right: 1px solid #aaa;">
+            <div class="pb-link-page">個人ページへ</div>
+            <a href="user.php?user_id=<?php echo $friend_info['member_id']; ?>"></a>
+          </div>
+          <div class="col-md-6 pb-link-box" style="border-left: 1px solid #aaa;">
+            <div class="pb-link-page">チャットページへ</div>
+            <a href="chat.php?friend_id=<?php echo $friend_info['member_id']; ?>"></a>
+          </div>
+        </div>
+        <button type="button" id="<?php echo $btn_cl_id ?>" class="pb-back-btn">戻る</button>
       </div>
+
       <script>
         var content_id = "<?php echo $content_id; ?>"
         console.log(content_id);

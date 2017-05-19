@@ -6,7 +6,6 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
   $('button.friend').click(function() // inputタグがクリックされたら実行
   {
     var user_id = $(this).attr('id'); // クリックされたタグのuser_idの値を取得
-    console.log(user_id);
     var data = {user_id : user_id}; // JSで連想配列を定義
     // $data = array('hoge' => 'ほげ'); PHPの連想配列
     // ここで定義したkeyが受け取り側の$_POSTのkeyになる
@@ -29,11 +28,9 @@ $(document).ready(function() // HTMLが全て読み込まれたあと実行
       // jsonデータをJSの配列にパース（変換）する
       var task_data = JSON.parse(data);
       var input_tag = document.getElementById(task_data['id']);
-      console.log(task_data['state']);
-      console.log(task_data['id']);
+      
       if (task_data['state'] == 'request') {
         // 友達リクエスト中の表示
-        console.log('ok');
         input_tag.className = "btn btn-primary btn-color-likes";
         input_tag.innerText = '友達リクエスト中'
       // } else {
