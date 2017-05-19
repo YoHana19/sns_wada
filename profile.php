@@ -89,6 +89,7 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
               <?php $haiku_id = $post['haiku_id'] ?>
               <?php $nick_name = $post['nick_name'] ?>
               <?php $user_picture_path = $post['user_picture_path'] ?>
+              <?php $back_img = $post['back_img'] ?>
               <?php $haiku_1 = $post['haiku_1'] ?>
               <?php $haiku_2 = $post['haiku_2'] ?>
               <?php $haiku_3 = $post['haiku_3'] ?>
@@ -128,7 +129,20 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   </div>
                   <p><?php echo japaneseDate($created) ?>日 <?php echo japaneseClock($created) ?>の刻</p>
                 </div>
-                <div class="active item">
+              <div>
+                <!-- 背景画像ある場合 -->
+                <?php if (!empty($back_img)) : ?>
+                  <blockquote style="background-image: url(assets/images/users/<?php echo $back_img ?>); background-size: cover;">
+                    <div class="layerTransparent">
+                      <div class="post-haiku-text" style="padding-top: 15px; color: #524e4d;">
+                        <h2 class="post-haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
+                        <h2 class="post-haiku-text-2"><?php echo tateGaki($haiku_2); ?></h2>
+                        <h2 class="post-haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
+                      </div>
+                    </div>
+                  </blockquote>
+                <!-- 背景画像ない場合 -->
+                <?php else: ?>
                   <blockquote style="background:#fff0f5">
                     <div class="post-haiku-text">
                       <h2 class="post-haiku-text-1"><?php echo tateGaki($haiku_3); ?></h2>
@@ -136,7 +150,8 @@ while ($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                       <h2 class="post-haiku-text-3"><?php echo tateGaki($haiku_1); ?></h2>
                     </div>
                   </blockquote>
-                </div>
+                <?php endif; ?>
+              </div>
 
                 <?php
                   // よし数カウント処理
